@@ -342,8 +342,133 @@ exports.getLeadAnalytics = async (req, res) => {
       },
     };
 
-    res.json({ success: true, data: stats });
+/**
+ * Create Service Contact Inquiry
+ * Called when users contact via WhatsApp/Email from cart/checkout
+ * @Body { name, email, phone, services: [], preferredContact: 'whatsapp' | 'email' }
+ */
+exports.createServiceInquiry = async (req, res) => {
+  try {
+    const { name, email, phone, services, preferredContact } = req.body;
+
+    // Validate required fields
+    if (!name || !email) {
+      return res.status(400).json({ success: false, message: 'Name and email are required' });
+    }
+
+    // Format the message
+    const servicesList = services && services.length > 0 
+      ? services.map(s => `${s.serviceTitle} (${s.plan})`).join(', ')
+      : 'Not specified';
+
+    const message = `Service Inquiry - ${servicesList}. Contact via: ${preferredContact}. Phone: ${phone || 'Not provided'}`;
+
+    const lead = await Lead.create({
+      name,
+      email,
+      company: '',
+      message,
+      service: servicesList,
+      source: 'service-inquiry',
+      status: 'new',
+      automationHistory: [{
+        action: 'service_contact_initiated',
+        details: {
+          phone: phone || 'Not provided',
+          preferredContact,
+          servicesCount: services?.length || 0,
+          services: servicesList,
+        },
+      }],
+    });
+
+    // Score the lead
+    const leadScore = scoreLead(lead);
+    lead.leadScore = leadScore;
+    await lead.save();
+
+    // Notify admin
+    await notifyNewLeadAlert(lead, leadScore);
+
+    res.status(201).json({ 
+      success: true, 
+      data: lead,
+      leadScore,
+      message: 'Your inquiry has been recorded. We will contact you shortly via ' + preferredContact + '.'
+    });
   } catch (err) {
+    console.error('Service inquiry error:', err);
+    res.status(500).json({ success: false, message: err.message });
+  }
+};
+
+/**
+ * Create CEO Meeting Request
+ * Called from MeetingWithCEOPage
+ * @Body { name, email, phone, businessType, mainChallenge, monthlyRevenue }
+ */
+exports.createCEOMeetingRequest = async (req, res) => {
+  try {
+    const { name, email, phone, businessType, mainChallenge, monthlyRevenue } = req.body;
+
+    // Validate required fields
+    if (!name || !email || !phone) {
+      return res.status(400).json({ 
+        success: false, 
+        message: 'Name, email, and phone are required' 
+      });
+    }
+
+    // Format the message
+    const message = `CEO Meeting Request - Business Type: ${businessType}. Challenge: ${mainChallenge}. Monthly Revenue: ${monthlyRevenue || 'Not specified'}`;
+
+    const lead = await Lead.create({
+      name,
+      email,
+      company: businessType || 'Not specified',
+      budget: monthlyRevenue || '',
+      message,
+      service: 'CEO Meeting Consultation',
+      source: 'ceo-meeting',
+      status: 'new',
+      automationHistory: [{
+        action: 'ceo_meeting_requested',
+        timestamp: new Date(),
+        details: {
+          phone,
+          businessType,
+          mainChallenge,
+          monthlyRevenue: monthlyRevenue || 'Not specified',
+        },
+      }],
+    });
+
+    // Score the lead (CEO meeting requests are prioritized)
+    const leadScore = scoreLead(lead);
+    lead.leadScore = {
+      ...leadScore,
+      priority: 'urgent', // CEO meetings get highest priority
+      score: Math.min(leadScore.score + 30, 100), // Boost score
+      factors: {
+        ...leadScore.factors,
+        ceoMeetingRequest: true,
+      },
+    };
+    await lead.save();
+
+    // Notify admin via Telegram
+    await notifyNewLeadAlert(lead, lead.leadScore);
+
+    console.log(`🎯 CEO Meeting Request - ID: ${lead._id}, ${name}, URGENT PRIORITY`);
+
+    res.status(201).json({
+      success: true,
+      data: lead,
+      leadScore: lead.leadScore,
+      message: 'Your meeting request has been received! We will contact you within 24 hours to confirm your CEO consultation slot.',
+    });
+  } catch (err) {
+    console.error('CEO meeting request error:', err);
     res.status(500).json({ success: false, message: err.message });
   }
 };

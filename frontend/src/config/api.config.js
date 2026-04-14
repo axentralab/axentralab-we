@@ -52,6 +52,8 @@ export const API_ENDPOINTS = {
     LIST: '/leads',
     GET: (id) => `/leads/${id}`,
     UPDATE: (id) => `/leads/${id}`,
+    CEO_MEETING: '/leads/ceo-meeting',
+    SERVICE_INQUIRY: '/leads/service-inquiry',
     GENERATE_PROPOSAL: (id) => `/leads/${id}/auto-proposal`,
     SEND_PROPOSAL: (id) => `/leads/${id}/send-proposal`,
     SEND_FOLLOWUP: (id) => `/leads/${id}/send-followup`,
