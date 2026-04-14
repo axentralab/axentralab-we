@@ -12,10 +12,7 @@ export const ROUTES = {
     PRODUCTS: '/products',
     PORTFOLIO: '/portfolio',
     TEAM: '/team',
-    BLOG: '/blog',
-    BLOG_POST: (id) => `/blog/${id}`,
     CONTACT: '/contact',
-    QUOTE: '/quote',
     NOT_FOUND: '*',
   },
 
@@ -55,14 +52,9 @@ export const NAV_LINKS = [
   { label: 'Products', href: ROUTES.PUBLIC.PRODUCTS },
   { label: 'Portfolio', href: ROUTES.PUBLIC.PORTFOLIO },
   { label: 'Team', href: ROUTES.PUBLIC.TEAM },
-  { label: 'Blog', href: ROUTES.PUBLIC.BLOG },
   { label: 'Contact', href: ROUTES.PUBLIC.CONTACT },
 ];
 
-// CTA button
-export const CTA_LINK = {
-  label: '💰 Get Quote',
-  href: ROUTES.PUBLIC.QUOTE,
-};
+
 
 export default ROUTES;

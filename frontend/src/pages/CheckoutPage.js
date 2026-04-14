@@ -5,6 +5,7 @@ import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
 import api, { apiErrorMessage } from '../services/api';
 import { ReferralCtaBanner } from '../components/ui/ReferralPromoAd';
+import ContactModal from '../components/ui/ContactModal';
 
 const PRIMARY  = '#6366F1';
 const ACCENT   = '#8B5CF6';
@@ -17,6 +18,7 @@ export default function CheckoutPage() {
   const toast      = useToast();
   const [loading, setLoading] = useState(false);
   const [error, setError]     = useState('');
+  const [contactModalOpen, setContactModalOpen] = useState(false);
 
   useEffect(() => {
     if (cart.length === 0) navigate('/cart', { replace: true });
@@ -161,6 +163,13 @@ export default function CheckoutPage() {
                   {loading ? <><span className="spinner" /> Redirecting…</> : '🔒 Pay with Stripe →'}
                 </button>
 
+                <button onClick={() => setContactModalOpen(true)}
+                  style={{ width: '100%', padding: '14px', fontSize: 15, marginTop: 12, background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 12, color: '#fff', fontFamily: "'Sora',sans-serif", fontWeight: 700, cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, transition: 'all 0.2s' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.transform = 'none'; }}>
+                  💬 Contact via WhatsApp/Email
+                </button>
+
                 <div style={{ marginTop: 16, padding: 14, background: `${PRIMARY}05`, border: `1px solid ${PRIMARY}12`, borderRadius: 10 }}>
                   <p style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', lineHeight: 1.7, fontFamily: "'Space Mono',monospace", margin: 0 }}>
                     Redirected to Stripe's secure payment page. Visa, Mastercard, Amex and more accepted.
@@ -176,6 +185,13 @@ export default function CheckoutPage() {
           </div>
         </div>
       </div>
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={contactModalOpen} 
+        onClose={() => setContactModalOpen(false)} 
+        cartItems={cart}
+      />
     </>
   );
 }

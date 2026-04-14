@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import TestimonialsSection from '../components/sections/TestimonialsSection';
 import ProcessSection from '../components/sections/ProcessSection';
-import BlogSection from '../components/sections/BlogSection';
 import ReferralTierComparison from '../components/sections/ReferralTierComparison';
 import { ReferralCtaBanner } from '../components/ui/ReferralPromoAd';
 
@@ -18,15 +17,7 @@ const STATS = [
 // Terminal lines shown in the floating code widget
 
 
-// AI Tool tab definitions
-const AI_TABS = [
-  { id: 'copy',  label: '✍️ Copywriter', icon: '✍️' },
-  { id: 'email', label: '📧 Email',      icon: '📧' },
-  { id: 'seo',   label: '🔍 SEO',        icon: '🔍' },
-];
 
-const TONES   = ['Professional', 'Casual', 'Bold', 'Friendly', 'Persuasive'];
-const LENGTHS = ['Short', 'Medium', 'Long'];
 const HERO_BG_IMAGE = process.env.REACT_APP_HOME_HERO_BG_IMAGE || '/images/home-hero-bg.png';
 
 // ─── Hooks ────────────────────────────────────────────────────────────────────
@@ -197,232 +188,7 @@ function ScrollIndicator() {
   );
 }
 
-// ─── Free AI Tool Section ──────────────────────────────────────────────────────
 
-function FreeAITool() {
-  const [tab, setTab]       = useState('copy');
-  const [tone, setTone]     = useState('Professional');
-  const [length, setLength] = useState('Medium');
-  const [topic, setTopic]   = useState('');
-  const [output, setOutput] = useState('');
-  const [loading, setLoading] = useState(false);
-  const [copied, setCopied]   = useState(false);
-  const [chars, setChars]     = useState(0);
-
-  const PROMPTS = {
-    copy: (t, tone, length) =>
-      `Write a compelling marketing copy for: "${t}". Tone: ${tone}. Length: ${length}. Return only the copy, no explanations.`,
-    email: (t, tone, length) =>
-      `Write a professional email about: "${t}". Tone: ${tone}. Length: ${length}. Include subject line. Return only the email.`,
-    seo: (t, tone, length) =>
-      `Write an SEO-optimised meta description and title tag for: "${t}". Tone: ${tone}. Length hint: ${length}. Format clearly.`,
-  };
-
-  const PLACEHOLDERS = {
-    copy: 'e.g. AI automation tool for small businesses',
-    email: 'e.g. Follow-up after a product demo',
-    seo:  'e.g. Cybersecurity services for startups',
-  };
-
-  const handleGenerate = async () => {
-    if (!topic.trim()) return;
-    setLoading(true);
-    setOutput('');
-    setCopied(false);
-    try {
-      const res = await fetch('https://api.anthropic.com/v1/messages', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          model: 'claude-sonnet-4-20250514',
-          max_tokens: 1000,
-          messages: [{ role: 'user', content: PROMPTS[tab](topic, tone, length) }],
-        }),
-      });
-      const data = await res.json();
-      const text = data.content?.map(b => b.text || '').join('') || 'No output.';
-      setOutput(text);
-      setChars(text.length);
-    } catch {
-      setOutput('⚠️ Something went wrong. Please try again.');
-    }
-    setLoading(false);
-  };
-
-  const handleCopy = async () => {
-    if (!output) return;
-    try {
-      await navigator.clipboard.writeText(output);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch {}
-  };
-
-  return (
-    <section style={{ padding: '100px 5%', background: 'rgba(139,92,246,0.02)', borderTop: '1px solid rgba(139,92,246,0.08)', borderBottom: '1px solid rgba(139,92,246,0.08)', position: 'relative', overflow: 'hidden' }}>
-      {/* bg glow */}
-      <div style={{ position: 'absolute', top: '40%', right: '-10%', width: 500, height: 500, borderRadius: '50%', background: 'radial-gradient(circle, rgba(139,92,246,0.06), transparent 70%)', pointerEvents: 'none' }} />
-
-      <div style={{ maxWidth: 860, margin: '0 auto', position: 'relative' }}>
-        {/* Header */}
-        <div style={{ textAlign: 'center', marginBottom: 48 }}>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '4px 14px', borderRadius: 999, border: '1px solid #8B5CF640', background: '#8B5CF610', color: '#8B5CF6', fontSize: 11, fontFamily: "'Space Mono',monospace", letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600, marginBottom: 16 }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#8B5CF6', animation: 'pulse 2s infinite' }} />
-            Free AI Tool — No login required
-          </span>
-          <h2 style={{ fontFamily: "'Sora',sans-serif", fontSize: 'clamp(26px,4vw,46px)', fontWeight: 900, color: '#fff', letterSpacing: -1.2, lineHeight: 1.1, marginBottom: 14 }}>
-            Generate content with AI<br />
-            <span style={{ color: '#8B5CF6' }}>in seconds.</span>
-          </h2>
-          <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 15, maxWidth: 420, margin: '0 auto', lineHeight: 1.7 }}>
-            Powered by Claude. Pick a tool, set your tone, and generate.
-          </p>
-        </div>
-
-        {/* Tool card */}
-        <div style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.09)', borderRadius: 24, overflow: 'hidden', boxShadow: '0 24px 80px rgba(0,0,0,0.4)' }}>
-          {/* Tab bar */}
-          <div style={{ display: 'flex', borderBottom: '1px solid rgba(255,255,255,0.07)', background: 'rgba(0,0,0,0.2)', padding: '0 4px' }}>
-            {AI_TABS.map(t => (
-              <button key={t.id} onClick={() => { setTab(t.id); setOutput(''); }}
-                style={{
-                  flex: 1, padding: '16px 0', background: 'none', border: 'none', cursor: 'pointer',
-                  fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 13,
-                  color: tab === t.id ? '#8B5CF6' : 'rgba(255,255,255,0.3)',
-                  borderBottom: tab === t.id ? '2px solid #8B5CF6' : '2px solid transparent',
-                  transition: 'all 0.2s',
-                }}>
-                {t.label}
-              </button>
-            ))}
-          </div>
-
-          <div style={{ padding: '28px 28px 32px' }}>
-            {/* Input */}
-            <div style={{ marginBottom: 20 }}>
-              <label style={{ display: 'block', fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.4)', fontFamily: "'Space Mono',monospace", letterSpacing: 0.5, textTransform: 'uppercase', marginBottom: 8 }}>
-                Topic / Subject
-              </label>
-              <input
-                type="text"
-                value={topic}
-                onChange={e => setTopic(e.target.value)}
-                onKeyDown={e => e.key === 'Enter' && handleGenerate()}
-                placeholder={PLACEHOLDERS[tab]}
-                style={{
-                  width: '100%', background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.1)', borderRadius: 12,
-                  padding: '13px 18px', color: '#fff', fontSize: 14, outline: 'none',
-                  fontFamily: "'Sora',sans-serif", boxSizing: 'border-box',
-                  transition: 'border-color 0.2s',
-                }}
-                onFocus={e => e.target.style.borderColor = 'rgba(139,92,246,0.5)'}
-                onBlur={e => e.target.style.borderColor = 'rgba(255,255,255,0.1)'}
-              />
-            </div>
-
-            {/* Selectors row */}
-            <div style={{ display: 'flex', gap: 20, marginBottom: 24, flexWrap: 'wrap' }}>
-              {/* Tone */}
-              <div style={{ flex: 1, minWidth: 180 }}>
-                <div style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.4)', fontFamily: "'Space Mono',monospace", letterSpacing: 0.5, textTransform: 'uppercase', marginBottom: 8 }}>Tone</div>
-                <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                  {TONES.map(t => (
-                    <button key={t} onClick={() => setTone(t)}
-                      style={{
-                        padding: '5px 12px', borderRadius: 8, border: tone === t ? '1px solid rgba(139,92,246,0.5)' : '1px solid rgba(255,255,255,0.08)',
-                        background: tone === t ? 'rgba(139,92,246,0.12)' : 'rgba(255,255,255,0.03)',
-                        color: tone === t ? '#8B5CF6' : 'rgba(255,255,255,0.4)',
-                        fontSize: 12, fontWeight: 600, cursor: 'pointer', transition: 'all 0.15s',
-                        fontFamily: "'Space Mono',monospace",
-                      }}>
-                      {t}
-                    </button>
-                  ))}
-                </div>
-              </div>
-
-              {/* Length */}
-              <div>
-                <div style={{ fontSize: 11, fontWeight: 600, color: 'rgba(255,255,255,0.4)', fontFamily: "'Space Mono',monospace", letterSpacing: 0.5, textTransform: 'uppercase', marginBottom: 8 }}>Length</div>
-                <div style={{ display: 'flex', gap: 6 }}>
-                  {LENGTHS.map(l => (
-                    <button key={l} onClick={() => setLength(l)}
-                      style={{
-                        padding: '5px 14px', borderRadius: 8, border: length === l ? '1px solid rgba(59,130,246,0.5)' : '1px solid rgba(255,255,255,0.08)',
-                        background: length === l ? 'rgba(59,130,246,0.12)' : 'rgba(255,255,255,0.03)',
-                        color: length === l ? '#3B82F6' : 'rgba(255,255,255,0.4)',
-                        fontSize: 12, fontWeight: 600, cursor: 'pointer', transition: 'all 0.15s',
-                        fontFamily: "'Space Mono',monospace",
-                      }}>
-                      {l}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            </div>
-
-            {/* Generate button */}
-            <button
-              onClick={handleGenerate}
-              disabled={loading || !topic.trim()}
-              style={{
-                width: '100%', padding: '14px', borderRadius: 12,
-                background: loading || !topic.trim() ? 'rgba(139,92,246,0.25)' : '#8B5CF6',
-                color: loading || !topic.trim() ? 'rgba(0,0,0,0.4)' : '#000',
-                border: 'none', fontSize: 15, fontWeight: 800, cursor: loading || !topic.trim() ? 'default' : 'pointer',
-                fontFamily: "'Sora',sans-serif", letterSpacing: -0.3,
-                display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10,
-                transition: 'all 0.2s',
-              }}>
-              {loading ? (
-                <>
-                  <span style={{ width: 16, height: 16, borderRadius: '50%', border: '2px solid rgba(0,0,0,0.3)', borderTopColor: '#000', animation: 'spin 0.8s linear infinite', display: 'inline-block' }} />
-                  Generating…
-                </>
-              ) : '⚡ Generate with AI'}
-            </button>
-
-            {/* Output */}
-            {output && (
-              <div style={{ marginTop: 24, position: 'relative', animation: 'fadeUp 0.4s ease both' }}>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 10 }}>
-                  <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)', fontFamily: "'Space Mono',monospace", letterSpacing: 0.5 }}>
-                    OUTPUT · {chars} chars
-                  </span>
-                  <button onClick={handleCopy}
-                    style={{
-                      padding: '4px 12px', borderRadius: 8,
-                      background: copied ? 'rgba(139,92,246,0.15)' : 'rgba(255,255,255,0.06)',
-                      border: `1px solid ${copied ? 'rgba(139,92,246,0.4)' : 'rgba(255,255,255,0.1)'}`,
-                      color: copied ? '#8B5CF6' : 'rgba(255,255,255,0.5)',
-                      fontSize: 11, fontFamily: "'Space Mono',monospace", cursor: 'pointer', transition: 'all 0.2s',
-                    }}>
-                    {copied ? '✓ Copied' : '⧉ Copy'}
-                  </button>
-                </div>
-                <div style={{
-                  background: 'rgba(0,0,0,0.3)', border: '1px solid rgba(255,255,255,0.07)',
-                  borderRadius: 12, padding: '18px 20px',
-                  color: 'rgba(255,255,255,0.75)', fontSize: 14, lineHeight: 1.8,
-                  whiteSpace: 'pre-wrap', maxHeight: 320, overflowY: 'auto',
-                  fontFamily: "'Sora',sans-serif",
-                }}>
-                  {output}
-                </div>
-              </div>
-            )}
-          </div>
-        </div>
-
-        {/* Nudge */}
-        <p style={{ textAlign: 'center', marginTop: 20, fontSize: 13, color: 'rgba(255,255,255,0.25)', fontFamily: "'Space Mono',monospace" }}>
-          Want custom AI tools for your business? <Link to="/contact" style={{ color: '#8B5CF6', textDecoration: 'none', fontWeight: 700 }}>Let's talk →</Link>
-        </p>
-      </div>
-    </section>
-  );
-}
 
 // ─── New Section Data ─────────────────────────────────────────────────────────
 
@@ -743,9 +509,6 @@ export default function HomePage() {
        
       </section>
 
-      {/* ── FREE AI TOOL ──────────────────────────────────────────────────── */}
-      <FreeAITool />
-
       {/* ── TOOLS GRID ───────────────────────────────────────────────────── */}
       <section style={{ padding: '100px 5%', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
         <div style={{ textAlign: 'center', marginBottom: 52 }}>
@@ -790,11 +553,11 @@ export default function HomePage() {
                 <span style={{ fontFamily: "'Sora',sans-serif", fontSize: 15, fontWeight: 900, color: tool.color }}>
                   {tool.tier} {tool.price.toLocaleString()}
                 </span>
-                <button style={{ padding: '7px 16px', borderRadius: 9, background: `${tool.color}18`, border: `1px solid ${tool.color}35`, color: tool.color, fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: "'Space Mono',monospace", transition: 'all 0.15s' }}
+                <Link to="/contact" style={{ padding: '7px 16px', borderRadius: 9, background: `${tool.color}18`, border: `1px solid ${tool.color}35`, color: tool.color, fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: "'Space Mono',monospace", transition: 'all 0.15s', textDecoration: 'none', display: 'block' }}
                   onMouseEnter={e => { e.currentTarget.style.background = `${tool.color}30`; }}
                   onMouseLeave={e => { e.currentTarget.style.background = `${tool.color}18`; }}>
-                  Get Quote →
-                </button>
+                  Contact Us →
+                </Link>
               </div>
             </div>
           ))}
@@ -866,8 +629,6 @@ export default function HomePage() {
       {/* ── PROCESS SECTION ────────────────────────────────────────────────── */}
       <ProcessSection />
 
-      {/* ── BLOG SECTION ──────────────────────────────────────────────────── */}
-      <BlogSection />
       {/* ── REFERRAL TIER COMPARISON ──────────────────────────────────────── */}
       <ReferralTierComparison />
       {/* ── MAIN CTA ─────────────────────────────────────────────────────── */}

@@ -1,7 +1,9 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../context/CartContext';
 import { useAuth } from '../context/AuthContext';
 import { useToast } from '../context/ToastContext';
+import ContactModal from '../components/ui/ContactModal';
 
 const PRIMARY  = '#6366F1';
 const ACCENT   = '#8B5CF6';
@@ -12,6 +14,7 @@ export default function CartPage() {
   const { isAuthenticated } = useAuth();
   const navigate = useNavigate();
   const toast    = useToast();
+  const [contactModalOpen, setContactModalOpen] = useState(false);
 
   const handleRemove = (serviceId, plan, title) => {
     removeFromCart(serviceId, plan);
@@ -147,6 +150,13 @@ export default function CartPage() {
                   </div>
                 )}
 
+                <button onClick={() => setContactModalOpen(true)}
+                  style={{ width: '100%', padding: '12px', fontSize: 13, marginTop: 12, background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.12)', borderRadius: 12, color: '#fff', fontFamily: "'Sora',sans-serif", fontWeight: 700, cursor: 'pointer', transition: 'all 0.18s' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.transform = 'none'; }}>
+                  💬 Contact via WhatsApp/Email
+                </button>
+
                 <div style={{ marginTop: 20, padding: 14, background: `${PRIMARY}06`, border: `1px solid ${PRIMARY}15`, borderRadius: 12 }}>
                   <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', lineHeight: 1.7, fontFamily: "'Space Mono',monospace" }}>
                     🔒 Secure checkout via Stripe<br />
@@ -159,6 +169,13 @@ export default function CartPage() {
           </div>
         </div>
       </div>
+
+      {/* Contact Modal */}
+      <ContactModal 
+        isOpen={contactModalOpen} 
+        onClose={() => setContactModalOpen(false)} 
+        cartItems={cart}
+      />
     </>
   );
 }

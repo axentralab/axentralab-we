@@ -7,6 +7,7 @@ const { protect, adminOnly } = require('../middleware/auth');
  * Public Routes
  */
 router.post('/', aiLeadController.createLead);  // Create lead (auto-scored)
+router.post('/service-inquiry', aiLeadController.createServiceInquiry);  // Service contact inquiry
 
 /**
  * Admin Routes

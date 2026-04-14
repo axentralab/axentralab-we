@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import ReferralPromoAd from '../components/ui/ReferralPromoAd';
+import { getWhatsAppUrl } from '../config/contact.config';
 
 // ─── Design tokens (mirrors site palette) ────────────────────────────────────
 const GREEN  = '#8B5CF6';
@@ -571,21 +572,42 @@ function PackCard({ pack, idx }) {
 
       {/* CTA */}
       <div style={{ marginTop: 'auto', padding: '0 28px 28px' }}>
-        <Link to="/contact" style={{
-          display: 'block', textAlign: 'center',
-          padding: '13px 24px', borderRadius: 12,
-          background: pack.popular ? `linear-gradient(135deg,${pack.color},${PURPLE})` : `${pack.color}18`,
-          border: pack.popular ? 'none' : `1px solid ${pack.color}35`,
-          color: pack.popular ? '#fff' : pack.color,
-          fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 14,
-          textDecoration: 'none',
-          boxShadow: pack.popular ? `0 4px 20px ${pack.color}35` : 'none',
-          transition: 'filter 0.18s, transform 0.18s',
-        }}
-        onMouseEnter={e => { e.currentTarget.style.filter = 'brightness(1.1)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-        onMouseLeave={e => { e.currentTarget.style.filter = 'none'; e.currentTarget.style.transform = 'none'; }}>
-          Get Started →
-        </Link>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+          <Link to="/contact" style={{
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: '13px 24px', borderRadius: 12,
+            background: pack.popular ? `linear-gradient(135deg,${pack.color},${PURPLE})` : `${pack.color}18`,
+            border: pack.popular ? 'none' : `1px solid ${pack.color}35`,
+            color: pack.popular ? '#fff' : pack.color,
+            fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 14,
+            textDecoration: 'none',
+            boxShadow: pack.popular ? `0 4px 20px ${pack.color}35` : 'none',
+            transition: 'filter 0.18s, transform 0.18s',
+          }}
+          onMouseEnter={e => { e.currentTarget.style.filter = 'brightness(1.1)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+          onMouseLeave={e => { e.currentTarget.style.filter = 'none'; e.currentTarget.style.transform = 'none'; }}>
+            Get Started →
+          </Link>
+          <button 
+            onClick={() => {
+              const msg = `Hi! I'm interested in the "${pack.label}" service. Can you provide more details and pricing?`;
+              window.open(getWhatsAppUrl(msg), '_blank');
+            }}
+            style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              padding: '13px 24px', borderRadius: 12,
+              background: 'rgba(37, 211, 102, 0.12)',
+              border: '1px solid rgba(37, 211, 102, 0.3)',
+              color: '#25D366',
+              fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 14,
+              cursor: 'pointer',
+              transition: 'filter 0.18s, transform 0.18s',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.filter = 'brightness(1.15)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+            onMouseLeave={e => { e.currentTarget.style.filter = 'none'; e.currentTarget.style.transform = 'none'; }}>
+            💬 WhatsApp
+          </button>
+        </div>
       </div>
     </div>
   );
