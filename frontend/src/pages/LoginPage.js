@@ -72,10 +72,10 @@ export default function LoginPage() {
   return (
     <>
       <style>{`
-        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;800;900&family=Space+Mono:wght@400;700&family=DM+Sans:wght@400;500;600&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800;900&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;500;600&display=swap');
         * { box-sizing: border-box; }
         @keyframes float   { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-        @keyframes pulse   { 0%,100%{box-shadow:0 0 0 0 rgba(139,92,246,0.35)} 50%{box-shadow:0 0 0 8px rgba(139,92,246,0)} }
+        @keyframes pulse   { 0%,100%{box-shadow:0 0 0 0 rgba(0, 212, 170, 0.35)} 50%{box-shadow:0 0 0 8px rgba(0, 212, 170, 0)} }
         @keyframes fadeUp  { from{opacity:0;transform:translateY(14px)} to{opacity:1;transform:none} }
         @keyframes spin    { to{transform:rotate(360deg)} }
         @keyframes gridMove { 0%{background-position:0 0} 100%{background-position:40px 40px} }
