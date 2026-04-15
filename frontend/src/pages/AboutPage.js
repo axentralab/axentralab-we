@@ -24,7 +24,7 @@ const VALUES = [
 
 function Glow({ color, style }) {
   return (
-    <div style={{ position: 'absolute', borderRadius: '50%', pointerEvents: 'none', background: `radial-gradient(circle, ${color}15 0%, transparent 65%)`, filter: 'blur(50px)', ...style }} />
+    <div className="about-glow" style={{ position: 'absolute', borderRadius: '50%', pointerEvents: 'none', background: `radial-gradient(circle, ${color}15 0%, transparent 65%)`, filter: 'blur(50px)', ...style }} />
   );
 }
 
@@ -54,26 +54,47 @@ export default function AboutPage() {
         }
         .team-card:hover { transform: translateY(-5px); }
 
+        @media (max-width:1200px) {
+          .about-mission-grid { gap: 36px !important; }
+        }
         @media (max-width:992px) {
           .about-mission-grid { grid-template-columns: 1fr !important; gap: 28px !important; }
           .about-mission-card { padding: 28px !important; }
+          .about-glow { display: none !important; }
         }
         @media (max-width:768px) {
-          .about-hero-grid { min-height: 64vh !important; padding: 130px 5% 90px !important; background-size: 40px 40px !important; }
-          .about-hero-title { letter-spacing: -1px !important; line-height: 1.1 !important; }
-          .about-hero-sub { font-size: 15px !important; line-height: 1.75 !important; }
-          .about-section { padding: 72px 5% !important; }
-          .about-values-grid { grid-template-columns: 1fr 1fr !important; }
-          .about-team-grid   { grid-template-columns: 1fr 1fr !important; }
-          .about-badge { font-size: 9px !important; letter-spacing: 1.2px !important; }
+          .about-hero-grid { min-height: 60vh !important; padding: 110px 5% 80px !important; background-size: 40px 40px !important; }
+          .about-hero-title { font-size: clamp(28px, 6vw, 48px) !important; letter-spacing: -0.8px !important; line-height: 1.15 !important; }
+          .about-hero-sub { font-size: clamp(13px, 2vw, 15px) !important; line-height: 1.7 !important; }
+          .about-section { padding: clamp(48px, 8vw, 72px) 5% !important; }
+          .about-values-grid { grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
+          .about-team-grid { grid-template-columns: 1fr 1fr !important; gap: 16px !important; }
+          .about-badge { font-size: 8px !important; padding: 6px 12px !important; letter-spacing: 1px !important; }
+          .about-card { padding: clamp(20px, 4vw, 28px) !important; }
+          .team-card { padding: clamp(18px, 4vw, 24px) !important; }
+          .about-mission-card { padding: clamp(20px, 4vw, 28px) !important; }
+        }
+        @media (max-width:640px) {
+          .about-hero-grid { min-height: 55vh !important; padding: 100px 5% 70px !important; }
+          .about-hero-title { font-size: clamp(24px, 5.5vw, 40px) !important; }
+          .about-hero-sub { font-size: clamp(13px, 1.8vw, 14px) !important; }
+          .about-values-grid { grid-template-columns: 1fr !important; }
+          .about-team-grid { grid-template-columns: 1fr !important; }
+          .about-badge { font-size: 7px !important; padding: 5px 10px !important; }
         }
         @media (max-width:480px) {
-          .about-hero-grid { min-height: 58vh !important; padding: 118px 5% 78px !important; }
-          .about-values-grid { grid-template-columns: 1fr !important; }
-          .about-team-grid   { grid-template-columns: 1fr 1fr !important; }
-          .about-mission-card { padding: 22px !important; border-radius: 18px !important; }
-          .about-cta-buttons { flex-direction: column !important; }
-          .about-cta-buttons a { width: 100% !important; justify-content: center !important; }
+          .about-hero-grid { min-height: 52vh !important; padding: 90px 5% 60px !important; background-size: 30px 30px !important; }
+          .about-hero-title { font-size: clamp(22px, 5vw, 32px) !important; letter-spacing: -0.5px !important; }
+          .about-hero-sub { font-size: 12px !important; line-height: 1.65 !important; }
+          .about-section { padding: clamp(40px, 6vw, 60px) 4% !important; }
+          .about-values-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+          .about-team-grid { grid-template-columns: 1fr !important; gap: 12px !important; }
+          .about-mission-card { padding: clamp(18px, 3.5vw, 24px) !important; }
+          .about-card { padding: clamp(16px, 3.5vw, 24px) !important; border-radius: 16px !important; }
+          .team-card { padding: clamp(14px, 3.5vw, 20px) !important; border-radius: 16px !important; }
+          .about-badge { font-size: 6px !important; padding: 4px 8px !important; letter-spacing: 0.8px !important; }
+          .about-cta-buttons { flex-direction: column !important; gap: 10px !important; }
+          .about-cta-buttons a { width: 100% !important; justify-content: center !important; padding: clamp(12px, 2vw, 14px) clamp(18px, 4vw, 24px) !important; font-size: clamp(13px, 1.8vw, 14px) !important; }
         }
       `}</style>
 
@@ -92,11 +113,11 @@ export default function AboutPage() {
             <span className="about-badge" style={{ background: `${C.purple}10`, border: `1px solid ${C.purple}28`, color: C.purple, marginBottom: 24 }}>
               Our Story
             </span>
-            <h1 className="about-hero-title" style={{ fontFamily: "'Outfit',sans-serif", fontSize: 'clamp(36px,5vw,68px)', fontWeight: 900, letterSpacing: -2, lineHeight: 1.05, color: C.text, marginBottom: 22 }}>
+            <h1 className="about-hero-title" style={{ fontFamily: "'Outfit',sans-serif", fontSize: 'clamp(32px, 5vw, 68px)', fontWeight: 900, letterSpacing: -2, lineHeight: 1.05, color: C.text, marginBottom: 22 }}>
               Built by engineers.<br />
               <span style={{ color: C.blue }}>Trusted by teams worldwide.</span>
             </h1>
-            <p className="about-hero-sub" style={{ color: C.muted, fontSize: 17, lineHeight: 1.85, maxWidth: 560, margin: '0 auto' }}>
+            <p className="about-hero-sub" style={{ color: C.muted, fontSize: 'clamp(14px, 2vw, 17px)', lineHeight: 1.85, maxWidth: 560, margin: '0 auto' }}>
               Universe Soft Tech was founded in Dhaka with a single mission: deliver enterprise-grade technology without the enterprise overhead. From cybersecurity to AI — we build things that matter.
             </p>
           </div>
@@ -108,13 +129,13 @@ export default function AboutPage() {
           <div className="about-mission-grid" style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 48, alignItems: 'center' }}>
             <div>
               <span className="about-badge" style={{ background: `${C.green}10`, border: `1px solid ${C.green}28`, color: C.green, marginBottom: 18 }}>Mission & Vision</span>
-              <h2 style={{ fontFamily: "'Outfit',sans-serif", fontSize: 'clamp(26px,3.5vw,44px)', fontWeight: 800, letterSpacing: -1.2, color: C.text, marginBottom: 20, lineHeight: 1.15 }}>
+              <h2 style={{ fontFamily: "'Outfit',sans-serif", fontSize: 'clamp(26px, 3.5vw, 44px)', fontWeight: 800, letterSpacing: -1.2, color: C.text, marginBottom: 20, lineHeight: 1.15 }}>
                 Technology that<br />serves humanity.
               </h2>
-              <p style={{ color: C.muted, fontSize: 15, lineHeight: 1.9, marginBottom: 18 }}>
+              <p style={{ color: C.muted, fontSize: 'clamp(13px, 1.8vw, 15px)', lineHeight: 1.9, marginBottom: 18 }}>
                 We believe great software should be accessible to businesses of all sizes. From early-stage startups to established enterprises, we bring the same rigor, craft, and care to every project.
               </p>
-              <p style={{ color: C.muted, fontSize: 15, lineHeight: 1.9 }}>
+              <p style={{ color: C.muted, fontSize: 'clamp(13px, 1.8vw, 15px)', lineHeight: 1.9 }}>
                 Our vision is a world where every organization can protect itself, automate intelligently, and scale confidently — regardless of geography or budget.
               </p>
             </div>
@@ -127,9 +148,9 @@ export default function AboutPage() {
                 ['150+', 'Projects delivered'],
                 ['98%', 'Client retention rate'],
               ].map(([v, l]) => (
-                <div key={l} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '16px 0', borderBottom: `1px solid ${C.border}` }}>
-                  <span style={{ color: C.muted, fontSize: 14 }}>{l}</span>
-                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: 20, color: C.blue }}>{v}</span>
+                <div key={l} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: 'clamp(12px, 2vw, 16px) 0', borderBottom: `1px solid ${C.border}` }}>
+                  <span style={{ color: C.muted, fontSize: 'clamp(12px, 1.5vw, 14px)' }}>{l}</span>
+                  <span style={{ fontFamily: "'JetBrains Mono',monospace", fontWeight: 700, fontSize: 'clamp(16px, 2.5vw, 20px)', color: C.blue }}>{v}</span>
                 </div>
               ))}
             </div>
@@ -142,7 +163,7 @@ export default function AboutPage() {
           <div style={{ maxWidth: 1100, margin: '0 auto', position: 'relative' }}>
             <div style={{ textAlign: 'center', marginBottom: 56 }}>
               <span className="about-badge" style={{ background: `${C.blue}10`, border: `1px solid ${C.blue}28`, color: C.blue, marginBottom: 16 }}>Core Values</span>
-              <h2 style={{ fontFamily: "'Outfit',sans-serif", fontSize: 'clamp(26px,3.5vw,44px)', fontWeight: 800, letterSpacing: -1.2, color: C.text }}>
+              <h2 style={{ fontFamily: "'Outfit',sans-serif", fontSize: 'clamp(26px, 3.5vw, 44px)', fontWeight: 800, letterSpacing: -1.2, color: C.text }}>
                 What drives us every day.
               </h2>
             </div>
@@ -156,8 +177,8 @@ export default function AboutPage() {
                     <div style={{ width: 52, height: 52, borderRadius: 14, background: `${c}15`, border: `1px solid ${c}30`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24, marginBottom: 20 }}>
                       {v.icon}
                     </div>
-                    <h3 style={{ fontFamily: "'Outfit',sans-serif", fontWeight: 700, fontSize: 18, color: C.text, marginBottom: 10 }}>{v.title}</h3>
-                    <p style={{ fontSize: 13, color: C.muted, lineHeight: 1.75 }}>{v.desc}</p>
+                  <h3 style={{ fontFamily: "'Outfit',sans-serif", fontWeight: 700, fontSize: 'clamp(15px, 2vw, 18px)', color: C.text, marginBottom: 10 }}>{v.title}</h3>
+                    <p style={{ fontSize: 'clamp(12px, 1.5vw, 13px)', color: C.muted, lineHeight: 1.75 }}>{v.desc}</p>
                   </div>
                 );
               })}
@@ -170,7 +191,7 @@ export default function AboutPage() {
           <div style={{ maxWidth: 1100, margin: '0 auto' }}>
             <div style={{ textAlign: 'center', marginBottom: 56 }}>
               <span className="about-badge" style={{ background: `${C.amber}10`, border: `1px solid ${C.amber}28`, color: C.amber, marginBottom: 16 }}>The Team</span>
-              <h2 style={{ fontFamily: "'Outfit',sans-serif", fontSize: 'clamp(26px,3.5vw,44px)', fontWeight: 800, letterSpacing: -1.2, color: C.text }}>
+              <h2 style={{ fontFamily: "'Outfit',sans-serif", fontSize: 'clamp(26px, 3.5vw, 44px)', fontWeight: 800, letterSpacing: -1.2, color: C.text }}>
                 The people behind the code.
               </h2>
             </div>
@@ -180,13 +201,13 @@ export default function AboutPage() {
                   <div style={{ width: 72, height: 72, borderRadius: '50%', background: `${m.color}18`, border: `2px solid ${m.color}35`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 32, margin: '0 auto 18px' }}>
                     {m.emoji}
                   </div>
-                  <h3 style={{ fontFamily: "'Outfit',sans-serif", fontWeight: 700, fontSize: 16, color: C.text, marginBottom: 6 }}>{m.name}</h3>
-                  <p style={{ fontSize: 12, color: m.color, fontFamily: "'JetBrains Mono',monospace", letterSpacing: 0.5 }}>{m.role}</p>
+                  <h3 style={{ fontFamily: "'Outfit',sans-serif", fontWeight: 700, fontSize: 'clamp(14px, 2vw, 16px)', color: C.text, marginBottom: 6 }}>{m.name}</h3>
+                  <p style={{ fontSize: 'clamp(11px, 1.5vw, 12px)', color: m.color, fontFamily: "'JetBrains Mono',monospace", letterSpacing: 0.5 }}>{m.role}</p>
                 </div>
               ))}
             </div>
             <div style={{ textAlign: 'center', marginTop: 32 }}>
-              <Link to="/team" style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 13, color: C.blue, textDecoration: 'none', letterSpacing: 0.5 }}>
+              <Link to="/team" style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 'clamp(12px, 1.5vw, 13px)', color: C.blue, textDecoration: 'none', letterSpacing: 0.5 }}>
                 Meet the full team →
               </Link>
             </div>
@@ -195,15 +216,15 @@ export default function AboutPage() {
 
         {/* ── CTA ─────────────────────────────────────────────── */}
         <section className="about-section" style={{ padding: '90px 5%', textAlign: 'center', borderTop: `1px solid ${C.border}` }}>
-          <h2 style={{ fontFamily: "'Outfit',sans-serif", fontSize: 'clamp(26px,3.5vw,44px)', fontWeight: 800, letterSpacing: -1, color: C.text, marginBottom: 16 }}>
+          <h2 style={{ fontFamily: "'Outfit',sans-serif", fontSize: 'clamp(26px, 3.5vw, 44px)', fontWeight: 800, letterSpacing: -1, color: C.text, marginBottom: 16 }}>
             Want to work with us?
           </h2>
-          <p style={{ color: C.muted, fontSize: 16, marginBottom: 32 }}>We'd love to hear about your project.</p>
+          <p style={{ color: C.muted, fontSize: 'clamp(14px, 2vw, 16px)', marginBottom: 32 }}>We'd love to hear about your project.</p>
           <div className="about-cta-buttons" style={{ display: 'flex', gap: 14, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 32px', borderRadius: 12, background: C.blue, color: '#fff', fontFamily: "'Outfit',sans-serif", fontWeight: 700, fontSize: 15, textDecoration: 'none', boxShadow: `0 0 24px ${C.blue}40`, transition: 'all 0.2s' }}>
+            <Link to="/contact" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: 'clamp(12px, 2vw, 14px) clamp(22px, 4vw, 32px)', borderRadius: 12, background: C.blue, color: '#fff', fontFamily: "'Outfit',sans-serif", fontWeight: 700, fontSize: 'clamp(13px, 1.8vw, 15px)', textDecoration: 'none', boxShadow: `0 0 24px ${C.blue}40`, transition: 'all 0.2s' }}>
               Get in touch →
             </Link>
-            <Link to="/portfolio" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px', borderRadius: 12, background: 'transparent', color: C.text, border: `1px solid ${C.border}`, fontFamily: "'Outfit',sans-serif", fontWeight: 600, fontSize: 15, textDecoration: 'none', transition: 'all 0.2s' }}>
+            <Link to="/portfolio" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: 'clamp(12px, 2vw, 14px) clamp(20px, 3.5vw, 28px)', borderRadius: 12, background: 'transparent', color: C.text, border: `1px solid ${C.border}`, fontFamily: "'Outfit',sans-serif", fontWeight: 600, fontSize: 'clamp(13px, 1.8vw, 15px)', textDecoration: 'none', transition: 'all 0.2s' }}>
               View our work
             </Link>
           </div>
