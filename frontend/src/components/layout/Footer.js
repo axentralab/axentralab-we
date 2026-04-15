@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 
 export default function Footer() {
   return (
-    <footer style={{ borderTop: '1px solid rgba(255,255,255,0.1)', padding: '60px 5% 0', background: 'linear-gradient(180deg, rgba(0,0,0,0.5) 0%, rgba(13,27,42,0.8) 100%)', color: 'rgba(255,255,255,0.8)' }}>
+    <footer style={{ borderTop: '1px solid rgba(0, 212, 170, 0.2)', padding: '60px 5% 0', background: 'linear-gradient(180deg, rgba(15, 23, 42, 0.8) 0%, rgba(26, 31, 46, 1) 100%)', color: 'rgba(255,255,255,0.8)' }}>
       {/* Main Footer Content */}
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         {/* Top Section - Grid Layout */}
@@ -16,7 +16,7 @@ export default function Footer() {
                 alt="Axentralab Logo"
                 style={{ width: 50, height: 50, borderRadius: 8, objectFit: 'contain' }}
               />
-              <span style={{ fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 18, color: '#fff' }}>Axentralab</span>
+              <span style={{ fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: 18, color: '#fff' }}>Axentralab</span>
             </div>
             <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', lineHeight: 1.8, marginBottom: 12 }}>
               🚀 AI automation, secure development and cloud infrastructure for modern companies.
@@ -28,7 +28,7 @@ export default function Footer() {
 
           {/* Address Section */}
           <div>
-            <h4 style={{ fontSize: 14, fontWeight: 700, color: '#fff', marginBottom: 16, fontFamily: "'Sora',sans-serif" }}>📍 Address</h4>
+            <h4 style={{ fontSize: 14, fontWeight: 700, color: '#fff', marginBottom: 16, fontFamily: "'Poppins',sans-serif" }}>📍 Address</h4>
             <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', lineHeight: 1.8, marginBottom: 12 }}>
               <div>Dhaka, Bangladesh</div>
               <div>(Tech Hub, Business District)</div>
@@ -43,38 +43,38 @@ export default function Footer() {
 
           {/* Quick Links */}
           <div>
-            <h4 style={{ fontSize: 14, fontWeight: 700, color: '#fff', marginBottom: 16, fontFamily: "'Sora',sans-serif" }}>⚡ Quick Links</h4>
+            <h4 style={{ fontSize: 14, fontWeight: 700, color: '#fff', marginBottom: 16, fontFamily: "'Poppins',sans-serif" }}>⚡ Quick Links</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <Link to="/about" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.9)'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>👉 About Us</Link>
-              <Link to="/contact" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.9)'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>👉 Contact</Link>
-              <Link to="/ceo-meeting" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.9)'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>👉 Book a Meeting</Link>
-              <a href="#faq" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.9)'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>👉 FAQ</a>
-              <Link to="/portfolio" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.9)'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>👉 Portfolio</Link>
-              <button onClick={() => window.location.href = '#pricing'} style={{ fontSize: 13, color: '#4285F4', textDecoration: 'none', transition: 'color 0.2s', background: 'linear-gradient(135deg, #4285F4, #34A853)', color: '#fff', border: 'none', padding: '6px 12px', borderRadius: 6, cursor: 'pointer', fontWeight: 600, marginTop: 4 }} onMouseEnter={e => e.target.style.opacity = '0.9'} onMouseLeave={e => e.target.style.opacity = '1'}>💳 Get Quote</button>
+              <Link to="/about" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00d4aa'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>👉 About Us</Link>
+              <Link to="/contact" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00d4aa'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>👉 Contact</Link>
+              <Link to="/ceo-meeting" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00d4aa'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>👉 Book a Meeting</Link>
+              <a href="#faq" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00d4aa'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>👉 FAQ</a>
+              <Link to="/portfolio" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00d4aa'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>👉 Portfolio</Link>
+              <button onClick={() => window.location.href = '#pricing'} style={{ fontSize: 13, background: '#00d4aa', color: '#0f172a', border: 'none', padding: '6px 12px', borderRadius: 6, cursor: 'pointer', fontWeight: 600, marginTop: 4 }} onMouseEnter={e => e.target.style.opacity = '0.9'} onMouseLeave={e => e.target.style.opacity = '1'}>💳 Get Quote</button>
             </div>
           </div>
 
           {/* Services */}
           <div>
-            <h4 style={{ fontSize: 14, fontWeight: 700, color: '#fff', marginBottom: 16, fontFamily: "'Sora',sans-serif" }}>🛠️ Services</h4>
+            <h4 style={{ fontSize: 14, fontWeight: 700, color: '#fff', marginBottom: 16, fontFamily: "'Poppins',sans-serif" }}>🛠️ Services</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <Link to="/services" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.9)'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>✓ Web Development</Link>
-              <Link to="/services" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.9)'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>✓ Cybersecurity</Link>
-              <Link to="/services" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.9)'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>✓ AI & Automation</Link>
-              <Link to="/services" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.9)'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>✓ Cloud Infrastructure</Link>
-              <Link to="/services" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.9)'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>✓ DevOps Solutions</Link>
+              <Link to="/services" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00d4aa'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>✓ Web Development</Link>
+              <Link to="/services" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00d4aa'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>✓ Cybersecurity</Link>
+              <Link to="/services" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00d4aa'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>✓ AI & Automation</Link>
+              <Link to="/services" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00d4aa'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>✓ Cloud Infrastructure</Link>
+              <Link to="/services" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00d4aa'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>✓ DevOps Solutions</Link>
             </div>
           </div>
 
           {/* Important Links */}
           <div>
-            <h4 style={{ fontSize: 14, fontWeight: 700, color: '#fff', marginBottom: 16, fontFamily: "'Sora',sans-serif" }}>📋 Important Links</h4>
+            <h4 style={{ fontSize: 14, fontWeight: 700, color: '#fff', marginBottom: 16, fontFamily: "'Poppins',sans-serif" }}>📋 Important Links</h4>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-              <a href="#terms" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.9)'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>Terms & Condition</a>
-              <a href="#return" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.9)'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>Return Policy</a>
-              <a href="#support" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.9)'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>Support Policy</a>
-              <a href="#privacy" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.9)'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>Privacy Policy</a>
-              <a href="#security" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = 'rgba(255,255,255,0.9)'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>Security</a>
+              <a href="#terms" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00d4aa'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>Terms & Condition</a>
+              <a href="#return" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00d4aa'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>Return Policy</a>
+              <a href="#support" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00d4aa'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>Support Policy</a>
+              <a href="#privacy" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00d4aa'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>Privacy Policy</a>
+              <a href="#security" style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', textDecoration: 'none', cursor: 'pointer', transition: 'color 0.2s' }} onMouseEnter={e => e.target.style.color = '#00d4aa'} onMouseLeave={e => e.target.style.color = 'rgba(255,255,255,0.6)'}>Security</a>
             </div>
           </div>
 

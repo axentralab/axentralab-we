@@ -8,10 +8,10 @@ import { ReferralCtaBanner } from '../components/ui/ReferralPromoAd';
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const STATS = [
-  { value: 24,  suffix: '+', label: 'Projects Completed',    color: '#8B5CF6' },
-  { value: 20,  suffix: '+', label: 'Happy Clients',         color: '#3B82F6' },
-  { value: 99,  suffix: '%', label: 'Client Satisfaction',   color: '#A855F7' },
-  { value: 24,  suffix: '/7', label: 'Security Monitoring',  color: '#F59E0B' },
+  { value: 24,  suffix: '+', label: 'Projects Completed',    color: '#00d4aa' },
+  { value: 20,  suffix: '+', label: 'Happy Clients',         color: '#00d4aa' },
+  { value: 99,  suffix: '%', label: 'Client Satisfaction',   color: '#00d4aa' },
+  { value: 24,  suffix: '/7', label: 'Security Monitoring',  color: '#00d4aa' },
 ];
 
 // Terminal lines shown in the floating code widget
@@ -54,15 +54,15 @@ function StatCard({ stat }) {
   const [val, ref] = useCounter(stat.value);
   return (
     <div ref={ref} style={{ textAlign: 'center', padding: '28px 20px', borderRight: '1px solid rgba(255,255,255,0.06)' }}>
-      <div style={{ fontFamily: "'Sora',sans-serif", fontSize: 36, fontWeight: 900, color: stat.color, letterSpacing: -1, lineHeight: 1 }}>
+      <div style={{ fontFamily: "'Poppins',sans-serif", fontSize: 36, fontWeight: 900, color: stat.color, letterSpacing: -1, lineHeight: 1 }}>
         {val}{stat.suffix}
       </div>
-      <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.35)', marginTop: 6, fontFamily: "'Space Mono',monospace", letterSpacing: 0.5, textTransform: 'uppercase' }}>{stat.label}</div>
+      <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.35)', marginTop: 6, fontFamily: "'JetBrains Mono',monospace", letterSpacing: 0.5, textTransform: 'uppercase' }}>{stat.label}</div>
     </div>
   );
 }
 
-function Glow({ x, y, color = '#8B5CF6', size = 500 }) {
+function Glow({ x, y, color = '#00d4aa', size = 500 }) {
   return (
     <div style={{
       position: 'absolute', left: x, top: y,
@@ -77,7 +77,7 @@ function Glow({ x, y, color = '#8B5CF6', size = 500 }) {
 // Animated headline that cycles through words
 function AnimatedHeadline() {
   const words  = ['digital presence', 'secure systems', 'business growth'];
-  const colors = ['#8B5CF6', '#3B82F6', '#F59E0B', '#A855F7'];
+  const colors = ['#00d4aa', '#00d4aa', '#00d4aa'];
   const [idx, setIdx]     = useState(0);
   const [visible, setVis] = useState(true);
 
@@ -129,19 +129,19 @@ function FloatingTerminal() {
   return (
     <div style={{
       background: '#0D1117',
-      border: '1px solid rgba(255,255,255,0.1)',
+      border: '1px solid rgba(0, 212, 170, 0.15)',
       borderRadius: 16,
       overflow: 'hidden',
-      boxShadow: '0 32px 80px rgba(0,0,0,0.6), 0 0 0 1px rgba(255,255,255,0.05)',
-      fontFamily: "'Space Mono',monospace",
+      boxShadow: '0 32px 80px rgba(0, 212, 170, 0.1), 0 0 0 1px rgba(0, 212, 170, 0.05)',
+      fontFamily: "'JetBrains Mono',monospace",
       fontSize: 13,
       minHeight: 240,
     }}>
       {/* Title bar */}
-      <div style={{ padding: '12px 16px', background: '#161B22', borderBottom: '1px solid rgba(255,255,255,0.07)', display: 'flex', alignItems: 'center', gap: 8 }}>
+      <div style={{ padding: '12px 16px', background: '#161B22', borderBottom: '1px solid rgba(0, 212, 170, 0.1)', display: 'flex', alignItems: 'center', gap: 8 }}>
         <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#EF4444', display: 'inline-block' }} />
         <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#F59E0B', display: 'inline-block' }} />
-        <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#8B5CF6', display: 'inline-block' }} />
+        <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#00d4aa', display: 'inline-block' }} />
         <span style={{ marginLeft: 8, fontSize: 11, color: 'rgba(255,255,255,0.25)', letterSpacing: 0.5 }}>axentralab — terminal</span>
       </div>
       {/* Lines */}
@@ -158,7 +158,7 @@ function FloatingTerminal() {
           </div>
         ))}
         {/* blinking cursor */}
-        <span style={{ display: 'inline-block', width: 8, height: 14, background: '#8B5CF6', verticalAlign: 'middle', animation: 'blink 1s step-end infinite', marginLeft: 2 }} />
+        <span style={{ display: 'inline-block', width: 8, height: 14, background: '#00d4aa', verticalAlign: 'middle', animation: 'blink 1s step-end infinite', marginLeft: 2 }} />
       </div>
     </div>
   );
@@ -181,9 +181,9 @@ function ScrollIndicator() {
       animation: 'bounceY 2s ease-in-out infinite',
       pointerEvents: 'none',
     }}>
-      <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.2)', fontFamily: "'Space Mono',monospace", letterSpacing: 1, textTransform: 'uppercase' }}>scroll</span>
-      <div style={{ width: 1, height: 36, background: 'linear-gradient(#8B5CF6, transparent)' }} />
-      <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#8B5CF6' }} />
+      <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.2)', fontFamily: "'JetBrains Mono',monospace", letterSpacing: 1, textTransform: 'uppercase' }}>scroll</span>
+      <div style={{ width: 1, height: 36, background: 'linear-gradient(#00d4aa, transparent)' }} />
+      <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#00d4aa' }} />
     </div>
   );
 }
@@ -193,11 +193,11 @@ function ScrollIndicator() {
 // ─── New Section Data ─────────────────────────────────────────────────────────
 
 const TOOLS_GRID = [
-  { icon: '🌐', name: 'Business Website',      tag: 'Web Development',    desc: 'Clean, fast and professional websites for businesses, corporates and startups — responsive, SEO-ready and conversion-focused.',         features: ['5+ pages', 'Mobile responsive', 'SEO setup'],         price: 10000, tier: 'From ৳', color: '#8B5CF6' },
-  { icon: '🛒', name: 'E-commerce Store',      tag: 'Online Shop',        desc: 'Full-featured online stores with product management, cart, checkout and local payment gateway (bKash/Nagad/Stripe) integration.',         features: ['Product filters', 'Cart & checkout', 'Admin panel'],  price: 30000, tier: 'From ৳', color: '#3B82F6' },
-  { icon: '⚙️', name: 'Custom Web System',     tag: 'POS / SaaS / Custom',desc: 'Tailor-made web apps — POS systems, courier platforms, SaaS dashboards built for your specific workflow.',                            features: ['Custom logic', 'Role-based access', 'Dashboard'],      price: 50000, tier: 'From ৳', color: '#A855F7' },
-  { icon: '🔐', name: 'Security Audit',        tag: 'Cybersecurity',      desc: 'Full OWASP-based vulnerability scan, malware detection, WAF setup and server hardening — before threats cost you money.',              features: ['OWASP scan', 'WAF setup', 'Pen testing'],              price: 22000, tier: 'From ৳', color: '#F59E0B' },
-  { icon: '🤖', name: 'Business Automation',   tag: 'Automation & AI',    desc: 'Automate your business processes — CRM setup, API integrations, chatbots and workflow automation using Zapier & Make.',                features: ['CRM setup', 'Chatbot', 'Workflow auto'],               price: 33000, tier: 'From ৳', color: '#06B6D4' },
+  { icon: '🌐', name: 'Business Website',      tag: 'Web Development',    desc: 'Clean, fast and professional websites for businesses, corporates and startups — responsive, SEO-ready and conversion-focused.',         features: ['5+ pages', 'Mobile responsive', 'SEO setup'],         price: 10000, tier: 'From ৳', color: '#00d4aa' },
+  { icon: '🛒', name: 'E-commerce Store',      tag: 'Online Shop',        desc: 'Full-featured online stores with product management, cart, checkout and local payment gateway (bKash/Nagad/Stripe) integration.',         features: ['Product filters', 'Cart & checkout', 'Admin panel'],  price: 30000, tier: 'From ৳', color: '#00d4aa' },
+  { icon: '⚙️', name: 'Custom Web System',     tag: 'POS / SaaS / Custom',desc: 'Tailor-made web apps — POS systems, courier platforms, SaaS dashboards built for your specific workflow.',                            features: ['Custom logic', 'Role-based access', 'Dashboard'],      price: 50000, tier: 'From ৳', color: '#00d4aa' },
+  { icon: '🔐', name: 'Security Audit',        tag: 'Cybersecurity',      desc: 'Full OWASP-based vulnerability scan, malware detection, WAF setup and server hardening — before threats cost you money.',              features: ['OWASP scan', 'WAF setup', 'Pen testing'],              price: 22000, tier: 'From ৳', color: '#00d4aa' },
+  { icon: '🤖', name: 'Business Automation',   tag: 'Automation & AI',    desc: 'Automate your business processes — CRM setup, API integrations, chatbots and workflow automation using Zapier & Make.',                features: ['CRM setup', 'Chatbot', 'Workflow auto'],               price: 33000, tier: 'From ৳', color: '#00d4aa' },
   { icon: '💼', name: 'White-Label Services',  tag: 'Agency Partner',     desc: 'Scale your agency without hiring — outsource web dev, cybersecurity support and emergency bug fixes under your brand.',                  features: ['Dev outsourcing', 'Security support', 'NDA included'], price: 500,   tier: 'From $', color: '#EC4899' },
 ];
 
@@ -467,15 +467,15 @@ export default function HomePage() {
 
             {/* Left */}
             <div className="hero-left">
-              <div className="hero-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 16px', borderRadius: 999, border: '1px solid rgba(168,85,247,0.45)', background: 'rgba(168,85,247,0.14)', marginBottom: 24, backdropFilter: 'blur(6px)' }}>
-                <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#A855F7', animation: 'pulse 2s infinite', display: 'inline-block' }} />
-                <span style={{ fontSize: 12, fontFamily: "'Space Mono',monospace", color: '#C4B5FD', fontWeight: 600, letterSpacing: 0.5 }}>Byte Shield Digital</span>
+              <div className="hero-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 16px', borderRadius: 999, border: '1px solid rgba(0, 212, 170, 0.45)', background: 'rgba(0, 212, 170, 0.14)', marginBottom: 24, backdropFilter: 'blur(6px)' }}>
+                <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#00d4aa', animation: 'pulse 2s infinite', display: 'inline-block' }} />
+                <span style={{ fontSize: 12, fontFamily: "'JetBrains Mono',monospace", color: '#00d4aa', fontWeight: 600, letterSpacing: 0.5 }}>Award Winning IT Company</span>
               </div>
 
-              <h1 className="hero-h1" style={{ fontFamily: "'Sora',sans-serif", fontSize: 'clamp(34px,5.5vw,66px)', fontWeight: 900, color: '#fff', letterSpacing: -2, lineHeight: 1.06, margin: '0 0 22px' }}>
+              <h1 className="hero-h1" style={{ fontFamily: "'Poppins',sans-serif", fontSize: 'clamp(34px,5.5vw,66px)', fontWeight: 900, color: '#fff', letterSpacing: -2, lineHeight: 1.06, margin: '0 0 22px' }}>
                 WE BUILD.<br />
                 WE SECURE.<br />
-                <span style={{ color: '#8B5CF6' }}>YOU SCALE.</span>
+                <span style={{ color: '#00d4aa' }}>YOU SCALE.</span>
               </h1>
 
               <p className="hero-sub" style={{ fontSize: 16, color: 'rgba(255,255,255,0.45)', lineHeight: 1.75, marginBottom: 36, maxWidth: 420 }}>
@@ -484,13 +484,13 @@ export default function HomePage() {
 
               <div className="hero-ctas" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 36 }}>
                 <Link to="/contact" className="btn-primary"
-                  style={{ padding: '15px 32px', background: '#7C3AED', color: '#fff', fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 15, borderRadius: 12, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, boxShadow: '0 12px 28px rgba(124,58,237,0.35)' }}>
+                  style={{ padding: '15px 32px', background: '#00d4aa', color: '#0f172a', fontFamily: "'Poppins',sans-serif", fontWeight: 800, fontSize: 15, borderRadius: 12, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, boxShadow: '0 12px 28px rgba(0, 212, 170, 0.35)' }}>
                   LAUNCH A PROJECT →
                 </Link>
                 <Link to="/services"
-                  style={{ padding: '15px 28px', background: 'rgba(255,255,255,0.05)', color: '#fff', border: '1px solid rgba(255,255,255,0.12)', fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 15, borderRadius: 12, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'all 0.2s' }}
-                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.09)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; }}>
+                  style={{ padding: '15px 28px', background: 'rgba(0, 212, 170, 0.1)', color: '#00d4aa', border: '1px solid rgba(0, 212, 170, 0.3)', fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: 15, borderRadius: 12, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'all 0.2s' }}
+                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0, 212, 170, 0.15)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(0, 212, 170, 0.1)'; }}>
                   VIEW SERVICES
                 </Link>
               </div>
@@ -633,28 +633,28 @@ export default function HomePage() {
       <ReferralTierComparison />
       {/* ── MAIN CTA ─────────────────────────────────────────────────────── */}
       <section style={{ padding: '100px 5%', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle,rgba(139,92,246,0.08),transparent 65%)', pointerEvents: 'none' }} />
+        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle,rgba(0,212,170,0.08),transparent 65%)', pointerEvents: 'none' }} />
         <div style={{ position: 'relative', maxWidth: 640, margin: '0 auto' }}>
-          <span style={{ display: 'inline-block', padding: '3px 12px', borderRadius: 999, border: '1px solid #8B5CF640', background: '#8B5CF610', color: '#8B5CF6', fontSize: 10, fontFamily: "'Space Mono',monospace", letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600 }}>Get Started Today</span>
-          <h2 style={{ fontFamily: "'Sora',sans-serif", fontSize: 'clamp(28px,5vw,56px)', fontWeight: 900, color: '#fff', margin: '18px auto 16px', letterSpacing: -1.5, lineHeight: 1.08 }}>
-            Ready to build, secure<br /><span style={{ color: '#8B5CF6' }}>&amp; scale your business?</span>
+          <span style={{ display: 'inline-block', padding: '3px 12px', borderRadius: 999, border: '1px solid rgba(0, 212, 170, 0.4)', background: 'rgba(0, 212, 170, 0.1)', color: '#00d4aa', fontSize: 10, fontFamily: "'JetBrains Mono',monospace", letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600 }}>Get Started Today</span>
+          <h2 style={{ fontFamily: "'Poppins',sans-serif", fontSize: 'clamp(28px,5vw,56px)', fontWeight: 900, color: '#fff', margin: '18px auto 16px', letterSpacing: -1.5, lineHeight: 1.08 }}>
+            Ready to build, secure<br /><span style={{ color: '#00d4aa' }}>&amp; scale your business?</span>
           </h2>
           <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 15, marginBottom: 20, lineHeight: 1.7 }}>Tell us what you need — we'll respond within 24 hours with a clear proposal and honest pricing. No hidden fees. No BS.</p>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 18px', borderRadius: 12, border: '1px solid rgba(139,92,246,0.3)', background: 'rgba(139,92,246,0.07)', marginBottom: 28 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 18px', borderRadius: 12, border: '1px solid rgba(0, 212, 170, 0.3)', background: 'rgba(0, 212, 170, 0.07)', marginBottom: 28 }}>
             <span style={{ fontSize: 14 }}>📍</span>
-            <span style={{ fontFamily: "'Sora',sans-serif", fontSize: 13, color: '#C4B5FD', fontWeight: 700 }}>Based in Dhaka, Bangladesh · Serving local & remote clients</span>
+            <span style={{ fontFamily: "'Poppins',sans-serif", fontSize: 13, color: '#00d4aa', fontWeight: 700 }}>Based in Dhaka, Bangladesh · Serving local & remote clients</span>
           </div>
           <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/contact" className="btn-primary" style={{ padding: '15px 36px', background: '#8B5CF6', color: '#000', fontSize: 15, fontWeight: 800, border: 'none', borderRadius: 12, textDecoration: 'none', fontFamily: "'Sora',sans-serif" }}>
+            <Link to="/contact" className="btn-primary" style={{ padding: '15px 36px', background: '#00d4aa', color: '#0f172a', fontSize: 15, fontWeight: 800, border: 'none', borderRadius: 12, textDecoration: 'none', fontFamily: "'Poppins',sans-serif" }}>
               🔍 Get Free Security Audit →
             </Link>
-            <Link to="/contact" style={{ padding: '15px 28px', fontSize: 15, borderRadius: 12, textDecoration: 'none', background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.12)', color: '#fff', fontFamily: "'Sora',sans-serif", fontWeight: 700 }}>
+            <Link to="/contact" style={{ padding: '15px 28px', fontSize: 15, borderRadius: 12, textDecoration: 'none', background: 'rgba(0, 212, 170, 0.1)', border: '1px solid rgba(0, 212, 170, 0.3)', color: '#00d4aa', fontFamily: "'Poppins',sans-serif", fontWeight: 700 }}>
               📞 Book a Free Consultation
             </Link>
           </div>
           <div style={{ marginTop: 28, display: 'flex', gap: 20, justifyContent: 'center', flexWrap: 'wrap' }}>
             {['✓ Free consultation', '✓ Fixed-price quotes', '✓ NDA on request', '✓ BDT & USD accepted'].map((t, i) => (
-              <span key={i} style={{ fontSize: 12, color: 'rgba(255,255,255,0.25)', fontFamily: "'Space Mono',monospace" }}>{t}</span>
+              <span key={i} style={{ fontSize: 12, color: 'rgba(255,255,255,0.25)', fontFamily: "'JetBrains Mono',monospace" }}>{t}</span>
             ))}
           </div>
         </div>
