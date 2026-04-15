@@ -8,8 +8,8 @@ import { ReferralCtaBanner } from '../components/ui/ReferralPromoAd';
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const STATS = [
-  { value: 24,  suffix: '+', label: 'Projects Completed',    color: '#00d4aa' },
-  { value: 20,  suffix: '+', label: 'Happy Clients',         color: '#00d4aa' },
+  { value: 2400,  suffix: '+', label: 'Projects Completed',    color: '#00d4aa' },
+  { value: 1500,  suffix: '+', label: 'Happy Clients',         color: '#00d4aa' },
   { value: 99,  suffix: '%', label: 'Client Satisfaction',   color: '#00d4aa' },
   { value: 24,  suffix: '/7', label: 'Security Monitoring',  color: '#00d4aa' },
 ];
