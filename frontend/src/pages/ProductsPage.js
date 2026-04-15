@@ -6,8 +6,8 @@ import { useState } from 'react';
 // demoUrl প্রতিটা product-এ নিজের real link দিয়ে replace করো
 
 const PRODUCTS = [
-  { id:'p1', name:'WP Shield', tag:'WordPress Security', desc:'Enterprise-grade WordPress security scanner with real-time threat detection and automated malware removal.', features:['Malware scanning','Plugin vulnerability detection','Security header analysis','SSL certificate check','Automated fix suggestions'], price:19, billing:'monthly', color:'#8B5CF6', demoUrl:'https://wp-shield-pi.vercel.app/' },
-  { id:'p2', name:'SiteGuard', tag:'Monitoring Platform', desc:'Continuous website security monitoring with instant alerts and automated incident responses.', features:['24/7 uptime monitoring','Threat intelligence feed','Auto IP blocking','Incident reports','Slack & email alerts'], price:49, billing:'monthly', color:'#3B82F6', demoUrl:'https://demo.axentralab.com/siteguard' },
+  { id:'p1', name:'WP Shield', tag:'WordPress Security', desc:'Enterprise-grade WordPress security scanner with real-time threat detection and automated malware removal.', features:['Malware scanning','Plugin vulnerability detection','Security header analysis','SSL certificate check','Automated fix suggestions'], price:19, billing:'monthly', color:'#00d4aa', demoUrl:'https://wp-shield-pi.vercel.app/' },
+  { id:'p2', name:'SiteGuard', tag:'Monitoring Platform', desc:'Continuous website security monitoring with instant alerts and automated incident responses.', features:['24/7 uptime monitoring','Threat intelligence feed','Auto IP blocking','Incident reports','Slack & email alerts'], price:49, billing:'monthly', color:'#00d4aa', demoUrl:'https://demo.axentralab.com/siteguard' },
   // { id:'p3', name:'API Scanner', tag:'API Security', desc:'Find and fix vulnerabilities in your APIs before attackers do. Covers OWASP API Top 10.', features:['OWASP API Top 10 coverage','Auth & rate limit testing','Detailed vulnerability report','CI/CD integration','Remediation guidance'], price:39, billing:'monthly', color:'#EF4444', demoUrl:'https://demo.axentralab.com/api-scanner' },
   // { id:'p4', name:'CloudArmor', tag:'Cloud Security', desc:'Full-spectrum cloud infrastructure security — audit your AWS, GCP or Azure setup against CIS benchmarks automatically.', features:['Multi-cloud support','CIS benchmark checks','IAM misconfiguration alerts','S3 / blob exposure scanner','Compliance PDF export'], price:69, billing:'monthly', color:'#A855F7', demoUrl:'https://demo.axentralab.com/cloudarmor' },
   // { id:'p5', name:'PenBot', tag:'Automated Pentesting', desc:'Simulated attacker that runs automated penetration tests on your web apps continuously, not just once a year.', features:['Continuous attack simulation','OWASP Top 10 coverage','Session & auth bypass tests','Custom scan schedules','Executive + dev reports'], price:89, billing:'monthly', color:'#F97316', demoUrl:'https://demo.axentralab.com/penbot' },
@@ -108,10 +108,10 @@ const FAQS = [
 ];
 
 const STATS = [
-  { value:'2,500+', label:'Security Scans Completed', color:'#8B5CF6' },
-  { value:'99.9%', label:'System Uptime', color:'#3B82F6' },
-  { value:'120+', label:'Active Clients', color:'#A855F7' },
-  { value:'< 10 min', label:'Avg Issue Response Time', color:'#F97316' },
+  { value:'2,500+', label:'Security Scans Completed', color:'#00d4aa' },
+  { value:'99.9%', label:'System Uptime', color:'#00d4aa' },
+  { value:'120+', label:'Active Clients', color:'#00d4aa' },
+  { value:'< 10 min', label:'Avg Issue Response Time', color:'#00d4aa' },
 ];
 
 const CATEGORIES = ['All', 'Cybersecurity', 'AI / Automation', 'SEO & Marketing'];
