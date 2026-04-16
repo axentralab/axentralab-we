@@ -3,7 +3,6 @@ import { Link } from 'react-router-dom';
 import ReferralPromoAd from '../components/ui/ReferralPromoAd';
 import { getWhatsAppUrl } from '../config/contact.config';
 
-// ─── Design tokens (mirrors site palette) ────────────────────────────────────
 const GREEN  = '#8B5CF6';
 const BLUE   = '#3B82F6';
 const PURPLE = '#A855F7';
@@ -11,9 +10,7 @@ const AMBER  = '#F59E0B';
 const CYAN   = '#06B6D4';
 const HERO_BG_IMAGE = process.env.REACT_APP_HERO_BG_IMAGE || '/images/hero-bg.png';
 
-// ─── Service Packs ────────────────────────────────────────────────────────────
 const PACKS = [
-  // ── Web Development ─────────────────────────────────────────────────────────
   {
     id: 'startup',
     badge: 'Entry Point',
@@ -92,8 +89,6 @@ const PACKS = [
     addons: ['Mobile app (React Native)', 'AI feature integrations', 'White-label solution'],
     popular: false,
   },
-
-  // ── Cybersecurity ────────────────────────────────────────────────────────────
   {
     id: 'sec-audit',
     badge: 'Core Security',
@@ -145,8 +140,6 @@ const PACKS = [
     addons: ['24/7 monitoring +৳10,000/mo', 'SaaS security testing +$200', 'NDA included'],
     popular: true,
   },
-
-  // ── Automation ───────────────────────────────────────────────────────────────
   {
     id: 'automation',
     badge: 'Hidden Gold 💎',
@@ -172,8 +165,6 @@ const PACKS = [
     addons: ['AI chatbot upgrade +$200', 'Custom CRM +৳25,000', 'Ongoing automation support'],
     popular: false,
   },
-
-  // ── White-Label ──────────────────────────────────────────────────────────────
   {
     id: 'whitelabel',
     badge: 'Best for Agencies 🔥',
@@ -200,8 +191,6 @@ const PACKS = [
     addons: ['Priority SLA +$200/mo', 'Extra dev seat +$300/mo', 'Monthly strategy call'],
     popular: false,
   },
-
-  // ── Retainer Plans ───────────────────────────────────────────────────────────
   {
     id: 'retainer-web',
     badge: 'Recurring 💸',
@@ -252,8 +241,6 @@ const PACKS = [
     addons: ['Manual pen test +$200/qtr', 'Compliance reporting +$100/mo', 'SLA guarantee'],
     popular: false,
   },
-
-  // ── Combo High-Ticket ────────────────────────────────────────────────────────
   {
     id: 'combo-startup',
     badge: '🥇 Combo Deal',
@@ -333,7 +320,6 @@ const PACKS = [
   },
 ];
 
-// ─── Case Studies ─────────────────────────────────────────────────────────────
 const CASES = [
   {
     name: 'FoodExpress POS',
@@ -417,7 +403,6 @@ const CASES = [
   },
 ];
 
-// ─── Portfolio items ──────────────────────────────────────────────────────────
 const PORTFOLIO = [
   { name: 'Travel Agency',     cat: 'Startup',    icon: '✈️', color: CYAN,      tech: 'MERN',            desc: 'Tour booking site with custom itinerary builder.' },
   { name: 'AgroTech BD',       cat: 'Startup',    icon: '🌾', color: GREEN,     tech: 'WordPress',       desc: 'Agricultural marketplace for rural Bangladesh farmers.' },
@@ -432,7 +417,6 @@ const PORTFOLIO = [
   { name: 'HRFlow Auto',       cat: 'Automation', icon: '🔄', color: CYAN,      tech: 'Node.js + API',   desc: 'Automated onboarding workflow for an HR SaaS company.' },
 ];
 
-// ─── Small hooks / utils ──────────────────────────────────────────────────────
 function useInView(threshold = 0.15) {
   const ref = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -444,123 +428,133 @@ function useInView(threshold = 0.15) {
   return [ref, visible];
 }
 
-function Glow({ x, y, color = GREEN, size = 500 }) {
-  return (
-    <div style={{
-      position: 'absolute', left: x, top: y,
-      width: size, height: size,
-      background: `radial-gradient(circle,${color}12 0%,transparent 70%)`,
-      borderRadius: '50%', pointerEvents: 'none',
-      transform: 'translate(-50%,-50%)', filter: 'blur(40px)',
-    }} />
-  );
-}
-
 function SectionLabel({ color, children }) {
   return (
-    <span style={{ display: 'inline-block', padding: '3px 12px', borderRadius: 999, border: `1px solid ${color}40`, background: `${color}10`, color, fontSize: 11, fontFamily: "'Space Mono',monospace", letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600 }}>
+    <span style={{
+      display: 'inline-block', padding: '3px 12px', borderRadius: 999,
+      border: `1px solid ${color}40`, background: `${color}10`, color,
+      fontSize: 11, fontFamily: "'Space Mono',monospace",
+      letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600,
+    }}>
       {children}
     </span>
   );
 }
 
-// ─── Pack Card ────────────────────────────────────────────────────────────────
 function PackCard({ pack, idx }) {
   const [ref, visible] = useInView();
   const [expanded, setExpanded] = useState(false);
 
   return (
-    <div ref={ref} style={{
-      opacity: visible ? 1 : 0,
-      transform: visible ? 'none' : 'translateY(28px)',
-      transition: `opacity 0.55s ${idx * 0.12}s, transform 0.55s ${idx * 0.12}s`,
-      position: 'relative',
-      background: pack.popular
-        ? `linear-gradient(160deg, rgba(59,130,246,0.08), rgba(168,85,247,0.05))`
-        : 'rgba(255,255,255,0.025)',
-      border: pack.popular
-        ? `1px solid ${pack.color}35`
-        : '1px solid rgba(255,255,255,0.07)',
-      borderRadius: 22,
-      overflow: 'hidden',
-      display: 'flex',
-      flexDirection: 'column',
-      transition: 'border-color 0.25s, box-shadow 0.25s, transform 0.25s',
-    }}
-    onMouseEnter={e => {
-      e.currentTarget.style.borderColor = `${pack.color}45`;
-      e.currentTarget.style.boxShadow   = `0 16px 50px ${pack.color}14`;
-      e.currentTarget.style.transform   = 'translateY(-5px)';
-    }}
-    onMouseLeave={e => {
-      e.currentTarget.style.borderColor = pack.popular ? `${pack.color}35` : 'rgba(255,255,255,0.07)';
-      e.currentTarget.style.boxShadow   = 'none';
-      e.currentTarget.style.transform   = 'none';
-    }}>
-
-      {/* top gradient bar */}
+    <div
+      ref={ref}
+      className="pack-card"
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'none' : 'translateY(28px)',
+        transition: `opacity 0.55s ${idx * 0.12}s, transform 0.55s ${idx * 0.12}s`,
+        position: 'relative',
+        background: pack.popular
+          ? `linear-gradient(160deg,rgba(59,130,246,0.08),rgba(168,85,247,0.05))`
+          : 'rgba(255,255,255,0.025)',
+        border: pack.popular
+          ? `1px solid ${pack.color}35`
+          : '1px solid rgba(255,255,255,0.07)',
+        borderRadius: 22,
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+      }}
+      onMouseEnter={e => {
+        e.currentTarget.style.borderColor = `${pack.color}45`;
+        e.currentTarget.style.boxShadow   = `0 16px 50px ${pack.color}14`;
+        e.currentTarget.style.transform   = 'translateY(-5px)';
+      }}
+      onMouseLeave={e => {
+        e.currentTarget.style.borderColor = pack.popular ? `${pack.color}35` : 'rgba(255,255,255,0.07)';
+        e.currentTarget.style.boxShadow   = 'none';
+        e.currentTarget.style.transform   = visible ? 'none' : 'translateY(28px)';
+      }}
+    >
       <div style={{ height: 4, background: `linear-gradient(90deg,${pack.color},transparent)` }} />
 
-      {/* popular badge */}
       {pack.popular && (
-        <div style={{ position: 'absolute', top: 20, right: 20, padding: '3px 11px', borderRadius: 999, background: `${pack.color}20`, border: `1px solid ${pack.color}40`, color: pack.color, fontSize: 10, fontFamily: "'Space Mono',monospace", fontWeight: 700, letterSpacing: 0.5 }}>
+        <div style={{
+          position: 'absolute', top: 20, right: 20,
+          padding: '3px 11px', borderRadius: 999,
+          background: `${pack.color}20`, border: `1px solid ${pack.color}40`,
+          color: pack.color, fontSize: 10,
+          fontFamily: "'Space Mono',monospace", fontWeight: 700, letterSpacing: 0.5,
+        }}>
           🔥 Most Popular
         </div>
       )}
 
-      <div style={{ padding: '28px 28px 0' }}>
-        {/* icon + label */}
-        <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
-          <div style={{ width: 52, height: 52, borderRadius: 16, background: `${pack.color}15`, border: `1px solid ${pack.color}30`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26, flexShrink: 0 }}>{pack.icon}</div>
+      <div style={{ padding: '24px 24px 0' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 14 }}>
+          <div style={{
+            width: 48, height: 48, borderRadius: 14, flexShrink: 0,
+            background: `${pack.color}15`, border: `1px solid ${pack.color}30`,
+            display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24,
+          }}>{pack.icon}</div>
           <div>
             <div style={{ fontFamily: "'Space Mono',monospace", fontSize: 10, color: pack.color, letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600, marginBottom: 3 }}>{pack.badge}</div>
-            <div style={{ fontFamily: "'Sora',sans-serif", fontSize: 20, fontWeight: 900, color: '#fff', letterSpacing: -0.5 }}>{pack.label}</div>
+            <div style={{ fontFamily: "'Sora',sans-serif", fontSize: 18, fontWeight: 900, color: '#fff', letterSpacing: -0.5 }}>{pack.label}</div>
           </div>
         </div>
 
-        <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', marginBottom: 22, lineHeight: 1.65 }}>{pack.tagline}</p>
+        <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.4)', marginBottom: 20, lineHeight: 1.65 }}>{pack.tagline}</p>
 
-        {/* price */}
-        <div style={{ marginBottom: 22 }}>
+        <div style={{ marginBottom: 20 }}>
           <div style={{ fontFamily: "'Space Mono',monospace", fontSize: 10, color: 'rgba(255,255,255,0.3)', letterSpacing: 0.5, textTransform: 'uppercase', marginBottom: 4 }}>Starting at</div>
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: 6 }}>
-            <span style={{ fontFamily: "'Sora',sans-serif", fontSize: 32, fontWeight: 900, color: pack.color, letterSpacing: -1 }}>{pack.price}</span>
-            {pack.priceMax && <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.3)', fontFamily: "'Space Mono',monospace" }}>– {pack.priceMax}</span>}
-            {!pack.priceMax && <span style={{ fontSize: 14, color: 'rgba(255,255,255,0.3)', fontFamily: "'Space Mono',monospace" }}>+</span>}
+          <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, flexWrap: 'wrap' }}>
+            <span style={{ fontFamily: "'Sora',sans-serif", fontSize: 'clamp(22px,4vw,30px)', fontWeight: 900, color: pack.color, letterSpacing: -1 }}>{pack.price}</span>
+            {pack.priceMax && <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.3)', fontFamily: "'Space Mono',monospace" }}>– {pack.priceMax}</span>}
+            {!pack.priceMax && <span style={{ fontSize: 13, color: 'rgba(255,255,255,0.3)', fontFamily: "'Space Mono',monospace" }}>+</span>}
           </div>
         </div>
 
-        {/* meta chips */}
-        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 22 }}>
+        <div className="meta-chips" style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 20 }}>
           {[
             { icon: '📄', text: pack.pages },
             { icon: '⚙️', text: pack.tech },
             { icon: '📅', text: pack.delivery },
             { icon: '🛠️', text: pack.support },
           ].map((m, i) => (
-            <span key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 11, padding: '4px 10px', borderRadius: 8, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)', color: 'rgba(255,255,255,0.5)', fontFamily: "'Space Mono',monospace" }}>
+            <span key={i} style={{
+              display: 'inline-flex', alignItems: 'center', gap: 4,
+              fontSize: 10, padding: '4px 9px', borderRadius: 8,
+              background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.06)',
+              color: 'rgba(255,255,255,0.5)', fontFamily: "'Space Mono',monospace",
+            }}>
               {m.icon} {m.text}
             </span>
           ))}
         </div>
 
-        {/* features */}
-        <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 18px', display: 'flex', flexDirection: 'column', gap: 9 }}>
+        <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 16px', display: 'flex', flexDirection: 'column', gap: 8 }}>
           {pack.features.map((f, fi) => (
             <li key={fi} style={{ display: 'flex', alignItems: 'flex-start', gap: 9, fontSize: 13, color: 'rgba(255,255,255,0.62)', lineHeight: 1.5 }}>
-              <span style={{ width: 18, height: 18, borderRadius: '50%', background: `${pack.color}18`, border: `1px solid ${pack.color}38`, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, color: pack.color, flexShrink: 0, marginTop: 1 }}>✓</span>
+              <span style={{
+                width: 17, height: 17, borderRadius: '50%', flexShrink: 0, marginTop: 1,
+                background: `${pack.color}18`, border: `1px solid ${pack.color}38`,
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                fontSize: 9, color: pack.color,
+              }}>✓</span>
               {f}
             </li>
           ))}
         </ul>
 
-        {/* add-ons toggle */}
-        <button onClick={() => setExpanded(e => !e)} style={{ background: 'none', border: 'none', color: `${pack.color}99`, fontSize: 11, fontFamily: "'Space Mono',monospace", cursor: 'pointer', padding: '0 0 18px', letterSpacing: 0.3 }}>
+        <button
+          onClick={() => setExpanded(e => !e)}
+          style={{ background: 'none', border: 'none', color: `${pack.color}99`, fontSize: 11, fontFamily: "'Space Mono',monospace", cursor: 'pointer', padding: '0 0 16px', letterSpacing: 0.3 }}
+        >
           {expanded ? '▲ Hide add-ons' : '▼ View optional add-ons'}
         </button>
 
         {expanded && (
-          <div style={{ padding: '14px 16px', background: `${pack.color}06`, border: `1px solid ${pack.color}18`, borderRadius: 12, marginBottom: 18 }}>
+          <div style={{ padding: '14px 16px', background: `${pack.color}06`, border: `1px solid ${pack.color}18`, borderRadius: 12, marginBottom: 16 }}>
             {pack.addons.map((a, i) => (
               <div key={i} style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', padding: '4px 0', fontFamily: "'Space Mono',monospace", borderBottom: i < pack.addons.length - 1 ? '1px solid rgba(255,255,255,0.04)' : 'none' }}>
                 + {a}
@@ -570,41 +564,42 @@ function PackCard({ pack, idx }) {
         )}
       </div>
 
-      {/* CTA */}
-      <div style={{ marginTop: 'auto', padding: '0 28px 28px' }}>
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
-          <Link to="/contact" style={{
-            display: 'flex', alignItems: 'center', justifyContent: 'center',
-            padding: '13px 24px', borderRadius: 12,
-            background: pack.popular ? `linear-gradient(135deg,${pack.color},${PURPLE})` : `${pack.color}18`,
-            border: pack.popular ? 'none' : `1px solid ${pack.color}35`,
-            color: pack.popular ? '#fff' : pack.color,
-            fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 14,
-            textDecoration: 'none',
-            boxShadow: pack.popular ? `0 4px 20px ${pack.color}35` : 'none',
-            transition: 'filter 0.18s, transform 0.18s',
-          }}
-          onMouseEnter={e => { e.currentTarget.style.filter = 'brightness(1.1)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-          onMouseLeave={e => { e.currentTarget.style.filter = 'none'; e.currentTarget.style.transform = 'none'; }}>
+      <div style={{ marginTop: 'auto', padding: '0 24px 24px' }}>
+        <div className="pack-cta-grid" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+          <Link
+            to="/contact"
+            style={{
+              display: 'flex', alignItems: 'center', justifyContent: 'center',
+              padding: '12px 16px', borderRadius: 12,
+              background: pack.popular ? `linear-gradient(135deg,${pack.color},${PURPLE})` : `${pack.color}18`,
+              border: pack.popular ? 'none' : `1px solid ${pack.color}35`,
+              color: pack.popular ? '#fff' : pack.color,
+              fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 13,
+              textDecoration: 'none',
+              boxShadow: pack.popular ? `0 4px 20px ${pack.color}35` : 'none',
+              transition: 'filter 0.18s, transform 0.18s',
+              textAlign: 'center',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.filter = 'brightness(1.1)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
+            onMouseLeave={e => { e.currentTarget.style.filter = 'none'; e.currentTarget.style.transform = 'none'; }}
+          >
             Get Started →
           </Link>
-          <button 
+          <button
             onClick={() => {
               const msg = `Hi! I'm interested in the "${pack.label}" service. Can you provide more details and pricing?`;
               window.open(getWhatsAppUrl(msg), '_blank');
             }}
             style={{
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              padding: '13px 24px', borderRadius: 12,
-              background: 'rgba(37, 211, 102, 0.12)',
-              border: '1px solid rgba(37, 211, 102, 0.3)',
-              color: '#25D366',
-              fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 14,
-              cursor: 'pointer',
-              transition: 'filter 0.18s, transform 0.18s',
+              padding: '12px 16px', borderRadius: 12,
+              background: 'rgba(37,211,102,0.12)', border: '1px solid rgba(37,211,102,0.3)',
+              color: '#25D366', fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 13,
+              cursor: 'pointer', transition: 'filter 0.18s, transform 0.18s',
             }}
             onMouseEnter={e => { e.currentTarget.style.filter = 'brightness(1.15)'; e.currentTarget.style.transform = 'translateY(-1px)'; }}
-            onMouseLeave={e => { e.currentTarget.style.filter = 'none'; e.currentTarget.style.transform = 'none'; }}>
+            onMouseLeave={e => { e.currentTarget.style.filter = 'none'; e.currentTarget.style.transform = 'none'; }}
+          >
             💬 WhatsApp
           </button>
         </div>
@@ -613,38 +608,35 @@ function PackCard({ pack, idx }) {
   );
 }
 
-// ─── Case Study Card ──────────────────────────────────────────────────────────
 function CaseCard({ c, idx }) {
   const [ref, visible] = useInView();
-
   return (
-    <div ref={ref} style={{
-      opacity: visible ? 1 : 0,
-      transform: visible ? 'none' : 'translateY(28px)',
-      transition: `opacity 0.55s ${idx * 0.14}s, transform 0.55s ${idx * 0.14}s`,
-      background: 'rgba(255,255,255,0.025)',
-      border: '1px solid rgba(255,255,255,0.07)',
-      borderRadius: 22,
-      overflow: 'hidden',
-    }}>
-      {/* top accent bar */}
+    <div
+      ref={ref}
+      style={{
+        opacity: visible ? 1 : 0,
+        transform: visible ? 'none' : 'translateY(28px)',
+        transition: `opacity 0.55s ${idx * 0.14}s, transform 0.55s ${idx * 0.14}s`,
+        background: 'rgba(255,255,255,0.025)',
+        border: '1px solid rgba(255,255,255,0.07)',
+        borderRadius: 22,
+        overflow: 'hidden',
+      }}
+    >
       <div style={{ height: 3, background: `linear-gradient(90deg,${c.color},transparent)` }} />
-
-      <div style={{ padding: 28 }}>
-        {/* header */}
-        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 18, gap: 12 }}>
+      <div style={{ padding: 24 }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 18, gap: 12, flexWrap: 'wrap' }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <div style={{ width: 48, height: 48, borderRadius: 14, background: `${c.color}15`, border: `1px solid ${c.color}28`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>{c.icon}</div>
+            <div style={{ width: 44, height: 44, flexShrink: 0, borderRadius: 12, background: `${c.color}15`, border: `1px solid ${c.color}28`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>{c.icon}</div>
             <div>
-              <div style={{ fontFamily: "'Sora',sans-serif", fontWeight: 900, fontSize: 17, color: '#fff', letterSpacing: -0.3 }}>{c.name}</div>
+              <div style={{ fontFamily: "'Sora',sans-serif", fontWeight: 900, fontSize: 16, color: '#fff', letterSpacing: -0.3 }}>{c.name}</div>
               <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', fontFamily: "'Space Mono',monospace", marginTop: 2 }}>{c.client}</div>
             </div>
           </div>
-          <span style={{ fontSize: 10, padding: '3px 10px', borderRadius: 999, background: `${c.color}12`, border: `1px solid ${c.color}30`, color: c.color, fontFamily: "'Space Mono',monospace", fontWeight: 600, flexShrink: 0, letterSpacing: 0.3 }}>{c.pack}</span>
+          <span style={{ fontSize: 10, padding: '3px 10px', borderRadius: 999, background: `${c.color}12`, border: `1px solid ${c.color}30`, color: c.color, fontFamily: "'Space Mono',monospace", fontWeight: 600, flexShrink: 0, letterSpacing: 0.3, alignSelf: 'flex-start' }}>{c.pack}</span>
         </div>
 
-        {/* challenge + solution */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 22 }}>
+        <div className="case-split" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 20 }}>
           <div style={{ padding: '12px 14px', borderRadius: 12, background: 'rgba(239,68,68,0.05)', border: '1px solid rgba(239,68,68,0.12)' }}>
             <div style={{ fontSize: 10, color: '#EF4444', fontFamily: "'Space Mono',monospace", fontWeight: 600, letterSpacing: 0.5, textTransform: 'uppercase', marginBottom: 6 }}>🔴 Challenge</div>
             <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', lineHeight: 1.6, margin: 0 }}>{c.challenge}</p>
@@ -655,12 +647,11 @@ function CaseCard({ c, idx }) {
           </div>
         </div>
 
-        {/* metrics */}
-        <div style={{ display: 'flex', gap: 10, flexWrap: 'wrap', marginBottom: 20 }}>
+        <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 18 }}>
           {c.metrics.map((m, i) => (
-            <div key={i} style={{ flex: '1 1 auto', minWidth: 90, padding: '12px 14px', background: `${c.color}08`, border: `1px solid ${c.color}18`, borderRadius: 12, textAlign: 'center' }}>
-              <div style={{ fontSize: 18, marginBottom: 4 }}>{m.icon}</div>
-              <div style={{ fontFamily: "'Sora',sans-serif", fontWeight: 900, fontSize: 13, color: c.color, marginBottom: 2 }}>
+            <div key={i} style={{ flex: '1 1 80px', padding: '10px 12px', background: `${c.color}08`, border: `1px solid ${c.color}18`, borderRadius: 10, textAlign: 'center' }}>
+              <div style={{ fontSize: 16, marginBottom: 4 }}>{m.icon}</div>
+              <div style={{ fontFamily: "'Sora',sans-serif", fontWeight: 900, fontSize: 12, color: c.color, marginBottom: 2 }}>
                 {m.delta ? m.delta : `${m.before} → ${m.after}`}
               </div>
               <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)', fontFamily: "'Space Mono',monospace" }}>{m.label}</div>
@@ -668,18 +659,18 @@ function CaseCard({ c, idx }) {
           ))}
         </div>
 
-        {/* stack */}
-        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 16 }}>
+        <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginBottom: 14 }}>
           {c.stack.map((s, i) => (
             <span key={i} style={{ fontSize: 10, padding: '3px 9px', borderRadius: 6, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.45)', fontFamily: "'Space Mono',monospace" }}>{s}</span>
           ))}
         </div>
 
-        {/* demo link */}
-        <a href={`https://${c.demo}`} target="_blank" rel="noopener noreferrer"
+        <a
+          href={`https://${c.demo}`} target="_blank" rel="noopener noreferrer"
           style={{ fontSize: 12, color: c.color, fontFamily: "'Space Mono',monospace", textDecoration: 'none', fontWeight: 600, opacity: 0.75, transition: 'opacity 0.15s' }}
           onMouseEnter={e => e.currentTarget.style.opacity = '1'}
-          onMouseLeave={e => e.currentTarget.style.opacity = '0.75'}>
+          onMouseLeave={e => e.currentTarget.style.opacity = '0.75'}
+        >
           🔗 {c.demo} →
         </a>
       </div>
@@ -687,23 +678,16 @@ function CaseCard({ c, idx }) {
   );
 }
 
-// ─── Main Page ────────────────────────────────────────────────────────────────
 export default function ServicesPage() {
-  const [activeTab, setActiveTab] = useState('pricing');
+  const [activeTab, setActiveTab]       = useState('pricing');
   const [portfolioCat, setPortfolioCat] = useState('All');
-  const [packCat, setPackCat] = useState('all');
-  const [heroRef, heroVisible] = useInView(0.05);
+  const [packCat, setPackCat]           = useState('all');
+  const [heroRef, heroVisible]          = useInView(0.05);
 
-  const filteredPortfolio = portfolioCat === 'All'
-    ? PORTFOLIO
-    : PORTFOLIO.filter(p => p.cat === portfolioCat);
-
-  const filteredPacks = packCat === 'all'
-    ? PACKS
-    : PACKS.filter(p => p.category === packCat);
+  const filteredPortfolio = portfolioCat === 'All' ? PORTFOLIO : PORTFOLIO.filter(p => p.cat === portfolioCat);
+  const filteredPacks     = packCat === 'all' ? PACKS : PACKS.filter(p => p.category === packCat);
 
   const CATS_PORT = ['All', 'Startup', 'SME', 'Enterprise', 'Security', 'Automation'];
-
   const PACK_CATS = [
     { id: 'all',        label: '🌐 All Services' },
     { id: 'webdev',     label: '💻 Web Dev' },
@@ -717,12 +701,18 @@ export default function ServicesPage() {
   return (
     <>
       <style>{`
-        @keyframes glowFloat { 0%,100%{opacity:0.45;transform:scale(1)} 50%{opacity:0.8;transform:scale(1.06)} }
-        @keyframes fadeUp    { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:none} }
-        @keyframes shimmer   { from{background-position:200% 0} to{background-position:-200% 0} }
+        @import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800;900&family=Space+Mono:wght@400;700&display=swap');
 
+        *, *::before, *::after { box-sizing: border-box; }
+
+        @keyframes glowFloat {
+          0%,100% { opacity:.45; transform:scale(1); }
+          50%      { opacity:.8;  transform:scale(1.06); }
+        }
+
+        /* ── Tab nav ── */
         .services-tab {
-          padding: 9px 20px;
+          padding: 8px 16px;
           border-radius: 999px;
           font-family: 'Space Mono', monospace;
           font-size: 12px;
@@ -731,60 +721,268 @@ export default function ServicesPage() {
           transition: all 0.2s;
           letter-spacing: 0.3px;
           border: 1px solid transparent;
+          white-space: nowrap;
         }
-        .services-tab.active  { background: rgba(255,255,255,0.1); border-color: rgba(255,255,255,0.18); color: #fff; }
-        .services-tab.inactive{ background: transparent; border-color: rgba(255,255,255,0.07); color: rgba(255,255,255,0.38); }
-        .services-tab.inactive:hover { border-color: rgba(255,255,255,0.15); color: rgba(255,255,255,0.65); }
+        .services-tab.active   { background:rgba(255,255,255,0.1); border-color:rgba(255,255,255,0.18); color:#fff; }
+        .services-tab.inactive { background:transparent; border-color:rgba(255,255,255,0.07); color:rgba(255,255,255,0.38); }
+        .services-tab.inactive:hover { border-color:rgba(255,255,255,0.15); color:rgba(255,255,255,0.65); }
 
-        .port-item {
-          transition: border-color 0.22s, box-shadow 0.22s, transform 0.22s;
-          cursor: default;
-        }
-        .port-item:hover {
-          transform: translateY(-4px);
+        /* ── Filter buttons ── */
+        .filter-btn {
+          padding: 7px 14px;
+          border-radius: 999px;
+          font-size: 12px;
+          font-weight: 600;
+          font-family: 'Space Mono', monospace;
+          cursor: pointer;
+          transition: all 0.15s;
+          white-space: nowrap;
         }
 
-        @media (max-width: 900px) {
-          .packs-grid { grid-template-columns: 1fr !important; }
-          .cases-grid { grid-template-columns: 1fr !important; }
-          .case-split  { grid-template-columns: 1fr !important; }
+        /* ── Packs grid ── */
+        .packs-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
         }
-        @media (max-width: 600px) {
-          .port-grid { grid-template-columns: 1fr 1fr !important; }
+
+        /* ── Cases grid ── */
+        .cases-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+          gap: 22px;
+        }
+
+        /* ── Portfolio grid ── */
+        .port-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+          gap: 16px;
+        }
+
+        /* ── Case challenge/solution split ── */
+        .case-split {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+        }
+
+        /* ── Comparison callout ── */
+        .compare-callout {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          flex-wrap: wrap;
+          gap: 20px;
+        }
+
+        /* ── Entry-level offers grid ── */
+        .entry-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+          gap: 12px;
+        }
+
+        /* ── Add-ons grid ── */
+        .addons-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+          gap: 12px;
+        }
+
+        /* ── Pack CTA buttons ── */
+        .pack-cta-grid {
+          display: grid;
+          grid-template-columns: 1fr 1fr;
+          gap: 10px;
+        }
+
+        /* ── Tab nav scroll wrapper ── */
+        .tab-nav-wrap {
+          display: flex;
+          justify-content: center;
+          gap: 8px;
+          margin-bottom: 48px;
+          overflow-x: auto;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+          padding-bottom: 4px;
+        }
+        .tab-nav-wrap::-webkit-scrollbar { display: none; }
+
+        /* ── Filter wrap ── */
+        .filter-wrap {
+          display: flex;
+          gap: 8px;
+          justify-content: center;
+          flex-wrap: wrap;
+          margin-bottom: 32px;
+        }
+
+        /* ============================================================
+           TABLET  ≤ 1024px
+        ============================================================ */
+        @media (max-width: 1024px) {
+          .packs-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+
+        /* ============================================================
+           MOBILE  ≤ 768px
+        ============================================================ */
+        @media (max-width: 768px) {
+          .services-page-wrap {
+            padding: 80px 4% 60px !important;
+          }
+
+          /* Hero */
+          .hero-section {
+            padding: 40px 16px !important;
+            margin-bottom: 36px !important;
+            border-radius: 16px !important;
+          }
+          .hero-title {
+            font-size: clamp(26px, 8vw, 44px) !important;
+            letter-spacing: -1px !important;
+          }
+          .hero-desc {
+            font-size: 14px !important;
+          }
+          .trust-chips {
+            gap: 6px !important;
+          }
+
+          /* Tab nav */
+          .tab-nav-wrap {
+            justify-content: flex-start;
+            padding-left: 4%;
+            padding-right: 4%;
+          }
+
+          /* Packs */
+          .packs-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+          }
+
+          /* Cases */
+          .cases-grid {
+            grid-template-columns: 1fr;
+            gap: 16px;
+          }
+
+          /* Portfolio */
+          .port-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+          }
+
+          /* Challenge/Solution split */
+          .case-split {
+            grid-template-columns: 1fr;
+          }
+
+          /* Comparison callout */
+          .compare-callout {
+            flex-direction: column;
+            align-items: stretch;
+            text-align: center;
+          }
+          .compare-callout a {
+            text-align: center;
+          }
+
+          /* Entry level */
+          .entry-grid {
+            grid-template-columns: 1fr;
+          }
+
+          /* Add-ons */
+          .addons-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+          }
+
+          /* Pack card CTA */
+          .pack-cta-grid {
+            grid-template-columns: 1fr;
+            gap: 8px;
+          }
+
+          /* Filter wrap */
+          .filter-wrap {
+            justify-content: flex-start;
+            overflow-x: auto;
+            flex-wrap: nowrap;
+            padding: 0 4% 6px;
+            scrollbar-width: none;
+            -webkit-overflow-scrolling: touch;
+          }
+          .filter-wrap::-webkit-scrollbar { display: none; }
+          .filter-btn { flex-shrink: 0; }
+
+          /* Section headings */
+          .section-h3 {
+            font-size: clamp(18px, 5vw, 26px) !important;
+          }
+        }
+
+        /* ============================================================
+           SMALL MOBILE  ≤ 480px
+        ============================================================ */
+        @media (max-width: 480px) {
+          .port-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .addons-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .hero-title {
+            font-size: clamp(22px, 9vw, 36px) !important;
+          }
         }
       `}</style>
 
-      <div style={{ padding: '100px 5% 80px', minHeight: '100vh', position: 'relative', overflow: 'hidden' }}>
-
-        {/* Background glows */}
+      <div
+        className="services-page-wrap"
+        style={{ padding: '100px 5% 80px', minHeight: '100vh', position: 'relative', overflow: 'hidden' }}
+      >
+        {/* BG glows */}
         <div style={{ position: 'fixed', top: '15%', left: '-8%', width: 600, height: 600, borderRadius: '50%', background: `radial-gradient(circle,${GREEN}10,transparent 68%)`, pointerEvents: 'none', animation: 'glowFloat 7s ease-in-out infinite', zIndex: 0 }} />
         <div style={{ position: 'fixed', bottom: '20%', right: '-8%', width: 500, height: 500, borderRadius: '50%', background: `radial-gradient(circle,${BLUE}09,transparent 68%)`, pointerEvents: 'none', zIndex: 0 }} />
 
         <div style={{ position: 'relative', zIndex: 1 }}>
 
-          {/* ── HERO ────────────────────────────────────────────────────────── */}
-          <section style={{ position: 'relative', overflow: 'hidden', borderRadius: 20, marginBottom: 56, padding: '56px 20px' }}>
-            <div style={{ position: 'absolute', inset: 0, backgroundImage: `url(${HERO_BG_IMAGE})`, backgroundSize: 'cover', backgroundPosition: 'center', backgroundRepeat: 'no-repeat' }} />
-            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(100deg, rgba(6,8,15,0.9) 0%, rgba(6,8,15,0.72) 48%, rgba(6,8,15,0.9) 100%)' }} />
+          {/* ── HERO ─────────────────────────────────────────────────────── */}
+          <section
+            className="hero-section"
+            style={{ position: 'relative', overflow: 'hidden', borderRadius: 20, marginBottom: 52, padding: '56px 20px' }}
+          >
+            <div style={{ position: 'absolute', inset: 0, backgroundImage: `url(${HERO_BG_IMAGE})`, backgroundSize: 'cover', backgroundPosition: 'center' }} />
+            <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(100deg,rgba(6,8,15,0.9) 0%,rgba(6,8,15,0.72) 48%,rgba(6,8,15,0.9) 100%)' }} />
             <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px)', backgroundSize: '60px 60px' }} />
-            <div ref={heroRef} style={{
-              textAlign: 'center',
-              position: 'relative',
-              opacity: heroVisible ? 1 : 0,
-              transform: heroVisible ? 'none' : 'translateY(24px)',
-              transition: 'opacity 0.6s, transform 0.6s',
-            }}>
+            <div
+              ref={heroRef}
+              style={{ textAlign: 'center', position: 'relative', opacity: heroVisible ? 1 : 0, transform: heroVisible ? 'none' : 'translateY(24px)', transition: 'opacity 0.6s, transform 0.6s' }}
+            >
               <SectionLabel color={GREEN}>Services & Pricing</SectionLabel>
-              <h1 style={{ fontFamily: "'Sora',sans-serif", fontSize: 'clamp(32px,6vw,64px)', fontWeight: 900, color: '#fff', marginTop: 18, letterSpacing: -2, lineHeight: 1.05, marginBottom: 16 }}>
+              <h1
+                className="hero-title"
+                style={{ fontFamily: "'Sora',sans-serif", fontSize: 'clamp(28px,6vw,64px)', fontWeight: 900, color: '#fff', marginTop: 18, letterSpacing: -2, lineHeight: 1.1, marginBottom: 16 }}
+              >
                 Transparent pricing.<br />
                 <span style={{ color: GREEN }}>Real results.</span>
               </h1>
-              <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 15, maxWidth: 480, margin: '0 auto 28px', lineHeight: 1.75 }}>
+              <p
+                className="hero-desc"
+                style={{ color: 'rgba(255,255,255,0.4)', fontSize: 15, maxWidth: 480, margin: '0 auto 28px', lineHeight: 1.75 }}
+              >
                 From startup landing pages to full-stack SaaS platforms — fixed-price packages with no hidden fees. Based in Dhaka, serving clients worldwide.
               </p>
-
-              {/* trust chips */}
-              <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <div className="trust-chips" style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap' }}>
                 {['✓ Free consultation', '✓ Fixed-price quotes', '✓ NDA on request', '✓ BDT & USD accepted'].map((t, i) => (
                   <span key={i} style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)', fontFamily: "'Space Mono',monospace", padding: '4px 12px', borderRadius: 999, background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)' }}>{t}</span>
                 ))}
@@ -792,56 +990,72 @@ export default function ServicesPage() {
             </div>
           </section>
 
-          {/* ── TAB NAV ─────────────────────────────────────────────────────── */}
-          <div style={{ display: 'flex', justifyContent: 'center', gap: 8, marginBottom: 52 }}>
+          {/* ── TAB NAV ──────────────────────────────────────────────────── */}
+          <div className="tab-nav-wrap">
             {[
               { id: 'pricing',   label: '💰 Pricing Packages' },
               { id: 'portfolio', label: '🖼️ Portfolio' },
               { id: 'cases',     label: '📊 Case Studies' },
             ].map(t => (
-              <button key={t.id} onClick={() => setActiveTab(t.id)}
-                className={`services-tab ${activeTab === t.id ? 'active' : 'inactive'}`}>
+              <button
+                key={t.id}
+                onClick={() => setActiveTab(t.id)}
+                className={`services-tab ${activeTab === t.id ? 'active' : 'inactive'}`}
+              >
                 {t.label}
               </button>
             ))}
           </div>
 
-          {/* ── PRICING TAB ─────────────────────────────────────────────────── */}
+          {/* ── PRICING TAB ──────────────────────────────────────────────── */}
           {activeTab === 'pricing' && (
             <>
-              {/* ── Category Filter ── */}
-              <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 36 }}>
+              {/* Category filter */}
+              <div className="filter-wrap">
                 {PACK_CATS.map(cat => {
                   const active = packCat === cat.id;
                   return (
-                    <button key={cat.id} onClick={() => setPackCat(cat.id)}
-                      style={{ padding: '7px 16px', borderRadius: 999, fontSize: 12, fontWeight: 600, fontFamily: "'Space Mono',monospace", cursor: 'pointer', transition: 'all 0.15s', background: active ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.03)', border: active ? '1px solid rgba(255,255,255,0.22)' : '1px solid rgba(255,255,255,0.07)', color: active ? '#fff' : 'rgba(255,255,255,0.38)' }}>
+                    <button
+                      key={cat.id}
+                      onClick={() => setPackCat(cat.id)}
+                      className="filter-btn"
+                      style={{
+                        background: active ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.03)',
+                        border: active ? '1px solid rgba(255,255,255,0.22)' : '1px solid rgba(255,255,255,0.07)',
+                        color: active ? '#fff' : 'rgba(255,255,255,0.38)',
+                      }}
+                    >
                       {cat.label}
                     </button>
                   );
                 })}
               </div>
 
-              <div className="packs-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3,1fr)', gap: 22, maxWidth: 1140, margin: '0 auto 48px' }}>
+              <div className="packs-grid" style={{ maxWidth: 1140, margin: '0 auto 48px' }}>
                 {filteredPacks.map((pack, i) => <PackCard key={pack.id} pack={pack} idx={i} />)}
               </div>
 
-              {/* entry-level / hook offers */}
+              {/* Entry-level offers */}
               <div style={{ maxWidth: 1140, margin: '32px auto 0' }}>
                 <div style={{ textAlign: 'center', marginBottom: 24 }}>
                   <SectionLabel color={GREEN}>⚡ Entry-Level Offers</SectionLabel>
-                  <h3 style={{ fontFamily: "'Sora',sans-serif", fontSize: 'clamp(18px,2.5vw,26px)', fontWeight: 900, color: '#fff', marginTop: 12, letterSpacing: -0.5 }}>Client magnets — easy entry, easy trust</h3>
+                  <h3 className="section-h3" style={{ fontFamily: "'Sora',sans-serif", fontSize: 'clamp(18px,2.5vw,26px)', fontWeight: 900, color: '#fff', marginTop: 12, letterSpacing: -0.5 }}>
+                    Client magnets — easy entry, easy trust
+                  </h3>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))', gap: 14 }}>
+                <div className="entry-grid">
                   {[
-                    { icon: '⚡', label: 'Website Speed Fix',    price: '$50 – $150',    desc: 'Fast turnaround. Big impact.',      color: GREEN },
-                    { icon: '🔍', label: 'Quick Security Scan',  price: 'Free / Low cost', desc: 'Identify risks before they hit.',  color: AMBER },
-                    { icon: '🐛', label: 'Bug Fix / Small Task', price: 'From $30',       desc: 'Quick & clean. No hassle.',         color: BLUE },
+                    { icon: '⚡', label: 'Website Speed Fix',    price: '$50 – $150',      desc: 'Fast turnaround. Big impact.',     color: GREEN },
+                    { icon: '🔍', label: 'Quick Security Scan',  price: 'Free / Low cost',  desc: 'Identify risks before they hit.',  color: AMBER },
+                    { icon: '🐛', label: 'Bug Fix / Small Task', price: 'From $30',         desc: 'Quick & clean. No hassle.',        color: BLUE },
                   ].map((a, i) => (
-                    <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 16, padding: '18px 20px', background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 14, transition: 'border-color 0.2s' }}
+                    <div
+                      key={i}
+                      style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '16px 18px', background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 14, transition: 'border-color 0.2s' }}
                       onMouseEnter={e => e.currentTarget.style.borderColor = `${a.color}40`}
-                      onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'}>
-                      <span style={{ fontSize: 28 }}>{a.icon}</span>
+                      onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'}
+                    >
+                      <span style={{ fontSize: 26, flexShrink: 0 }}>{a.icon}</span>
                       <div>
                         <div style={{ fontFamily: "'Sora',sans-serif", fontSize: 14, fontWeight: 800, color: '#fff' }}>{a.label}</div>
                         <div style={{ fontFamily: "'Space Mono',monospace", fontSize: 11, color: a.color, marginTop: 2 }}>{a.price}</div>
@@ -852,24 +1066,30 @@ export default function ServicesPage() {
                 </div>
               </div>
 
-              {/* comparison callout */}
-              <div style={{ maxWidth: 840, margin: '0 auto', padding: '28px 32px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 20, display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap', gap: 20 }}>
+              {/* Comparison callout */}
+              <div
+                className="compare-callout"
+                style={{ maxWidth: 840, margin: '32px auto 0', padding: '24px 28px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 20 }}
+              >
                 <div>
                   <div style={{ fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 16, color: '#fff', marginBottom: 5 }}>Not sure which pack is right for you?</div>
                   <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.38)', margin: 0, lineHeight: 1.6 }}>Book a free 30-minute consultation — we'll scope your project and recommend the best fit.</p>
                 </div>
-                <Link to="/contact" style={{ padding: '13px 26px', background: `linear-gradient(135deg,${GREEN},${BLUE})`, color: '#000', borderRadius: 12, fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 14, textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}>
+                <Link
+                  to="/contact"
+                  style={{ padding: '13px 26px', background: `linear-gradient(135deg,${GREEN},${BLUE})`, color: '#000', borderRadius: 12, fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 14, textDecoration: 'none', whiteSpace: 'nowrap', flexShrink: 0 }}
+                >
                   Book Free Call →
                 </Link>
               </div>
 
-              {/* add-ons section */}
+              {/* Add-ons */}
               <div style={{ maxWidth: 1140, margin: '48px auto 0' }}>
-                <div style={{ textAlign: 'center', marginBottom: 32 }}>
+                <div style={{ textAlign: 'center', marginBottom: 28 }}>
                   <SectionLabel color={AMBER}>Add-Ons</SectionLabel>
-                  <h3 style={{ fontFamily: "'Sora',sans-serif", fontSize: 'clamp(20px,3vw,32px)', fontWeight: 900, color: '#fff', marginTop: 14, letterSpacing: -0.8 }}>Extend any package</h3>
+                  <h3 className="section-h3" style={{ fontFamily: "'Sora',sans-serif", fontSize: 'clamp(20px,3vw,32px)', fontWeight: 900, color: '#fff', marginTop: 14, letterSpacing: -0.8 }}>Extend any package</h3>
                 </div>
-                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(230px,1fr))', gap: 14 }}>
+                <div className="addons-grid">
                   {[
                     { icon: '📄', label: 'Extra Pages',          price: '৳5,000 / page',   color: GREEN },
                     { icon: '🎨', label: 'Logo Design',           price: '৳8,000',           color: CYAN },
@@ -885,13 +1105,16 @@ export default function ServicesPage() {
                     { icon: '🔄', label: 'Workflow Automation',   price: '৳20,000+',         color: CYAN },
                     { icon: '💼', label: 'White-Label Delivery',  price: 'Custom quote',     color: PURPLE },
                     { icon: '📊', label: 'Analytics Dashboard',   price: '৳18,000+',         color: BLUE },
-                    { icon: '🌐', label: 'Domain + Hosting Setup','price': '৳2,000',         color: GREEN },
+                    { icon: '🌐', label: 'Domain + Hosting Setup', price: '৳2,000',          color: GREEN },
                     { icon: '📋', label: 'NDA Agreement',         price: 'Free',             color: '#6B7280' },
                   ].map((a, i) => (
-                    <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 14, padding: '14px 18px', background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 14, transition: 'border-color 0.2s' }}
+                    <div
+                      key={i}
+                      style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '13px 16px', background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 14, transition: 'border-color 0.2s' }}
                       onMouseEnter={e => e.currentTarget.style.borderColor = `${a.color}35`}
-                      onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'}>
-                      <span style={{ fontSize: 22 }}>{a.icon}</span>
+                      onMouseLeave={e => e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'}
+                    >
+                      <span style={{ fontSize: 20, flexShrink: 0 }}>{a.icon}</span>
                       <div>
                         <div style={{ fontFamily: "'Sora',sans-serif", fontSize: 13, fontWeight: 700, color: '#fff' }}>{a.label}</div>
                         <div style={{ fontFamily: "'Space Mono',monospace", fontSize: 11, color: a.color, marginTop: 2 }}>{a.price}</div>
@@ -903,67 +1126,73 @@ export default function ServicesPage() {
             </>
           )}
 
-          {/* ── PORTFOLIO TAB ────────────────────────────────────────────────── */}
+          {/* ── PORTFOLIO TAB ────────────────────────────────────────────── */}
           {activeTab === 'portfolio' && (
             <div style={{ maxWidth: 1140, margin: '0 auto' }}>
-              {/* category filter */}
-              <div style={{ display: 'flex', gap: 8, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 36 }}>
+              <div className="filter-wrap">
                 {CATS_PORT.map(cat => {
                   const active = portfolioCat === cat;
                   return (
-                    <button key={cat} onClick={() => setPortfolioCat(cat)}
-                      style={{ padding: '7px 16px', borderRadius: 999, fontSize: 12, fontWeight: 600, fontFamily: "'Space Mono',monospace", cursor: 'pointer', transition: 'all 0.15s', background: active ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.03)', border: active ? '1px solid rgba(255,255,255,0.22)' : '1px solid rgba(255,255,255,0.07)', color: active ? '#fff' : 'rgba(255,255,255,0.38)' }}>
+                    <button
+                      key={cat}
+                      onClick={() => setPortfolioCat(cat)}
+                      className="filter-btn"
+                      style={{
+                        background: active ? 'rgba(255,255,255,0.1)' : 'rgba(255,255,255,0.03)',
+                        border: active ? '1px solid rgba(255,255,255,0.22)' : '1px solid rgba(255,255,255,0.07)',
+                        color: active ? '#fff' : 'rgba(255,255,255,0.38)',
+                      }}
+                    >
                       {cat}
                     </button>
                   );
                 })}
               </div>
 
-              <div className="port-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))', gap: 18 }}>
+              <div className="port-grid">
                 {filteredPortfolio.map((p, i) => (
-                  <div key={i} className="port-item" style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 18, overflow: 'hidden', opacity: 1, transition: 'all 0.25s' }}
+                  <div
+                    key={i}
+                    style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 18, overflow: 'hidden', transition: 'all 0.25s' }}
                     onMouseEnter={e => { e.currentTarget.style.borderColor = `${p.color}35`; e.currentTarget.style.boxShadow = `0 12px 38px ${p.color}12`; e.currentTarget.style.transform = 'translateY(-4px)'; }}
-                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'none'; }}>
-
-                    {/* thumbnail */}
-                    <div style={{ height: 90, background: `linear-gradient(135deg,${p.color}18,${p.color}06)`, borderBottom: `1px solid ${p.color}14`, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
-                      <span style={{ fontSize: 40 }}>{p.icon}</span>
-                      <span style={{ position: 'absolute', top: 10, right: 10, fontSize: 10, padding: '2px 9px', borderRadius: 6, background: `${p.color}18`, border: `1px solid ${p.color}30`, color: p.color, fontFamily: "'Space Mono',monospace", fontWeight: 700 }}>{p.cat}</span>
+                    onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'; e.currentTarget.style.boxShadow = 'none'; e.currentTarget.style.transform = 'none'; }}
+                  >
+                    <div style={{ height: 80, background: `linear-gradient(135deg,${p.color}18,${p.color}06)`, borderBottom: `1px solid ${p.color}14`, display: 'flex', alignItems: 'center', justifyContent: 'center', position: 'relative' }}>
+                      <span style={{ fontSize: 36 }}>{p.icon}</span>
+                      <span style={{ position: 'absolute', top: 8, right: 8, fontSize: 10, padding: '2px 8px', borderRadius: 6, background: `${p.color}18`, border: `1px solid ${p.color}30`, color: p.color, fontFamily: "'Space Mono',monospace", fontWeight: 700 }}>{p.cat}</span>
                     </div>
-
-                    <div style={{ padding: '18px 20px 20px' }}>
-                      <div style={{ fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 15, color: '#fff', marginBottom: 6, letterSpacing: -0.2 }}>{p.name}</div>
-                      <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', lineHeight: 1.6, marginBottom: 14 }}>{p.desc}</p>
+                    <div style={{ padding: '16px 18px 18px' }}>
+                      <div style={{ fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 14, color: '#fff', marginBottom: 5 }}>{p.name}</div>
+                      <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', lineHeight: 1.6, marginBottom: 12 }}>{p.desc}</p>
                       <span style={{ fontSize: 10, padding: '3px 9px', borderRadius: 6, background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.38)', fontFamily: "'Space Mono',monospace" }}>{p.tech}</span>
                     </div>
                   </div>
                 ))}
               </div>
 
-              <div style={{ textAlign: 'center', marginTop: 44, padding: '24px 28px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 18 }}>
+              <div style={{ textAlign: 'center', marginTop: 40, padding: '22px 24px', background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 18 }}>
                 <p style={{ color: 'rgba(255,255,255,0.38)', fontSize: 14, marginBottom: 16, fontFamily: "'Space Mono',monospace" }}>Interested in working together?</p>
-                <Link to="/contact" className="btn-primary" style={{ padding: '12px 28px', background: GREEN, color: '#000', borderRadius: 12, textDecoration: 'none', fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 14 }}>
+                <Link to="/contact" style={{ padding: '12px 28px', background: GREEN, color: '#000', borderRadius: 12, textDecoration: 'none', fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 14 }}>
                   Start a Project →
                 </Link>
               </div>
             </div>
           )}
 
-          {/* ── CASE STUDIES TAB ─────────────────────────────────────────────── */}
+          {/* ── CASE STUDIES TAB ─────────────────────────────────────────── */}
           {activeTab === 'cases' && (
             <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-              <div style={{ textAlign: 'center', marginBottom: 40 }}>
+              <div style={{ textAlign: 'center', marginBottom: 36 }}>
                 <p style={{ color: 'rgba(255,255,255,0.35)', fontSize: 14, fontFamily: "'Space Mono',monospace" }}>Real projects · measurable impact · honest metrics</p>
               </div>
-              <div className="cases-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(340px,1fr))', gap: 24 }}>
+              <div className="cases-grid">
                 {CASES.map((c, i) => <CaseCard key={i} c={c} idx={i} />)}
               </div>
 
-              {/* CTA callout */}
-              <div style={{ marginTop: 48, textAlign: 'center', padding: '36px 28px', background: `linear-gradient(135deg,rgba(139,92,246,0.05),rgba(59,130,246,0.05))`, border: '1px solid rgba(255,255,255,0.07)', borderRadius: 20 }}>
-                <div style={{ fontSize: 36, marginBottom: 14 }}>📋</div>
-                <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 900, fontSize: 22, color: '#fff', letterSpacing: -0.5, marginBottom: 10 }}>Want a case study for your project?</h3>
-                <p style={{ color: 'rgba(255,255,255,0.38)', fontSize: 14, maxWidth: 400, margin: '0 auto 24px', lineHeight: 1.7 }}>We document results for every enterprise project — you'll have real proof of ROI to share with stakeholders.</p>
+              <div style={{ marginTop: 48, textAlign: 'center', padding: '32px 24px', background: `linear-gradient(135deg,rgba(139,92,246,0.05),rgba(59,130,246,0.05))`, border: '1px solid rgba(255,255,255,0.07)', borderRadius: 20 }}>
+                <div style={{ fontSize: 34, marginBottom: 12 }}>📋</div>
+                <h3 style={{ fontFamily: "'Sora',sans-serif", fontWeight: 900, fontSize: 'clamp(18px,3vw,22px)', color: '#fff', letterSpacing: -0.5, marginBottom: 10 }}>Want a case study for your project?</h3>
+                <p style={{ color: 'rgba(255,255,255,0.38)', fontSize: 14, maxWidth: 400, margin: '0 auto 22px', lineHeight: 1.7 }}>We document results for every enterprise project — you'll have real proof of ROI to share with stakeholders.</p>
                 <Link to="/contact" style={{ padding: '13px 28px', background: `linear-gradient(135deg,${GREEN},${BLUE})`, color: '#000', borderRadius: 12, fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 14, textDecoration: 'none' }}>
                   Discuss Your Project →
                 </Link>
@@ -971,10 +1200,11 @@ export default function ServicesPage() {
             </div>
           )}
 
-          {/* ── REFERRAL PROMO ──────────────────────────────────────────────── */}
-          <div style={{ maxWidth: 1100, margin: '80px auto 0', padding: '0 20px' }}>
+          {/* ── REFERRAL PROMO ───────────────────────────────────────────── */}
+          <div style={{ maxWidth: 1100, margin: '72px auto 0', padding: '0 0px' }}>
             <ReferralPromoAd variant="vip" style={{ marginBottom: 40 }} />
           </div>
+
         </div>
       </div>
     </>
