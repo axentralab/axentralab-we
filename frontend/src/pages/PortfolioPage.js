@@ -222,6 +222,21 @@ const PROJECTS = [
     liveUrl: "https://cosmosholiday.com/",
     featured: true,
     isDemo: true,
+  },
+  {
+    id: "d13",
+    title: "Site-Guard",
+    tag: "SaaS / Security",
+    category: "Live",
+    color: "#EF4444",
+    year: "2025",
+    thumbnail: "https://res.cloudinary.com/dwrlbuej9/image/upload/v1776311265/Screenshot_2026-04-16_094424_wtr6is.png",
+    desc: "Site-Guard is a live website security monitoring service — real-time threat detection, automated backups, and admin dashboard.",
+    stack: ["React", "Node.js", "MongoDB", "Stripe"],
+    results: ["Real-time threat detection", "Automated backups", "Admin analytics dashboard"],
+    liveUrl: "https://siteguard-guardian.lovable.app/",
+    featured: true,
+    isDemo: false,
   }
 ];
 
