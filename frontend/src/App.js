@@ -17,6 +17,7 @@ import PortfolioPage   from './pages/PortfolioPage';
 import TeamPage        from './pages/TeamPage';
 import ContactPage     from './pages/ContactPage';
 import MeetingWithCEOPage from './pages/MeetingWithCEOPage';
+import ReferralPage    from './pages/ReferralPage';
 import NotFoundPage     from './pages/NotFoundPage';
 
 function ScrollToTop() {
@@ -62,6 +63,7 @@ export default function App() {
                 <Route path="/team"      element={<PublicLayout><TeamPage /></PublicLayout>} />
                 <Route path="/contact"   element={<PublicLayout><ContactPage /></PublicLayout>} />
                 <Route path="/ceo-meeting" element={<PublicLayout><MeetingWithCEOPage /></PublicLayout>} />
+                <Route path="/referral"  element={<AppLayout><ReferralPage /></AppLayout>} />
                 <Route path="*" element={<PublicLayout><NotFoundPage /></PublicLayout>} />
               </Routes>
             </div>

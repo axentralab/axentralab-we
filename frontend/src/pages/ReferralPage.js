@@ -1,10 +1,9 @@
 import { useState, useEffect } from 'react';
 import { useAuth } from '../context/AuthContext';
-import { useApi } from '../hooks/useApi';
+import referralService from '../services/referral.service';
 
 export default function ReferralPage() {
   const { user } = useAuth();
-  const { request } = useApi();
   const [referralData, setReferralData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [copied, setCopied] = useState(false);
@@ -18,12 +17,13 @@ export default function ReferralPage() {
 
   const fetchReferralData = async () => {
     try {
-      const response = await request('/api/referrals/my-referrals', 'GET');
+      const response = await referralService.getMyReferrals();
       if (response.success) {
         setReferralData(response);
       }
     } catch (error) {
       console.error('Error fetching referral data:', error);
+      setMessage('Failed to load referral data');
     } finally {
       setLoading(false);
     }
@@ -44,9 +44,7 @@ export default function ReferralPage() {
 
     setInviting(true);
     try {
-      const response = await request('/api/referrals/create-referral', 'POST', {
-        refereeEmail: newEmail,
-      });
+      const response = await referralService.createReferral(newEmail);
 
       if (response.success) {
         setMessage('Referral invitation sent successfully!');
@@ -55,6 +53,8 @@ export default function ReferralPage() {
           fetchReferralData();
           setMessage('');
         }, 2000);
+      } else {
+        setMessage(response.message || 'Error sending invitation');
       }
     } catch (error) {
       setMessage(error.message || 'Error sending invitation');
@@ -84,7 +84,7 @@ export default function ReferralPage() {
             🎯 Referral Program
           </h1>
           <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.7)', margin: 0 }}>
-            Earn 10% commission for every successful referral
+            Earn {stats.referralTier === 'platinum' ? '20%' : stats.referralTier === 'gold' ? '20%' : stats.referralTier === 'silver' ? '17%' : '15%'} commission for every successful referral
           </p>
         </div>
 
@@ -201,7 +201,7 @@ export default function ReferralPage() {
                 {referrals.map((ref, i) => (
                   <tr key={i} style={{ borderBottom: '1px solid #f0f0f0' }}>
                     <td style={{ padding: '12px', color: '#333' }}>
-                      {ref.referee?.name || ref.refereeEmail}
+                      {ref.referee?.name || 'N/A'}
                     </td>
                     <td style={{ padding: '12px' }}>
                       <span
@@ -211,18 +211,18 @@ export default function ReferralPage() {
                           borderRadius: 20,
                           fontSize: 12,
                           fontWeight: 600,
-                          background: ref.status === 'completed' ? '#d1fae5' : ref.status === 'activated' ? '#bfdbfe' : '#fef3c7',
-                          color: ref.status === 'completed' ? '#047857' : ref.status === 'activated' ? '#1e40af' : '#b45309',
+                          background: ref.status === 'completed' ? '#d1fae5' : ref.status === 'active' ? '#bfdbfe' : '#fef3c7',
+                          color: ref.status === 'completed' ? '#047857' : ref.status === 'active' ? '#1e40af' : '#b45309',
                         }}
                       >
                         {ref.status.charAt(0).toUpperCase() + ref.status.slice(1)}
                       </span>
                     </td>
                     <td style={{ padding: '12px', color: '#333' }}>
-                      ${(ref.orderValue || 0).toFixed(2)}
+                      ${(ref.referralOrderAmount || 0).toFixed(2)}
                     </td>
                     <td style={{ padding: '12px', color: '#667eea', fontWeight: 600 }}>
-                      ${(ref.commissionAmount || 0).toFixed(2)}
+                      ${(ref.commissionEarned || 0).toFixed(2)}
                     </td>
                     <td style={{ padding: '12px', color: '#666', fontSize: 14 }}>
                       {new Date(ref.createdAt).toLocaleDateString()}
