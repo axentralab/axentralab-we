@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { useEffect } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 
 import { AuthProvider }  from './context/AuthContext';
 import { CartProvider }  from './context/CartContext';
@@ -47,29 +48,31 @@ function AppLayout({ children }) {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <AuthProvider>
-        <CartProvider>
-          <ToastProvider>
-            <div style={{ minHeight: '100vh', background: 'var(--bg)', position: 'relative' }}>
-              <div className="grid-bg" />
-              <ScrollToTop />
-              <Routes>
-                <Route path="/"          element={<PublicLayout><HomePage /></PublicLayout>} />
-                <Route path="/about"     element={<PublicLayout><AboutPage /></PublicLayout>} />
-                <Route path="/services"  element={<PublicLayout><ShopPage /></PublicLayout>} />
-                <Route path="/products"  element={<PublicLayout><ProductsPage /></PublicLayout>} />
-                <Route path="/portfolio" element={<PublicLayout><PortfolioPage /></PublicLayout>} />
-                <Route path="/team"      element={<PublicLayout><TeamPage /></PublicLayout>} />
-                <Route path="/contact"   element={<PublicLayout><ContactPage /></PublicLayout>} />
-                <Route path="/ceo-meeting" element={<PublicLayout><MeetingWithCEOPage /></PublicLayout>} />
-                <Route path="/referral"  element={<AppLayout><ReferralPage /></AppLayout>} />
-                <Route path="*" element={<PublicLayout><NotFoundPage /></PublicLayout>} />
-              </Routes>
-            </div>
-          </ToastProvider>
-        </CartProvider>
-      </AuthProvider>
-    </BrowserRouter>
+    <HelmetProvider>
+      <BrowserRouter>
+        <AuthProvider>
+          <CartProvider>
+            <ToastProvider>
+              <div style={{ minHeight: '100vh', background: 'var(--bg)', position: 'relative' }}>
+                <div className="grid-bg" />
+                <ScrollToTop />
+                <Routes>
+                  <Route path="/"          element={<PublicLayout><HomePage /></PublicLayout>} />
+                  <Route path="/about"     element={<PublicLayout><AboutPage /></PublicLayout>} />
+                  <Route path="/services"  element={<PublicLayout><ShopPage /></PublicLayout>} />
+                  <Route path="/products"  element={<PublicLayout><ProductsPage /></PublicLayout>} />
+                  <Route path="/portfolio" element={<PublicLayout><PortfolioPage /></PublicLayout>} />
+                  <Route path="/team"      element={<PublicLayout><TeamPage /></PublicLayout>} />
+                  <Route path="/contact"   element={<PublicLayout><ContactPage /></PublicLayout>} />
+                  <Route path="/ceo-meeting" element={<PublicLayout><MeetingWithCEOPage /></PublicLayout>} />
+                  <Route path="/referral"  element={<AppLayout><ReferralPage /></AppLayout>} />
+                  <Route path="*" element={<PublicLayout><NotFoundPage /></PublicLayout>} />
+                </Routes>
+              </div>
+            </ToastProvider>
+          </CartProvider>
+        </AuthProvider>
+      </BrowserRouter>
+    </HelmetProvider>
   );
 }
