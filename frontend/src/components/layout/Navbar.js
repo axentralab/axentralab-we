@@ -23,14 +23,15 @@ export default function Navbar() {
   useEffect(() => { setMenuOpen(false); }, [location.pathname]);
 
   const navLinks = [
-    { to: '/',          label: 'Home' },
-    { to: '/about',     label: 'About' },
-    { to: '/services',  label: 'Services' },
-    { to: '/products',  label: 'Products' },
-    { to: '/portfolio', label: 'Portfolio' },
-    { to: '/team',      label: 'Team' },
-    { to: '/contact',   label: 'Contact' },
-    { to: '/ceo-meeting', label: 'CEO Meeting', highlight: true },
+    { to: '/',              label: 'Home' },
+    { to: '/services',      label: 'Services' },
+    { to: '/hosting',       label: 'Hosting' },
+    { to: '/maintenance',   label: 'Care Plans' },
+    { to: '/pricing',       label: 'Pricing' },
+    { to: '/portfolio',     label: 'Portfolio' },
+    { to: '/case-studies',  label: 'Case Studies' },
+    { to: '/support',       label: 'Support' },
+    { to: '/contact',       label: 'Contact' },
   ];
 
   const active = (path) =>
@@ -95,7 +96,28 @@ export default function Navbar() {
             </Link>
           ))}
 
-          {/* WhatsApp */}
+          {/* WhatsApp & Login */}
+          <Link 
+            to="/login"
+            style={{ 
+              marginLeft: 16,
+              padding: '8px 16px', 
+              borderRadius: 8, 
+              background: '#00d4aa', 
+              border: 'none', 
+              color: '#000', 
+              display: 'flex', 
+              alignItems: 'center', 
+              cursor: 'pointer', 
+              transition: 'all 0.3s', 
+              fontWeight: 700, 
+              fontSize: 13,
+              textDecoration: 'none',
+            }}
+            onMouseEnter={e => { e.currentTarget.style.background = '#00c99d'; }}
+            onMouseLeave={e => { e.currentTarget.style.background = '#00d4aa'; }}>
+            Client Login
+          </Link>
           <button onClick={handleWhatsAppContact} title="Contact via WhatsApp" style={{ marginLeft: 8, padding: '8px 14px', borderRadius: 8, background: 'rgba(0, 212, 170, 0.15)', border: '1px solid rgba(0, 212, 170, 0.3)', color: '#00d4aa', display: 'flex', alignItems: 'center', gap: 6, cursor: 'pointer', transition: 'all 0.3s', fontWeight: 600, fontSize: 13 }}
             onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0, 212, 170, 0.25)'; }}
             onMouseLeave={e => { e.currentTarget.style.background = 'rgba(0, 212, 170, 0.15)'; }}>

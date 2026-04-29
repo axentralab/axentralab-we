@@ -1,4 +1,1010 @@
 import { useState, useEffect, useRef } from 'react';
+import { Link } from 'react-router-dom';
+import SEOHelmet from '../components/SEOHelmet';
+
+// Counter hook for stats animation
+function useCounter(target, duration = 1800) {
+  const [val, setVal] = useState(0);
+  const started = useRef(false);
+  const ref = useRef(null);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(([e]) => {
+      if (e.isIntersecting && !started.current) {
+        started.current = true;
+        const steps = 60;
+        let i = 0;
+        const tick = setInterval(() => {
+          i++;
+          const ease = 1 - Math.pow(1 - i / steps, 3);
+          setVal(Math.floor(target * ease));
+          if (i >= steps) { setVal(target); clearInterval(tick); }
+        }, duration / steps);
+      }
+    }, { threshold: 0.3 });
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, [target, duration]);
+
+  return [val, ref];
+}
+
+const SERVICES_OVERVIEW = [
+  {
+    icon: '💻',
+    title: 'Web Development',
+    desc: 'Landing pages, business sites, ecommerce, and custom web apps built for conversions.',
+    features: ['Responsive Design', 'SEO Ready', 'Fast Loading', 'Mobile First'],
+    link: '/services',
+  },
+  {
+    icon: '🔐',
+    title: 'Cybersecurity',
+    desc: 'Security audits, vulnerability scanning, malware removal, and 24/7 monitoring.',
+    features: ['OWASP Audits', 'WAF Setup', 'Pen Testing', 'Monitoring'],
+    link: '/services',
+  },
+  {
+    icon: '🏠',
+    title: 'Managed Hosting',
+    desc: 'Fast, secure, and reliable hosting with daily backups and 99.9% uptime.',
+    features: ['99.9% Uptime', 'Auto Backups', 'SSL Certs', 'Support 24/7'],
+    link: '/hosting',
+  },
+];
+
+const WHY_AXENTRALAB = [
+  { icon: '⚡', title: 'Lightning Fast', desc: 'Optimized for speed. Average load time under 2 seconds.' },
+  { icon: '🛡️', title: 'Bank-Level Security', desc: 'OWASP compliant. Regular audits. Zero compromises.' },
+  { icon: '📈', title: 'Growth Focused', desc: 'Every solution is designed to increase your revenue.' },
+  { icon: '👥', title: 'Expert Team', desc: '15+ years of combined experience. 200+ successful projects.' },
+  { icon: '💬', title: '24/7 Support', desc: 'Live chat, email, phone. We\'re always here when you need us.' },
+  { icon: '💰', title: 'No Hidden Fees', desc: 'Transparent pricing. Clear contracts. No surprises.' },
+];
+
+const HOSTING_TIERS = [
+  {
+    name: 'Shared Hosting',
+    price: '$9.99',
+    period: '/month',
+    features: ['50 GB Storage', 'SSL Certificate', 'Email Accounts', '99.5% Uptime'],
+    cta: 'Get Started',
+  },
+  {
+    name: 'Managed WordPress',
+    price: '$19.99',
+    period: '/month',
+    features: ['200 GB Storage', 'Daily Backups', 'WordPress Optimized', '99.9% Uptime'],
+    highlighted: true,
+    cta: 'Start WordPress',
+  },
+  {
+    name: 'Cloud Hosting',
+    price: '$29.99',
+    period: '/month',
+    features: ['500 GB Storage', 'Scalable Resources', 'Hourly Backups', '99.99% Uptime'],
+    cta: 'Go Cloud',
+  },
+];
+
+const CARE_PLANS = [
+  {
+    name: 'Basic Care',
+    price: '$49',
+    period: '/month',
+    features: ['Weekly Scans', 'Monthly Updates', 'Email Support', 'Reports'],
+  },
+  {
+    name: 'Professional Care',
+    price: '$99',
+    period: '/month',
+    features: ['Daily Scans', 'Bi-weekly Updates', 'Chat Support', 'Speed Optimization'],
+    highlighted: true,
+  },
+  {
+    name: 'Enterprise Care',
+    price: '$199',
+    period: '/month',
+    features: ['24/7 Monitoring', 'Real-time Updates', 'Dedicated Manager', 'Malware Removal'],
+  },
+];
+
+const RECENT_PROJECTS = [
+  {
+    icon: '🚀',
+    company: 'TechFlow Solutions',
+    result: '145% Conversion Increase',
+    service: 'Web Development + Hosting',
+  },
+  {
+    icon: '🛍️',
+    company: 'Global E-commerce Inc',
+    result: '68% Speed Improvement',
+    service: 'Performance Optimization',
+  },
+  {
+    icon: '🔒',
+    company: 'SecureBank Corp',
+    result: '100% Security Compliance',
+    service: 'Security Audit & Hardening',
+  },
+];
+
+const TESTIMONIALS = [
+  {
+    quote: 'Axentralab transformed our online presence. Their team is professional and truly cares about our success.',
+    author: 'Sarah Johnson',
+    role: 'CEO',
+    company: 'TechFlow Solutions',
+  },
+  {
+    quote: 'The hosting performance is incredible. Their support team goes above and beyond.',
+    author: 'Mike Chen',
+    role: 'CTO',
+    company: 'Global E-commerce',
+  },
+  {
+    quote: 'Security was our top concern, and they delivered. Thorough, professional, and complete.',
+    author: 'Lisa Martinez',
+    role: 'Security Director',
+    company: 'SecureBank Corp',
+  },
+];
+
+const TECH_STACK = [
+  { name: 'React', icon: '⚛️' },
+  { name: 'Node.js', icon: '🟢' },
+  { name: 'MongoDB', icon: '🍃' },
+  { name: 'AWS', icon: '☁️' },
+  { name: 'Docker', icon: '🐳' },
+  { name: 'Kubernetes', icon: '☸️' },
+  { name: 'PostgreSQL', icon: '🐘' },
+  { name: 'Redis', icon: '🔴' },
+];
+
+function StatCard({ number, label, ref }) {
+  const [val] = useCounter(number);
+  return (
+    <div
+      ref={ref}
+      style={{
+        textAlign: 'center',
+        padding: '30px 20px',
+        borderRight: '1px solid rgba(0, 212, 170, 0.1)',
+      }}
+    >
+      <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#00d4aa' }}>
+        {val}+
+      </div>
+      <div style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', marginTop: 8 }}>
+        {label}
+      </div>
+    </div>
+  );
+}
+
+export default function HomePage() {
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => setScrolled(window.scrollY > 40);
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  return (
+    <>
+      <SEOHelmet
+        title="Web Development, Cybersecurity & Hosting | Axentralab"
+        description="Digital infrastructure company. Web development, cybersecurity, and managed hosting all in one partner."
+        keywords="web development, cybersecurity, hosting, digital infrastructure"
+      />
+
+      <style>{`
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
+        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: none; } }
+        .fade-up { animation: fadeUp 0.6s ease forwards; }
+        .slide-in { animation: slideInLeft 0.6s ease forwards; }
+        @media (max-width: 768px) {
+          .grid-2 { grid-template-columns: 1fr !important; }
+          .grid-3 { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
+
+      {/* ─── HERO ─────────────────────────────────────────────────────────────────────────────── */}
+      <section
+        style={{
+          minHeight: '100vh',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
+          background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
+          padding: '100px 5% 50px',
+          position: 'relative',
+          overflow: 'hidden',
+        }}
+      >
+        <div style={{ position: 'absolute', inset: 0, opacity: 0.1 }}>
+          <div
+            style={{
+              position: 'absolute',
+              width: '500px',
+              height: '500px',
+              background: 'radial-gradient(circle, #00d4aa 0%, transparent 70%)',
+              top: '-10%',
+              right: '5%',
+              filter: 'blur(60px)',
+            }}
+          />
+          <div
+            style={{
+              position: 'absolute',
+              width: '400px',
+              height: '400px',
+              background: 'radial-gradient(circle, #3b82f6 0%, transparent 70%)',
+              bottom: '10%',
+              left: '2%',
+              filter: 'blur(60px)',
+            }}
+          />
+        </div>
+
+        <div style={{ maxWidth: '900px', zIndex: 2, textAlign: 'center' }}>
+          <div
+            className="fade-up"
+            style={{
+              display: 'inline-block',
+              padding: '8px 20px',
+              background: 'rgba(0, 212, 170, 0.1)',
+              border: '1px solid rgba(0, 212, 170, 0.3)',
+              borderRadius: 50,
+              marginBottom: 30,
+            }}
+          >
+            <span style={{ color: '#00d4aa', fontSize: '0.875rem', fontWeight: 700 }}>
+              🌟 Award-Winning IT Company
+            </span>
+          </div>
+
+          <h1
+            className="fade-up"
+            style={{
+              fontSize: 'clamp(2.5rem, 8vw, 4rem)',
+              fontWeight: 900,
+              color: '#fff',
+              marginBottom: 30,
+              lineHeight: 1.2,
+              animationDelay: '0.1s',
+            }}
+          >
+            Web Development, Cybersecurity & Managed Hosting
+            <br />
+            <span style={{ color: '#00d4aa' }}>All In One Partner</span>
+          </h1>
+
+          <p
+            className="fade-up"
+            style={{
+              fontSize: 'clamp(1rem, 2vw, 1.3rem)',
+              color: 'rgba(255,255,255,0.7)',
+              marginBottom: 40,
+              lineHeight: 1.6,
+              maxWidth: '700px',
+              margin: '0 auto 40px',
+              animationDelay: '0.2s',
+            }}
+          >
+            Digital infrastructure for modern businesses. Build, secure, and scale with confidence.
+          </p>
+
+          <div
+            className="fade-up"
+            style={{
+              display: 'flex',
+              gap: 16,
+              justifyContent: 'center',
+              flexWrap: 'wrap',
+              marginBottom: 50,
+              animationDelay: '0.3s',
+            }}
+          >
+            <Link
+              to="/contact"
+              style={{
+                padding: '14px 40px',
+                background: '#00d4aa',
+                color: '#000',
+                textDecoration: 'none',
+                borderRadius: 8,
+                fontWeight: 700,
+                fontSize: 16,
+                transition: 'all 0.3s',
+                display: 'inline-block',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 12px 24px rgba(0, 212, 170, 0.3)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = 'none';
+              }}
+            >
+              Start Your Project
+            </Link>
+            <Link
+              to="/case-studies"
+              style={{
+                padding: '14px 40px',
+                background: 'rgba(0, 212, 170, 0.15)',
+                color: '#00d4aa',
+                border: '1px solid rgba(0, 212, 170, 0.3)',
+                textDecoration: 'none',
+                borderRadius: 8,
+                fontWeight: 700,
+                fontSize: 16,
+                transition: 'all 0.3s',
+                display: 'inline-block',
+              }}
+              onMouseEnter={e => {
+                e.currentTarget.style.background = 'rgba(0, 212, 170, 0.25)';
+              }}
+              onMouseLeave={e => {
+                e.currentTarget.style.background = 'rgba(0, 212, 170, 0.15)';
+              }}
+            >
+              View Case Studies
+            </Link>
+          </div>
+
+          {/* Stats Bar */}
+          <div
+            className="fade-up"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(4, 1fr)',
+              background: 'rgba(30, 41, 59, 0.4)',
+              border: '1px solid rgba(0, 212, 170, 0.15)',
+              borderRadius: 12,
+              overflow: 'hidden',
+              animationDelay: '0.4s',
+            }}
+          >
+            <StatCard number={200} label="Projects Completed" />
+            <StatCard number={500} label="Happy Clients" />
+            <StatCard number={99} label="Client Satisfaction %" />
+            <StatCard number={15} label="Years Experience" />
+          </div>
+        </div>
+      </section>
+
+      {/* ─── SERVICES OVERVIEW ───────────────────────────────────────────────────────────────── */}
+      <section
+        style={{
+          padding: '80px 5%',
+          background: '#0f172a',
+          borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
+        }}
+      >
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <h2
+            style={{
+              textAlign: 'center',
+              fontSize: 'clamp(2rem, 5vw, 2.5rem)',
+              fontWeight: 800,
+              color: '#fff',
+              marginBottom: 50,
+            }}
+          >
+            Complete Digital Infrastructure
+          </h2>
+          <div
+            className="grid-3"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: 30,
+            }}
+          >
+            {SERVICES_OVERVIEW.map((service, i) => (
+              <Link
+                to={service.link}
+                key={i}
+                style={{
+                  padding: 30,
+                  background: 'rgba(30, 41, 59, 0.6)',
+                  border: '1px solid rgba(0, 212, 170, 0.15)',
+                  borderRadius: 12,
+                  textDecoration: 'none',
+                  transition: 'all 0.3s',
+                  display: 'block',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'translateY(-12px)';
+                  e.currentTarget.style.borderColor = 'rgba(0, 212, 170, 0.4)';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                  e.currentTarget.style.borderColor = 'rgba(0, 212, 170, 0.15)';
+                }}
+              >
+                <div style={{ fontSize: '2.5rem', marginBottom: 16 }}>{service.icon}</div>
+                <h3 style={{ color: '#fff', marginBottom: 12, fontSize: 20, fontWeight: 700 }}>
+                  {service.title}
+                </h3>
+                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 14, lineHeight: 1.6, marginBottom: 20 }}>
+                  {service.desc}
+                </p>
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  {service.features.map((f, j) => (
+                    <div key={j} style={{ display: 'flex', gap: 8, color: 'rgba(255,255,255,0.7)', fontSize: 13 }}>
+                      <span style={{ color: '#00d4aa' }}>✓</span>
+                      <span>{f}</span>
+                    </div>
+                  ))}
+                </div>
+              </Link>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── WHY AXENTRALAB ──────────────────────────────────────────────────────────────────── */}
+      <section
+        style={{
+          padding: '80px 5%',
+          background: '#0f172a',
+          borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
+        }}
+      >
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <h2
+            style={{
+              textAlign: 'center',
+              fontSize: 'clamp(2rem, 5vw, 2.5rem)',
+              fontWeight: 800,
+              color: '#fff',
+              marginBottom: 50,
+            }}
+          >
+            Why Choose Axentralab?
+          </h2>
+          <div
+            className="grid-3"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: 30,
+            }}
+          >
+            {WHY_AXENTRALAB.map((item, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: 30,
+                  background: 'rgba(30, 41, 59, 0.6)',
+                  border: '1px solid rgba(0, 212, 170, 0.15)',
+                  borderRadius: 12,
+                }}
+              >
+                <div style={{ fontSize: '2.5rem', marginBottom: 16 }}>{item.icon}</div>
+                <h3 style={{ color: '#fff', marginBottom: 10, fontSize: 18, fontWeight: 700 }}>
+                  {item.title}
+                </h3>
+                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 14, lineHeight: 1.6 }}>
+                  {item.desc}
+                </p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── HOSTING PLANS PREVIEW ───────────────────────────────────────────────────────────── */}
+      <section
+        style={{
+          padding: '80px 5%',
+          background: '#0f172a',
+          borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
+        }}
+      >
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <h2
+            style={{
+              textAlign: 'center',
+              fontSize: 'clamp(2rem, 5vw, 2.5rem)',
+              fontWeight: 800,
+              color: '#fff',
+              marginBottom: 20,
+            }}
+          >
+            Fast & Reliable Hosting
+          </h2>
+          <p
+            style={{
+              textAlign: 'center',
+              color: 'rgba(255,255,255,0.6)',
+              marginBottom: 50,
+              maxWidth: 600,
+              margin: '0 auto 50px',
+            }}
+          >
+            Starting from $9.99/month. All plans include free SSL, daily backups, and 24/7 support.
+          </p>
+          <div
+            className="grid-3"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: 30,
+            }}
+          >
+            {HOSTING_TIERS.map((plan, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: 30,
+                  background: plan.highlighted
+                    ? 'linear-gradient(135deg, rgba(0, 212, 170, 0.1) 0%, rgba(0, 212, 170, 0.05) 100%)'
+                    : 'rgba(30, 41, 59, 0.6)',
+                  border: plan.highlighted
+                    ? '2px solid rgba(0, 212, 170, 0.6)'
+                    : '1px solid rgba(0, 212, 170, 0.15)',
+                  borderRadius: 12,
+                  position: 'relative',
+                  transition: 'all 0.3s',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'translateY(-8px)';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                {plan.highlighted && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: -12,
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      background: '#00d4aa',
+                      color: '#000',
+                      padding: '4px 12px',
+                      borderRadius: 20,
+                      fontSize: 12,
+                      fontWeight: 700,
+                    }}
+                  >
+                    POPULAR
+                  </div>
+                )}
+                <h3 style={{ color: '#fff', marginBottom: 12, fontSize: 18, fontWeight: 700 }}>
+                  {plan.name}
+                </h3>
+                <div style={{ marginBottom: 20 }}>
+                  <span style={{ fontSize: 28, fontWeight: 800, color: '#00d4aa' }}>
+                    {plan.price}
+                  </span>
+                  <span style={{ color: 'rgba(255,255,255,0.6)' }}>{plan.period}</span>
+                </div>
+                <button
+                  style={{
+                    width: '100%',
+                    padding: '12px 20px',
+                    background: plan.highlighted ? '#00d4aa' : 'rgba(0, 212, 170, 0.2)',
+                    color: plan.highlighted ? '#000' : '#00d4aa',
+                    border: 'none',
+                    borderRadius: 8,
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    fontSize: 14,
+                    marginBottom: 20,
+                  }}
+                >
+                  {plan.cta}
+                </button>
+                <div style={{ borderTop: '1px solid rgba(0, 212, 170, 0.1)', paddingTop: 20 }}>
+                  {plan.features.map((f, j) => (
+                    <div
+                      key={j}
+                      style={{
+                        display: 'flex',
+                        gap: 10,
+                        marginBottom: 10,
+                        color: 'rgba(255,255,255,0.7)',
+                        fontSize: 13,
+                      }}
+                    >
+                      <span style={{ color: '#00d4aa' }}>✓</span>
+                      <span>{f}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: 'center', marginTop: 40 }}>
+            <Link
+              to="/hosting"
+              style={{
+                color: '#00d4aa',
+                textDecoration: 'none',
+                fontWeight: 700,
+                fontSize: 16,
+              }}
+            >
+              View all hosting plans →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── CARE PLANS PREVIEW ──────────────────────────────────────────────────────────────── */}
+      <section
+        style={{
+          padding: '80px 5%',
+          background: '#0f172a',
+          borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
+        }}
+      >
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <h2
+            style={{
+              textAlign: 'center',
+              fontSize: 'clamp(2rem, 5vw, 2.5rem)',
+              fontWeight: 800,
+              color: '#fff',
+              marginBottom: 20,
+            }}
+          >
+            Website Care Plans
+          </h2>
+          <p
+            style={{
+              textAlign: 'center',
+              color: 'rgba(255,255,255,0.6)',
+              marginBottom: 50,
+              maxWidth: 600,
+              margin: '0 auto 50px',
+            }}
+          >
+            Monthly maintenance to keep your site secure, fast, and up-to-date. Starting from $49/month.
+          </p>
+          <div
+            className="grid-3"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: 30,
+            }}
+          >
+            {CARE_PLANS.map((plan, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: 30,
+                  background: plan.highlighted
+                    ? 'linear-gradient(135deg, rgba(0, 212, 170, 0.1) 0%, rgba(0, 212, 170, 0.05) 100%)'
+                    : 'rgba(30, 41, 59, 0.6)',
+                  border: plan.highlighted
+                    ? '2px solid rgba(0, 212, 170, 0.6)'
+                    : '1px solid rgba(0, 212, 170, 0.15)',
+                  borderRadius: 12,
+                  position: 'relative',
+                  transition: 'all 0.3s',
+                }}
+                onMouseEnter={e => {
+                  e.currentTarget.style.transform = 'translateY(-8px)';
+                }}
+                onMouseLeave={e => {
+                  e.currentTarget.style.transform = 'translateY(0)';
+                }}
+              >
+                {plan.highlighted && (
+                  <div
+                    style={{
+                      position: 'absolute',
+                      top: -12,
+                      left: '50%',
+                      transform: 'translateX(-50%)',
+                      background: '#00d4aa',
+                      color: '#000',
+                      padding: '4px 12px',
+                      borderRadius: 20,
+                      fontSize: 12,
+                      fontWeight: 700,
+                    }}
+                  >
+                    RECOMMENDED
+                  </div>
+                )}
+                <h3 style={{ color: '#fff', marginBottom: 12, fontSize: 18, fontWeight: 700 }}>
+                  {plan.name}
+                </h3>
+                <div style={{ marginBottom: 20 }}>
+                  <span style={{ fontSize: 28, fontWeight: 800, color: '#00d4aa' }}>
+                    {plan.price}
+                  </span>
+                  <span style={{ color: 'rgba(255,255,255,0.6)' }}>{plan.period}</span>
+                </div>
+                <button
+                  style={{
+                    width: '100%',
+                    padding: '12px 20px',
+                    background: plan.highlighted ? '#00d4aa' : 'rgba(0, 212, 170, 0.2)',
+                    color: plan.highlighted ? '#000' : '#00d4aa',
+                    border: 'none',
+                    borderRadius: 8,
+                    fontWeight: 700,
+                    cursor: 'pointer',
+                    fontSize: 14,
+                    marginBottom: 20,
+                  }}
+                >
+                  Get Plan
+                </button>
+                <div style={{ borderTop: '1px solid rgba(0, 212, 170, 0.1)', paddingTop: 20 }}>
+                  {plan.features.map((f, j) => (
+                    <div
+                      key={j}
+                      style={{
+                        display: 'flex',
+                        gap: 10,
+                        marginBottom: 10,
+                        color: 'rgba(255,255,255,0.7)',
+                        fontSize: 13,
+                      }}
+                    >
+                      <span style={{ color: '#00d4aa' }}>✓</span>
+                      <span>{f}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: 'center', marginTop: 40 }}>
+            <Link
+              to="/maintenance"
+              style={{
+                color: '#00d4aa',
+                textDecoration: 'none',
+                fontWeight: 700,
+                fontSize: 16,
+              }}
+            >
+              View all care plans →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── RECENT PROJECTS ─────────────────────────────────────────────────────────────────── */}
+      <section
+        style={{
+          padding: '80px 5%',
+          background: '#0f172a',
+          borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
+        }}
+      >
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <h2
+            style={{
+              textAlign: 'center',
+              fontSize: 'clamp(2rem, 5vw, 2.5rem)',
+              fontWeight: 800,
+              color: '#fff',
+              marginBottom: 50,
+            }}
+          >
+            Recent Success Stories
+          </h2>
+          <div
+            className="grid-3"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: 30,
+            }}
+          >
+            {RECENT_PROJECTS.map((project, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: 30,
+                  background: 'rgba(30, 41, 59, 0.6)',
+                  border: '1px solid rgba(0, 212, 170, 0.15)',
+                  borderRadius: 12,
+                }}
+              >
+                <div style={{ fontSize: '2rem', marginBottom: 16 }}>{project.icon}</div>
+                <h3 style={{ color: '#fff', marginBottom: 8, fontSize: 18, fontWeight: 700 }}>
+                  {project.company}
+                </h3>
+                <p style={{ color: '#00d4aa', fontSize: 13, fontWeight: 700, marginBottom: 12 }}>
+                  {project.result}
+                </p>
+                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13 }}>{project.service}</p>
+              </div>
+            ))}
+          </div>
+          <div style={{ textAlign: 'center', marginTop: 40 }}>
+            <Link
+              to="/case-studies"
+              style={{
+                color: '#00d4aa',
+                textDecoration: 'none',
+                fontWeight: 700,
+                fontSize: 16,
+              }}
+            >
+              View all case studies →
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* ─── TESTIMONIALS ────────────────────────────────────────────────────────────────────── */}
+      <section
+        style={{
+          padding: '80px 5%',
+          background: '#0f172a',
+          borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
+        }}
+      >
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <h2
+            style={{
+              textAlign: 'center',
+              fontSize: 'clamp(2rem, 5vw, 2.5rem)',
+              fontWeight: 800,
+              color: '#fff',
+              marginBottom: 50,
+            }}
+          >
+            What Our Clients Say
+          </h2>
+          <div
+            className="grid-3"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: 30,
+            }}
+          >
+            {TESTIMONIALS.map((testimonial, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: 30,
+                  background: 'rgba(30, 41, 59, 0.6)',
+                  border: '1px solid rgba(0, 212, 170, 0.15)',
+                  borderRadius: 12,
+                }}
+              >
+                <div style={{ fontSize: 20, marginBottom: 16, color: '#00d4aa' }}>★★★★★</div>
+                <p
+                  style={{
+                    color: 'rgba(255,255,255,0.7)',
+                    fontSize: 14,
+                    lineHeight: 1.8,
+                    marginBottom: 20,
+                    fontStyle: 'italic',
+                  }}
+                >
+                  "{testimonial.quote}"
+                </p>
+                <div>
+                  <p style={{ color: '#fff', fontWeight: 700 }}>{testimonial.author}</p>
+                  <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 12 }}>
+                    {testimonial.role} • {testimonial.company}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── TECH STACK ──────────────────────────────────────────────────────────────────────── */}
+      <section
+        style={{
+          padding: '80px 5%',
+          background: '#0f172a',
+          borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
+          textAlign: 'center',
+        }}
+      >
+        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
+          <h2
+            style={{
+              fontSize: 'clamp(2rem, 5vw, 2.5rem)',
+              fontWeight: 800,
+              color: '#fff',
+              marginBottom: 50,
+            }}
+          >
+            Built With Modern Technology
+          </h2>
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
+              gap: 20,
+            }}
+          >
+            {TECH_STACK.map((tech, i) => (
+              <div
+                key={i}
+                style={{
+                  padding: 20,
+                  background: 'rgba(30, 41, 59, 0.6)',
+                  border: '1px solid rgba(0, 212, 170, 0.15)',
+                  borderRadius: 12,
+                  textAlign: 'center',
+                }}
+              >
+                <div style={{ fontSize: '2rem', marginBottom: 10 }}>{tech.icon}</div>
+                <div style={{ color: '#fff', fontWeight: 700, fontSize: 13 }}>{tech.name}</div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ─── FINAL CTA ───────────────────────────────────────────────────────────────────────── */}
+      <section
+        style={{
+          padding: '80px 5%',
+          background: 'linear-gradient(135deg, rgba(0, 212, 170, 0.1) 0%, rgba(0, 212, 170, 0.05) 100%)',
+          textAlign: 'center',
+          border: '2px solid rgba(0, 212, 170, 0.3)',
+        }}
+      >
+        <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.3rem)', color: '#fff', marginBottom: 20 }}>
+          Ready to Transform Your Digital Infrastructure?
+        </h2>
+        <p
+          style={{
+            color: 'rgba(255,255,255,0.7)',
+            fontSize: 16,
+            marginBottom: 30,
+            maxWidth: 600,
+            margin: '0 auto 30px',
+          }}
+        >
+          Let's discuss your project and build something amazing together.
+        </p>
+        <Link
+          to="/contact"
+          style={{
+            display: 'inline-block',
+            padding: '14px 40px',
+            background: '#00d4aa',
+            color: '#000',
+            textDecoration: 'none',
+            borderRadius: 8,
+            fontWeight: 700,
+            fontSize: 16,
+            transition: 'all 0.3s',
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.transform = 'translateY(-2px)';
+            e.currentTarget.style.boxShadow = '0 12px 24px rgba(0, 212, 170, 0.3)';
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.transform = 'translateY(0)';
+            e.currentTarget.style.boxShadow = 'none';
+          }}
+        >
+          Get Started Today
+        </Link>
+      </section>
+    </>
+  );
+}
+import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import TestimonialsSection from '../components/sections/TestimonialsSection';
 import ProcessSection from '../components/sections/ProcessSection';
@@ -14,7 +1020,6 @@ const STATS = [
   { value: 24,  suffix: '/7', label: 'Security Monitoring',  color: '#00d4aa' },
 ];
 
-// Terminal lines shown in the floating code widget
 
 
 

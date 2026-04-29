@@ -9,9 +9,15 @@ export const ROUTES = {
     HOME: '/',
     ABOUT: '/about',
     SERVICES: '/services',
+    SOLUTIONS: '/solutions',
+    HOSTING: '/hosting',
+    MAINTENANCE: '/maintenance',
+    PRICING: '/pricing',
     PRODUCTS: '/products',
     PORTFOLIO: '/portfolio',
     TEAM: '/team',
+    CASE_STUDIES: '/case-studies',
+    SUPPORT: '/support',
     CONTACT: '/contact',
     NOT_FOUND: '*',
   },
@@ -35,6 +41,7 @@ export const ROUTES = {
     ORDERS: '/dashboard/orders',
     PROFILE: '/dashboard/profile',
     REFERRAL: '/referral',
+    CLIENT_PORTAL: '/client-portal',
   },
 
   // Admin routes
@@ -48,10 +55,14 @@ export const ROUTES = {
 
 // Navigation links for Header/Navbar
 export const NAV_LINKS = [
+  { label: 'Home', href: ROUTES.PUBLIC.HOME },
   { label: 'Services', href: ROUTES.PUBLIC.SERVICES },
-  { label: 'Products', href: ROUTES.PUBLIC.PRODUCTS },
+  { label: 'Solutions', href: ROUTES.PUBLIC.SOLUTIONS },
+  { label: 'Hosting', href: ROUTES.PUBLIC.HOSTING },
+  { label: 'Pricing', href: ROUTES.PUBLIC.PRODUCTS },
   { label: 'Portfolio', href: ROUTES.PUBLIC.PORTFOLIO },
-  { label: 'Team', href: ROUTES.PUBLIC.TEAM },
+  { label: 'Resources', href: ROUTES.PUBLIC.SUPPORT },
+  { label: 'Support', href: ROUTES.PUBLIC.SUPPORT },
   { label: 'Contact', href: ROUTES.PUBLIC.CONTACT },
 ];
 
