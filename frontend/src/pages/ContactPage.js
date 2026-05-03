@@ -65,6 +65,26 @@ export default function ContactPage() {
         @keyframes spin   { to{transform:rotate(360deg)} }
         .contact-input::placeholder { color: #94a3b8; }
         .contact-input option { color: var(--text); }
+        
+        .contact-main-grid {
+          display: grid;
+          grid-template-columns: 1fr 1.45fr;
+          gap: 32px;
+          align-items: start;
+        }
+        
+        @media (max-width: 1024px) {
+          .contact-main-grid {
+            grid-template-columns: 1fr;
+            gap: 24px;
+          }
+        }
+        
+        @media (max-width: 768px) {
+          .contact-main-grid {
+            gap: 20px;
+          }
+        }
       `}</style>
 
       <div style={{ minHeight:'100vh', padding:'clamp(70px,10vw,90px) 0 0', position:'relative', overflow:'hidden', background: 'var(--bg)' }}>
@@ -89,7 +109,7 @@ export default function ContactPage() {
           </section>
 
           {/* ── Main Content ── */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1.45fr', gap: 32, alignItems: 'start' }} className="contact-main-grid">
+          <div className="contact-main-grid">
 
             {/* ── LEFT PANEL ── */}
             <div style={{ display:'flex', flexDirection:'column', gap:16 }}>
@@ -112,7 +132,7 @@ export default function ContactPage() {
               </div>
 
               {/* Trust grid */}
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(150px, 1fr))', gap: 10 }}>
                 {TRUST_POINTS.map((t,i) => (
                   <div key={i} className="card" style={{ padding:'16px 14px' }}>
                     <div style={{ fontSize:22, marginBottom:8 }}>{t.icon}</div>
@@ -145,7 +165,7 @@ export default function ContactPage() {
 
                     <form onSubmit={handleSubmit} style={{ display:'flex', flexDirection:'column', gap:16 }}>
 
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 12 }}>
                         {[{ k:'name', l:'Your Name', ph:'John Smith', type:'text', req:true }, { k:'email', l:'Email Address', ph:'john@company.com', type:'email', req:true }].map(f => (
                           <div key={f.k}>
                             <label style={labelStyle}>{f.l}</label>
@@ -165,7 +185,7 @@ export default function ContactPage() {
                           style={inputStyle('company')} />
                       </div>
 
-                      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(160px, 1fr))', gap: 12 }}>
                         {[{ k:'service', l:'Service Needed', opts:SERVICES }, { k:'budget', l:'Budget Range', opts:BUDGETS }].map(f => (
                           <div key={f.k}>
                             <label style={labelStyle}>{f.l}</label>
