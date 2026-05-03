@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { Link } from 'react-router-dom';
 import SEOHelmet from '../components/SEOHelmet';
 
 const DEVELOPMENT_PACKAGES = [
@@ -60,7 +61,7 @@ const DEVELOPMENT_PACKAGES = [
       'Advanced Features',
       'API Integration',
       'Performance Optimization',
-      'Security Hardening',
+      'Server Tuning',
       'Deployment',
     ],
     timeline: '8-12 weeks',
@@ -89,7 +90,7 @@ const BUNDLES = [
       'Free Domain (1 year)',
       'Managed WordPress Hosting',
       'Professional Care Plan (6 months)',
-      'Security Audit',
+      'Infrastructure Audit',
       'SEO Optimization',
     ],
     highlighted: true,
@@ -102,7 +103,7 @@ const BUNDLES = [
       'Custom Web App',
       'Cloud Hosting Plan',
       'Enterprise Care Plan (12 months)',
-      'Security Audit & Hardening',
+      'Infrastructure Audit & Tuning',
       'SSL Certificate',
       'Daily Backups',
       'Performance Optimization',
@@ -110,24 +111,14 @@ const BUNDLES = [
   },
 ];
 
-const COMPARISON_FEATURES = [
-  'Mobile Responsive Design',
-  'SEO Optimization',
-  'Unlimited Revisions',
-  'Source Code Included',
-  'Lifetime Support',
-  'Custom Integration',
-];
-
 export default function PricingPage() {
   const [activeTab, setActiveTab] = useState('development');
-  const [expandedBundle, setExpandedBundle] = useState(null);
 
   const tabs = [
     { id: 'development', label: 'Web Development', icon: '💻' },
-    { id: 'hosting', label: 'Hosting Plans', icon: '🏠' },
-    { id: 'maintenance', label: 'Care Plans', icon: '🔧' },
-    { id: 'bundles', label: 'Bundles', icon: '📦' },
+    { id: 'bundles', label: 'Agency Bundles', icon: '📦' },
+    { id: 'hosting', label: 'Hosting Plans', icon: '🏠', link: '/hosting' },
+    { id: 'maintenance', label: 'Care Plans', icon: '🔧', link: '/maintenance' },
   ];
 
   return (
@@ -138,557 +129,176 @@ export default function PricingPage() {
         keywords="pricing, web development costs, hosting plans, care plans"
       />
 
-      {/* Hero */}
-      <section
-        style={{
-          minHeight: '70vh',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
-          padding: '100px 5% 50px',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-      >
-        <div style={{ position: 'absolute', inset: 0, opacity: 0.1 }}>
-          <div
-            style={{
-              position: 'absolute',
-              width: '400px',
-              height: '400px',
-              background: 'radial-gradient(circle, #00d4aa 0%, transparent 70%)',
-              top: '10%',
-              right: '5%',
-              filter: 'blur(60px)',
-            }}
-          />
-        </div>
+      <div style={{ background: 'var(--bg)', minHeight: '100vh', paddingTop: 80 }}>
+        
+        {/* HERO */}
+        <section style={{ padding: '80px 5% 60px', textAlign: 'center', background: 'var(--bg2)', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ maxWidth: 800, margin: '0 auto' }}>
+            <span className="badge" style={{ marginBottom: 16 }}>Plans & Pricing</span>
+            <h1 style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 900, color: 'var(--text)', letterSpacing: -1, lineHeight: 1.1, marginBottom: 16 }}>
+              Simple, transparent pricing.
+            </h1>
+            <p style={{ color: 'var(--muted)', fontSize: 16, lineHeight: 1.6, marginBottom: 24, maxWidth: 600, margin: '0 auto 32px' }}>
+              Choose the perfect plan for your business. No hidden fees, no surprises. World-class engineering at a predictable cost.
+            </p>
+          </div>
+        </section>
 
-        <div style={{ maxWidth: '800px', zIndex: 2, textAlign: 'center' }}>
-          <h1
-            style={{
-              fontSize: 'clamp(2.5rem, 8vw, 3.5rem)',
-              fontWeight: 800,
-              color: '#fff',
-              marginBottom: 20,
-            }}
-          >
-            Simple, Transparent Pricing
-          </h1>
-          <p
-            style={{
-              fontSize: 'clamp(1rem, 2vw, 1.2rem)',
-              color: 'rgba(255,255,255,0.7)',
-              marginBottom: 40,
-              lineHeight: 1.6,
-            }}
-          >
-            Choose the perfect plan for your business. No hidden fees, no surprises.
-          </p>
-        </div>
-      </section>
-
-      {/* Tab Navigation */}
-      <section
-        style={{
-          padding: '40px 5%',
-          background: '#0f172a',
-          borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
-        }}
-      >
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <div
-            style={{
-              display: 'flex',
-              gap: 12,
-              flexWrap: 'wrap',
-              justifyContent: 'center',
-            }}
-          >
+        {/* TABS NAVIGATION */}
+        <section style={{ padding: '20px 5%', background: 'var(--bg)', borderBottom: '1px solid var(--border)', position: 'sticky', top: 70, zIndex: 10 }}>
+          <div style={{ maxWidth: 1000, margin: '0 auto', display: 'flex', gap: 12, flexWrap: 'wrap', justifyContent: 'center' }}>
             {tabs.map(tab => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveTab(tab.id)}
-                style={{
-                  padding: '12px 24px',
-                  background: activeTab === tab.id ? '#00d4aa' : 'rgba(0, 212, 170, 0.2)',
-                  color: activeTab === tab.id ? '#000' : '#00d4aa',
-                  border: 'none',
-                  borderRadius: 8,
-                  fontWeight: 700,
-                  fontSize: 15,
-                  cursor: 'pointer',
-                  transition: 'all 0.3s',
-                  display: 'flex',
-                  alignItems: 'center',
-                  gap: 8,
-                }}
-                onMouseEnter={e => {
-                  if (activeTab !== tab.id) {
-                    e.currentTarget.style.background = 'rgba(0, 212, 170, 0.3)';
-                  }
-                }}
-                onMouseLeave={e => {
-                  if (activeTab !== tab.id) {
-                    e.currentTarget.style.background = 'rgba(0, 212, 170, 0.2)';
-                  }
-                }}
-              >
-                {tab.icon} {tab.label}
-              </button>
+              tab.link ? (
+                <Link
+                  key={tab.id}
+                  to={tab.link}
+                  className="btn-outline"
+                  style={{
+                    padding: '10px 20px',
+                    borderRadius: 999,
+                    fontSize: 14,
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    textDecoration: 'none'
+                  }}
+                >
+                  {tab.icon} {tab.label}
+                </Link>
+              ) : (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveTab(tab.id)}
+                  style={{
+                    padding: '10px 20px',
+                    background: activeTab === tab.id ? 'var(--teal)' : 'var(--bg2)',
+                    color: activeTab === tab.id ? '#fff' : 'var(--muted)',
+                    border: activeTab === tab.id ? '1px solid var(--teal)' : '1px solid var(--border)',
+                    borderRadius: 999,
+                    fontWeight: 600,
+                    fontSize: 14,
+                    cursor: 'pointer',
+                    transition: 'all 0.2s',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                  }}
+                >
+                  {tab.icon} {tab.label}
+                </button>
+              )
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Content Sections */}
-      {activeTab === 'development' && (
-        <section
-          style={{
-            padding: '80px 5%',
-            background: '#0f172a',
-            borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
-          }}
-        >
-          <div style={{ maxWidth: '1400px', margin: '0 auto' }}>
-            <h2
-              style={{
-                textAlign: 'center',
-                fontSize: 'clamp(2rem, 5vw, 2.5rem)',
-                fontWeight: 800,
-                color: '#fff',
-                marginBottom: 50,
-              }}
-            >
-              Web Development Packages
-            </h2>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-                gap: 30,
-              }}
-            >
+        {/* WEB DEVELOPMENT TAB */}
+        {activeTab === 'development' && (
+          <section style={{ padding: '80px 5%', maxWidth: 1200, margin: '0 auto' }}>
+            <div style={{ textAlign: 'center', marginBottom: 50 }}>
+              <h2 style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 800, color: 'var(--text)', letterSpacing: -0.5 }}>Web Development Packages</h2>
+              <p style={{ color: 'var(--muted)', fontSize: 15, maxWidth: 500, margin: '12px auto 0' }}>Everything you need to launch a fast, modern digital presence.</p>
+            </div>
+            
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24 }}>
               {DEVELOPMENT_PACKAGES.map((pkg, i) => (
-                <div
-                  key={i}
-                  style={{
-                    padding: 30,
-                    background: pkg.highlighted
-                      ? 'linear-gradient(135deg, rgba(0, 212, 170, 0.1) 0%, rgba(0, 212, 170, 0.05) 100%)'
-                      : 'rgba(30, 41, 59, 0.6)',
-                    border: pkg.highlighted
-                      ? '2px solid rgba(0, 212, 170, 0.6)'
-                      : '1px solid rgba(0, 212, 170, 0.15)',
-                    borderRadius: 12,
-                    position: 'relative',
-                    transition: 'all 0.3s',
-                  }}
-                  onMouseEnter={e => {
-                    e.currentTarget.style.transform = 'translateY(-12px)';
-                    if (!pkg.highlighted) {
-                      e.currentTarget.style.borderColor = 'rgba(0, 212, 170, 0.4)';
-                    }
-                  }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                    if (!pkg.highlighted) {
-                      e.currentTarget.style.borderColor = 'rgba(0, 212, 170, 0.15)';
-                    }
-                  }}
-                >
+                <div key={i} className="card" style={{ padding: '40px 30px', display: 'flex', flexDirection: 'column', borderTop: pkg.highlighted ? '4px solid var(--teal)' : '1px solid var(--border)', position: 'relative' }}>
                   {pkg.highlighted && (
-                    <div
-                      style={{
-                        position: 'absolute',
-                        top: -12,
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        background: '#00d4aa',
-                        color: '#000',
-                        padding: '4px 12px',
-                        borderRadius: 20,
-                        fontSize: 12,
-                        fontWeight: 700,
-                      }}
-                    >
-                      RECOMMENDED
+                    <div style={{ position: 'absolute', top: 16, right: 16 }}>
+                      <span className="badge" style={{ background: 'var(--teal)', color: '#fff', border: 'none' }}>RECOMMENDED</span>
                     </div>
                   )}
-                  <h3 style={{ color: '#fff', marginBottom: 8, fontSize: 20, fontWeight: 700 }}>
-                    {pkg.name}
-                  </h3>
-                  <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13, marginBottom: 20 }}>
-                    {pkg.description}
-                  </p>
+                  <h3 style={{ fontFamily: "var(--font-h)", fontSize: 24, fontWeight: 800, color: 'var(--text)', marginBottom: 8 }}>{pkg.name}</h3>
+                  <p style={{ color: 'var(--muted)', fontSize: 14, marginBottom: 24 }}>{pkg.description}</p>
+                  
                   <div style={{ marginBottom: 20 }}>
-                    <span style={{ fontSize: 36, fontWeight: 800, color: '#00d4aa' }}>
-                      ${pkg.price}
-                    </span>
+                    <span style={{ fontSize: 42, fontWeight: 900, color: pkg.highlighted ? 'var(--teal)' : 'var(--text)', letterSpacing: -1 }}>${pkg.price}</span>
                   </div>
-                  <div style={{ marginBottom: 20 }}>
-                    <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 12, marginBottom: 8 }}>
-                      Timeline
-                    </p>
-                    <p style={{ color: '#00d4aa', fontWeight: 700 }}>{pkg.timeline}</p>
+                  
+                  <div style={{ marginBottom: 30, background: 'var(--bg)', padding: '12px', borderRadius: 8, border: '1px solid var(--border)' }}>
+                    <p style={{ color: 'var(--muted)', fontSize: 12, marginBottom: 4, textTransform: 'uppercase', fontWeight: 600 }}>Estimated Timeline</p>
+                    <p style={{ color: 'var(--teal)', fontWeight: 700, margin: 0 }}>{pkg.timeline}</p>
                   </div>
-                  <button
-                    style={{
-                      width: '100%',
-                      padding: '12px 20px',
-                      background: pkg.highlighted ? '#00d4aa' : 'rgba(0, 212, 170, 0.2)',
-                      color: pkg.highlighted ? '#000' : '#00d4aa',
-                      border: 'none',
-                      borderRadius: 8,
-                      fontWeight: 700,
-                      cursor: 'pointer',
-                      fontSize: 14,
-                      transition: 'all 0.3s',
-                      marginBottom: 20,
-                    }}
-                  >
+                  
+                  <Link to="/contact" className={pkg.highlighted ? "btn-primary" : "btn-outline"} style={{ width: '100%', marginBottom: 32, padding: '12px', textAlign: 'center' }}>
                     Get Started
-                  </button>
-                  <div style={{ borderTop: '1px solid rgba(0, 212, 170, 0.1)', paddingTop: 20 }}>
+                  </Link>
+                  
+                  <div style={{ borderTop: '1px solid var(--border)', paddingTop: 24, flex: 1 }}>
+                    <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)', marginBottom: 16 }}>WHAT'S INCLUDED:</p>
                     {pkg.deliverables.map((item, j) => (
-                      <div
-                        key={j}
-                        style={{
-                          display: 'flex',
-                          gap: 10,
-                          marginBottom: 12,
-                          color: 'rgba(255,255,255,0.7)',
-                          fontSize: 13,
-                        }}
-                      >
-                        <span style={{ color: '#00d4aa' }}>✓</span>
-                        <span>{item}</span>
+                      <div key={j} style={{ display: 'flex', gap: 10, marginBottom: 12, alignItems: 'flex-start' }}>
+                        <span style={{ color: 'var(--teal)', fontWeight: 'bold' }}>✓</span>
+                        <span style={{ color: 'var(--text)', fontSize: 14, lineHeight: 1.4 }}>{item}</span>
                       </div>
                     ))}
                   </div>
                 </div>
               ))}
             </div>
-          </div>
-        </section>
-      )}
+          </section>
+        )}
 
-      {activeTab === 'hosting' && (
-        <section
-          style={{
-            padding: '80px 5%',
-            background: '#0f172a',
-            borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
-          }}
-        >
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <h2
-              style={{
-                textAlign: 'center',
-                fontSize: 'clamp(2rem, 5vw, 2.5rem)',
-                fontWeight: 800,
-                color: '#fff',
-                marginBottom: 20,
-              }}
-            >
-              Hosting Plans
-            </h2>
-            <p
-              style={{
-                textAlign: 'center',
-                color: 'rgba(255,255,255,0.7)',
-                marginBottom: 50,
-                maxWidth: 600,
-                margin: '0 auto 50px',
-              }}
-            >
-              Fast, reliable, and secure hosting solutions for every need. Free domain for the first year on all plans.
-            </p>
-            <div style={{ textAlign: 'center', marginTop: 40 }}>
-              <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: 12 }}>
-                View detailed hosting plans
-              </p>
-              <a
-                href="/hosting"
-                style={{
-                  display: 'inline-block',
-                  padding: '12px 32px',
-                  background: '#00d4aa',
-                  color: '#000',
-                  textDecoration: 'none',
-                  borderRadius: 8,
-                  fontWeight: 700,
-                  fontSize: 16,
-                  transition: 'all 0.3s',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 12px 24px rgba(0, 212, 170, 0.3)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'none';
-                }}
-              >
-                View Hosting Plans
-              </a>
+        {/* BUNDLES TAB */}
+        {activeTab === 'bundles' && (
+          <section style={{ padding: '80px 5%', maxWidth: 1200, margin: '0 auto' }}>
+            <div style={{ textAlign: 'center', marginBottom: 50 }}>
+              <h2 style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 800, color: 'var(--text)', letterSpacing: -0.5 }}>Agency Bundles</h2>
+              <p style={{ color: 'var(--muted)', fontSize: 15, maxWidth: 500, margin: '12px auto 0' }}>Save big when you combine development with hosting and care plans.</p>
             </div>
-          </div>
-        </section>
-      )}
-
-      {activeTab === 'maintenance' && (
-        <section
-          style={{
-            padding: '80px 5%',
-            background: '#0f172a',
-            borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
-          }}
-        >
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <h2
-              style={{
-                textAlign: 'center',
-                fontSize: 'clamp(2rem, 5vw, 2.5rem)',
-                fontWeight: 800,
-                color: '#fff',
-                marginBottom: 20,
-              }}
-            >
-              Website Care Plans
-            </h2>
-            <p
-              style={{
-                textAlign: 'center',
-                color: 'rgba(255,255,255,0.7)',
-                marginBottom: 50,
-                maxWidth: 600,
-                margin: '0 auto 50px',
-              }}
-            >
-              Monthly maintenance plans to keep your website secure, fast, and up-to-date.
-            </p>
-            <div style={{ textAlign: 'center', marginTop: 40 }}>
-              <p style={{ color: 'rgba(255,255,255,0.7)', marginBottom: 12 }}>
-                View detailed care plan details
-              </p>
-              <a
-                href="/maintenance"
-                style={{
-                  display: 'inline-block',
-                  padding: '12px 32px',
-                  background: '#00d4aa',
-                  color: '#000',
-                  textDecoration: 'none',
-                  borderRadius: 8,
-                  fontWeight: 700,
-                  fontSize: 16,
-                  transition: 'all 0.3s',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.transform = 'translateY(-2px)';
-                  e.currentTarget.style.boxShadow = '0 12px 24px rgba(0, 212, 170, 0.3)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.boxShadow = 'none';
-                }}
-              >
-                View Care Plans
-              </a>
-            </div>
-          </div>
-        </section>
-      )}
-
-      {activeTab === 'bundles' && (
-        <section
-          style={{
-            padding: '80px 5%',
-            background: '#0f172a',
-            borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
-          }}
-        >
-          <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-            <h2
-              style={{
-                textAlign: 'center',
-                fontSize: 'clamp(2rem, 5vw, 2.5rem)',
-                fontWeight: 800,
-                color: '#fff',
-                marginBottom: 50,
-              }}
-            >
-              Special Bundles
-            </h2>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
-                gap: 30,
-                alignItems: 'start',
-              }}
-            >
+            
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))', gap: 30 }}>
               {BUNDLES.map((bundle, i) => (
-                <div
-                  key={i}
-                  style={{
-                    padding: 30,
-                    background: bundle.highlighted
-                      ? 'linear-gradient(135deg, rgba(0, 212, 170, 0.1) 0%, rgba(0, 212, 170, 0.05) 100%)'
-                      : 'rgba(30, 41, 59, 0.6)',
-                    border: bundle.highlighted
-                      ? '2px solid rgba(0, 212, 170, 0.6)'
-                      : '1px solid rgba(0, 212, 170, 0.15)',
-                    borderRadius: 12,
-                    position: 'relative',
-                    transition: 'all 0.3s',
-                  }}
-                  onMouseEnter={e => {
-                    e.currentTarget.style.transform = 'translateY(-12px)';
-                  }}
-                  onMouseLeave={e => {
-                    e.currentTarget.style.transform = 'translateY(0)';
-                  }}
-                >
+                <div key={i} className="card" style={{ padding: '40px 30px', display: 'flex', flexDirection: 'column', borderTop: bundle.highlighted ? '4px solid var(--teal)' : '1px solid var(--border)', position: 'relative' }}>
                   {bundle.highlighted && (
-                    <div
-                      style={{
-                        position: 'absolute',
-                        top: -12,
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        background: '#00d4aa',
-                        color: '#000',
-                        padding: '4px 12px',
-                        borderRadius: 20,
-                        fontSize: 12,
-                        fontWeight: 700,
-                      }}
-                    >
-                      BEST VALUE
+                    <div style={{ position: 'absolute', top: 16, right: 16 }}>
+                      <span className="badge" style={{ background: 'var(--teal)', color: '#fff', border: 'none' }}>BEST VALUE</span>
                     </div>
                   )}
-                  <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'flex-start',
-                      marginBottom: 20,
-                    }}
-                  >
-                    <div>
-                      <h3 style={{ color: '#fff', marginBottom: 8, fontSize: 22, fontWeight: 700 }}>
-                        {bundle.name}
-                      </h3>
-                    </div>
-                    <div
-                      style={{
-                        background: 'rgba(0, 212, 170, 0.15)',
-                        color: '#00d4aa',
-                        padding: '4px 10px',
-                        borderRadius: 6,
-                        fontSize: 12,
-                        fontWeight: 700,
-                      }}
-                    >
-                      {bundle.savings}
-                    </div>
+                  
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 16 }}>
+                    <h3 style={{ fontFamily: "var(--font-h)", fontSize: 24, fontWeight: 800, color: 'var(--text)', margin: 0 }}>{bundle.name}</h3>
+                    <span className="badge" style={{ background: 'rgba(37,99,235,0.1)', color: 'var(--teal)', border: 'none' }}>{bundle.savings}</span>
                   </div>
+                  
                   <div style={{ marginBottom: 30 }}>
-                    <span style={{ fontSize: 42, fontWeight: 800, color: '#00d4aa' }}>
-                      ${bundle.price}
-                    </span>
+                    <span style={{ fontSize: 46, fontWeight: 900, color: bundle.highlighted ? 'var(--teal)' : 'var(--text)', letterSpacing: -1 }}>${bundle.price}</span>
                   </div>
-                  <button
-                    style={{
-                      width: '100%',
-                      padding: '12px 20px',
-                      background: bundle.highlighted ? '#00d4aa' : 'rgba(0, 212, 170, 0.2)',
-                      color: bundle.highlighted ? '#000' : '#00d4aa',
-                      border: 'none',
-                      borderRadius: 8,
-                      fontWeight: 700,
-                      cursor: 'pointer',
-                      fontSize: 14,
-                      transition: 'all 0.3s',
-                      marginBottom: 20,
-                    }}
-                  >
-                    Get Bundle
-                  </button>
-                  <div style={{ borderTop: '1px solid rgba(0, 212, 170, 0.1)', paddingTop: 20 }}>
+                  
+                  <Link to="/contact" className={bundle.highlighted ? "btn-primary" : "btn-outline"} style={{ width: '100%', marginBottom: 32, padding: '12px', textAlign: 'center' }}>
+                    Claim Bundle
+                  </Link>
+                  
+                  <div style={{ borderTop: '1px solid var(--border)', paddingTop: 24, flex: 1 }}>
+                    <p style={{ fontSize: 13, fontWeight: 700, color: 'var(--text)', marginBottom: 16 }}>BUNDLE INCLUDES:</p>
                     {bundle.includes.map((item, j) => (
-                      <div
-                        key={j}
-                        style={{
-                          display: 'flex',
-                          gap: 10,
-                          marginBottom: 12,
-                          color: 'rgba(255,255,255,0.7)',
-                          fontSize: 13,
-                        }}
-                      >
-                        <span style={{ color: '#00d4aa' }}>✓</span>
-                        <span>{item}</span>
+                      <div key={j} style={{ display: 'flex', gap: 10, marginBottom: 12, alignItems: 'flex-start' }}>
+                        <span style={{ color: 'var(--teal)', fontWeight: 'bold' }}>✓</span>
+                        <span style={{ color: 'var(--text)', fontSize: 14, lineHeight: 1.4 }}>{item}</span>
                       </div>
                     ))}
                   </div>
                 </div>
               ))}
             </div>
+          </section>
+        )}
+
+        {/* BOTTOM CTA */}
+        <section style={{ padding: '80px 5%', background: 'var(--bg2)', borderTop: '1px solid var(--border)', textAlign: 'center' }}>
+          <div style={{ maxWidth: 600, margin: '0 auto' }}>
+            <h2 style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 800, color: 'var(--text)', marginBottom: 16, letterSpacing: -0.5 }}>
+              Not sure which plan is right for you?
+            </h2>
+            <p style={{ color: 'var(--muted)', fontSize: 16, marginBottom: 32, lineHeight: 1.6 }}>
+              Let's discuss your project and find the perfect solution for your business. We also offer custom quotes.
+            </p>
+            <Link to="/contact" className="btn-primary" style={{ padding: '14px 32px', fontSize: 16 }}>
+              Book a Free Consultation
+            </Link>
           </div>
         </section>
-      )}
-
-      {/* CTA */}
-      <section
-        style={{
-          padding: '80px 5%',
-          background: 'linear-gradient(135deg, rgba(0, 212, 170, 0.1) 0%, rgba(0, 212, 170, 0.05) 100%)',
-          textAlign: 'center',
-          border: '2px solid rgba(0, 212, 170, 0.3)',
-        }}
-      >
-        <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.3rem)', color: '#fff', marginBottom: 20 }}>
-          Ready to Get Started?
-        </h2>
-        <p
-          style={{
-            color: 'rgba(255,255,255,0.7)',
-            fontSize: 16,
-            marginBottom: 30,
-            maxWidth: 600,
-            margin: '0 auto 30px',
-          }}
-        >
-          Let's discuss your project and find the perfect solution for your business.
-        </p>
-        <button
-          style={{
-            padding: '14px 36px',
-            background: '#00d4aa',
-            color: '#000',
-            border: 'none',
-            borderRadius: 8,
-            fontWeight: 700,
-            fontSize: 16,
-            cursor: 'pointer',
-            transition: 'all 0.3s',
-          }}
-          onMouseEnter={e => {
-            e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.boxShadow = '0 12px 24px rgba(0, 212, 170, 0.3)';
-          }}
-          onMouseLeave={e => {
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = 'none';
-          }}
-        >
-          Get a Quote
-        </button>
-      </section>
+        
+      </div>
     </>
   );
 }

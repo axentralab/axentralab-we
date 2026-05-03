@@ -29,7 +29,7 @@ export default function OrderSuccessPage() {
           color: #fff;
           border: none;
           border-radius: 12px;
-          font-family: 'Sora',sans-serif;
+          font-family: var(--font-h);
           font-weight: 800;
           font-size: 14px;
           cursor: pointer;
@@ -46,7 +46,7 @@ export default function OrderSuccessPage() {
           color: ${PRIMARY2};
           border: 1px solid ${PRIMARY}40;
           border-radius: 12px;
-          font-family: 'Sora',sans-serif;
+          font-family: var(--font-h);
           font-weight: 700;
           font-size: 14px;
           cursor: pointer;
@@ -69,7 +69,7 @@ export default function OrderSuccessPage() {
           </div>
         </div>
 
-        <h1 className="anim-1" style={{ fontFamily: "'Sora',sans-serif", fontSize: 'clamp(26px,4vw,44px)', fontWeight: 900, color: '#fff', letterSpacing: -1, marginBottom: 14, lineHeight: 1.1 }}>
+        <h1 className="anim-1" style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(26px,4vw,44px)', fontWeight: 900, color: 'var(--text)', letterSpacing: -1, marginBottom: 14, lineHeight: 1.1 }}>
           Payment{' '}
           <span style={{ background: `linear-gradient(135deg,${PRIMARY},${ACCENT})`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text' }}>
             Successful!
@@ -80,7 +80,7 @@ export default function OrderSuccessPage() {
           Your order has been confirmed.
         </p>
 
-        <p className="anim-2" style={{ color: 'rgba(255,255,255,0.3)', fontSize: 14, maxWidth: 380, marginBottom: 40, lineHeight: 1.7 }}>
+        <p className="anim-2" style={{ color: 'var(--border)', fontSize: 14, maxWidth: 380, marginBottom: 40, lineHeight: 1.7 }}>
           Our team will reach out within 24 hours to kick off your project. Check your email for the order summary.
         </p>
 
@@ -93,7 +93,7 @@ export default function OrderSuccessPage() {
           ].map((step, i) => (
             <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '10px 16px', background: `${PRIMARY}08`, border: `1px solid ${PRIMARY}20`, borderRadius: 12 }}>
               <span style={{ fontSize: 16 }}>{step.icon}</span>
-              <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', fontFamily: "'Space Mono',monospace", fontWeight: 600 }}>{step.label}</span>
+              <span style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', fontFamily: "var(--font-m)", fontWeight: 600 }}>{step.label}</span>
             </div>
           ))}
         </div>

@@ -29,7 +29,7 @@ const SUPPORT_CHANNELS = [
 ];
 
 const KNOWLEDGE_BASE_TOPICS = [
-  'Getting Started with Your Hosting',
+  'Getting Started with Your Services',
   'Domain Management & Setup',
   'SSL Certificates Explained',
   'WordPress Installation & Setup',
@@ -40,33 +40,29 @@ const KNOWLEDGE_BASE_TOPICS = [
   'Performance Optimization Tips',
   'Security Best Practices',
   'Managing Multiple Domains',
-  'cPanel Dashboard Guide',
+  'Client Portal Dashboard Guide',
 ];
 
 const COMMON_ISSUES = [
   {
-    q: 'How do I access my cPanel?',
-    a: 'Log in to our client portal using your email and password. Navigate to Services > Hosting and click "cPanel Access".',
+    q: 'How do I access my Client Portal?',
+    a: 'Log in to our client portal using your email and password. Navigate to the top right and click "Dashboard".',
   },
   {
-    q: 'Where do I find my FTP credentials?',
-    a: 'FTP credentials are available in your cPanel dashboard under "FTP Accounts".',
+    q: 'Where do I find my invoices?',
+    a: 'Invoices are available in your Dashboard under the "Billing" section.',
   },
   {
-    q: 'How do I upload my website files?',
-    a: 'Use FTP or use the File Manager in cPanel to upload files to the public_html directory.',
+    q: 'How do I track my project progress?',
+    a: 'Use the "Projects" tab in the client portal to view milestones, tasks, and real-time status updates.',
   },
   {
-    q: 'How do I set up my email?',
-    a: 'Navigate to "Email Accounts" in cPanel and create a new email. Then configure your email client with the credentials provided.',
+    q: 'How do I submit a new request?',
+    a: 'Navigate to "Support" in the portal and click "New Ticket". Provide as much detail as possible.',
   },
   {
-    q: 'What if my website is down?',
-    a: 'Contact our support team immediately via live chat or phone. We\'ll investigate and restore your site ASAP.',
-  },
-  {
-    q: 'How do I renew my domain?',
-    a: 'Log into your client portal, go to Domains, and select "Renew". You can set auto-renewal to avoid missing renewal dates.',
+    q: 'What if I need urgent help?',
+    a: 'Contact our support team immediately via live chat or phone. We prioritize critical issues with a 1-hour SLA.',
   },
 ];
 
@@ -77,337 +73,135 @@ export default function SupportPage() {
     <>
       <SEOHelmet
         title="Support Center | Axentralab"
-        description="24/7 customer support. Live chat, email, phone, and knowledge base for all your hosting needs."
+        description="24/7 customer support. Live chat, email, phone, and knowledge base for all your engineering needs."
         keywords="customer support, help desk, support ticket, knowledge base"
       />
 
-      {/* Hero */}
-      <section
-        style={{
-          minHeight: '70vh',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
-          padding: '100px 5% 50px',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-      >
-        <div style={{ position: 'absolute', inset: 0, opacity: 0.1 }}>
-          <div
-            style={{
-              position: 'absolute',
-              width: '400px',
-              height: '400px',
-              background: 'radial-gradient(circle, #00d4aa 0%, transparent 70%)',
-              top: '10%',
-              right: '5%',
-              filter: 'blur(60px)',
-            }}
-          />
-        </div>
+      <div style={{ background: 'var(--bg)', minHeight: '100vh', paddingTop: 80 }}>
+        
+        {/* HERO SECTION */}
+        <section style={{ padding: '80px 5% 60px', textAlign: 'center', background: 'var(--bg2)', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ maxWidth: 800, margin: '0 auto' }}>
+            <span className="badge" style={{ marginBottom: 16 }}>Support Center</span>
+            <h1 style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(32px, 5vw, 56px)', fontWeight: 900, color: 'var(--text)', letterSpacing: -1, lineHeight: 1.1, marginBottom: 16 }}>
+              We're here to <br />
+              <span style={{ color: 'var(--teal)' }}>help you succeed.</span>
+            </h1>
+            <p style={{ color: 'var(--muted)', fontSize: 16, lineHeight: 1.6, marginBottom: 24, maxWidth: 600, margin: '0 auto 32px' }}>
+              Get support through multiple channels. Our engineering and support team is ready to assist you 24/7.
+            </p>
+          </div>
+        </section>
 
-        <div style={{ maxWidth: '800px', zIndex: 2, textAlign: 'center' }}>
-          <h1
-            style={{
-              fontSize: 'clamp(2.5rem, 8vw, 3.5rem)',
-              fontWeight: 800,
-              color: '#fff',
-              marginBottom: 20,
-            }}
-          >
-            We're Here to Help
-          </h1>
-          <p
-            style={{
-              fontSize: 'clamp(1rem, 2vw, 1.2rem)',
-              color: 'rgba(255,255,255,0.7)',
-              marginBottom: 40,
-              lineHeight: 1.6,
-            }}
-          >
-            Get support through multiple channels. Our team is ready to assist you 24/7.
-          </p>
-        </div>
-      </section>
-
-      {/* Support Channels */}
-      <section
-        style={{
-          padding: '80px 5%',
-          background: '#0f172a',
-          borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
-        }}
-      >
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <h2
-            style={{
-              textAlign: 'center',
-              fontSize: 'clamp(2rem, 5vw, 2.5rem)',
-              fontWeight: 800,
-              color: '#fff',
-              marginBottom: 50,
-            }}
-          >
-            How to Reach Us
-          </h2>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: 30,
-            }}
-          >
+        {/* SUPPORT CHANNELS */}
+        <section style={{ padding: '80px 5%', maxWidth: 1200, margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: 50 }}>
+            <h2 style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 800, color: 'var(--text)', letterSpacing: -0.5 }}>How to Reach Us</h2>
+            <p style={{ color: 'var(--muted)', fontSize: 15, maxWidth: 500, margin: '12px auto 0' }}>Choose the channel that works best for you.</p>
+          </div>
+          
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(260px, 1fr))', gap: 24 }}>
             {SUPPORT_CHANNELS.map((channel, i) => (
-              <div
-                key={i}
-                style={{
-                  padding: 40,
-                  background: 'rgba(30, 41, 59, 0.6)',
-                  border: '1px solid rgba(0, 212, 170, 0.15)',
-                  borderRadius: 12,
-                  textAlign: 'center',
-                  transition: 'all 0.3s',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.transform = 'translateY(-12px)';
-                  e.currentTarget.style.borderColor = 'rgba(0, 212, 170, 0.4)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.borderColor = 'rgba(0, 212, 170, 0.15)';
-                }}
-              >
-                <div style={{ fontSize: '3rem', marginBottom: 20 }}>{channel.icon}</div>
-                <h3 style={{ color: '#fff', marginBottom: 10, fontSize: 20, fontWeight: 700 }}>
-                  {channel.title}
-                </h3>
-                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 14, marginBottom: 12 }}>
-                  {channel.desc}
-                </p>
-                <p style={{ color: '#00d4aa', fontSize: 13, fontWeight: 600 }}>
-                  {channel.availability}
-                </p>
+              <div key={i} className="card" style={{ padding: '32px 24px', textAlign: 'center', display: 'flex', flexDirection: 'column', height: '100%' }}>
+                <div style={{ width: 64, height: 64, borderRadius: 16, background: 'rgba(37,99,235,0.08)', color: 'var(--teal)', fontSize: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 20px' }}>
+                  {channel.icon}
+                </div>
+                <h3 style={{ fontFamily: "var(--font-h)", fontSize: 20, fontWeight: 800, color: 'var(--text)', marginBottom: 12 }}>{channel.title}</h3>
+                <p style={{ color: 'var(--muted)', fontSize: 14, lineHeight: 1.6, margin: '0 0 16px' }}>{channel.desc}</p>
+                <div style={{ marginTop: 'auto', paddingTop: 16, borderTop: '1px solid var(--border)' }}>
+                  <span className="badge" style={{ background: 'var(--bg)', border: '1px solid var(--border)', color: 'var(--teal)' }}>{channel.availability}</span>
+                </div>
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Knowledge Base Preview */}
-      <section
-        style={{
-          padding: '80px 5%',
-          background: '#0f172a',
-          borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
-        }}
-      >
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <h2
-            style={{
-              textAlign: 'center',
-              fontSize: 'clamp(2rem, 5vw, 2.5rem)',
-              fontWeight: 800,
-              color: '#fff',
-              marginBottom: 50,
-            }}
-          >
-            Knowledge Base
-          </h2>
-          <p
-            style={{
-              textAlign: 'center',
-              color: 'rgba(255,255,255,0.7)',
-              marginBottom: 40,
-              maxWidth: 600,
-              margin: '0 auto 40px',
-            }}
-          >
-            Browse our comprehensive guides and tutorials to find answers to common questions.
-          </p>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
-              gap: 20,
-            }}
-          >
-            {KNOWLEDGE_BASE_TOPICS.map((topic, i) => (
-              <a
-                key={i}
-                href="#kb"
-                style={{
-                  padding: 24,
-                  background: 'rgba(30, 41, 59, 0.6)',
-                  border: '1px solid rgba(0, 212, 170, 0.15)',
-                  borderRadius: 8,
-                  color: 'rgba(255,255,255,0.8)',
-                  textDecoration: 'none',
-                  display: 'flex',
-                  justifyContent: 'space-between',
-                  alignItems: 'center',
-                  transition: 'all 0.3s',
-                  cursor: 'pointer',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.borderColor = 'rgba(0, 212, 170, 0.4)';
-                  e.currentTarget.style.background = 'rgba(30, 41, 59, 0.8)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.borderColor = 'rgba(0, 212, 170, 0.15)';
-                  e.currentTarget.style.background = 'rgba(30, 41, 59, 0.6)';
-                }}
-              >
-                <span>{topic}</span>
-                <span style={{ color: '#00d4aa', fontSize: 20 }}>→</span>
-              </a>
-            ))}
-          </div>
-        </div>
-      </section>
+        {/* KNOWLEDGE BASE PREVIEW */}
+        <section style={{ padding: '80px 5%', background: 'var(--bg2)', borderTop: '1px solid var(--border)', borderBottom: '1px solid var(--border)' }}>
+          <div style={{ maxWidth: 1200, margin: '0 auto' }}>
+            <div style={{ textAlign: 'center', marginBottom: 50 }}>
+              <h2 style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 800, color: 'var(--text)', letterSpacing: -0.5 }}>Knowledge Base</h2>
+              <p style={{ color: 'var(--muted)', fontSize: 15, maxWidth: 600, margin: '12px auto 0' }}>Browse our comprehensive guides and tutorials to find answers instantly.</p>
+            </div>
 
-      {/* Common Issues */}
-      <section
-        style={{
-          padding: '80px 5%',
-          background: '#0f172a',
-          borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
-        }}
-      >
-        <div style={{ maxWidth: '800px', margin: '0 auto' }}>
-          <h2
-            style={{
-              textAlign: 'center',
-              fontSize: 'clamp(2rem, 5vw, 2.5rem)',
-              fontWeight: 800,
-              color: '#fff',
-              marginBottom: 50,
-            }}
-          >
-            Common Questions
-          </h2>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
-            {COMMON_ISSUES.map((faq, i) => (
-              <div
-                key={i}
-                style={{
-                  background: 'rgba(30, 41, 59, 0.6)',
-                  border: '1px solid rgba(0, 212, 170, 0.15)',
-                  borderRadius: 8,
-                  overflow: 'hidden',
-                }}
-              >
-                <button
-                  onClick={() => setExpandedFaq(expandedFaq === i ? null : i)}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
+              {KNOWLEDGE_BASE_TOPICS.map((topic, i) => (
+                <a
+                  key={i}
+                  href="#kb"
+                  className="card"
                   style={{
-                    width: '100%',
-                    padding: 20,
-                    background: 'transparent',
-                    border: 'none',
-                    color: '#fff',
-                    textAlign: 'left',
-                    cursor: 'pointer',
-                    fontSize: 16,
-                    fontWeight: 600,
+                    padding: '20px 24px',
+                    color: 'var(--text)',
+                    textDecoration: 'none',
                     display: 'flex',
                     justifyContent: 'space-between',
                     alignItems: 'center',
+                    fontWeight: 600,
+                    fontSize: 15,
+                  }}
+                >
+                  <span>{topic}</span>
+                  <span style={{ color: 'var(--teal)', fontSize: 18 }}>→</span>
+                </a>
+              ))}
+            </div>
+            
+            <div style={{ textAlign: 'center', marginTop: 40 }}>
+              <button className="btn-outline">View All Articles</button>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ */}
+        <section style={{ padding: '80px 5%', maxWidth: 800, margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: 50 }}>
+            <h2 style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(28px, 4vw, 40px)', fontWeight: 800, color: 'var(--text)', letterSpacing: -0.5 }}>Common Questions</h2>
+          </div>
+          
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            {COMMON_ISSUES.map((faq, i) => (
+              <div key={i} className="card" style={{ overflow: 'hidden', padding: 0 }}>
+                <button
+                  onClick={() => setExpandedFaq(expandedFaq === i ? null : i)}
+                  style={{
+                    width: '100%', padding: '24px', background: 'transparent', border: 'none',
+                    color: 'var(--text)', textAlign: 'left', cursor: 'pointer',
+                    fontSize: 16, fontWeight: 700, display: 'flex', justifyContent: 'space-between', alignItems: 'center',
                   }}
                 >
                   {faq.q}
-                  <span style={{ fontSize: 20, transition: 'transform 0.3s' }}>
+                  <span style={{ fontSize: 24, color: 'var(--teal)', fontWeight: '300' }}>
                     {expandedFaq === i ? '−' : '+'}
                   </span>
                 </button>
                 {expandedFaq === i && (
-                  <div
-                    style={{
-                      padding: '0 20px 20px',
-                      borderTop: '1px solid rgba(0, 212, 170, 0.1)',
-                      color: 'rgba(255,255,255,0.7)',
-                      fontSize: 14,
-                      lineHeight: 1.8,
-                    }}
-                  >
+                  <div style={{ padding: '0 24px 24px', color: 'var(--muted)', fontSize: 15, lineHeight: 1.6 }}>
                     {faq.a}
                   </div>
                 )}
               </div>
             ))}
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Submit Ticket CTA */}
-      <section
-        style={{
-          padding: '80px 5%',
-          background: 'linear-gradient(135deg, rgba(0, 212, 170, 0.1) 0%, rgba(0, 212, 170, 0.05) 100%)',
-          textAlign: 'center',
-          border: '2px solid rgba(0, 212, 170, 0.3)',
-        }}
-      >
-        <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.3rem)', color: '#fff', marginBottom: 20 }}>
-          Can't Find Your Answer?
-        </h2>
-        <p
-          style={{
-            color: 'rgba(255,255,255,0.7)',
-            fontSize: 16,
-            marginBottom: 30,
-            maxWidth: 600,
-            margin: '0 auto 30px',
-          }}
-        >
-          Submit a support ticket and our team will get back to you as soon as possible.
-        </p>
-        <button
-          style={{
-            padding: '14px 36px',
-            background: '#00d4aa',
-            color: '#000',
-            border: 'none',
-            borderRadius: 8,
-            fontWeight: 700,
-            fontSize: 16,
-            cursor: 'pointer',
-            transition: 'all 0.3s',
-            marginRight: 12,
-          }}
-          onMouseEnter={e => {
-            e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.boxShadow = '0 12px 24px rgba(0, 212, 170, 0.3)';
-          }}
-          onMouseLeave={e => {
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = 'none';
-          }}
-        >
-          Submit Ticket
-        </button>
-        <button
-          style={{
-            padding: '14px 36px',
-            background: 'rgba(0, 212, 170, 0.2)',
-            color: '#00d4aa',
-            border: '1px solid rgba(0, 212, 170, 0.3)',
-            borderRadius: 8,
-            fontWeight: 700,
-            fontSize: 16,
-            cursor: 'pointer',
-            transition: 'all 0.3s',
-          }}
-          onMouseEnter={e => {
-            e.currentTarget.style.background = 'rgba(0, 212, 170, 0.3)';
-          }}
-          onMouseLeave={e => {
-            e.currentTarget.style.background = 'rgba(0, 212, 170, 0.2)';
-          }}
-        >
-          Start Live Chat
-        </button>
-      </section>
+        {/* BOTTOM CTA */}
+        <section style={{ padding: '80px 5%', background: 'var(--bg2)', borderTop: '1px solid var(--border)', textAlign: 'center' }}>
+          <div style={{ maxWidth: 600, margin: '0 auto' }}>
+            <h2 style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(24px, 4vw, 36px)', fontWeight: 800, color: 'var(--text)', marginBottom: 16, letterSpacing: -0.5 }}>
+              Can't Find Your Answer?
+            </h2>
+            <p style={{ color: 'var(--muted)', fontSize: 16, marginBottom: 32, lineHeight: 1.6 }}>
+              Submit a support ticket and our team will get back to you as soon as possible.
+            </p>
+            <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
+              <button className="btn-primary" style={{ padding: '14px 32px', fontSize: 16 }}>Submit Ticket</button>
+              <button className="btn-outline" style={{ padding: '14px 32px', fontSize: 16 }}>Start Live Chat</button>
+            </div>
+          </div>
+        </section>
+        
+      </div>
     </>
   );
 }

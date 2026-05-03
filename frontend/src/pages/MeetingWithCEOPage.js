@@ -60,12 +60,12 @@ export default function MeetingWithCEOPage() {
           </div>
 
           {/* Main Headline */}
-          <h1 style={{ fontFamily: "'Sora',sans-serif", fontSize: '3.5rem', fontWeight: 900, color: '#fff', marginBottom: 16, lineHeight: 1.2, letterSpacing: -1 }}>
+          <h1 style={{ fontFamily: "var(--font-h)", fontSize: '3.5rem', fontWeight: 900, color: 'var(--text)', marginBottom: 16, lineHeight: 1.2, letterSpacing: -1 }}>
             Direct Consultation with Our <span style={{ color: '#8B5CF6', backgroundImage: 'linear-gradient(135deg, #8B5CF6, #3B82F6)', backgroundClip: 'text', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent' }}>CEO</span>
           </h1>
 
           {/* Subheading */}
-          <p style={{ fontSize: '1.3rem', color: 'rgba(255,255,255,0.7)', marginBottom: 32, lineHeight: 1.6 }}>
+          <p style={{ fontSize: '1.3rem', color: 'var(--text)', marginBottom: 32, lineHeight: 1.6 }}>
             Free consultation, no costs. Get a custom growth strategy for your business.
           </p>
 
@@ -73,21 +73,21 @@ export default function MeetingWithCEOPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: 24, marginBottom: 40, maxWidth: 600, margin: '0 auto 40px' }}>
             <div style={{ padding: '16px', background: 'rgba(139,92,246,0.1)', borderRadius: 12, border: '1px solid rgba(139,92,246,0.2)' }}>
               <div style={{ fontSize: '2rem', fontWeight: 900, color: '#8B5CF6' }}>4+</div>
-              <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', marginTop: 6, textTransform: 'uppercase', letterSpacing: 1 }}>Years Experience</div>
+              <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: 6, textTransform: 'uppercase', letterSpacing: 1 }}>Years Experience</div>
             </div>
             <div style={{ padding: '16px', background: 'rgba(59,130,246,0.1)', borderRadius: 12, border: '1px solid rgba(59,130,246,0.2)' }}>
               <div style={{ fontSize: '2rem', fontWeight: 900, color: '#3B82F6' }}>2600+</div>
-              <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', marginTop: 6, textTransform: 'uppercase', letterSpacing: 1 }}>Projects Completed</div>
+              <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: 6, textTransform: 'uppercase', letterSpacing: 1 }}>Projects Completed</div>
             </div>
             <div style={{ padding: '16px', background: 'rgba(168,85,247,0.1)', borderRadius: 12, border: '1px solid rgba(168,85,247,0.2)' }}>
               <div style={{ fontSize: '2rem', fontWeight: 900, color: '#A855F7' }}>98%</div>
-              <div style={{ fontSize: '12px', color: 'rgba(255,255,255,0.5)', marginTop: 6, textTransform: 'uppercase', letterSpacing: 1 }}>Client Satisfaction</div>
+              <div style={{ fontSize: '12px', color: 'var(--muted)', marginTop: 6, textTransform: 'uppercase', letterSpacing: 1 }}>Client Satisfaction</div>
             </div>
           </div>
 
           {/* CTA Buttons */}
           <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <button onClick={() => document.getElementById('form-section').scrollIntoView({ behavior: 'smooth' })} style={{ padding: '16px 32px', borderRadius: 12, background: 'linear-gradient(135deg, #8B5CF6, #A855F7)', border: 'none', color: '#fff', fontWeight: 700, fontSize: 15, cursor: 'pointer', transition: 'all 0.3s', boxShadow: '0 20px 40px rgba(139,92,246,0.3)' }}
+            <button onClick={() => document.getElementById('form-section').scrollIntoView({ behavior: 'smooth' })} style={{ padding: '16px 32px', borderRadius: 12, background: 'linear-gradient(135deg, #8B5CF6, #A855F7)', border: 'none', color: 'var(--text)', fontWeight: 700, fontSize: 15, cursor: 'pointer', transition: 'all 0.3s', boxShadow: '0 20px 40px rgba(139,92,246,0.3)' }}
               onMouseEnter={e => e.target.style.transform = 'translateY(-2px)'}
               onMouseLeave={e => e.target.style.transform = 'translateY(0)'}>
               📅 Book a Meeting
@@ -100,16 +100,16 @@ export default function MeetingWithCEOPage() {
           </div>
 
           {/* Trust Message */}
-          <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', marginTop: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
+          <p style={{ fontSize: 12, color: 'var(--muted)', marginTop: 24, display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6 }}>
             <span>✓</span> Your information is completely secure | No spam
           </p>
         </div>
       </section>
 
       {/* Value Proposition Section */}
-      <section style={{ padding: '80px 5%', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
+      <section style={{ padding: '80px 5%', background: 'rgba(0,0,0,0.3)', borderTop: '1px solid var(--bg2)', borderBottom: '1px solid var(--bg2)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <h2 style={{ fontSize: '2.5rem', fontWeight: 900, color: '#fff', textAlign: 'center', marginBottom: 50, fontFamily: "'Sora',sans-serif" }}>
+          <h2 style={{ fontSize: '2.5rem', fontWeight: 900, color: 'var(--text)', textAlign: 'center', marginBottom: 50, fontFamily: "var(--font-h)" }}>
             What You'll Get in This Meeting
           </h2>
 
@@ -126,8 +126,8 @@ export default function MeetingWithCEOPage() {
                 onMouseEnter={e => { e.currentTarget.style.background = 'rgba(139,92,246,0.08)'; e.currentTarget.style.borderColor = 'rgba(139,92,246,0.4)'; }}
                 onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.01)'; e.currentTarget.style.borderColor = 'rgba(139,92,246,0.15)'; }}>
                 <div style={{ fontSize: '3rem', marginBottom: 12 }}>{item.icon}</div>
-                <h3 style={{ fontSize: '1.3rem', fontWeight: 700, color: '#fff', marginBottom: 10, fontFamily: "'Sora',sans-serif" }}>{item.title}</h3>
-                <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', lineHeight: 1.6 }}>{item.desc}</p>
+                <h3 style={{ fontSize: '1.3rem', fontWeight: 700, color: 'var(--text)', marginBottom: 10, fontFamily: "var(--font-h)" }}>{item.title}</h3>
+                <p style={{ fontSize: 14, color: 'var(--muted)', lineHeight: 1.6 }}>{item.desc}</p>
               </div>
             ))}
           </div>
@@ -137,7 +137,7 @@ export default function MeetingWithCEOPage() {
       {/* Social Proof */}
       <section style={{ padding: '80px 5%' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-          <h2 style={{ fontSize: '2rem', fontWeight: 900, color: '#fff', textAlign: 'center', marginBottom: 50, fontFamily: "'Sora',sans-serif" }}>
+          <h2 style={{ fontSize: '2rem', fontWeight: 900, color: 'var(--text)', textAlign: 'center', marginBottom: 50, fontFamily: "var(--font-h)" }}>
             Why Trust Us?
           </h2>
 
@@ -152,7 +152,7 @@ export default function MeetingWithCEOPage() {
                 <div style={{ fontSize: '2.5rem', fontWeight: 900, background: 'linear-gradient(135deg, #8B5CF6, #3B82F6)', backgroundClip: 'text', WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', marginBottom: 8 }}>
                   {item.label}
                 </div>
-                <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)' }}>{item.desc}</div>
+                <div style={{ fontSize: 14, color: 'var(--muted)' }}>{item.desc}</div>
               </div>
             ))}
           </div>
@@ -162,10 +162,10 @@ export default function MeetingWithCEOPage() {
       {/* Form Section */}
       <section id="form-section" style={{ padding: '100px 5%', background: 'linear-gradient(135deg, rgba(139,92,246,0.05) 0%, rgba(59,130,246,0.05) 100%)', borderTop: '1px solid rgba(139,92,246,0.2)' }}>
         <div style={{ maxWidth: 600, margin: '0 auto' }}>
-          <h2 style={{ fontSize: '2.2rem', fontWeight: 900, color: '#fff', marginBottom: 12, textAlign: 'center', fontFamily: "'Sora',sans-serif" }}>
+          <h2 style={{ fontSize: '2.2rem', fontWeight: 900, color: 'var(--text)', marginBottom: 12, textAlign: 'center', fontFamily: "var(--font-h)" }}>
             Book Your Meeting
           </h2>
-          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', textAlign: 'center', marginBottom: 40 }}>
+          <p style={{ fontSize: 14, color: 'var(--muted)', textAlign: 'center', marginBottom: 40 }}>
             We typically contact you within 24 hours.
           </p>
 
@@ -173,13 +173,13 @@ export default function MeetingWithCEOPage() {
             <div style={{ padding: 40, background: 'rgba(34,197,94,0.1)', border: '2px solid rgba(34,197,94,0.3)', borderRadius: 16, textAlign: 'center' }}>
               <div style={{ fontSize: '3rem', marginBottom: 16 }}>✅</div>
               <h3 style={{ fontSize: '1.5rem', fontWeight: 700, color: '#22C55E', marginBottom: 8 }}>Thank You!</h3>
-              <p style={{ color: 'rgba(255,255,255,0.7)' }}>We'll contact you shortly.</p>
+              <p style={{ color: 'var(--text)' }}>We'll contact you shortly.</p>
             </div>
           ) : (
             <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 18 }}>
               {/* Name */}
               <div>
-                <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.8)', marginBottom: 8 }}>📝 Your Name *</label>
+                <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--text)', marginBottom: 8 }}>📝 Your Name *</label>
                 <input
                   type="text"
                   name="name"
@@ -187,15 +187,15 @@ export default function MeetingWithCEOPage() {
                   onChange={handleChange}
                   required
                   placeholder="e.g., John Smith"
-                  style={{ width: '100%', padding: '12px 14px', borderRadius: 10, border: '1px solid rgba(139,92,246,0.3)', background: 'rgba(255,255,255,0.05)', color: '#fff', fontSize: 14, fontFamily: "'Sora',sans-serif", outline: 'none', transition: 'all 0.2s' }}
+                  style={{ width: '100%', padding: '12px 14px', borderRadius: 10, border: '1px solid rgba(139,92,246,0.3)', background: 'var(--bg2)', color: 'var(--text)', fontSize: 14, fontFamily: "var(--font-h)", outline: 'none', transition: 'all 0.2s' }}
                   onFocus={e => { e.target.style.borderColor = 'rgba(139,92,246,0.6)'; e.target.style.background = 'rgba(139,92,246,0.08)'; }}
-                  onBlur={e => { e.target.style.borderColor = 'rgba(139,92,246,0.3)'; e.target.style.background = 'rgba(255,255,255,0.05)'; }}
+                  onBlur={e => { e.target.style.borderColor = 'rgba(139,92,246,0.3)'; e.target.style.background = 'var(--bg2)'; }}
                 />
               </div>
 
               {/* Email */}
               <div>
-                <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.8)', marginBottom: 8 }}>📧 Email *</label>
+                <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--text)', marginBottom: 8 }}>📧 Email *</label>
                 <input
                   type="email"
                   name="email"
@@ -203,15 +203,15 @@ export default function MeetingWithCEOPage() {
                   onChange={handleChange}
                   required
                   placeholder="your@email.com"
-                  style={{ width: '100%', padding: '12px 14px', borderRadius: 10, border: '1px solid rgba(139,92,246,0.3)', background: 'rgba(255,255,255,0.05)', color: '#fff', fontSize: 14, fontFamily: "'Sora',sans-serif", outline: 'none', transition: 'all 0.2s' }}
+                  style={{ width: '100%', padding: '12px 14px', borderRadius: 10, border: '1px solid rgba(139,92,246,0.3)', background: 'var(--bg2)', color: 'var(--text)', fontSize: 14, fontFamily: "var(--font-h)", outline: 'none', transition: 'all 0.2s' }}
                   onFocus={e => { e.target.style.borderColor = 'rgba(139,92,246,0.6)'; e.target.style.background = 'rgba(139,92,246,0.08)'; }}
-                  onBlur={e => { e.target.style.borderColor = 'rgba(139,92,246,0.3)'; e.target.style.background = 'rgba(255,255,255,0.05)'; }}
+                  onBlur={e => { e.target.style.borderColor = 'rgba(139,92,246,0.3)'; e.target.style.background = 'var(--bg2)'; }}
                 />
               </div>
 
               {/* Phone */}
               <div>
-                <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.8)', marginBottom: 8 }}>📱 Phone Number *</label>
+                <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--text)', marginBottom: 8 }}>📱 Phone Number *</label>
                 <input
                   type="tel"
                   name="phone"
@@ -219,46 +219,46 @@ export default function MeetingWithCEOPage() {
                   onChange={handleChange}
                   required
                   placeholder="+1 (555) 123-4567"
-                  style={{ width: '100%', padding: '12px 14px', borderRadius: 10, border: '1px solid rgba(139,92,246,0.3)', background: 'rgba(255,255,255,0.05)', color: '#fff', fontSize: 14, fontFamily: "'Sora',sans-serif", outline: 'none', transition: 'all 0.2s' }}
+                  style={{ width: '100%', padding: '12px 14px', borderRadius: 10, border: '1px solid rgba(139,92,246,0.3)', background: 'var(--bg2)', color: 'var(--text)', fontSize: 14, fontFamily: "var(--font-h)", outline: 'none', transition: 'all 0.2s' }}
                   onFocus={e => { e.target.style.borderColor = 'rgba(139,92,246,0.6)'; e.target.style.background = 'rgba(139,92,246,0.08)'; }}
-                  onBlur={e => { e.target.style.borderColor = 'rgba(139,92,246,0.3)'; e.target.style.background = 'rgba(255,255,255,0.05)'; }}
+                  onBlur={e => { e.target.style.borderColor = 'rgba(139,92,246,0.3)'; e.target.style.background = 'var(--bg2)'; }}
                 />
               </div>
 
               {/* Business Type */}
               <div>
-                <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.8)', marginBottom: 8 }}>💼 Business Type *</label>
+                <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--text)', marginBottom: 8 }}>💼 Business Type *</label>
                 <select
                   name="businessType"
                   value={formData.businessType}
                   onChange={handleChange}
                   required
-                  style={{ width: '100%', padding: '12px 14px', borderRadius: 10, border: '1px solid rgba(139,92,246,0.3)', background: 'rgba(255,255,255,0.05)', color: '#fff', fontSize: 14, fontFamily: "'Sora',sans-serif", outline: 'none', transition: 'all 0.2s' }}
+                  style={{ width: '100%', padding: '12px 14px', borderRadius: 10, border: '1px solid rgba(139,92,246,0.3)', background: 'var(--bg2)', color: 'var(--text)', fontSize: 14, fontFamily: "var(--font-h)", outline: 'none', transition: 'all 0.2s' }}
                   onFocus={e => { e.target.style.borderColor = 'rgba(139,92,246,0.6)'; e.target.style.background = 'rgba(139,92,246,0.08)'; }}
-                  onBlur={e => { e.target.style.borderColor = 'rgba(139,92,246,0.3)'; e.target.style.background = 'rgba(255,255,255,0.05)'; }}
+                  onBlur={e => { e.target.style.borderColor = 'rgba(139,92,246,0.3)'; e.target.style.background = 'var(--bg2)'; }}
                 >
-                  <option value="" style={{ background: '#0D1B2A', color: '#fff' }}>Select...</option>
-                  <option value="ecommerce" style={{ background: '#0D1B2A', color: '#fff' }}>E-Commerce</option>
-                  <option value="service" style={{ background: '#0D1B2A', color: '#fff' }}>Service Business</option>
-                  <option value="startup" style={{ background: '#0D1B2A', color: '#fff' }}>Startup</option>
-                  <option value="corporate" style={{ background: '#0D1B2A', color: '#fff' }}>Corporate</option>
-                  <option value="agency" style={{ background: '#0D1B2A', color: '#fff' }}>Agency</option>
-                  <option value="other" style={{ background: '#0D1B2A', color: '#fff' }}>Other</option>
+                  <option value="" style={{ background: '#0D1B2A', color: 'var(--text)' }}>Select...</option>
+                  <option value="ecommerce" style={{ background: '#0D1B2A', color: 'var(--text)' }}>E-Commerce</option>
+                  <option value="service" style={{ background: '#0D1B2A', color: 'var(--text)' }}>Service Business</option>
+                  <option value="startup" style={{ background: '#0D1B2A', color: 'var(--text)' }}>Startup</option>
+                  <option value="corporate" style={{ background: '#0D1B2A', color: 'var(--text)' }}>Corporate</option>
+                  <option value="agency" style={{ background: '#0D1B2A', color: 'var(--text)' }}>Agency</option>
+                  <option value="other" style={{ background: '#0D1B2A', color: 'var(--text)' }}>Other</option>
                 </select>
               </div>
 
               {/* Main Challenge */}
               <div>
-                <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'rgba(255,255,255,0.8)', marginBottom: 8 }}>🎯 What's Your Main Challenge?</label>
+                <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: 'var(--text)', marginBottom: 8 }}>🎯 What's Your Main Challenge?</label>
                 <textarea
                   name="mainChallenge"
                   value={formData.mainChallenge}
                   onChange={handleChange}
                   placeholder="What problems or challenges is your business facing?"
                   rows="3"
-                  style={{ width: '100%', padding: '12px 14px', borderRadius: 10, border: '1px solid rgba(139,92,246,0.3)', background: 'rgba(255,255,255,0.05)', color: '#fff', fontSize: 14, fontFamily: "'Sora',sans-serif", outline: 'none', transition: 'all 0.2s', resize: 'none' }}
+                  style={{ width: '100%', padding: '12px 14px', borderRadius: 10, border: '1px solid rgba(139,92,246,0.3)', background: 'var(--bg2)', color: 'var(--text)', fontSize: 14, fontFamily: "var(--font-h)", outline: 'none', transition: 'all 0.2s', resize: 'none' }}
                   onFocus={e => { e.target.style.borderColor = 'rgba(139,92,246,0.6)'; e.target.style.background = 'rgba(139,92,246,0.08)'; }}
-                  onBlur={e => { e.target.style.borderColor = 'rgba(139,92,246,0.3)'; e.target.style.background = 'rgba(255,255,255,0.05)'; }}
+                  onBlur={e => { e.target.style.borderColor = 'rgba(139,92,246,0.3)'; e.target.style.background = 'var(--bg2)'; }}
                 />
               </div>
 
@@ -266,7 +266,7 @@ export default function MeetingWithCEOPage() {
               <button
                 type="submit"
                 disabled={loading}
-                style={{ padding: '14px', borderRadius: 10, background: 'linear-gradient(135deg, #8B5CF6, #A855F7)', border: 'none', color: '#fff', fontWeight: 700, fontSize: 15, cursor: loading ? 'not-allowed' : 'pointer', transition: 'all 0.3s', opacity: loading ? 0.6 : 1, marginTop: 8 }}
+                style={{ padding: '14px', borderRadius: 10, background: 'linear-gradient(135deg, #8B5CF6, #A855F7)', border: 'none', color: 'var(--text)', fontWeight: 700, fontSize: 15, cursor: loading ? 'not-allowed' : 'pointer', transition: 'all 0.3s', opacity: loading ? 0.6 : 1, marginTop: 8 }}
                 onMouseEnter={e => !loading && (e.target.style.transform = 'translateY(-2px)')}
                 onMouseLeave={e => !loading && (e.target.style.transform = 'translateY(0)')}
               >
@@ -274,7 +274,7 @@ export default function MeetingWithCEOPage() {
               </button>
 
               {/* Trust Message */}
-              <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.4)', textAlign: 'center' }}>
+              <p style={{ fontSize: 12, color: 'var(--muted)', textAlign: 'center' }}>
                 ✓ We protect your privacy | No spam
               </p>
             </form>
@@ -285,7 +285,7 @@ export default function MeetingWithCEOPage() {
       {/* FAQ Section */}
       <section style={{ padding: '80px 5%', background: 'rgba(0,0,0,0.2)' }}>
         <div style={{ maxWidth: 900, margin: '0 auto' }}>
-          <h2 style={{ fontSize: '2rem', fontWeight: 900, color: '#fff', textAlign: 'center', marginBottom: 50, fontFamily: "'Sora',sans-serif" }}>
+          <h2 style={{ fontSize: '2rem', fontWeight: 900, color: 'var(--text)', textAlign: 'center', marginBottom: 50, fontFamily: "var(--font-h)" }}>
             Frequently Asked Questions
           </h2>
 
@@ -296,9 +296,9 @@ export default function MeetingWithCEOPage() {
               { q: 'How will the meeting happen - online or offline?', a: 'Both are possible. You can choose between a video call or face-to-face meeting.' },
               { q: 'What happens after the meeting?', a: 'We\'ll provide you with a custom action plan you can implement. If needed, we can also offer additional services.' },
             ].map((item, i) => (
-              <div key={i} style={{ padding: 20, background: 'rgba(255,255,255,0.02)', border: '1px solid rgba(139,92,246,0.1)', borderRadius: 12 }}>
+              <div key={i} style={{ padding: 20, background: 'var(--bg2)', border: '1px solid rgba(139,92,246,0.1)', borderRadius: 12 }}>
                 <h3 style={{ fontSize: '1.1rem', fontWeight: 700, color: '#8B5CF6', marginBottom: 10 }}>❓ {item.q}</h3>
-                <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', lineHeight: 1.6 }}>{item.a}</p>
+                <p style={{ fontSize: 14, color: 'var(--text)', lineHeight: 1.6 }}>{item.a}</p>
               </div>
             ))}
           </div>
@@ -308,13 +308,13 @@ export default function MeetingWithCEOPage() {
       {/* Final CTA */}
       <section style={{ padding: '80px 5%', textAlign: 'center', background: 'linear-gradient(135deg, rgba(139,92,246,0.1) 0%, rgba(59,130,246,0.1) 100%)', borderTop: '1px solid rgba(139,92,246,0.2)' }}>
         <div style={{ maxWidth: 700, margin: '0 auto' }}>
-          <h2 style={{ fontSize: '2rem', fontWeight: 900, color: '#fff', marginBottom: 16, fontFamily: "'Sora',sans-serif" }}>
+          <h2 style={{ fontSize: '2rem', fontWeight: 900, color: 'var(--text)', marginBottom: 16, fontFamily: "var(--font-h)" }}>
             Ready to Take Your Business to the Next Level?
           </h2>
-          <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.7)', marginBottom: 32, lineHeight: 1.6 }}>
+          <p style={{ fontSize: 15, color: 'var(--text)', marginBottom: 32, lineHeight: 1.6 }}>
             Book a meeting with our CEO today and get a clear growth roadmap for your business.
           </p>
-          <button onClick={() => document.getElementById('form-section').scrollIntoView({ behavior: 'smooth' })} style={{ padding: '16px 40px', borderRadius: 12, background: 'linear-gradient(135deg, #8B5CF6, #A855F7)', border: 'none', color: '#fff', fontWeight: 700, fontSize: 16, cursor: 'pointer', transition: 'all 0.3s', boxShadow: '0 20px 40px rgba(139,92,246,0.3)' }}
+          <button onClick={() => document.getElementById('form-section').scrollIntoView({ behavior: 'smooth' })} style={{ padding: '16px 40px', borderRadius: 12, background: 'linear-gradient(135deg, #8B5CF6, #A855F7)', border: 'none', color: 'var(--text)', fontWeight: 700, fontSize: 16, cursor: 'pointer', transition: 'all 0.3s', boxShadow: '0 20px 40px rgba(139,92,246,0.3)' }}
             onMouseEnter={e => e.target.style.transform = 'translateY(-3px)'}
             onMouseLeave={e => e.target.style.transform = 'translateY(0)'}>
             Get Started Now 🚀

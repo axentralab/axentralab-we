@@ -27,6 +27,15 @@ import ClientPortalPage from './pages/ClientPortalPage';
 import CaseStudiesPage from './pages/CaseStudiesPage';
 import NotFoundPage     from './pages/NotFoundPage';
 
+// New Auth & Dashboard Imports
+import LoginPage from './pages/auth/LoginPage';
+import RegisterPage from './pages/auth/RegisterPage';
+import DashboardLayout from './components/layout/DashboardLayout';
+import ClientDashboard from './pages/dashboard/ClientDashboard';
+import AdminDashboard from './pages/admin/AdminDashboard';
+import ProtectedRoute from './components/auth/ProtectedRoute';
+import AdminRoute from './components/auth/AdminRoute';
+
 function ScrollToTop() {
   const { pathname } = useLocation();
   useEffect(() => { window.scrollTo(0, 0); }, [pathname]);
@@ -78,6 +87,21 @@ export default function App() {
                   <Route path="/contact"   element={<PublicLayout><ContactPage /></PublicLayout>} />
                   <Route path="/ceo-meeting" element={<PublicLayout><MeetingWithCEOPage /></PublicLayout>} />
                   <Route path="/referral"  element={<AppLayout><ReferralPage /></AppLayout>} />
+                  
+                  {/* Auth Routes */}
+                  <Route path="/login" element={<LoginPage />} />
+                  <Route path="/register" element={<RegisterPage />} />
+
+                  {/* Protected Client Dashboard Routes */}
+                  <Route element={<ProtectedRoute />}>
+                    <Route path="/dashboard" element={<DashboardLayout><ClientDashboard /></DashboardLayout>} />
+                  </Route>
+
+                  {/* Protected Admin Dashboard Routes */}
+                  <Route element={<AdminRoute />}>
+                    <Route path="/admin" element={<DashboardLayout><AdminDashboard /></DashboardLayout>} />
+                  </Route>
+
                   <Route path="*" element={<PublicLayout><NotFoundPage /></PublicLayout>} />
                 </Routes>
               </div>

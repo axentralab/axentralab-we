@@ -108,17 +108,17 @@ export default function ReferralPage() {
         justifyContent: 'center',
         alignItems: 'center',
       }}>
-        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, opacity: 0.1, backgroundImage: 'radial-gradient(circle at 20% 50%, rgba(255,255,255,0.3) 0%, transparent 50%)' }} />
+        <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, opacity: 0.1, backgroundImage: 'radial-gradient(circle at 20% 50%, var(--border) 0%, transparent 50%)' }} />
         
         <div style={{ position: 'relative', zIndex: 2, maxWidth: 800 }}>
           <div style={{ fontSize: 60, marginBottom: 20, animation: 'bounce 2s infinite' }}>🎯</div>
-          <h1 style={{ fontSize: 'clamp(32px, 8vw, 56px)', fontWeight: 900, color: '#fff', margin: 0, marginBottom: 16, letterSpacing: -1 }}>
+          <h1 style={{ fontSize: 'clamp(32px, 8vw, 56px)', fontWeight: 900, color: 'var(--text)', margin: 0, marginBottom: 16, letterSpacing: -1 }}>
             Referral Program
           </h1>
-          <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.9)', margin: 0, marginBottom: 8 }}>
+          <p style={{ fontSize: 18, color: 'var(--text)', margin: 0, marginBottom: 8 }}>
             Earn Unlimited Commissions While Growing Your Network
           </p>
-          <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.7)', margin: 0 }}>
+          <p style={{ fontSize: 14, color: 'var(--text)', margin: 0 }}>
             {stats.referralTier === 'platinum' ? '20%' : stats.referralTier === 'gold' ? '20%' : stats.referralTier === 'silver' ? '17%' : '15%'} commission per referral + bonuses • Lifetime earnings • No limits
           </p>
         </div>
@@ -140,7 +140,7 @@ export default function ReferralPage() {
           display: 'inline-block',
           padding: '12px 28px',
           background: tierColors[stats.referralTier] || '#667eea',
-          color: stats.referralTier === 'gold' ? '#333' : '#fff',
+          color: stats.referralTier === 'gold' ? '#333' : 'var(--text)',
           borderRadius: 50,
           fontWeight: 700,
           fontSize: 16,
@@ -161,7 +161,7 @@ export default function ReferralPage() {
             padding: 30,
             animation: 'slideInRight 0.6s ease-out'
           }}>
-            <h2 style={{ fontSize: 18, fontWeight: 700, marginTop: 0, marginBottom: 20, color: '#fff' }}>
+            <h2 style={{ fontSize: 18, fontWeight: 700, marginTop: 0, marginBottom: 20, color: 'var(--text)' }}>
               🔗 Your Referral Link
             </h2>
             <div style={{ display: 'flex', gap: 12, marginBottom: 16 }}>
@@ -172,10 +172,10 @@ export default function ReferralPage() {
                 style={{
                   flex: 1,
                   padding: '12px 16px',
-                  background: 'rgba(255,255,255,0.05)',
-                  border: '1px solid rgba(255,255,255,0.1)',
+                  background: 'var(--bg2)',
+                  border: '1px solid var(--border)',
                   borderRadius: 8,
-                  color: '#fff',
+                  color: 'var(--text)',
                   fontSize: 14,
                   fontFamily: 'monospace',
                   fontWeight: 500,
@@ -197,7 +197,7 @@ export default function ReferralPage() {
                 {copied ? '✓ Copied' : 'Copy'}
               </button>
             </div>
-            <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.6)', margin: 0 }}>Share this link with friends and earn commission on their purchases</p>
+            <p style={{ fontSize: 12, color: 'var(--muted)', margin: 0 }}>Share this link with friends and earn commission on their purchases</p>
           </div>
 
           {/* Invite Friends Card */}
@@ -208,7 +208,7 @@ export default function ReferralPage() {
             padding: 30,
             animation: 'slideInRight 0.7s ease-out'
           }}>
-            <h2 style={{ fontSize: 18, fontWeight: 700, marginTop: 0, marginBottom: 20, color: '#fff' }}>
+            <h2 style={{ fontSize: 18, fontWeight: 700, marginTop: 0, marginBottom: 20, color: 'var(--text)' }}>
               ✉️ Invite Friends
             </h2>
             <form onSubmit={handleInvite} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -219,10 +219,10 @@ export default function ReferralPage() {
                 onChange={(e) => setNewEmail(e.target.value)}
                 style={{
                   padding: '12px 16px',
-                  background: 'rgba(255,255,255,0.05)',
-                  border: '1px solid rgba(255,255,255,0.1)',
+                  background: 'var(--bg2)',
+                  border: '1px solid var(--border)',
                   borderRadius: 8,
-                  color: '#fff',
+                  color: 'var(--text)',
                   fontSize: 14,
                 }}
               />
@@ -231,7 +231,7 @@ export default function ReferralPage() {
                 disabled={inviting}
                 style={{
                   padding: '12px 24px',
-                  background: inviting ? 'rgba(255,255,255,0.1)' : '#667eea',
+                  background: inviting ? 'var(--border)' : '#667eea',
                   color: 'white',
                   border: 'none',
                   borderRadius: 8,
@@ -243,7 +243,7 @@ export default function ReferralPage() {
               </button>
             </form>
             {message && (
-              <div style={{ marginTop: 12, padding: 12, background: message.includes('Error') ? 'rgba(239, 68, 68, 0.1)' : 'rgba(16, 185, 129, 0.1)', border: `1px solid ${message.includes('Error') ? '#ef4444' : '#10b981'}`, borderRadius: 4, color: '#fff', fontSize: 12 }}>
+              <div style={{ marginTop: 12, padding: 12, background: message.includes('Error') ? 'rgba(239, 68, 68, 0.1)' : 'rgba(16, 185, 129, 0.1)', border: `1px solid ${message.includes('Error') ? '#ef4444' : '#10b981'}`, borderRadius: 4, color: 'var(--text)', fontSize: 12 }}>
                 {message}
               </div>
             )}
@@ -253,7 +253,7 @@ export default function ReferralPage() {
 
       {/* ─── YOUR REFERRALS TABLE ─────────────────────────────────────────────── */}
       <div style={{ maxWidth: 1200, margin: '0 auto 60px', padding: '0 20px' }}>
-        <h2 style={{ fontSize: 28, fontWeight: 900, color: '#fff', marginBottom: 30, marginTop: 0 }}>
+        <h2 style={{ fontSize: 28, fontWeight: 900, color: 'var(--text)', marginBottom: 30, marginTop: 0 }}>
           📊 Your Referrals
         </h2>
         
@@ -266,18 +266,18 @@ export default function ReferralPage() {
             textAlign: 'center',
           }}>
             <div style={{ fontSize: 40, marginBottom: 16 }}>🎯</div>
-            <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.6)', margin: 0 }}>No referrals yet. Start inviting friends to earn commissions!</p>
+            <p style={{ fontSize: 18, color: 'var(--muted)', margin: 0 }}>No referrals yet. Start inviting friends to earn commissions!</p>
           </div>
         ) : (
           <div style={{ overflowX: 'auto' }}>
             <table style={{ width: '100%', borderCollapse: 'collapse' }}>
               <thead>
-                <tr style={{ borderBottom: '2px solid rgba(255,255,255,0.1)' }}>
-                  <th style={{ textAlign: 'left', padding: '16px', color: 'rgba(255,255,255,0.6)', fontWeight: 600, fontSize: 12, textTransform: 'uppercase' }}>Friend Name</th>
-                  <th style={{ textAlign: 'left', padding: '16px', color: 'rgba(255,255,255,0.6)', fontWeight: 600, fontSize: 12, textTransform: 'uppercase' }}>Status</th>
-                  <th style={{ textAlign: 'right', padding: '16px', color: 'rgba(255,255,255,0.6)', fontWeight: 600, fontSize: 12, textTransform: 'uppercase' }}>Order Value</th>
-                  <th style={{ textAlign: 'right', padding: '16px', color: 'rgba(255,255,255,0.6)', fontWeight: 600, fontSize: 12, textTransform: 'uppercase' }}>Commission</th>
-                  <th style={{ textAlign: 'left', padding: '16px', color: 'rgba(255,255,255,0.6)', fontWeight: 600, fontSize: 12, textTransform: 'uppercase' }}>Date</th>
+                <tr style={{ borderBottom: '2px solid var(--border)' }}>
+                  <th style={{ textAlign: 'left', padding: '16px', color: 'var(--muted)', fontWeight: 600, fontSize: 12, textTransform: 'uppercase' }}>Friend Name</th>
+                  <th style={{ textAlign: 'left', padding: '16px', color: 'var(--muted)', fontWeight: 600, fontSize: 12, textTransform: 'uppercase' }}>Status</th>
+                  <th style={{ textAlign: 'right', padding: '16px', color: 'var(--muted)', fontWeight: 600, fontSize: 12, textTransform: 'uppercase' }}>Order Value</th>
+                  <th style={{ textAlign: 'right', padding: '16px', color: 'var(--muted)', fontWeight: 600, fontSize: 12, textTransform: 'uppercase' }}>Commission</th>
+                  <th style={{ textAlign: 'left', padding: '16px', color: 'var(--muted)', fontWeight: 600, fontSize: 12, textTransform: 'uppercase' }}>Date</th>
                 </tr>
               </thead>
               <tbody>
@@ -289,16 +289,16 @@ export default function ReferralPage() {
                   };
                   const sc = statusColors[ref.status] || statusColors.pending;
                   return (
-                    <tr key={i} style={{ borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
-                      <td style={{ padding: '16px', color: '#fff' }}>{ref.referee?.name || 'Unknown'}</td>
+                    <tr key={i} style={{ borderBottom: '1px solid var(--bg2)' }}>
+                      <td style={{ padding: '16px', color: 'var(--text)' }}>{ref.referee?.name || 'Unknown'}</td>
                       <td style={{ padding: '16px' }}>
                         <span style={{ display: 'inline-block', padding: '4px 12px', background: sc.bg, color: sc.text, borderRadius: 20, fontSize: 12, fontWeight: 600 }}>
                           {ref.status?.charAt(0).toUpperCase() + ref.status?.slice(1)}
                         </span>
                       </td>
-                      <td style={{ textAlign: 'right', padding: '16px', color: '#fff' }}>${(ref.referralOrderAmount || 0).toFixed(2)}</td>
+                      <td style={{ textAlign: 'right', padding: '16px', color: 'var(--text)' }}>${(ref.referralOrderAmount || 0).toFixed(2)}</td>
                       <td style={{ textAlign: 'right', padding: '16px', color: '#10b981', fontWeight: 600 }}>${(ref.commissionEarned || 0).toFixed(2)}</td>
-                      <td style={{ padding: '16px', color: 'rgba(255,255,255,0.6)', fontSize: 14 }}>{new Date(ref.createdAt).toLocaleDateString()}</td>
+                      <td style={{ padding: '16px', color: 'var(--muted)', fontSize: 14 }}>{new Date(ref.createdAt).toLocaleDateString()}</td>
                     </tr>
                   );
                 })}
@@ -310,7 +310,7 @@ export default function ReferralPage() {
 
       {/* ─── LEADERBOARD SECTION ──────────────────────────────────────────────── */}
       <div style={{ maxWidth: 1200, margin: '0 auto 60px', padding: '0 20px' }}>
-        <h2 style={{ fontSize: 28, fontWeight: 900, color: '#fff', marginBottom: 30, marginTop: 0 }}>
+        <h2 style={{ fontSize: 28, fontWeight: 900, color: 'var(--text)', marginBottom: 30, marginTop: 0 }}>
           🏆 Top Earners
         </h2>
         
@@ -332,17 +332,17 @@ export default function ReferralPage() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 16 }}>
                   <div style={{ fontSize: 24 }}>{idx + 1 === 1 ? '🥇' : idx + 1 === 2 ? '🥈' : '🥉'}</div>
                   <div>
-                    <div style={{ color: '#fff', fontWeight: 700 }}>{person.name}</div>
-                    <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: 12 }}>{person.company || 'Partner'}</div>
+                    <div style={{ color: 'var(--text)', fontWeight: 700 }}>{person.name}</div>
+                    <div style={{ color: 'var(--muted)', fontSize: 12 }}>{person.company || 'Partner'}</div>
                   </div>
                 </div>
-                <div style={{ borderTop: '1px solid rgba(255,255,255,0.1)', paddingTop: 16 }}>
+                <div style={{ borderTop: '1px solid var(--border)', paddingTop: 16 }}>
                   <div style={{ marginBottom: 8 }}>
-                    <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: 12 }}>Completed Referrals</div>
+                    <div style={{ color: 'var(--muted)', fontSize: 12 }}>Completed Referrals</div>
                     <div style={{ fontSize: 24, fontWeight: 900, color: '#667eea' }}>{person.completedReferrals}</div>
                   </div>
                   <div>
-                    <div style={{ color: 'rgba(255,255,255,0.6)', fontSize: 12 }}>Total Earnings</div>
+                    <div style={{ color: 'var(--muted)', fontSize: 12 }}>Total Earnings</div>
                     <div style={{ fontSize: 18, fontWeight: 900, color: '#10b981' }}>${(person.totalCommission || 0).toFixed(2)}</div>
                   </div>
                 </div>
@@ -354,7 +354,7 @@ export default function ReferralPage() {
 
       {/* ─── HOW IT WORKS SECTION ────────────────────────────────────────────── */}
       <div style={{ maxWidth: 1200, margin: '0 auto 80px', padding: '60px 20px', background: 'linear-gradient(135deg, rgba(102, 126, 234, 0.05) 0%, rgba(168, 85, 247, 0.05) 100%)', borderRadius: 20 }}>
-        <h2 style={{ fontSize: 32, fontWeight: 900, color: '#fff', marginBottom: 40, marginTop: 0, textAlign: 'center' }}>
+        <h2 style={{ fontSize: 32, fontWeight: 900, color: 'var(--text)', marginBottom: 40, marginTop: 0, textAlign: 'center' }}>
           How It Works
         </h2>
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(220px, 1fr))', gap: 30 }}>
@@ -377,13 +377,13 @@ export default function ReferralPage() {
                 justifyContent: 'center',
                 fontSize: 28,
                 fontWeight: 900,
-                color: '#fff',
+                color: 'var(--text)',
                 margin: '0 auto 16px',
               }}>
                 {step.num}
               </div>
-              <h3 style={{ fontSize: 16, fontWeight: 700, color: '#fff', marginBottom: 8, margin: '0 0 8px' }}>{step.title}</h3>
-              <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', margin: 0 }}>{step.desc}</p>
+              <h3 style={{ fontSize: 16, fontWeight: 700, color: 'var(--text)', marginBottom: 8, margin: '0 0 8px' }}>{step.title}</h3>
+              <p style={{ fontSize: 14, color: 'var(--muted)', margin: 0 }}>{step.desc}</p>
             </div>
           ))}
         </div>
@@ -416,7 +416,7 @@ function StatCard({ title, value, icon, delay }) {
     >
       <div style={{ fontSize: 40, marginBottom: 12 }}>{icon}</div>
       <div style={{ fontSize: 32, fontWeight: 900, color: '#667eea', marginBottom: 8, letterSpacing: -1 }}>{value}</div>
-      <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.6)', fontWeight: 500 }}>{title}</div>
+      <div style={{ fontSize: 13, color: 'var(--muted)', fontWeight: 500 }}>{title}</div>
     </div>
   );
 }

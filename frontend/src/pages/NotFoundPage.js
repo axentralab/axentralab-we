@@ -21,7 +21,7 @@ export default function NotFoundPage() {
           padding: 13px 28px;
           background: linear-gradient(135deg,${PRIMARY},${ACCENT});
           color: #fff; border: none; border-radius: 12px;
-          font-family: 'Sora',sans-serif; font-weight: 800; font-size: 14px;
+          font-family: var(--font-h); font-weight: 800; font-size: 14px;
           cursor: pointer; text-decoration: none; display: inline-block;
           box-shadow: 0 4px 18px rgba(99,102,241,0.4);
           transition: all 0.2s;
@@ -32,7 +32,7 @@ export default function NotFoundPage() {
           padding: 13px 28px;
           background: transparent; color: ${PRIMARY2};
           border: 1px solid ${PRIMARY}35; border-radius: 12px;
-          font-family: 'Sora',sans-serif; font-weight: 700; font-size: 14px;
+          font-family: var(--font-h); font-weight: 700; font-size: 14px;
           cursor: pointer; text-decoration: none; display: inline-block;
           transition: all 0.2s;
         }
@@ -43,12 +43,12 @@ export default function NotFoundPage() {
         {/* BG glow */}
         <div style={{ position: 'fixed', top: '30%', left: '50%', transform: 'translateX(-50%)', width: 500, height: 400, borderRadius: '50%', background: `radial-gradient(circle,${PRIMARY}12,transparent 70%)`, pointerEvents: 'none', animation: 'glowPulse 4s ease-in-out infinite' }} />
 
-        <div className="n404-num" style={{ fontFamily: "'Sora',sans-serif", fontSize: 'clamp(80px,15vw,140px)', fontWeight: 900, background: `linear-gradient(135deg,${PRIMARY}28,${ACCENT}18)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1, letterSpacing: -4, marginBottom: 8, filter: `drop-shadow(0 0 30px ${PRIMARY}30)` }}>
+        <div className="n404-num" style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(80px,15vw,140px)', fontWeight: 900, background: `linear-gradient(135deg,${PRIMARY}28,${ACCENT}18)`, WebkitBackgroundClip: 'text', WebkitTextFillColor: 'transparent', backgroundClip: 'text', lineHeight: 1, letterSpacing: -4, marginBottom: 8, filter: `drop-shadow(0 0 30px ${PRIMARY}30)` }}>
           404
         </div>
 
-        <h1 className="n404-h1" style={{ fontFamily: "'Sora',sans-serif", fontSize: 'clamp(20px,3vw,28px)', fontWeight: 800, color: '#fff', marginBottom: 12 }}>Page Not Found</h1>
-        <p className="n404-p" style={{ color: 'rgba(255,255,255,0.4)', fontSize: 15, marginBottom: 36, maxWidth: 340, lineHeight: 1.7 }}>
+        <h1 className="n404-h1" style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(20px,3vw,28px)', fontWeight: 800, color: 'var(--text)', marginBottom: 12 }}>Page Not Found</h1>
+        <p className="n404-p" style={{ color: 'var(--muted)', fontSize: 15, marginBottom: 36, maxWidth: 340, lineHeight: 1.7 }}>
           The page you're looking for doesn't exist or has been moved.
         </p>
 

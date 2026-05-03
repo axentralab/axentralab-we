@@ -127,16 +127,16 @@ const PROJECTS = [
   },
   {
     id: "d7",
-    title: "WP Shield — WordPress Security Plugin",
-    tag: "WordPress Security Tool",
+    title: "WP Accelerate — WordPress Optimization plugin",
+    tag: "WordPress Optimization Tool",
     category: "Demo",
     color: "#8B5CF6",
     year: "2025",
     thumbnail: "https://res.cloudinary.com/dwrlbuej9/image/upload/v1775053161/wp_jq6w3v.png",
-    desc: "A full-featured WordPress security plugin demo — real-time threat detection, automated backups, and admin dashboard.",
+    desc: "A full-featured WordPress Optimization plugin demo — real-time Uptime monitoring, automated backups, and admin dashboard.",
     stack: ["React", "Node.js", "MongoDB", "Stripe"],
     results: [
-      "Real-time malware and intrusion threat detection",
+      "Real-time Bugs and intrusion Uptime monitoring",
       "Scheduled automated backups with restore functionality",
       "Admin dashboard with site health and security analytics",
     ],
@@ -241,20 +241,20 @@ const PROJECTS = [
   },
   {
     id: "d13",
-    title: "Site-Guard",
+    title: "Site-Monitor",
     tag: "SaaS / Security",
     category: "Live",
     color: "#EF4444",
     year: "2025",
     thumbnail: "https://res.cloudinary.com/dwrlbuej9/image/upload/v1776311265/Screenshot_2026-04-16_094424_wtr6is.png",
-    desc: "Site-Guard is a live website security monitoring service — real-time threat detection, automated backups, and admin dashboard.",
+    desc: "Site-Monitor is a live website security monitoring service — real-time Uptime monitoring, automated backups, and admin dashboard.",
     stack: ["React", "Node.js", "MongoDB", "Stripe"],
     results: [
-      "Live website uptime and threat monitoring dashboard",
+      "Live website uptime and Uptime monitoring dashboard",
       "Automated scheduled backups with one-click restore",
       "Subscription billing management via Stripe integration",
     ],
-    liveUrl: "https://siteguard-guardian.lovable.app/",
+    liveUrl: "https://SiteMonitor-guardian.lovable.app/",
     featured: true,
     isDemo: false,
   },
@@ -352,7 +352,7 @@ function ProjectModal({ project, onClose }) {
     >
       <div
         style={{
-          background: "#0a0c14",
+          background: "var(--bg)",
           border: `1px solid ${color}30`,
           borderRadius: 24,
           maxWidth: 680,
@@ -397,7 +397,7 @@ function ProjectModal({ project, onClose }) {
                   border: `1px solid ${color}28`,
                   color,
                   fontSize: 11,
-                  fontFamily: "'Space Mono',monospace",
+                  fontFamily: "var(--font-m)",
                   letterSpacing: 0.5,
                   textTransform: "uppercase",
                   fontWeight: 600,
@@ -407,9 +407,9 @@ function ProjectModal({ project, onClose }) {
               </span>
               <span
                 style={{
-                  fontFamily: "'Space Mono',monospace",
+                  fontFamily: "var(--font-m)",
                   fontSize: 11,
-                  color: "rgba(255,255,255,0.3)",
+                  color: "var(--border)",
                 }}
               >
                 {project.year}
@@ -421,7 +421,7 @@ function ProjectModal({ project, onClose }) {
                     background: color,
                     borderRadius: 5,
                     fontSize: 9,
-                    fontFamily: "'Space Mono',monospace",
+                    fontFamily: "var(--font-m)",
                     color: "#000",
                     fontWeight: 900,
                     letterSpacing: 1,
@@ -438,7 +438,7 @@ function ProjectModal({ project, onClose }) {
                     border: `1px solid ${color}50`,
                     borderRadius: 5,
                     fontSize: 9,
-                    fontFamily: "'Space Mono',monospace",
+                    fontFamily: "var(--font-m)",
                     color,
                     fontWeight: 900,
                     letterSpacing: 1,
@@ -456,8 +456,8 @@ function ProjectModal({ project, onClose }) {
                 height: 32,
                 borderRadius: 8,
                 background: "rgba(255,255,255,0.06)",
-                border: "1px solid rgba(255,255,255,0.1)",
-                color: "rgba(255,255,255,0.5)",
+                border: "1px solid var(--border)",
+                color: "var(--muted)",
                 fontSize: 16,
                 cursor: "pointer",
                 display: "flex",
@@ -470,10 +470,10 @@ function ProjectModal({ project, onClose }) {
           </div>
           <h2
             style={{
-              fontFamily: "'Sora',sans-serif",
+              fontFamily: "var(--font-h)",
               fontSize: "clamp(20px,3vw,28px)",
               fontWeight: 900,
-              color: "#fff",
+              color: "var(--text)",
               margin: "0 0 14px",
               letterSpacing: -0.5,
             }}
@@ -512,7 +512,7 @@ function ProjectModal({ project, onClose }) {
                 fontSize: 11,
                 fontWeight: 600,
                 color: "rgba(255,255,255,0.35)",
-                fontFamily: "'Space Mono',monospace",
+                fontFamily: "var(--font-m)",
                 letterSpacing: 1,
                 textTransform: "uppercase",
                 marginBottom: 12,
@@ -540,8 +540,8 @@ function ProjectModal({ project, onClose }) {
                   <span
                     style={{
                       fontSize: 13,
-                      color: "rgba(255,255,255,0.7)",
-                      fontFamily: "'Space Mono',monospace",
+                      color: "var(--text)",
+                      fontFamily: "var(--font-m)",
                     }}
                   >
                     {r}
@@ -556,7 +556,7 @@ function ProjectModal({ project, onClose }) {
                 fontSize: 11,
                 fontWeight: 600,
                 color: "rgba(255,255,255,0.35)",
-                fontFamily: "'Space Mono',monospace",
+                fontFamily: "var(--font-m)",
                 letterSpacing: 1,
                 textTransform: "uppercase",
                 marginBottom: 12,
@@ -571,11 +571,11 @@ function ProjectModal({ project, onClose }) {
                   style={{
                     padding: "6px 12px",
                     borderRadius: 8,
-                    background: "rgba(255,255,255,0.05)",
-                    border: "1px solid rgba(255,255,255,0.1)",
+                    background: "var(--bg2)",
+                    border: "1px solid var(--border)",
                     fontSize: 12,
                     color: "rgba(255,255,255,0.65)",
-                    fontFamily: "'Space Mono',monospace",
+                    fontFamily: "var(--font-m)",
                     fontWeight: 600,
                   }}
                 >
@@ -604,12 +604,12 @@ function ProjectModal({ project, onClose }) {
                 background: color,
                 color: ["#8B5CF6", "#F59E0B", "#06B6D4"].includes(color)
                   ? "#000"
-                  : "#fff",
+                  : "var(--text)",
                 border: "none",
                 borderRadius: 12,
                 fontSize: 14,
                 fontWeight: 700,
-                fontFamily: "'Sora',sans-serif",
+                fontFamily: "var(--font-h)",
                 textDecoration: "none",
                 textAlign: "center",
                 minWidth: 140,
@@ -628,7 +628,7 @@ function ProjectModal({ project, onClose }) {
                 borderRadius: 12,
                 fontSize: 14,
                 fontWeight: 700,
-                fontFamily: "'Sora',sans-serif",
+                fontFamily: "var(--font-h)",
                 color,
                 textDecoration: "none",
                 textAlign: "center",
@@ -642,13 +642,13 @@ function ProjectModal({ project, onClose }) {
             href="/contact"
             style={{
               padding: "13px 20px",
-              background: "rgba(255,255,255,0.05)",
-              border: "1px solid rgba(255,255,255,0.1)",
+              background: "var(--bg2)",
+              border: "1px solid var(--border)",
               borderRadius: 12,
               fontSize: 14,
               fontWeight: 700,
-              fontFamily: "'Sora',sans-serif",
-              color: "rgba(255,255,255,0.6)",
+              fontFamily: "var(--font-h)",
+              color: "var(--muted)",
               textDecoration: "none",
               textAlign: "center",
             }}
@@ -686,7 +686,7 @@ function FeaturedShowcase({ onOpenModal }) {
               background: "rgba(245,158,11,0.08)",
               color: "#F59E0B",
               fontSize: 10,
-              fontFamily: "'Space Mono',monospace",
+              fontFamily: "var(--font-m)",
               letterSpacing: 1,
               textTransform: "uppercase",
               fontWeight: 600,
@@ -696,10 +696,10 @@ function FeaturedShowcase({ onOpenModal }) {
           </span>
           <h2
             style={{
-              fontFamily: "'Sora',sans-serif",
+              fontFamily: "var(--font-h)",
               fontSize: "clamp(18px,2.5vw,26px)",
               fontWeight: 900,
-              color: "#fff",
+              color: "var(--text)",
               marginTop: 10,
               letterSpacing: -0.5,
             }}
@@ -710,8 +710,8 @@ function FeaturedShowcase({ onOpenModal }) {
         <span
           style={{
             fontSize: 12,
-            color: "rgba(255,255,255,0.3)",
-            fontFamily: "'Space Mono',monospace",
+            color: "var(--border)",
+            fontFamily: "var(--font-m)",
           }}
         >
           {featured.length} selected projects
@@ -780,7 +780,7 @@ function FeaturedShowcase({ onOpenModal }) {
                     border: `1px solid ${color}28`,
                     color,
                     fontSize: 10,
-                    fontFamily: "'Space Mono',monospace",
+                    fontFamily: "var(--font-m)",
                     textTransform: "uppercase",
                     fontWeight: 600,
                     letterSpacing: 0.5,
@@ -790,7 +790,7 @@ function FeaturedShowcase({ onOpenModal }) {
                 </span>
                 <span
                   style={{
-                    fontFamily: "'Space Mono',monospace",
+                    fontFamily: "var(--font-m)",
                     fontSize: 10,
                     color: "rgba(255,255,255,0.25)",
                   }}
@@ -800,10 +800,10 @@ function FeaturedShowcase({ onOpenModal }) {
               </div>
               <h3
                 style={{
-                  fontFamily: "'Sora',sans-serif",
+                  fontFamily: "var(--font-h)",
                   fontSize: 20,
                   fontWeight: 900,
-                  color: "#fff",
+                  color: "var(--text)",
                   margin: "0 0 10px",
                   letterSpacing: -0.4,
                 }}
@@ -838,7 +838,7 @@ function FeaturedShowcase({ onOpenModal }) {
                       border: `1px solid ${color}20`,
                       fontSize: 11,
                       color,
-                      fontFamily: "'Space Mono',monospace",
+                      fontFamily: "var(--font-m)",
                     }}
                   >
                     ✓ {r}
@@ -859,11 +859,11 @@ function FeaturedShowcase({ onOpenModal }) {
                       style={{
                         padding: "2px 7px",
                         borderRadius: 4,
-                        background: "rgba(255,255,255,0.04)",
+                        background: "var(--bg2)",
                         border: "1px solid rgba(255,255,255,0.08)",
                         fontSize: 10,
                         color: "rgba(255,255,255,0.35)",
-                        fontFamily: "'Space Mono',monospace",
+                        fontFamily: "var(--font-m)",
                       }}
                     >
                       {s}
@@ -875,7 +875,7 @@ function FeaturedShowcase({ onOpenModal }) {
                         padding: "2px 7px",
                         fontSize: 10,
                         color: "rgba(255,255,255,0.25)",
-                        fontFamily: "'Space Mono',monospace",
+                        fontFamily: "var(--font-m)",
                       }}
                     >
                       +{project.stack.length - 3}
@@ -887,7 +887,7 @@ function FeaturedShowcase({ onOpenModal }) {
                     fontSize: 12,
                     color,
                     fontWeight: 700,
-                    fontFamily: "'Sora',sans-serif",
+                    fontFamily: "var(--font-h)",
                   }}
                 >
                   View Details →
@@ -977,7 +977,7 @@ function ProjectCard({ project, index, onOpenModal }) {
             </div>
             <span
               style={{
-                fontFamily: "'Space Mono',monospace",
+                fontFamily: "var(--font-m)",
                 fontSize: 10,
                 color: `${project.color}60`,
                 letterSpacing: 2,
@@ -1002,15 +1002,15 @@ function ProjectCard({ project, index, onOpenModal }) {
             right: 12,
             padding: "3px 9px",
             background: "rgba(6,8,15,0.7)",
-            border: "1px solid rgba(255,255,255,0.1)",
+            border: "1px solid var(--border)",
             borderRadius: 6,
           }}
         >
           <span
             style={{
-              fontFamily: "'Space Mono',monospace",
+              fontFamily: "var(--font-m)",
               fontSize: 9,
-              color: "rgba(255,255,255,0.4)",
+              color: "var(--muted)",
               letterSpacing: 1,
             }}
           >
@@ -1030,7 +1030,7 @@ function ProjectCard({ project, index, onOpenModal }) {
           >
             <span
               style={{
-                fontFamily: "'Space Mono',monospace",
+                fontFamily: "var(--font-m)",
                 fontSize: 9,
                 color: "#000",
                 fontWeight: 900,
@@ -1055,7 +1055,7 @@ function ProjectCard({ project, index, onOpenModal }) {
           >
             <span
               style={{
-                fontFamily: "'Space Mono',monospace",
+                fontFamily: "var(--font-m)",
                 fontSize: 9,
                 color: project.color,
                 fontWeight: 900,
@@ -1086,7 +1086,7 @@ function ProjectCard({ project, index, onOpenModal }) {
             border: `1px solid ${project.color}25`,
             color: project.color,
             fontSize: 10,
-            fontFamily: "'Space Mono',monospace",
+            fontFamily: "var(--font-m)",
             letterSpacing: 0.5,
             textTransform: "uppercase",
             fontWeight: 600,
@@ -1098,10 +1098,10 @@ function ProjectCard({ project, index, onOpenModal }) {
         </span>
         <h3
           style={{
-            fontFamily: "'Sora',sans-serif",
+            fontFamily: "var(--font-h)",
             fontSize: 16,
             fontWeight: 900,
-            color: "#fff",
+            color: "var(--text)",
             margin: "0 0 8px",
             letterSpacing: -0.3,
           }}
@@ -1111,7 +1111,7 @@ function ProjectCard({ project, index, onOpenModal }) {
         <p
           style={{
             fontSize: 13,
-            color: "rgba(255,255,255,0.4)",
+            color: "var(--muted)",
             lineHeight: 1.65,
             margin: "0 0 14px",
             flex: 1,
@@ -1137,7 +1137,7 @@ function ProjectCard({ project, index, onOpenModal }) {
               style={{
                 fontSize: 10,
                 color: project.color,
-                fontFamily: "'Space Mono',monospace",
+                fontFamily: "var(--font-m)",
                 padding: "2px 7px",
                 background: `${project.color}10`,
                 borderRadius: 5,
@@ -1161,11 +1161,11 @@ function ProjectCard({ project, index, onOpenModal }) {
               style={{
                 padding: "2px 7px",
                 borderRadius: 5,
-                background: "rgba(255,255,255,0.04)",
+                background: "var(--bg2)",
                 border: "1px solid rgba(255,255,255,0.07)",
                 fontSize: 10,
                 color: "rgba(255,255,255,0.35)",
-                fontFamily: "'Space Mono',monospace",
+                fontFamily: "var(--font-m)",
               }}
             >
               {s}
@@ -1175,8 +1175,8 @@ function ProjectCard({ project, index, onOpenModal }) {
             <span
               style={{
                 fontSize: 10,
-                color: "rgba(255,255,255,0.2)",
-                fontFamily: "'Space Mono',monospace",
+                color: "var(--border)",
+                fontFamily: "var(--font-m)",
                 padding: "2px 4px",
               }}
             >
@@ -1200,7 +1200,7 @@ function ProjectCard({ project, index, onOpenModal }) {
                 color: project.color,
                 fontSize: 12,
                 fontWeight: 700,
-                fontFamily: "'Sora',sans-serif",
+                fontFamily: "var(--font-h)",
                 textDecoration: "none",
                 textAlign: "center",
                 transition: "all 0.2s",
@@ -1226,7 +1226,7 @@ function ProjectCard({ project, index, onOpenModal }) {
                 borderRadius: 10,
                 color: project.color,
                 fontSize: 12,
-                fontFamily: "'Space Mono',monospace",
+                fontFamily: "var(--font-m)",
                 textAlign: "center",
                 cursor: "pointer",
               }}
@@ -1238,19 +1238,19 @@ function ProjectCard({ project, index, onOpenModal }) {
             onClick={(e) => e.stopPropagation()}
             style={{
               padding: "9px 12px",
-              background: "rgba(255,255,255,0.05)",
+              background: "var(--bg2)",
               border: "1px solid rgba(255,255,255,0.09)",
               borderRadius: 10,
               color: "rgba(255,255,255,0.45)",
               fontSize: 12,
               fontWeight: 700,
-              fontFamily: "'Sora',sans-serif",
+              fontFamily: "var(--font-h)",
               cursor: "pointer",
               transition: "all 0.2s",
             }}
             onMouseEnter={(e) => {
-              e.currentTarget.style.color = "#fff";
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.2)";
+              e.currentTarget.style.color = "var(--text)";
+              e.currentTarget.style.borderColor = "var(--border)";
             }}
             onMouseLeave={(e) => {
               e.currentTarget.style.color = "rgba(255,255,255,0.45)";
@@ -1371,7 +1371,7 @@ export default function PortfolioPage() {
       >
         <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${HERO_BG_IMAGE})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(100deg, rgba(6,8,15,0.9) 0%, rgba(6,8,15,0.72) 48%, rgba(6,8,15,0.9) 100%)" }} />
-        <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
+        <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(var(--bg2) 1px,transparent 1px),linear-gradient(90deg,var(--bg2) 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
         <div style={{ position: "relative" }}>
           <div
             style={{
@@ -1397,7 +1397,7 @@ export default function PortfolioPage() {
           />
           <span
             style={{
-              fontFamily: "'Space Mono',monospace",
+              fontFamily: "var(--font-m)",
               fontSize: 11,
               color: "#8B5CF6",
               letterSpacing: 1,
@@ -1410,10 +1410,10 @@ export default function PortfolioPage() {
         </div>
         <h1
           style={{
-            fontFamily: "'Sora',sans-serif",
+            fontFamily: "var(--font-h)",
             fontSize: "clamp(32px,5.5vw,68px)",
             fontWeight: 900,
-            color: "#fff",
+            color: "var(--text)",
             margin: "0 0 18px",
             letterSpacing: -2.5,
             lineHeight: 1.04,
@@ -1423,7 +1423,7 @@ export default function PortfolioPage() {
           <span
             style={{
               color: "transparent",
-              WebkitTextStroke: "1.5px rgba(255,255,255,0.3)",
+              WebkitTextStroke: "1.5px var(--border)",
             }}
           >
             Speaks
@@ -1433,7 +1433,7 @@ export default function PortfolioPage() {
         </h1>
         <p
           style={{
-            fontFamily: "'Sora',sans-serif",
+            fontFamily: "var(--font-h)",
             fontSize: "clamp(14px,1.8vw,17px)",
             color: "rgba(255,255,255,0.42)",
             maxWidth: 500,
@@ -1463,7 +1463,7 @@ export default function PortfolioPage() {
               style={{
                 fontSize: 12,
                 color: "rgba(255,255,255,0.28)",
-                fontFamily: "'Space Mono',monospace",
+                fontFamily: "var(--font-m)",
               }}
             >
               {v}
@@ -1499,7 +1499,7 @@ export default function PortfolioPage() {
             >
               <div
                 style={{
-                  fontFamily: "'Sora',sans-serif",
+                  fontFamily: "var(--font-h)",
                   fontSize: 32,
                   fontWeight: 900,
                   color: s.color,
@@ -1514,7 +1514,7 @@ export default function PortfolioPage() {
                   fontSize: 11,
                   color: "rgba(255,255,255,0.32)",
                   marginTop: 6,
-                  fontFamily: "'Space Mono',monospace",
+                  fontFamily: "var(--font-m)",
                   letterSpacing: 0.5,
                   textTransform: "uppercase",
                 }}
@@ -1545,10 +1545,10 @@ export default function PortfolioPage() {
               background:
                 activeCategory === cat
                   ? "rgba(139,92,246,0.1)"
-                  : "rgba(255,255,255,0.03)",
+                  : "var(--bg2)",
               color:
                 activeCategory === cat ? "#8B5CF6" : "rgba(255,255,255,0.45)",
-              fontFamily: "'Sora',sans-serif",
+              fontFamily: "var(--font-h)",
               fontWeight: 700,
               fontSize: 13,
               cursor: "pointer",
@@ -1567,8 +1567,8 @@ export default function PortfolioPage() {
                     : "rgba(255,255,255,0.06)",
                 fontSize: 10,
                 color:
-                  activeCategory === cat ? "#8B5CF6" : "rgba(255,255,255,0.3)",
-                fontFamily: "'Space Mono',monospace",
+                  activeCategory === cat ? "#8B5CF6" : "var(--border)",
+                fontFamily: "var(--font-m)",
               }}
             >
               {cat === "All"
@@ -1609,14 +1609,14 @@ export default function PortfolioPage() {
             placeholder="Search by name, stack, tag…"
             style={{
               width: "100%",
-              background: "rgba(255,255,255,0.04)",
-              border: "1px solid rgba(255,255,255,0.1)",
+              background: "var(--bg2)",
+              border: "1px solid var(--border)",
               borderRadius: 12,
               padding: "11px 16px 11px 40px",
-              color: "#fff",
+              color: "var(--text)",
               fontSize: 13,
               outline: "none",
-              fontFamily: "'Sora',sans-serif",
+              fontFamily: "var(--font-h)",
               boxSizing: "border-box",
             }}
           />
@@ -1630,7 +1630,7 @@ export default function PortfolioPage() {
                 transform: "translateY(-50%)",
                 background: "none",
                 border: "none",
-                color: "rgba(255,255,255,0.3)",
+                color: "var(--border)",
                 fontSize: 14,
                 cursor: "pointer",
                 padding: 0,
@@ -1645,27 +1645,27 @@ export default function PortfolioPage() {
             value={activeStack}
             onChange={(e) => handleStack(e.target.value)}
             style={{
-              background: "rgba(255,255,255,0.04)",
-              border: `1px solid ${activeStack ? "rgba(139,92,246,0.4)" : "rgba(255,255,255,0.1)"}`,
+              background: "var(--bg2)",
+              border: `1px solid ${activeStack ? "rgba(139,92,246,0.4)" : "var(--border)"}`,
               borderRadius: 12,
               padding: "11px 36px 11px 14px",
-              color: activeStack ? "#8B5CF6" : "rgba(255,255,255,0.5)",
+              color: activeStack ? "#8B5CF6" : "var(--muted)",
               fontSize: 13,
               outline: "none",
-              fontFamily: "'Sora',sans-serif",
+              fontFamily: "var(--font-h)",
               cursor: "pointer",
               appearance: "none",
               minWidth: 160,
             }}
           >
-            <option value="" style={{ background: "#0a0c14", color: "#fff" }}>
+            <option value="" style={{ background: "var(--bg)", color: "var(--text)" }}>
               ⚙️ All Tech Stacks
             </option>
             {ALL_STACKS.map((s) => (
               <option
                 key={s}
                 value={s}
-                style={{ background: "#0a0c14", color: "#fff" }}
+                style={{ background: "var(--bg)", color: "var(--text)" }}
               >
                 {s}
               </option>
@@ -1678,7 +1678,7 @@ export default function PortfolioPage() {
               top: "50%",
               transform: "translateY(-50%)",
               pointerEvents: "none",
-              color: "rgba(255,255,255,0.3)",
+              color: "var(--border)",
               fontSize: 10,
             }}
           >
@@ -1689,10 +1689,10 @@ export default function PortfolioPage() {
           <div
             style={{
               fontSize: 12,
-              color: "rgba(255,255,255,0.3)",
-              fontFamily: "'Space Mono',monospace",
+              color: "var(--border)",
+              fontFamily: "var(--font-m)",
               padding: "8px 14px",
-              background: "rgba(255,255,255,0.03)",
+              background: "var(--bg2)",
               border: "1px solid rgba(255,255,255,0.07)",
               borderRadius: 10,
             }}
@@ -1706,7 +1706,7 @@ export default function PortfolioPage() {
               }}
               style={{
                 marginLeft: 10,
-                color: "rgba(255,255,255,0.3)",
+                color: "var(--border)",
                 background: "none",
                 border: "none",
                 cursor: "pointer",
@@ -1726,7 +1726,7 @@ export default function PortfolioPage() {
           <div style={{ fontSize: 48, marginBottom: 16 }}>🔍</div>
           <p
             style={{
-              color: "rgba(255,255,255,0.4)",
+              color: "var(--muted)",
               fontSize: 15,
               marginBottom: 20,
             }}
@@ -1742,9 +1742,9 @@ export default function PortfolioPage() {
             style={{
               padding: "10px 22px",
               background: "rgba(255,255,255,0.06)",
-              border: "1px solid rgba(255,255,255,0.1)",
+              border: "1px solid var(--border)",
               borderRadius: 10,
-              color: "#fff",
+              color: "var(--text)",
               fontSize: 13,
               cursor: "pointer",
             }}
@@ -1779,7 +1779,7 @@ export default function PortfolioPage() {
                   color: "#8B5CF6",
                   fontSize: 14,
                   fontWeight: 700,
-                  fontFamily: "'Sora',sans-serif",
+                  fontFamily: "var(--font-h)",
                   cursor: "pointer",
                   transition: "all 0.2s",
                 }}
@@ -1802,8 +1802,8 @@ export default function PortfolioPage() {
                 textAlign: "center",
                 marginTop: 32,
                 fontSize: 12,
-                color: "rgba(255,255,255,0.2)",
-                fontFamily: "'Space Mono',monospace",
+                color: "var(--border)",
+                fontFamily: "var(--font-m)",
               }}
             >
               ✓ All {filtered.length} projects loaded
@@ -1817,7 +1817,7 @@ export default function PortfolioPage() {
         style={{
           maxWidth: 1100,
           margin: "0 auto 88px",
-          background: "rgba(255,255,255,0.02)",
+          background: "var(--bg2)",
           border: "1px solid rgba(255,255,255,0.07)",
           borderRadius: 22,
           padding: "clamp(32px,5vw,52px) clamp(24px,4vw,48px)",
@@ -1833,7 +1833,7 @@ export default function PortfolioPage() {
               background: "#3B82F612",
               color: "#3B82F6",
               fontSize: 10,
-              fontFamily: "'Space Mono',monospace",
+              fontFamily: "var(--font-m)",
               letterSpacing: 1,
               textTransform: "uppercase",
               fontWeight: 600,
@@ -1843,10 +1843,10 @@ export default function PortfolioPage() {
           </span>
           <h2
             style={{
-              fontFamily: "'Sora',sans-serif",
+              fontFamily: "var(--font-h)",
               fontSize: "clamp(22px,3.5vw,36px)",
               fontWeight: 900,
-              color: "#fff",
+              color: "var(--text)",
               marginTop: 12,
               letterSpacing: -0.8,
             }}
@@ -1891,7 +1891,7 @@ export default function PortfolioPage() {
               key={i}
               style={{
                 padding: "22px 18px",
-                background: "rgba(255,255,255,0.02)",
+                background: "var(--bg2)",
                 border: "1px solid rgba(255,255,255,0.06)",
                 borderRadius: 14,
                 transition: "all 0.2s",
@@ -1907,7 +1907,7 @@ export default function PortfolioPage() {
             >
               <div
                 style={{
-                  fontFamily: "'Space Mono',monospace",
+                  fontFamily: "var(--font-m)",
                   fontSize: 10,
                   color: "rgba(255,255,255,0.18)",
                   letterSpacing: 2,
@@ -1919,10 +1919,10 @@ export default function PortfolioPage() {
               <div style={{ fontSize: 24, marginBottom: 10 }}>{s.icon}</div>
               <div
                 style={{
-                  fontFamily: "'Sora',sans-serif",
+                  fontFamily: "var(--font-h)",
                   fontSize: 14,
                   fontWeight: 800,
-                  color: "#fff",
+                  color: "var(--text)",
                   marginBottom: 7,
                 }}
               >
@@ -1952,9 +1952,9 @@ export default function PortfolioPage() {
               borderRadius: 999,
               border: "1px solid #ffffff15",
               background: "#ffffff08",
-              color: "rgba(255,255,255,0.5)",
+              color: "var(--muted)",
               fontSize: 10,
-              fontFamily: "'Space Mono',monospace",
+              fontFamily: "var(--font-m)",
               letterSpacing: 1,
               textTransform: "uppercase",
             }}
@@ -1963,10 +1963,10 @@ export default function PortfolioPage() {
           </span>
           <h2
             style={{
-              fontFamily: "'Sora',sans-serif",
+              fontFamily: "var(--font-h)",
               fontSize: "clamp(22px,3.5vw,36px)",
               fontWeight: 900,
-              color: "#fff",
+              color: "var(--text)",
               marginTop: 12,
               letterSpacing: -0.8,
             }}
@@ -2027,7 +2027,7 @@ export default function PortfolioPage() {
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
-                    fontFamily: "'Sora',sans-serif",
+                    fontFamily: "var(--font-h)",
                     fontWeight: 800,
                     fontSize: 12,
                     color: t.color,
@@ -2038,10 +2038,10 @@ export default function PortfolioPage() {
                 <div>
                   <div
                     style={{
-                      fontFamily: "'Sora',sans-serif",
+                      fontFamily: "var(--font-h)",
                       fontSize: 13,
                       fontWeight: 700,
-                      color: "#fff",
+                      color: "var(--text)",
                     }}
                   >
                     {t.name}
@@ -2066,8 +2066,8 @@ export default function PortfolioPage() {
       <section
         style={{
           padding: "36px 0",
-          borderTop: "1px solid rgba(255,255,255,0.05)",
-          borderBottom: "1px solid rgba(255,255,255,0.05)",
+          borderTop: "1px solid var(--bg2)",
+          borderBottom: "1px solid var(--bg2)",
           overflow: "hidden",
           marginBottom: 88,
         }}
@@ -2109,7 +2109,7 @@ export default function PortfolioPage() {
             <span
               key={i}
               style={{
-                fontFamily: "'Sora',sans-serif",
+                fontFamily: "var(--font-h)",
                 fontSize: 13,
                 fontWeight: 700,
                 color: "rgba(255,255,255,0.13)",
@@ -2162,7 +2162,7 @@ export default function PortfolioPage() {
                 background: "#8B5CF610",
                 color: "#8B5CF6",
                 fontSize: 10,
-                fontFamily: "'Space Mono',monospace",
+                fontFamily: "var(--font-m)",
                 letterSpacing: 1,
                 textTransform: "uppercase",
                 fontWeight: 600,
@@ -2172,10 +2172,10 @@ export default function PortfolioPage() {
             </span>
             <h2
               style={{
-                fontFamily: "'Sora',sans-serif",
+                fontFamily: "var(--font-h)",
                 fontSize: "clamp(26px,4.5vw,52px)",
                 fontWeight: 900,
-                color: "#fff",
+                color: "var(--text)",
                 margin: "18px auto 16px",
                 letterSpacing: -1.5,
                 lineHeight: 1.08,
@@ -2188,7 +2188,7 @@ export default function PortfolioPage() {
             </h2>
             <p
               style={{
-                color: "rgba(255,255,255,0.4)",
+                color: "var(--muted)",
                 fontSize: 15,
                 maxWidth: 460,
                 margin: "0 auto 34px",
@@ -2230,10 +2230,10 @@ export default function PortfolioPage() {
                   fontSize: 15,
                   borderRadius: 12,
                   textDecoration: "none",
-                  background: "rgba(255,255,255,0.05)",
+                  background: "var(--bg2)",
                   border: "1px solid rgba(255,255,255,0.12)",
-                  color: "#fff",
-                  fontFamily: "'Sora',sans-serif",
+                  color: "var(--text)",
+                  fontFamily: "var(--font-h)",
                   fontWeight: 700,
                   display: "inline-block",
                 }}
@@ -2259,7 +2259,7 @@ export default function PortfolioPage() {
                   style={{
                     fontSize: 12,
                     color: "rgba(255,255,255,0.25)",
-                    fontFamily: "'Space Mono',monospace",
+                    fontFamily: "var(--font-m)",
                   }}
                 >
                   {t}

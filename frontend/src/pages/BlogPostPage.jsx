@@ -36,7 +36,7 @@ function renderBody(text, accentColor) {
     if (line.startsWith('## ')) {
       flush();
       elements.push(
-        <h2 key={i} style={{ fontFamily: "'Sora',sans-serif", fontSize: 20, fontWeight: 800, color: '#fff', margin: '36px 0 14px', letterSpacing: -0.3, borderLeft: `3px solid ${accentColor}`, paddingLeft: 14 }}>
+        <h2 key={i} style={{ fontFamily: "var(--font-h)", fontSize: 20, fontWeight: 800, color: 'var(--text)', margin: '36px 0 14px', letterSpacing: -0.3, borderLeft: `3px solid ${accentColor}`, paddingLeft: 14 }}>
           {line.slice(3)}
         </h2>
       );
@@ -163,7 +163,7 @@ export default function BlogPostPage() {
   if (!post) return (
     <div style={{ minHeight: '80vh', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', textAlign: 'center', padding: '80px 5%' }}>
       <div style={{ fontSize: 48, marginBottom: 16 }}>📄</div>
-      <h2 style={{ color: '#fff', fontFamily: "'Sora',sans-serif", marginBottom: 12 }}>Article not found</h2>
+      <h2 style={{ color: 'var(--text)', fontFamily: "var(--font-h)", marginBottom: 12 }}>Article not found</h2>
       <button onClick={() => navigate('/blog')} className="btn-primary" style={{ padding: '12px 28px' }}>← Back to Blog</button>
     </div>
   );
@@ -179,7 +179,7 @@ export default function BlogPostPage() {
         @keyframes fadeUpPost { from{opacity:0;transform:translateY(16px)} to{opacity:1;transform:none} }
         @keyframes glowFloat  { 0%,100%{opacity:0.4} 50%{opacity:0.75} }
         .post-article { animation: fadeUpPost 0.5s ease both; }
-        .comment-input::placeholder { color: rgba(255,255,255,0.2); }
+        .comment-input::placeholder { color: var(--border); }
         .comment-input:focus { outline: none; border-color: ${PRIMARY}55 !important; box-shadow: 0 0 0 3px ${PRIMARY}15; }
         .like-btn { transition: all 0.18s; cursor: pointer; }
         .like-btn:hover { transform: scale(1.05); }
@@ -200,7 +200,7 @@ export default function BlogPostPage() {
 
           {/* Back */}
           <button onClick={() => navigate('/blog')}
-            style={{ display: 'flex', alignItems: 'center', gap: 8, background: 'none', border: 'none', color: 'rgba(255,255,255,0.38)', fontSize: 13, cursor: 'pointer', marginBottom: 32, padding: 0, fontFamily: "'Space Mono',monospace", transition: 'color 0.18s' }}
+            style={{ display: 'flex', alignItems: 'center', gap: 8, background: 'none', border: 'none', color: 'rgba(255,255,255,0.38)', fontSize: 13, cursor: 'pointer', marginBottom: 32, padding: 0, fontFamily: "var(--font-m)", transition: 'color 0.18s' }}
             onMouseEnter={e => e.currentTarget.style.color = PRIMARY2}
             onMouseLeave={e => e.currentTarget.style.color = 'rgba(255,255,255,0.38)'}>
             ← Back to Blog
@@ -208,24 +208,24 @@ export default function BlogPostPage() {
 
           {/* Meta */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20, flexWrap: 'wrap' }}>
-            <span style={{ display: 'inline-block', padding: '4px 14px', borderRadius: 999, border: `1px solid ${color}30`, background: `${color}10`, color, fontSize: 11, fontFamily: "'Space Mono',monospace", letterSpacing: 0.5, textTransform: 'uppercase', fontWeight: 600 }}>{post.category}</span>
-            <span style={{ fontFamily: "'Space Mono',monospace", fontSize: 11, color: 'rgba(255,255,255,0.28)' }}>
+            <span style={{ display: 'inline-block', padding: '4px 14px', borderRadius: 999, border: `1px solid ${color}30`, background: `${color}10`, color, fontSize: 11, fontFamily: "var(--font-m)", letterSpacing: 0.5, textTransform: 'uppercase', fontWeight: 600 }}>{post.category}</span>
+            <span style={{ fontFamily: "var(--font-m)", fontSize: 11, color: 'rgba(255,255,255,0.28)' }}>
               {new Date(post.createdAt).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })}
             </span>
-            <span style={{ fontFamily: "'Space Mono',monospace", fontSize: 11, color: 'rgba(255,255,255,0.28)' }}>· {minutes} min read</span>
-            {post.views > 0 && <span style={{ fontFamily: "'Space Mono',monospace", fontSize: 11, color: 'rgba(255,255,255,0.28)' }}>· {post.views.toLocaleString()} views</span>}
+            <span style={{ fontFamily: "var(--font-m)", fontSize: 11, color: 'rgba(255,255,255,0.28)' }}>· {minutes} min read</span>
+            {post.views > 0 && <span style={{ fontFamily: "var(--font-m)", fontSize: 11, color: 'rgba(255,255,255,0.28)' }}>· {post.views.toLocaleString()} views</span>}
           </div>
 
-          <h1 style={{ fontFamily: "'Sora',sans-serif", fontSize: 'clamp(24px,4vw,42px)', fontWeight: 900, color: '#fff', margin: '0 0 24px', lineHeight: 1.2, letterSpacing: -1 }}>{post.title}</h1>
+          <h1 style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(24px,4vw,42px)', fontWeight: 900, color: 'var(--text)', margin: '0 0 24px', lineHeight: 1.2, letterSpacing: -1 }}>{post.title}</h1>
 
           <div style={{ borderLeft: `3px solid ${color}`, paddingLeft: 20, marginBottom: 36 }}>
-            <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.5)', lineHeight: 1.8, margin: 0, fontStyle: 'italic' }}>{post.excerpt}</p>
+            <p style={{ fontSize: 16, color: 'var(--muted)', lineHeight: 1.8, margin: 0, fontStyle: 'italic' }}>{post.excerpt}</p>
           </div>
 
           <div style={{ height: 1, background: `linear-gradient(90deg,${color}50,${ACCENT}30,transparent)`, marginBottom: 36 }} />
 
           {!hasRealBody && (
-            <div style={{ marginBottom: 20, padding: '10px 16px', background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.2)', borderRadius: 10, fontSize: 12, color: 'rgba(245,158,11,0.8)', fontFamily: "'Space Mono',monospace" }}>
+            <div style={{ marginBottom: 20, padding: '10px 16px', background: 'rgba(245,158,11,0.08)', border: '1px solid rgba(245,158,11,0.2)', borderRadius: 10, fontSize: 12, color: 'rgba(245,158,11,0.8)', fontFamily: "var(--font-m)" }}>
               ✏️ Full article coming soon — showing excerpt preview.
             </div>
           )}
@@ -237,13 +237,13 @@ export default function BlogPostPage() {
             <div style={{ display: 'flex', gap: 10 }}>
               {/* Like button */}
               <button className="like-btn" onClick={handleLike}
-                style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 16px', borderRadius: 999, background: isLiked ? `${PRIMARY}18` : 'rgba(255,255,255,0.05)', border: `1px solid ${isLiked ? PRIMARY+'40' : 'rgba(255,255,255,0.1)'}`, color: isLiked ? PRIMARY2 : 'rgba(255,255,255,0.5)', fontSize: 13, fontFamily: "'Space Mono',monospace", fontWeight: 600 }}>
+                style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '8px 16px', borderRadius: 999, background: isLiked ? `${PRIMARY}18` : 'var(--bg2)', border: `1px solid ${isLiked ? PRIMARY+'40' : 'var(--border)'}`, color: isLiked ? PRIMARY2 : 'var(--muted)', fontSize: 13, fontFamily: "var(--font-m)", fontWeight: 600 }}>
                 <span style={{ fontSize: 16 }}>{isLiked ? '❤️' : '🤍'}</span>
                 <span>{likeCount > 0 ? likeCount : 'Like'}</span>
               </button>
               {/* Save button */}
               <button className="save-post-btn" onClick={handleToggleSave}
-                style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '8px 16px', borderRadius: 999, background: isSaved ? `${ACCENT}18` : 'rgba(255,255,255,0.05)', border: `1px solid ${isSaved ? ACCENT+'40' : 'rgba(255,255,255,0.1)'}`, color: isSaved ? PRIMARY2 : 'rgba(255,255,255,0.5)', fontSize: 13, fontFamily: "'Space Mono',monospace", fontWeight: 600 }}>
+                style={{ display: 'flex', alignItems: 'center', gap: 7, padding: '8px 16px', borderRadius: 999, background: isSaved ? `${ACCENT}18` : 'var(--bg2)', border: `1px solid ${isSaved ? ACCENT+'40' : 'var(--border)'}`, color: isSaved ? PRIMARY2 : 'var(--muted)', fontSize: 13, fontFamily: "var(--font-m)", fontWeight: 600 }}>
                 <span style={{ fontSize: 15 }}>{isSaved ? '🔖' : '🏷️'}</span>
                 <span>{isSaved ? 'Saved' : 'Save'}</span>
               </button>
@@ -252,20 +252,20 @@ export default function BlogPostPage() {
             <div style={{ display: 'flex', gap: 8 }}>
               <a href={`https://x.com/intent/tweet?text=${encodeURIComponent(post.title)}&url=${encodeURIComponent(window.location.href)}`}
                 target="_blank" rel="noopener noreferrer"
-                style={{ width: 36, height: 36, borderRadius: 999, background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.5)', fontSize: 13, textDecoration: 'none', fontWeight: 700, transition: 'all 0.18s' }}
+                style={{ width: 36, height: 36, borderRadius: 999, background: 'rgba(255,255,255,0.06)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--muted)', fontSize: 13, textDecoration: 'none', fontWeight: 700, transition: 'all 0.18s' }}
                 onMouseEnter={e => { e.currentTarget.style.background = `${PRIMARY}18`; e.currentTarget.style.borderColor = `${PRIMARY}40`; e.currentTarget.style.color = PRIMARY2; }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; }}>
+                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--muted)'; }}>
                 𝕏
               </a>
               <a href={`https://linkedin.com/shareArticle?title=${encodeURIComponent(post.title)}&url=${encodeURIComponent(window.location.href)}`}
                 target="_blank" rel="noopener noreferrer"
-                style={{ width: 36, height: 36, borderRadius: 999, background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.5)', fontSize: 13, textDecoration: 'none', fontWeight: 700, transition: 'all 0.18s' }}
+                style={{ width: 36, height: 36, borderRadius: 999, background: 'rgba(255,255,255,0.06)', border: '1px solid var(--border)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'var(--muted)', fontSize: 13, textDecoration: 'none', fontWeight: 700, transition: 'all 0.18s' }}
                 onMouseEnter={e => { e.currentTarget.style.background = `${PRIMARY}18`; e.currentTarget.style.borderColor = `${PRIMARY}40`; e.currentTarget.style.color = PRIMARY2; }}
-                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.borderColor = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = 'rgba(255,255,255,0.5)'; }}>
+                onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.06)'; e.currentTarget.style.borderColor = 'var(--border)'; e.currentTarget.style.color = 'var(--muted)'; }}>
                 in
               </a>
               <button onClick={handleCopyLink}
-                style={{ height: 36, padding: '0 14px', borderRadius: 999, background: copied ? 'rgba(139,92,246,0.12)' : 'rgba(255,255,255,0.06)', border: `1px solid ${copied ? 'rgba(139,92,246,0.3)' : 'rgba(255,255,255,0.1)'}`, color: copied ? '#8B5CF6' : 'rgba(255,255,255,0.5)', fontSize: 11, fontFamily: "'Space Mono',monospace", cursor: 'pointer', transition: 'all 0.2s', whiteSpace: 'nowrap' }}>
+                style={{ height: 36, padding: '0 14px', borderRadius: 999, background: copied ? 'rgba(139,92,246,0.12)' : 'rgba(255,255,255,0.06)', border: `1px solid ${copied ? 'rgba(139,92,246,0.3)' : 'var(--border)'}`, color: copied ? '#8B5CF6' : 'var(--muted)', fontSize: 11, fontFamily: "var(--font-m)", cursor: 'pointer', transition: 'all 0.2s', whiteSpace: 'nowrap' }}>
                 {copied ? '✓ Copied' : '🔗 Copy link'}
               </button>
             </div>
@@ -273,7 +273,7 @@ export default function BlogPostPage() {
 
           {/* ── Comments Section ── */}
           <div style={{ marginTop: 56, paddingTop: 32, borderTop: '1px solid rgba(255,255,255,0.07)' }}>
-            <h3 style={{ fontFamily: "'Sora',sans-serif", fontSize: 18, fontWeight: 800, color: '#fff', marginBottom: 24, letterSpacing: -0.3 }}>
+            <h3 style={{ fontFamily: "var(--font-h)", fontSize: 18, fontWeight: 800, color: 'var(--text)', marginBottom: 24, letterSpacing: -0.3 }}>
               💬 Comments ({comments.length})
             </h3>
 
@@ -283,8 +283,8 @@ export default function BlogPostPage() {
                 {comments.map(c => (
                   <div key={c.id} style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 14, padding: '16px 20px' }}>
                     <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
-                      <span style={{ fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 13, color: PRIMARY2 }}>{c.name}</span>
-                      <span style={{ fontFamily: "'Space Mono',monospace", fontSize: 10, color: 'rgba(255,255,255,0.25)' }}>{c.date}</span>
+                      <span style={{ fontFamily: "var(--font-h)", fontWeight: 700, fontSize: 13, color: PRIMARY2 }}>{c.name}</span>
+                      <span style={{ fontFamily: "var(--font-m)", fontSize: 10, color: 'rgba(255,255,255,0.25)' }}>{c.date}</span>
                     </div>
                     <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.58)', lineHeight: 1.65, margin: 0 }}>{c.text}</p>
                   </div>
@@ -301,7 +301,7 @@ export default function BlogPostPage() {
                   value={commentName}
                   onChange={e => setCommentName(e.target.value)}
                   className="comment-input"
-                  style={{ width: '100%', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10, padding: '10px 14px', color: '#fff', fontSize: 13, fontFamily: "'Sora',sans-serif", transition: 'all 0.2s' }}
+                  style={{ width: '100%', background: 'var(--bg2)', border: '1px solid var(--border)', borderRadius: 10, padding: '10px 14px', color: 'var(--text)', fontSize: 13, fontFamily: "var(--font-h)", transition: 'all 0.2s' }}
                 />
               </div>
               <div style={{ marginBottom: 14 }}>
@@ -311,11 +311,11 @@ export default function BlogPostPage() {
                   onChange={e => setCommentText(e.target.value)}
                   rows={3}
                   className="comment-input"
-                  style={{ width: '100%', background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.1)', borderRadius: 10, padding: '10px 14px', color: '#fff', fontSize: 13, fontFamily: "'Sora',sans-serif", resize: 'vertical', transition: 'all 0.2s' }}
+                  style={{ width: '100%', background: 'var(--bg2)', border: '1px solid var(--border)', borderRadius: 10, padding: '10px 14px', color: 'var(--text)', fontSize: 13, fontFamily: "var(--font-h)", resize: 'vertical', transition: 'all 0.2s' }}
                 />
               </div>
               <button type="submit" disabled={!commentText.trim()}
-                style={{ padding: '10px 24px', background: commentText.trim() ? `linear-gradient(135deg,${PRIMARY},${ACCENT})` : 'rgba(255,255,255,0.08)', border: 'none', borderRadius: 10, color: commentText.trim() ? '#fff' : 'rgba(255,255,255,0.3)', fontSize: 13, fontWeight: 700, fontFamily: "'Sora',sans-serif", cursor: commentText.trim() ? 'pointer' : 'default', transition: 'all 0.2s', boxShadow: commentText.trim() ? `0 4px 14px ${PRIMARY}40` : 'none' }}>
+                style={{ padding: '10px 24px', background: commentText.trim() ? `linear-gradient(135deg,${PRIMARY},${ACCENT})` : 'rgba(255,255,255,0.08)', border: 'none', borderRadius: 10, color: commentText.trim() ? 'var(--text)' : 'var(--border)', fontSize: 13, fontWeight: 700, fontFamily: "var(--font-h)", cursor: commentText.trim() ? 'pointer' : 'default', transition: 'all 0.2s', boxShadow: commentText.trim() ? `0 4px 14px ${PRIMARY}40` : 'none' }}>
                 Post Comment →
               </button>
             </form>
@@ -325,7 +325,7 @@ export default function BlogPostPage() {
         {/* Related posts */}
         {related.length > 0 && (
           <div style={{ maxWidth: 760, margin: '64px auto 0', position: 'relative', zIndex: 1 }}>
-            <h3 style={{ fontFamily: "'Sora',sans-serif", fontSize: 20, fontWeight: 800, color: '#fff', marginBottom: 20, letterSpacing: -0.3 }}>Related Articles</h3>
+            <h3 style={{ fontFamily: "var(--font-h)", fontSize: 20, fontWeight: 800, color: 'var(--text)', marginBottom: 20, letterSpacing: -0.3 }}>Related Articles</h3>
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(220px,1fr))', gap: 16 }}>
               {related.map(r => {
                 const rc = TAG_COLORS[r.category] || PRIMARY;
@@ -335,9 +335,9 @@ export default function BlogPostPage() {
                     onMouseEnter={e => { e.currentTarget.style.borderColor = `${rc}40`; e.currentTarget.style.boxShadow = `0 8px 24px ${rc}12`; }}
                     onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.boxShadow = 'none'; }}>
                     <div style={{ height: 3, background: `linear-gradient(90deg,${rc},${ACCENT},transparent)`, marginBottom: 14, borderRadius: 2, marginLeft: -20, marginRight: -20, marginTop: -20 }} />
-                    <span style={{ display: 'inline-block', padding: '2px 8px', borderRadius: 999, border: `1px solid ${rc}30`, background: `${rc}10`, color: rc, fontSize: 9, fontFamily: "'Space Mono',monospace", letterSpacing: 0.5, textTransform: 'uppercase', fontWeight: 600, marginBottom: 10 }}>{r.category}</span>
-                    <h4 style={{ fontFamily: "'Sora',sans-serif", fontSize: 14, fontWeight: 800, color: '#fff', margin: '0 0 8px', lineHeight: 1.4 }}>{r.title}</h4>
-                    <span style={{ fontSize: 11, color: PRIMARY2, fontWeight: 700, fontFamily: "'Space Mono',monospace" }}>Read →</span>
+                    <span style={{ display: 'inline-block', padding: '2px 8px', borderRadius: 999, border: `1px solid ${rc}30`, background: `${rc}10`, color: rc, fontSize: 9, fontFamily: "var(--font-m)", letterSpacing: 0.5, textTransform: 'uppercase', fontWeight: 600, marginBottom: 10 }}>{r.category}</span>
+                    <h4 style={{ fontFamily: "var(--font-h)", fontSize: 14, fontWeight: 800, color: 'var(--text)', margin: '0 0 8px', lineHeight: 1.4 }}>{r.title}</h4>
+                    <span style={{ fontSize: 11, color: PRIMARY2, fontWeight: 700, fontFamily: "var(--font-m)" }}>Read →</span>
                   </div>
                 );
               })}
@@ -347,11 +347,11 @@ export default function BlogPostPage() {
 
         {/* CTA */}
         <div style={{ maxWidth: 760, margin: '64px auto 0', position: 'relative', zIndex: 1 }}>
-          <div style={{ background: `linear-gradient(135deg,${PRIMARY}10,${ACCENT}08,rgba(255,255,255,0.02))`, border: `1px solid ${PRIMARY}20`, borderRadius: 20, padding: '36px 32px', textAlign: 'center' }}>
-            <p style={{ fontFamily: "'Sora',sans-serif", fontSize: 18, fontWeight: 800, color: '#fff', margin: '0 0 8px' }}>Need help with {post.category}?</p>
-            <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.4)', margin: '0 0 20px' }}>Our team at Axentralab is ready to help with a tailored solution.</p>
+          <div style={{ background: `linear-gradient(135deg,${PRIMARY}10,${ACCENT}08,var(--bg2))`, border: `1px solid ${PRIMARY}20`, borderRadius: 20, padding: '36px 32px', textAlign: 'center' }}>
+            <p style={{ fontFamily: "var(--font-h)", fontSize: 18, fontWeight: 800, color: 'var(--text)', margin: '0 0 8px' }}>Need help with {post.category}?</p>
+            <p style={{ fontSize: 14, color: 'var(--muted)', margin: '0 0 20px' }}>Our team at Axentralab is ready to help with a tailored solution.</p>
             <button onClick={() => navigate('/contact')}
-              style={{ padding: '12px 28px', background: `linear-gradient(135deg,${PRIMARY},${ACCENT})`, color: '#fff', border: 'none', borderRadius: 10, fontSize: 14, fontWeight: 700, fontFamily: "'Sora',sans-serif", cursor: 'pointer', boxShadow: `0 4px 18px ${PRIMARY}40`, transition: 'all 0.2s' }}
+              style={{ padding: '12px 28px', background: `linear-gradient(135deg,${PRIMARY},${ACCENT})`, color: 'var(--text)', border: 'none', borderRadius: 10, fontSize: 14, fontWeight: 700, fontFamily: "var(--font-h)", cursor: 'pointer', boxShadow: `0 4px 18px ${PRIMARY}40`, transition: 'all 0.2s' }}
               onMouseEnter={e => e.currentTarget.style.transform = 'translateY(-1px)'}
               onMouseLeave={e => e.currentTarget.style.transform = 'none'}>
               Get in Touch →

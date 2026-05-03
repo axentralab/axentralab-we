@@ -52,7 +52,7 @@ const TESTIMONIALS = [
     avatar: 'RU',
     color: '#EC4899',
     company: 'PayFlow Bangladesh',
-    quote: 'Security audit and infrastructure setup with Axentralab. Their expertise in cybersecurity and cloud architecture gave us confidence to scale.',
+    quote: 'Infrastructure Audit and infrastructure setup with Axentralab. Their expertise in cloud infrastructure and cloud architecture gave us confidence to scale.',
     image: 'https://api.dicebear.com/7.x/avataaars/svg?seed=Rashid',
   },
 ];

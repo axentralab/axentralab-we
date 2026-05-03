@@ -1,1010 +1,4 @@
 import { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
-import SEOHelmet from '../components/SEOHelmet';
-
-// Counter hook for stats animation
-function useCounter(target, duration = 1800) {
-  const [val, setVal] = useState(0);
-  const started = useRef(false);
-  const ref = useRef(null);
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(([e]) => {
-      if (e.isIntersecting && !started.current) {
-        started.current = true;
-        const steps = 60;
-        let i = 0;
-        const tick = setInterval(() => {
-          i++;
-          const ease = 1 - Math.pow(1 - i / steps, 3);
-          setVal(Math.floor(target * ease));
-          if (i >= steps) { setVal(target); clearInterval(tick); }
-        }, duration / steps);
-      }
-    }, { threshold: 0.3 });
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  }, [target, duration]);
-
-  return [val, ref];
-}
-
-const SERVICES_OVERVIEW = [
-  {
-    icon: '💻',
-    title: 'Web Development',
-    desc: 'Landing pages, business sites, ecommerce, and custom web apps built for conversions.',
-    features: ['Responsive Design', 'SEO Ready', 'Fast Loading', 'Mobile First'],
-    link: '/services',
-  },
-  {
-    icon: '🔐',
-    title: 'Cybersecurity',
-    desc: 'Security audits, vulnerability scanning, malware removal, and 24/7 monitoring.',
-    features: ['OWASP Audits', 'WAF Setup', 'Pen Testing', 'Monitoring'],
-    link: '/services',
-  },
-  {
-    icon: '🏠',
-    title: 'Managed Hosting',
-    desc: 'Fast, secure, and reliable hosting with daily backups and 99.9% uptime.',
-    features: ['99.9% Uptime', 'Auto Backups', 'SSL Certs', 'Support 24/7'],
-    link: '/hosting',
-  },
-];
-
-const WHY_AXENTRALAB = [
-  { icon: '⚡', title: 'Lightning Fast', desc: 'Optimized for speed. Average load time under 2 seconds.' },
-  { icon: '🛡️', title: 'Bank-Level Security', desc: 'OWASP compliant. Regular audits. Zero compromises.' },
-  { icon: '📈', title: 'Growth Focused', desc: 'Every solution is designed to increase your revenue.' },
-  { icon: '👥', title: 'Expert Team', desc: '15+ years of combined experience. 200+ successful projects.' },
-  { icon: '💬', title: '24/7 Support', desc: 'Live chat, email, phone. We\'re always here when you need us.' },
-  { icon: '💰', title: 'No Hidden Fees', desc: 'Transparent pricing. Clear contracts. No surprises.' },
-];
-
-const HOSTING_TIERS = [
-  {
-    name: 'Shared Hosting',
-    price: '$9.99',
-    period: '/month',
-    features: ['50 GB Storage', 'SSL Certificate', 'Email Accounts', '99.5% Uptime'],
-    cta: 'Get Started',
-  },
-  {
-    name: 'Managed WordPress',
-    price: '$19.99',
-    period: '/month',
-    features: ['200 GB Storage', 'Daily Backups', 'WordPress Optimized', '99.9% Uptime'],
-    highlighted: true,
-    cta: 'Start WordPress',
-  },
-  {
-    name: 'Cloud Hosting',
-    price: '$29.99',
-    period: '/month',
-    features: ['500 GB Storage', 'Scalable Resources', 'Hourly Backups', '99.99% Uptime'],
-    cta: 'Go Cloud',
-  },
-];
-
-const CARE_PLANS = [
-  {
-    name: 'Basic Care',
-    price: '$49',
-    period: '/month',
-    features: ['Weekly Scans', 'Monthly Updates', 'Email Support', 'Reports'],
-  },
-  {
-    name: 'Professional Care',
-    price: '$99',
-    period: '/month',
-    features: ['Daily Scans', 'Bi-weekly Updates', 'Chat Support', 'Speed Optimization'],
-    highlighted: true,
-  },
-  {
-    name: 'Enterprise Care',
-    price: '$199',
-    period: '/month',
-    features: ['24/7 Monitoring', 'Real-time Updates', 'Dedicated Manager', 'Malware Removal'],
-  },
-];
-
-const RECENT_PROJECTS = [
-  {
-    icon: '🚀',
-    company: 'TechFlow Solutions',
-    result: '145% Conversion Increase',
-    service: 'Web Development + Hosting',
-  },
-  {
-    icon: '🛍️',
-    company: 'Global E-commerce Inc',
-    result: '68% Speed Improvement',
-    service: 'Performance Optimization',
-  },
-  {
-    icon: '🔒',
-    company: 'SecureBank Corp',
-    result: '100% Security Compliance',
-    service: 'Security Audit & Hardening',
-  },
-];
-
-const TESTIMONIALS = [
-  {
-    quote: 'Axentralab transformed our online presence. Their team is professional and truly cares about our success.',
-    author: 'Sarah Johnson',
-    role: 'CEO',
-    company: 'TechFlow Solutions',
-  },
-  {
-    quote: 'The hosting performance is incredible. Their support team goes above and beyond.',
-    author: 'Mike Chen',
-    role: 'CTO',
-    company: 'Global E-commerce',
-  },
-  {
-    quote: 'Security was our top concern, and they delivered. Thorough, professional, and complete.',
-    author: 'Lisa Martinez',
-    role: 'Security Director',
-    company: 'SecureBank Corp',
-  },
-];
-
-const TECH_STACK = [
-  { name: 'React', icon: '⚛️' },
-  { name: 'Node.js', icon: '🟢' },
-  { name: 'MongoDB', icon: '🍃' },
-  { name: 'AWS', icon: '☁️' },
-  { name: 'Docker', icon: '🐳' },
-  { name: 'Kubernetes', icon: '☸️' },
-  { name: 'PostgreSQL', icon: '🐘' },
-  { name: 'Redis', icon: '🔴' },
-];
-
-function StatCard({ number, label, ref }) {
-  const [val] = useCounter(number);
-  return (
-    <div
-      ref={ref}
-      style={{
-        textAlign: 'center',
-        padding: '30px 20px',
-        borderRight: '1px solid rgba(0, 212, 170, 0.1)',
-      }}
-    >
-      <div style={{ fontSize: '2.5rem', fontWeight: 900, color: '#00d4aa' }}>
-        {val}+
-      </div>
-      <div style={{ fontSize: '0.875rem', color: 'rgba(255,255,255,0.6)', marginTop: 8 }}>
-        {label}
-      </div>
-    </div>
-  );
-}
-
-export default function HomePage() {
-  const [scrolled, setScrolled] = useState(false);
-
-  useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 40);
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
-
-  return (
-    <>
-      <SEOHelmet
-        title="Web Development, Cybersecurity & Hosting | Axentralab"
-        description="Digital infrastructure company. Web development, cybersecurity, and managed hosting all in one partner."
-        keywords="web development, cybersecurity, hosting, digital infrastructure"
-      />
-
-      <style>{`
-        @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: none; } }
-        @keyframes slideInLeft { from { opacity: 0; transform: translateX(-30px); } to { opacity: 1; transform: none; } }
-        .fade-up { animation: fadeUp 0.6s ease forwards; }
-        .slide-in { animation: slideInLeft 0.6s ease forwards; }
-        @media (max-width: 768px) {
-          .grid-2 { grid-template-columns: 1fr !important; }
-          .grid-3 { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
-
-      {/* ─── HERO ─────────────────────────────────────────────────────────────────────────────── */}
-      <section
-        style={{
-          minHeight: '100vh',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 100%)',
-          padding: '100px 5% 50px',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-      >
-        <div style={{ position: 'absolute', inset: 0, opacity: 0.1 }}>
-          <div
-            style={{
-              position: 'absolute',
-              width: '500px',
-              height: '500px',
-              background: 'radial-gradient(circle, #00d4aa 0%, transparent 70%)',
-              top: '-10%',
-              right: '5%',
-              filter: 'blur(60px)',
-            }}
-          />
-          <div
-            style={{
-              position: 'absolute',
-              width: '400px',
-              height: '400px',
-              background: 'radial-gradient(circle, #3b82f6 0%, transparent 70%)',
-              bottom: '10%',
-              left: '2%',
-              filter: 'blur(60px)',
-            }}
-          />
-        </div>
-
-        <div style={{ maxWidth: '900px', zIndex: 2, textAlign: 'center' }}>
-          <div
-            className="fade-up"
-            style={{
-              display: 'inline-block',
-              padding: '8px 20px',
-              background: 'rgba(0, 212, 170, 0.1)',
-              border: '1px solid rgba(0, 212, 170, 0.3)',
-              borderRadius: 50,
-              marginBottom: 30,
-            }}
-          >
-            <span style={{ color: '#00d4aa', fontSize: '0.875rem', fontWeight: 700 }}>
-              🌟 Award-Winning IT Company
-            </span>
-          </div>
-
-          <h1
-            className="fade-up"
-            style={{
-              fontSize: 'clamp(2.5rem, 8vw, 4rem)',
-              fontWeight: 900,
-              color: '#fff',
-              marginBottom: 30,
-              lineHeight: 1.2,
-              animationDelay: '0.1s',
-            }}
-          >
-            Web Development, Cybersecurity & Managed Hosting
-            <br />
-            <span style={{ color: '#00d4aa' }}>All In One Partner</span>
-          </h1>
-
-          <p
-            className="fade-up"
-            style={{
-              fontSize: 'clamp(1rem, 2vw, 1.3rem)',
-              color: 'rgba(255,255,255,0.7)',
-              marginBottom: 40,
-              lineHeight: 1.6,
-              maxWidth: '700px',
-              margin: '0 auto 40px',
-              animationDelay: '0.2s',
-            }}
-          >
-            Digital infrastructure for modern businesses. Build, secure, and scale with confidence.
-          </p>
-
-          <div
-            className="fade-up"
-            style={{
-              display: 'flex',
-              gap: 16,
-              justifyContent: 'center',
-              flexWrap: 'wrap',
-              marginBottom: 50,
-              animationDelay: '0.3s',
-            }}
-          >
-            <Link
-              to="/contact"
-              style={{
-                padding: '14px 40px',
-                background: '#00d4aa',
-                color: '#000',
-                textDecoration: 'none',
-                borderRadius: 8,
-                fontWeight: 700,
-                fontSize: 16,
-                transition: 'all 0.3s',
-                display: 'inline-block',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 12px 24px rgba(0, 212, 170, 0.3)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = 'none';
-              }}
-            >
-              Start Your Project
-            </Link>
-            <Link
-              to="/case-studies"
-              style={{
-                padding: '14px 40px',
-                background: 'rgba(0, 212, 170, 0.15)',
-                color: '#00d4aa',
-                border: '1px solid rgba(0, 212, 170, 0.3)',
-                textDecoration: 'none',
-                borderRadius: 8,
-                fontWeight: 700,
-                fontSize: 16,
-                transition: 'all 0.3s',
-                display: 'inline-block',
-              }}
-              onMouseEnter={e => {
-                e.currentTarget.style.background = 'rgba(0, 212, 170, 0.25)';
-              }}
-              onMouseLeave={e => {
-                e.currentTarget.style.background = 'rgba(0, 212, 170, 0.15)';
-              }}
-            >
-              View Case Studies
-            </Link>
-          </div>
-
-          {/* Stats Bar */}
-          <div
-            className="fade-up"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(4, 1fr)',
-              background: 'rgba(30, 41, 59, 0.4)',
-              border: '1px solid rgba(0, 212, 170, 0.15)',
-              borderRadius: 12,
-              overflow: 'hidden',
-              animationDelay: '0.4s',
-            }}
-          >
-            <StatCard number={200} label="Projects Completed" />
-            <StatCard number={500} label="Happy Clients" />
-            <StatCard number={99} label="Client Satisfaction %" />
-            <StatCard number={15} label="Years Experience" />
-          </div>
-        </div>
-      </section>
-
-      {/* ─── SERVICES OVERVIEW ───────────────────────────────────────────────────────────────── */}
-      <section
-        style={{
-          padding: '80px 5%',
-          background: '#0f172a',
-          borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
-        }}
-      >
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <h2
-            style={{
-              textAlign: 'center',
-              fontSize: 'clamp(2rem, 5vw, 2.5rem)',
-              fontWeight: 800,
-              color: '#fff',
-              marginBottom: 50,
-            }}
-          >
-            Complete Digital Infrastructure
-          </h2>
-          <div
-            className="grid-3"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: 30,
-            }}
-          >
-            {SERVICES_OVERVIEW.map((service, i) => (
-              <Link
-                to={service.link}
-                key={i}
-                style={{
-                  padding: 30,
-                  background: 'rgba(30, 41, 59, 0.6)',
-                  border: '1px solid rgba(0, 212, 170, 0.15)',
-                  borderRadius: 12,
-                  textDecoration: 'none',
-                  transition: 'all 0.3s',
-                  display: 'block',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.transform = 'translateY(-12px)';
-                  e.currentTarget.style.borderColor = 'rgba(0, 212, 170, 0.4)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                  e.currentTarget.style.borderColor = 'rgba(0, 212, 170, 0.15)';
-                }}
-              >
-                <div style={{ fontSize: '2.5rem', marginBottom: 16 }}>{service.icon}</div>
-                <h3 style={{ color: '#fff', marginBottom: 12, fontSize: 20, fontWeight: 700 }}>
-                  {service.title}
-                </h3>
-                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 14, lineHeight: 1.6, marginBottom: 20 }}>
-                  {service.desc}
-                </p>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  {service.features.map((f, j) => (
-                    <div key={j} style={{ display: 'flex', gap: 8, color: 'rgba(255,255,255,0.7)', fontSize: 13 }}>
-                      <span style={{ color: '#00d4aa' }}>✓</span>
-                      <span>{f}</span>
-                    </div>
-                  ))}
-                </div>
-              </Link>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── WHY AXENTRALAB ──────────────────────────────────────────────────────────────────── */}
-      <section
-        style={{
-          padding: '80px 5%',
-          background: '#0f172a',
-          borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
-        }}
-      >
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <h2
-            style={{
-              textAlign: 'center',
-              fontSize: 'clamp(2rem, 5vw, 2.5rem)',
-              fontWeight: 800,
-              color: '#fff',
-              marginBottom: 50,
-            }}
-          >
-            Why Choose Axentralab?
-          </h2>
-          <div
-            className="grid-3"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: 30,
-            }}
-          >
-            {WHY_AXENTRALAB.map((item, i) => (
-              <div
-                key={i}
-                style={{
-                  padding: 30,
-                  background: 'rgba(30, 41, 59, 0.6)',
-                  border: '1px solid rgba(0, 212, 170, 0.15)',
-                  borderRadius: 12,
-                }}
-              >
-                <div style={{ fontSize: '2.5rem', marginBottom: 16 }}>{item.icon}</div>
-                <h3 style={{ color: '#fff', marginBottom: 10, fontSize: 18, fontWeight: 700 }}>
-                  {item.title}
-                </h3>
-                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 14, lineHeight: 1.6 }}>
-                  {item.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── HOSTING PLANS PREVIEW ───────────────────────────────────────────────────────────── */}
-      <section
-        style={{
-          padding: '80px 5%',
-          background: '#0f172a',
-          borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
-        }}
-      >
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <h2
-            style={{
-              textAlign: 'center',
-              fontSize: 'clamp(2rem, 5vw, 2.5rem)',
-              fontWeight: 800,
-              color: '#fff',
-              marginBottom: 20,
-            }}
-          >
-            Fast & Reliable Hosting
-          </h2>
-          <p
-            style={{
-              textAlign: 'center',
-              color: 'rgba(255,255,255,0.6)',
-              marginBottom: 50,
-              maxWidth: 600,
-              margin: '0 auto 50px',
-            }}
-          >
-            Starting from $9.99/month. All plans include free SSL, daily backups, and 24/7 support.
-          </p>
-          <div
-            className="grid-3"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: 30,
-            }}
-          >
-            {HOSTING_TIERS.map((plan, i) => (
-              <div
-                key={i}
-                style={{
-                  padding: 30,
-                  background: plan.highlighted
-                    ? 'linear-gradient(135deg, rgba(0, 212, 170, 0.1) 0%, rgba(0, 212, 170, 0.05) 100%)'
-                    : 'rgba(30, 41, 59, 0.6)',
-                  border: plan.highlighted
-                    ? '2px solid rgba(0, 212, 170, 0.6)'
-                    : '1px solid rgba(0, 212, 170, 0.15)',
-                  borderRadius: 12,
-                  position: 'relative',
-                  transition: 'all 0.3s',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.transform = 'translateY(-8px)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
-              >
-                {plan.highlighted && (
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: -12,
-                      left: '50%',
-                      transform: 'translateX(-50%)',
-                      background: '#00d4aa',
-                      color: '#000',
-                      padding: '4px 12px',
-                      borderRadius: 20,
-                      fontSize: 12,
-                      fontWeight: 700,
-                    }}
-                  >
-                    POPULAR
-                  </div>
-                )}
-                <h3 style={{ color: '#fff', marginBottom: 12, fontSize: 18, fontWeight: 700 }}>
-                  {plan.name}
-                </h3>
-                <div style={{ marginBottom: 20 }}>
-                  <span style={{ fontSize: 28, fontWeight: 800, color: '#00d4aa' }}>
-                    {plan.price}
-                  </span>
-                  <span style={{ color: 'rgba(255,255,255,0.6)' }}>{plan.period}</span>
-                </div>
-                <button
-                  style={{
-                    width: '100%',
-                    padding: '12px 20px',
-                    background: plan.highlighted ? '#00d4aa' : 'rgba(0, 212, 170, 0.2)',
-                    color: plan.highlighted ? '#000' : '#00d4aa',
-                    border: 'none',
-                    borderRadius: 8,
-                    fontWeight: 700,
-                    cursor: 'pointer',
-                    fontSize: 14,
-                    marginBottom: 20,
-                  }}
-                >
-                  {plan.cta}
-                </button>
-                <div style={{ borderTop: '1px solid rgba(0, 212, 170, 0.1)', paddingTop: 20 }}>
-                  {plan.features.map((f, j) => (
-                    <div
-                      key={j}
-                      style={{
-                        display: 'flex',
-                        gap: 10,
-                        marginBottom: 10,
-                        color: 'rgba(255,255,255,0.7)',
-                        fontSize: 13,
-                      }}
-                    >
-                      <span style={{ color: '#00d4aa' }}>✓</span>
-                      <span>{f}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div style={{ textAlign: 'center', marginTop: 40 }}>
-            <Link
-              to="/hosting"
-              style={{
-                color: '#00d4aa',
-                textDecoration: 'none',
-                fontWeight: 700,
-                fontSize: 16,
-              }}
-            >
-              View all hosting plans →
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── CARE PLANS PREVIEW ──────────────────────────────────────────────────────────────── */}
-      <section
-        style={{
-          padding: '80px 5%',
-          background: '#0f172a',
-          borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
-        }}
-      >
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <h2
-            style={{
-              textAlign: 'center',
-              fontSize: 'clamp(2rem, 5vw, 2.5rem)',
-              fontWeight: 800,
-              color: '#fff',
-              marginBottom: 20,
-            }}
-          >
-            Website Care Plans
-          </h2>
-          <p
-            style={{
-              textAlign: 'center',
-              color: 'rgba(255,255,255,0.6)',
-              marginBottom: 50,
-              maxWidth: 600,
-              margin: '0 auto 50px',
-            }}
-          >
-            Monthly maintenance to keep your site secure, fast, and up-to-date. Starting from $49/month.
-          </p>
-          <div
-            className="grid-3"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: 30,
-            }}
-          >
-            {CARE_PLANS.map((plan, i) => (
-              <div
-                key={i}
-                style={{
-                  padding: 30,
-                  background: plan.highlighted
-                    ? 'linear-gradient(135deg, rgba(0, 212, 170, 0.1) 0%, rgba(0, 212, 170, 0.05) 100%)'
-                    : 'rgba(30, 41, 59, 0.6)',
-                  border: plan.highlighted
-                    ? '2px solid rgba(0, 212, 170, 0.6)'
-                    : '1px solid rgba(0, 212, 170, 0.15)',
-                  borderRadius: 12,
-                  position: 'relative',
-                  transition: 'all 0.3s',
-                }}
-                onMouseEnter={e => {
-                  e.currentTarget.style.transform = 'translateY(-8px)';
-                }}
-                onMouseLeave={e => {
-                  e.currentTarget.style.transform = 'translateY(0)';
-                }}
-              >
-                {plan.highlighted && (
-                  <div
-                    style={{
-                      position: 'absolute',
-                      top: -12,
-                      left: '50%',
-                      transform: 'translateX(-50%)',
-                      background: '#00d4aa',
-                      color: '#000',
-                      padding: '4px 12px',
-                      borderRadius: 20,
-                      fontSize: 12,
-                      fontWeight: 700,
-                    }}
-                  >
-                    RECOMMENDED
-                  </div>
-                )}
-                <h3 style={{ color: '#fff', marginBottom: 12, fontSize: 18, fontWeight: 700 }}>
-                  {plan.name}
-                </h3>
-                <div style={{ marginBottom: 20 }}>
-                  <span style={{ fontSize: 28, fontWeight: 800, color: '#00d4aa' }}>
-                    {plan.price}
-                  </span>
-                  <span style={{ color: 'rgba(255,255,255,0.6)' }}>{plan.period}</span>
-                </div>
-                <button
-                  style={{
-                    width: '100%',
-                    padding: '12px 20px',
-                    background: plan.highlighted ? '#00d4aa' : 'rgba(0, 212, 170, 0.2)',
-                    color: plan.highlighted ? '#000' : '#00d4aa',
-                    border: 'none',
-                    borderRadius: 8,
-                    fontWeight: 700,
-                    cursor: 'pointer',
-                    fontSize: 14,
-                    marginBottom: 20,
-                  }}
-                >
-                  Get Plan
-                </button>
-                <div style={{ borderTop: '1px solid rgba(0, 212, 170, 0.1)', paddingTop: 20 }}>
-                  {plan.features.map((f, j) => (
-                    <div
-                      key={j}
-                      style={{
-                        display: 'flex',
-                        gap: 10,
-                        marginBottom: 10,
-                        color: 'rgba(255,255,255,0.7)',
-                        fontSize: 13,
-                      }}
-                    >
-                      <span style={{ color: '#00d4aa' }}>✓</span>
-                      <span>{f}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            ))}
-          </div>
-          <div style={{ textAlign: 'center', marginTop: 40 }}>
-            <Link
-              to="/maintenance"
-              style={{
-                color: '#00d4aa',
-                textDecoration: 'none',
-                fontWeight: 700,
-                fontSize: 16,
-              }}
-            >
-              View all care plans →
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── RECENT PROJECTS ─────────────────────────────────────────────────────────────────── */}
-      <section
-        style={{
-          padding: '80px 5%',
-          background: '#0f172a',
-          borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
-        }}
-      >
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <h2
-            style={{
-              textAlign: 'center',
-              fontSize: 'clamp(2rem, 5vw, 2.5rem)',
-              fontWeight: 800,
-              color: '#fff',
-              marginBottom: 50,
-            }}
-          >
-            Recent Success Stories
-          </h2>
-          <div
-            className="grid-3"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: 30,
-            }}
-          >
-            {RECENT_PROJECTS.map((project, i) => (
-              <div
-                key={i}
-                style={{
-                  padding: 30,
-                  background: 'rgba(30, 41, 59, 0.6)',
-                  border: '1px solid rgba(0, 212, 170, 0.15)',
-                  borderRadius: 12,
-                }}
-              >
-                <div style={{ fontSize: '2rem', marginBottom: 16 }}>{project.icon}</div>
-                <h3 style={{ color: '#fff', marginBottom: 8, fontSize: 18, fontWeight: 700 }}>
-                  {project.company}
-                </h3>
-                <p style={{ color: '#00d4aa', fontSize: 13, fontWeight: 700, marginBottom: 12 }}>
-                  {project.result}
-                </p>
-                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 13 }}>{project.service}</p>
-              </div>
-            ))}
-          </div>
-          <div style={{ textAlign: 'center', marginTop: 40 }}>
-            <Link
-              to="/case-studies"
-              style={{
-                color: '#00d4aa',
-                textDecoration: 'none',
-                fontWeight: 700,
-                fontSize: 16,
-              }}
-            >
-              View all case studies →
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ─── TESTIMONIALS ────────────────────────────────────────────────────────────────────── */}
-      <section
-        style={{
-          padding: '80px 5%',
-          background: '#0f172a',
-          borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
-        }}
-      >
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <h2
-            style={{
-              textAlign: 'center',
-              fontSize: 'clamp(2rem, 5vw, 2.5rem)',
-              fontWeight: 800,
-              color: '#fff',
-              marginBottom: 50,
-            }}
-          >
-            What Our Clients Say
-          </h2>
-          <div
-            className="grid-3"
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(3, 1fr)',
-              gap: 30,
-            }}
-          >
-            {TESTIMONIALS.map((testimonial, i) => (
-              <div
-                key={i}
-                style={{
-                  padding: 30,
-                  background: 'rgba(30, 41, 59, 0.6)',
-                  border: '1px solid rgba(0, 212, 170, 0.15)',
-                  borderRadius: 12,
-                }}
-              >
-                <div style={{ fontSize: 20, marginBottom: 16, color: '#00d4aa' }}>★★★★★</div>
-                <p
-                  style={{
-                    color: 'rgba(255,255,255,0.7)',
-                    fontSize: 14,
-                    lineHeight: 1.8,
-                    marginBottom: 20,
-                    fontStyle: 'italic',
-                  }}
-                >
-                  "{testimonial.quote}"
-                </p>
-                <div>
-                  <p style={{ color: '#fff', fontWeight: 700 }}>{testimonial.author}</p>
-                  <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 12 }}>
-                    {testimonial.role} • {testimonial.company}
-                  </p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── TECH STACK ──────────────────────────────────────────────────────────────────────── */}
-      <section
-        style={{
-          padding: '80px 5%',
-          background: '#0f172a',
-          borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
-          textAlign: 'center',
-        }}
-      >
-        <div style={{ maxWidth: '1200px', margin: '0 auto' }}>
-          <h2
-            style={{
-              fontSize: 'clamp(2rem, 5vw, 2.5rem)',
-              fontWeight: 800,
-              color: '#fff',
-              marginBottom: 50,
-            }}
-          >
-            Built With Modern Technology
-          </h2>
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))',
-              gap: 20,
-            }}
-          >
-            {TECH_STACK.map((tech, i) => (
-              <div
-                key={i}
-                style={{
-                  padding: 20,
-                  background: 'rgba(30, 41, 59, 0.6)',
-                  border: '1px solid rgba(0, 212, 170, 0.15)',
-                  borderRadius: 12,
-                  textAlign: 'center',
-                }}
-              >
-                <div style={{ fontSize: '2rem', marginBottom: 10 }}>{tech.icon}</div>
-                <div style={{ color: '#fff', fontWeight: 700, fontSize: 13 }}>{tech.name}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* ─── FINAL CTA ───────────────────────────────────────────────────────────────────────── */}
-      <section
-        style={{
-          padding: '80px 5%',
-          background: 'linear-gradient(135deg, rgba(0, 212, 170, 0.1) 0%, rgba(0, 212, 170, 0.05) 100%)',
-          textAlign: 'center',
-          border: '2px solid rgba(0, 212, 170, 0.3)',
-        }}
-      >
-        <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.3rem)', color: '#fff', marginBottom: 20 }}>
-          Ready to Transform Your Digital Infrastructure?
-        </h2>
-        <p
-          style={{
-            color: 'rgba(255,255,255,0.7)',
-            fontSize: 16,
-            marginBottom: 30,
-            maxWidth: 600,
-            margin: '0 auto 30px',
-          }}
-        >
-          Let's discuss your project and build something amazing together.
-        </p>
-        <Link
-          to="/contact"
-          style={{
-            display: 'inline-block',
-            padding: '14px 40px',
-            background: '#00d4aa',
-            color: '#000',
-            textDecoration: 'none',
-            borderRadius: 8,
-            fontWeight: 700,
-            fontSize: 16,
-            transition: 'all 0.3s',
-          }}
-          onMouseEnter={e => {
-            e.currentTarget.style.transform = 'translateY(-2px)';
-            e.currentTarget.style.boxShadow = '0 12px 24px rgba(0, 212, 170, 0.3)';
-          }}
-          onMouseLeave={e => {
-            e.currentTarget.style.transform = 'translateY(0)';
-            e.currentTarget.style.boxShadow = 'none';
-          }}
-        >
-          Get Started Today
-        </Link>
-      </section>
-    </>
-  );
-}
-import { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import TestimonialsSection from '../components/sections/TestimonialsSection';
 import ProcessSection from '../components/sections/ProcessSection';
@@ -1014,16 +8,13 @@ import { ReferralCtaBanner } from '../components/ui/ReferralPromoAd';
 // ─── Constants ────────────────────────────────────────────────────────────────
 
 const STATS = [
-  { value: 2400,  suffix: '+', label: 'Projects Completed',    color: '#00d4aa' },
-  { value: 1500,  suffix: '+', label: 'Happy Clients',         color: '#00d4aa' },
-  { value: 99,  suffix: '%', label: 'Client Satisfaction',   color: '#00d4aa' },
-  { value: 24,  suffix: '/7', label: 'Security Monitoring',  color: '#00d4aa' },
+  { value: 2400,  suffix: '+', label: 'Projects Completed',    color: 'var(--teal)' },
+  { value: 1500,  suffix: '+', label: 'Happy Clients',         color: 'var(--teal)' },
+  { value: 99,  suffix: '%', label: 'Client Satisfaction',   color: 'var(--teal)' },
+  { value: 24,  suffix: '/7', label: 'Security Monitoring',  color: 'var(--teal)' },
 ];
 
-
-
-
-const HERO_BG_IMAGE = process.env.REACT_APP_HOME_HERO_BG_IMAGE || '/images/home-hero-bg.png';
+const HERO_BG_IMAGE = process.env.REACT_APP_HOME_HERO_BG_IMAGE || '';
 
 // ─── Hooks ────────────────────────────────────────────────────────────────────
 
@@ -1058,152 +49,24 @@ function useCounter(target, duration = 1800) {
 function StatCard({ stat }) {
   const [val, ref] = useCounter(stat.value);
   return (
-    <div ref={ref} style={{ textAlign: 'center', padding: '28px 20px', borderRight: '1px solid rgba(255,255,255,0.06)' }}>
-      <div style={{ fontFamily: "'Poppins',sans-serif", fontSize: 36, fontWeight: 900, color: stat.color, letterSpacing: -1, lineHeight: 1 }}>
+    <div ref={ref} style={{ textAlign: 'center', padding: '28px 20px', borderRight: '1px solid var(--border)' }}>
+      <div style={{ fontFamily: "var(--font-h)", fontSize: 36, fontWeight: 900, color: stat.color, letterSpacing: -1, lineHeight: 1 }}>
         {val}{stat.suffix}
       </div>
-      <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.35)', marginTop: 6, fontFamily: "'JetBrains Mono',monospace", letterSpacing: 0.5, textTransform: 'uppercase' }}>{stat.label}</div>
+      <div style={{ fontSize: 12, color: 'var(--muted)', marginTop: 6, fontFamily: "var(--font-m)", letterSpacing: 0.5, textTransform: 'uppercase' }}>{stat.label}</div>
     </div>
   );
 }
-
-function Glow({ x, y, color = '#00d4aa', size = 500 }) {
-  return (
-    <div style={{
-      position: 'absolute', left: x, top: y,
-      width: size, height: size,
-      background: `radial-gradient(circle,${color}15 0%,transparent 70%)`,
-      borderRadius: '50%', pointerEvents: 'none',
-      transform: 'translate(-50%,-50%)', filter: 'blur(40px)',
-    }} />
-  );
-}
-
-// Animated headline that cycles through words
-function AnimatedHeadline() {
-  const words  = ['digital presence', 'secure systems', 'business growth'];
-  const colors = ['#00d4aa', '#00d4aa', '#00d4aa'];
-  const [idx, setIdx]     = useState(0);
-  const [visible, setVis] = useState(true);
-
-  useEffect(() => {
-    const t = setInterval(() => {
-      setVis(false);
-      setTimeout(() => { setIdx(i => (i + 1) % words.length); setVis(true); }, 350);
-    }, 2600);
-    return () => clearInterval(t);
-  }, []);
-
-  return (
-    <span style={{
-      color: colors[idx],
-      display: 'inline-block',
-      transition: 'opacity 0.35s, transform 0.35s',
-      opacity: visible ? 1 : 0,
-      transform: visible ? 'none' : 'translateY(10px)',
-    }}>
-      {words[idx]}
-    </span>
-  );
-}
-
-// Floating terminal widget
-function FloatingTerminal() {
-  const [visibleLines, setVisibleLines] = useState([]);
-
-  useEffect(() => {
-    const timers = TERMINAL_LINES.map((line, i) =>
-      setTimeout(() => setVisibleLines(prev => [...prev, i]), line.delay)
-    );
-    // loop: restart after all lines shown
-    const loopTimer = setTimeout(() => setVisibleLines([]), TERMINAL_LINES[TERMINAL_LINES.length - 1].delay + 2000);
-    return () => { timers.forEach(clearTimeout); clearTimeout(loopTimer); };
-  }, [visibleLines.length === 0 ? 0 : -1]); // re-trigger on reset
-
-  // re-run animation loop
-  useEffect(() => {
-    if (visibleLines.length === 0) {
-      const timers = TERMINAL_LINES.map((line, i) =>
-        setTimeout(() => setVisibleLines(prev => [...prev, i]), line.delay)
-      );
-      const loopTimer = setTimeout(() => setVisibleLines([]), TERMINAL_LINES[TERMINAL_LINES.length - 1].delay + 2200);
-      return () => { timers.forEach(clearTimeout); clearTimeout(loopTimer); };
-    }
-  }, [visibleLines]);
-
-  return (
-    <div style={{
-      background: '#0D1117',
-      border: '1px solid rgba(0, 212, 170, 0.15)',
-      borderRadius: 16,
-      overflow: 'hidden',
-      boxShadow: '0 32px 80px rgba(0, 212, 170, 0.1), 0 0 0 1px rgba(0, 212, 170, 0.05)',
-      fontFamily: "'JetBrains Mono',monospace",
-      fontSize: 13,
-      minHeight: 240,
-    }}>
-      {/* Title bar */}
-      <div style={{ padding: '12px 16px', background: '#161B22', borderBottom: '1px solid rgba(0, 212, 170, 0.1)', display: 'flex', alignItems: 'center', gap: 8 }}>
-        <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#EF4444', display: 'inline-block' }} />
-        <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#F59E0B', display: 'inline-block' }} />
-        <span style={{ width: 12, height: 12, borderRadius: '50%', background: '#00d4aa', display: 'inline-block' }} />
-        <span style={{ marginLeft: 8, fontSize: 11, color: 'rgba(255,255,255,0.25)', letterSpacing: 0.5 }}>axentralab — terminal</span>
-      </div>
-      {/* Lines */}
-      <div style={{ padding: '18px 20px', minHeight: 200 }}>
-        {TERMINAL_LINES.map((line, i) => (
-          <div key={i} style={{
-            color: visibleLines.includes(i) ? line.color : 'transparent',
-            transition: 'color 0.3s, opacity 0.3s',
-            marginBottom: 6,
-            opacity: visibleLines.includes(i) ? 1 : 0,
-            lineHeight: 1.6,
-          }}>
-            {line.text}
-          </div>
-        ))}
-        {/* blinking cursor */}
-        <span style={{ display: 'inline-block', width: 8, height: 14, background: '#00d4aa', verticalAlign: 'middle', animation: 'blink 1s step-end infinite', marginLeft: 2 }} />
-      </div>
-    </div>
-  );
-}
-
-// Scroll indicator arrow
-function ScrollIndicator() {
-  const [show, setShow] = useState(true);
-  useEffect(() => {
-    const onScroll = () => setShow(window.scrollY < 80);
-    window.addEventListener('scroll', onScroll);
-    return () => window.removeEventListener('scroll', onScroll);
-  }, []);
-
-  return (
-    <div style={{
-      position: 'absolute', bottom: 32, left: '50%', transform: 'translateX(-50%)',
-      opacity: show ? 1 : 0, transition: 'opacity 0.4s',
-      display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
-      animation: 'bounceY 2s ease-in-out infinite',
-      pointerEvents: 'none',
-    }}>
-      <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.2)', fontFamily: "'JetBrains Mono',monospace", letterSpacing: 1, textTransform: 'uppercase' }}>scroll</span>
-      <div style={{ width: 1, height: 36, background: 'linear-gradient(#00d4aa, transparent)' }} />
-      <div style={{ width: 6, height: 6, borderRadius: '50%', background: '#00d4aa' }} />
-    </div>
-  );
-}
-
-
 
 // ─── New Section Data ─────────────────────────────────────────────────────────
 
 const TOOLS_GRID = [
-  { icon: '🌐', name: 'Business Website',      tag: 'Web Development',    desc: 'Clean, fast and professional websites for businesses, corporates and startups — responsive, SEO-ready and conversion-focused.',         features: ['5+ pages', 'Mobile responsive', 'SEO setup'],         price: 10000, tier: 'From ৳', color: '#00d4aa' },
-  { icon: '🛒', name: 'E-commerce Store',      tag: 'Online Shop',        desc: 'Full-featured online stores with product management, cart, checkout and local payment gateway (bKash/Nagad/Stripe) integration.',         features: ['Product filters', 'Cart & checkout', 'Admin panel'],  price: 30000, tier: 'From ৳', color: '#00d4aa' },
-  { icon: '⚙️', name: 'Custom Web System',     tag: 'POS / SaaS / Custom',desc: 'Tailor-made web apps — POS systems, courier platforms, SaaS dashboards built for your specific workflow.',                            features: ['Custom logic', 'Role-based access', 'Dashboard'],      price: 50000, tier: 'From ৳', color: '#00d4aa' },
-  { icon: '🔐', name: 'Security Audit',        tag: 'Cybersecurity',      desc: 'Full OWASP-based vulnerability scan, malware detection, WAF setup and server hardening — before threats cost you money.',              features: ['OWASP scan', 'WAF setup', 'Pen testing'],              price: 22000, tier: 'From ৳', color: '#00d4aa' },
-  { icon: '🤖', name: 'Business Automation',   tag: 'Automation & AI',    desc: 'Automate your business processes — CRM setup, API integrations, chatbots and workflow automation using Zapier & Make.',                features: ['CRM setup', 'Chatbot', 'Workflow auto'],               price: 33000, tier: 'From ৳', color: '#00d4aa' },
-  { icon: '💼', name: 'White-Label Services',  tag: 'Agency Partner',     desc: 'Scale your agency without hiring — outsource web dev, cybersecurity support and emergency bug fixes under your brand.',                  features: ['Dev outsourcing', 'Security support', 'NDA included'], price: 500,   tier: 'From $', color: '#EC4899' },
+  { icon: '🌐', name: 'Business Website',      tag: 'Web Development',    desc: 'Clean, fast and professional websites for businesses, corporates and startups — responsive, SEO-ready and conversion-focused.',         features: ['5+ pages', 'Mobile responsive', 'SEO setup'],         price: 10000, tier: 'From ৳', color: '#2563eb' },
+  { icon: '🛒', name: 'E-commerce Store',      tag: 'Online Shop',        desc: 'Full-featured online stores with product management, cart, checkout and local payment gateway (bKash/Nagad/Stripe) integration.',         features: ['Product filters', 'Cart & checkout', 'Admin panel'],  price: 30000, tier: 'From ৳', color: '#2563eb' },
+  { icon: '⚙️', name: 'Custom Web System',     tag: 'POS / SaaS / Custom',desc: 'Tailor-made web apps — POS systems, courier platforms, SaaS dashboards built for your specific workflow.',                            features: ['Custom logic', 'Role-based access', 'Dashboard'],      price: 50000, tier: 'From ৳', color: '#2563eb' },
+  { icon: '🔐', name: 'Infrastructure Audit',        tag: 'Cloud Infrastructure',      desc: 'Full Lighthouse-based performance scan, Bugs detection, CDN setup and server hardening — before Downtime cost you money.',              features: ['Lighthouse scan', 'CDN setup', 'Load testing'],              price: 22000, tier: 'From ৳', color: '#2563eb' },
+  { icon: '🤖', name: 'Business Automation',   tag: 'Automation & AI',    desc: 'Automate your business processes — CRM setup, API integrations, chatbots and workflow automation using Zapier & Make.',                features: ['CRM setup', 'Chatbot', 'Workflow auto'],               price: 33000, tier: 'From ৳', color: '#2563eb' },
+  { icon: '💼', name: 'White-Label Services',  tag: 'Agency Partner',     desc: 'Scale your agency without hiring — outsource web dev, cloud infrastructure support and emergency bug fixes under your brand.',                  features: ['Dev outsourcing', 'Security support', 'NDA included'], price: 500,   tier: 'From $', color: '#8b5cf6' },
 ];
 
 const CORE_SERVICES = [
@@ -1214,10 +77,10 @@ const CORE_SERVICES = [
     features: ['Business & corporate sites', 'E-commerce (Shopify/WooCommerce)', 'Custom web apps & SaaS dashboards', 'Landing pages (conversion-focused)', 'Speed optimization & SEO-ready setup', 'Bug fixing & performance improvement'],
   },
   {
-    icon: '🔐', title: 'Cybersecurity', label: 'Audit · WAF · Pen Testing',
+    icon: '🔐', title: 'Cloud Infrastructure', label: 'Audit · WAF · Load testing',
     color: '#F59E0B', price: '$200 / ৳22,000+',
-    desc: 'We protect your business from real-world cyber threats before they cost you money — full audits, malware removal, and 24/7 monitoring.',
-    features: ['Website security audit (OWASP)', 'Malware removal & cleanup', 'Web Application Firewall (WAF) setup', 'Penetration testing (Basic/Advanced)', 'Server hardening (Linux/Cloud)', 'API & SaaS security testing'],
+    desc: 'We protect your business from real-world performance bottlenecks before they cost you money — full audits, Performance optimization, and 24/7 monitoring.',
+    features: ['Website Infrastructure Audit (Web Vitals)', 'Performance optimization & cleanup', 'Global CDN setup & configuration', 'Load testing (Basic/Advanced)', 'Server hardening (Linux/Cloud)', 'API & SaaS load testing'],
   },
   {
     icon: '⚙️', title: 'Automation & AI', label: 'Workflows · CRM · Chatbots',
@@ -1227,184 +90,6 @@ const CORE_SERVICES = [
   },
 ];
 
-const DIGITAL_PRODUCTS = [
-  {
-    icon: '🌐', name: 'Startup Growth Package', tag: 'Combo Deal',
-    desc: 'Website build + basic security + speed optimization. Everything a new business needs to go live fast.',
-    includes: ['3–5 pages', 'Security audit', 'Speed fix', 'SEO setup'],
-    price: 55000, originalPrice: 75000, badge: 'Popular', color: '#8B5CF6',
-    priceUnit: '৳',
-  },
-  {
-    icon: '🔒', name: 'Business Protection Pack', tag: 'Cybersecurity',
-    desc: 'Full security audit + malware removal + WAF setup. Protect your live site from real-world threats.',
-    includes: ['OWASP audit', 'Malware fix', 'WAF setup', 'Report'],
-    price: 33000, originalPrice: null, badge: 'New', color: '#F59E0B',
-    priceUnit: '৳',
-  },
-  {
-    icon: '🏆', name: 'Premium All-in-One', tag: 'Full Package',
-    desc: 'Website + Security + Maintenance — total control of your online presence. We handle everything.',
-    includes: ['Full web build', 'Security hardening', 'Monthly maintenance', 'Priority support'],
-    price: 100000, originalPrice: null, badge: null, color: '#A855F7',
-    priceUnit: '৳',
-  },
-  {
-    icon: '⚙️', name: 'Automation Starter', tag: 'Automation',
-    desc: 'Business process automation with CRM setup, API integrations and workflow automation using Zapier/Make.',
-    includes: ['CRM setup', 'API integration', 'Workflow auto', 'Chatbot'],
-    price: 33000, originalPrice: 45000, badge: null, color: '#06B6D4',
-    priceUnit: '৳',
-  },
-];
-
-// ─── Dashboard Preview Component ──────────────────────────────────────────────
-
-const DASH_NAV = [
-  { icon: '📊', label: 'Overview',  active: true },
-  { icon: '🤖', label: 'Automations', active: false },
-  { icon: '📦', label: 'Orders',    active: false },
-  { icon: '🛡️', label: 'Security',  active: false },
-  { icon: '👤', label: 'Profile',   active: false },
-];
-
-const DASH_METRICS = [
-  { label: 'Tasks Automated', value: '2,418', delta: '+14%', color: '#8B5CF6' },
-  { label: 'Revenue MRR',     value: '$8,340', delta: '+8.2%', color: '#3B82F6' },
-  { label: 'Active Bots',     value: '7',      delta: '+2',    color: '#F59E0B' },
-  { label: 'Threats Blocked', value: '1,103',  delta: '↓ 3%',  color: '#EF4444' },
-];
-
-const DASH_TOOLS = [
-  { name: 'AutoFlow AI',  status: 'running', uptime: '99.9%',  color: '#8B5CF6', runs: '1,244 runs today' },
-  { name: 'RankRadar',    status: 'running', uptime: '100%',   color: '#22D3EE', runs: 'Crawling 8 URLs' },
-  { name: 'WP Shield',    status: 'idle',    uptime: '99.4%',  color: '#EF4444', runs: 'Last scan 2h ago' },
-  { name: 'BotShield',    status: 'running', uptime: '99.8%',  color: '#F59E0B', runs: '47 threats blocked' },
-];
-
-function DashboardPreview() {
-  const [activeNav, setActiveNav] = useState(0);
-  const [tick, setTick] = useState(0);
-
-  // simulate live metric updates
-  useEffect(() => {
-    const t = setInterval(() => setTick(n => n + 1), 2200);
-    return () => clearInterval(t);
-  }, []);
-
-  const liveMetrics = DASH_METRICS.map((m, i) => ({
-    ...m,
-    value: i === 0 ? `${(2418 + tick * 3).toLocaleString()}` :
-           i === 3 ? `${(1103 + tick).toLocaleString()}` : m.value,
-  }));
-
-  return (
-    <section style={{ padding: '100px 5%', background: 'rgba(255,255,255,0.01)', borderTop: '1px solid rgba(255,255,255,0.05)', overflow: 'hidden' }}>
-      <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-        <div style={{ textAlign: 'center', marginBottom: 48 }}>
-          <span style={{ display: 'inline-flex', alignItems: 'center', gap: 6, padding: '4px 14px', borderRadius: 999, border: '1px solid rgba(139,92,246,0.3)', background: 'rgba(139,92,246,0.06)', color: '#8B5CF6', fontSize: 11, fontFamily: "'Space Mono',monospace", letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600, marginBottom: 16 }}>
-            <span style={{ width: 6, height: 6, borderRadius: '50%', background: '#8B5CF6', animation: 'pulse 2s infinite' }} />
-            Live Dashboard Preview
-          </span>
-          <h2 style={{ fontFamily: "'Sora',sans-serif", fontSize: 'clamp(26px,4vw,44px)', fontWeight: 900, color: '#fff', letterSpacing: -1.2, marginBottom: 14 }}>Your control center.</h2>
-          <p style={{ color: 'rgba(255,255,255,0.35)', maxWidth: 400, margin: '0 auto', fontSize: 15, lineHeight: 1.7 }}>Everything in one place — bots, metrics, security and orders. Real-time, always.</p>
-        </div>
-
-        {/* Browser chrome wrapper */}
-        <div style={{ background: '#0D1117', border: '1px solid rgba(255,255,255,0.09)', borderRadius: 20, overflow: 'hidden', boxShadow: '0 40px 100px rgba(0,0,0,0.6)' }}>
-          {/* Browser bar */}
-          <div style={{ padding: '12px 18px', background: '#161B22', borderBottom: '1px solid rgba(255,255,255,0.06)', display: 'flex', alignItems: 'center', gap: 10 }}>
-            <span style={{ width: 11, height: 11, borderRadius: '50%', background: '#EF4444' }} />
-            <span style={{ width: 11, height: 11, borderRadius: '50%', background: '#F59E0B' }} />
-            <span style={{ width: 11, height: 11, borderRadius: '50%', background: '#8B5CF6' }} />
-            <div style={{ flex: 1, margin: '0 16px', background: 'rgba(255,255,255,0.05)', borderRadius: 6, padding: '4px 12px', fontFamily: "'Space Mono',monospace", fontSize: 11, color: 'rgba(255,255,255,0.25)' }}>
-              app.axentralab.com/dashboard
-            </div>
-            <div style={{ display: 'flex', gap: 6 }}>
-              {['🔒','⟳'].map((i, x) => <span key={x} style={{ fontSize: 12, opacity: 0.3 }}>{i}</span>)}
-            </div>
-          </div>
-
-          {/* Dashboard layout */}
-          <div style={{ display: 'grid', gridTemplateColumns: '200px 1fr', minHeight: 480 }}>
-            {/* Sidebar */}
-            <div style={{ background: 'rgba(255,255,255,0.02)', borderRight: '1px solid rgba(255,255,255,0.06)', padding: '20px 0' }}>
-              <div style={{ padding: '0 16px 20px', borderBottom: '1px solid rgba(255,255,255,0.05)', marginBottom: 8 }}>
-                <div style={{ fontFamily: "'Sora',sans-serif", fontWeight: 900, fontSize: 14, color: '#fff', letterSpacing: -0.3 }}>Axentralab</div>
-                <div style={{ fontSize: 10, color: '#8B5CF6', fontFamily: "'Space Mono',monospace", marginTop: 2 }}>● Pro Plan</div>
-              </div>
-              {DASH_NAV.map((n, i) => (
-                <button key={i} onClick={() => setActiveNav(i)}
-                  style={{ width: '100%', display: 'flex', alignItems: 'center', gap: 10, padding: '10px 16px', background: activeNav === i ? 'rgba(139,92,246,0.1)' : 'none', border: 'none', borderLeft: activeNav === i ? '2px solid #8B5CF6' : '2px solid transparent', cursor: 'pointer', textAlign: 'left', transition: 'all 0.15s' }}>
-                  <span style={{ fontSize: 14 }}>{n.icon}</span>
-                  <span style={{ fontFamily: "'Sora',sans-serif", fontSize: 13, fontWeight: activeNav === i ? 700 : 500, color: activeNav === i ? '#8B5CF6' : 'rgba(255,255,255,0.45)' }}>{n.label}</span>
-                </button>
-              ))}
-              <div style={{ margin: '20px 16px 0', padding: '12px', background: 'rgba(139,92,246,0.06)', border: '1px solid rgba(139,92,246,0.15)', borderRadius: 10 }}>
-                <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.4)', fontFamily: "'Space Mono',monospace", marginBottom: 4 }}>STORAGE</div>
-                <div style={{ height: 4, borderRadius: 4, background: 'rgba(255,255,255,0.08)', overflow: 'hidden' }}>
-                  <div style={{ width: '62%', height: '100%', background: 'linear-gradient(90deg,#8B5CF6,#3B82F6)', borderRadius: 4 }} />
-                </div>
-                <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.3)', marginTop: 4, fontFamily: "'Space Mono',monospace" }}>6.2 / 10 GB</div>
-              </div>
-            </div>
-
-            {/* Main content */}
-            <div style={{ padding: '24px 24px 28px', overflow: 'hidden' }}>
-              {/* Top row */}
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 22 }}>
-                <div>
-                  <div style={{ fontFamily: "'Sora',sans-serif", fontWeight: 900, fontSize: 18, color: '#fff', letterSpacing: -0.3 }}>Good morning, Alex 👋</div>
-                  <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)', fontFamily: "'Space Mono',monospace", marginTop: 3 }}>
-                    {new Date().toLocaleDateString('en-US', { weekday: 'long', month: 'short', day: 'numeric' })}
-                  </div>
-                </div>
-                <div style={{ display: 'flex', gap: 8 }}>
-                  <div style={{ width: 30, height: 30, borderRadius: 9, background: 'rgba(255,255,255,0.06)', border: '1px solid rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, cursor: 'pointer' }}>🔔</div>
-                  <div style={{ width: 30, height: 30, borderRadius: 9, background: 'rgba(139,92,246,0.12)', border: '1px solid rgba(139,92,246,0.25)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13 }}>A</div>
-                </div>
-              </div>
-
-              {/* Metric cards */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 12, marginBottom: 22 }}>
-                {liveMetrics.map((m, i) => (
-                  <div key={i} style={{ background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 12, padding: '14px 14px 12px' }}>
-                    <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.35)', fontFamily: "'Space Mono',monospace", letterSpacing: 0.4, marginBottom: 8, textTransform: 'uppercase' }}>{m.label}</div>
-                    <div style={{ fontFamily: "'Sora',sans-serif", fontWeight: 900, fontSize: 18, color: m.color, letterSpacing: -0.5, transition: 'all 0.4s' }}>{m.value}</div>
-                    <div style={{ fontSize: 10, color: m.delta.startsWith('+') ? '#8B5CF6' : m.delta.startsWith('↓') ? '#EF4444' : 'rgba(255,255,255,0.3)', fontFamily: "'Space Mono',monospace", marginTop: 4 }}>{m.delta} this month</div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Active tools */}
-              <div>
-                <div style={{ fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.5)', fontFamily: "'Space Mono',monospace", letterSpacing: 0.5, textTransform: 'uppercase', marginBottom: 10 }}>Active Tools</div>
-                <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  {DASH_TOOLS.map((t, i) => (
-                    <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 14px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.06)', borderRadius: 10 }}>
-                      <span style={{ width: 8, height: 8, borderRadius: '50%', background: t.status === 'running' ? '#8B5CF6' : '#F59E0B', flexShrink: 0, animation: t.status === 'running' ? 'pulse 2s infinite' : 'none' }} />
-                      <span style={{ fontFamily: "'Sora',sans-serif", fontWeight: 700, fontSize: 13, color: '#fff', flex: 1 }}>{t.name}</span>
-                      <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', fontFamily: "'Space Mono',monospace' " }}>{t.runs}</span>
-                      <span style={{ fontSize: 11, color: t.color, fontFamily: "'Space Mono',monospace", fontWeight: 700 }}>{t.uptime}</span>
-                      <span style={{ padding: '2px 8px', borderRadius: 6, fontSize: 10, fontWeight: 700, fontFamily: "'Space Mono',monospace", background: t.status === 'running' ? 'rgba(139,92,246,0.12)' : 'rgba(245,158,11,0.12)', border: `1px solid ${t.status === 'running' ? 'rgba(139,92,246,0.3)' : 'rgba(245,158,11,0.3)'}`, color: t.status === 'running' ? '#8B5CF6' : '#F59E0B' }}>
-                        {t.status.toUpperCase()}
-                      </span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <p style={{ textAlign: 'center', marginTop: 20, fontSize: 13, color: 'rgba(255,255,255,0.25)', fontFamily: "'Space Mono',monospace" }}>
-          Ready to see the real thing? <Link to="/contact" style={{ color: '#8B5CF6', textDecoration: 'none', fontWeight: 700 }}>Book a live demo →</Link>
-        </p>
-      </div>
-    </section>
-  );
-}
-
 // ─── Main Component ────────────────────────────────────────────────────────────
 
 export default function HomePage() {
@@ -1413,14 +98,9 @@ export default function HomePage() {
   return (
     <div style={{ overflowX: 'hidden' }}>
       <style>{`
-        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
-        @keyframes spin  { to { transform: rotate(360deg); } }
         @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(0.85)} }
-        @keyframes bounceY { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(10px)} }
         @keyframes fadeUp { from{opacity:0;transform:translateY(18px)} to{opacity:1;transform:none} }
         @keyframes slideInLeft  { from{opacity:0;transform:translateX(-32px)} to{opacity:1;transform:none} }
-        @keyframes slideInRight { from{opacity:0;transform:translateX(32px)} to{opacity:1;transform:none} }
-        @keyframes scrollMarquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
         .hero-left  { animation: slideInLeft  0.7s 0.1s ease both; }
         .hero-badge { animation: fadeUp 0.6s 0s ease both; }
@@ -1429,16 +109,9 @@ export default function HomePage() {
         .hero-ctas  { animation: fadeUp 0.6s 0.35s ease both; }
         .hero-trust { animation: fadeUp 0.6s 0.45s ease both; }
 
-        .service-card:hover { transform:translateY(-6px) !important; }
-        .blog-card:hover    { transform:translateY(-4px) !important; }
-
-        .marquee-track { display:flex; gap:48px; animation:scrollMarquee 22s linear infinite; white-space:nowrap; }
-
         @media (max-width: 768px) {
           .hero-grid { grid-template-columns: 1fr !important; }
           .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .process-grid { grid-template-columns: 1fr !important; }
-          .service-grid { grid-template-columns: 1fr !important; }
         }
 
         @media (prefers-reduced-motion: reduce) {
@@ -1447,174 +120,124 @@ export default function HomePage() {
       `}</style>
 
       {/* ── HERO ─────────────────────────────────────────────────────────── */}
-      <section style={{ padding: '120px 5% 80px', minHeight: '100vh', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
-        {/* Hero background image (Cloudinary URL via env) */}
-        <div
-          style={{
-            position: 'absolute',
-            inset: 0,
-            backgroundImage: `url(${HERO_BG_IMAGE})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-            backgroundRepeat: 'no-repeat',
-            filter: 'saturate(0.95) contrast(1.05)',
-          }}
-        />
-        {/* dark overlays for readability */}
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(100deg, rgba(2,6,23,0.9) 0%, rgba(2,6,23,0.7) 45%, rgba(2,6,23,0.88) 100%)' }} />
-        <div style={{ position: 'absolute', inset: 0, background: 'radial-gradient(circle at 14% 28%, rgba(168,85,247,0.15), transparent 42%), radial-gradient(circle at 80% 14%, rgba(139,92,246,0.18), transparent 40%)' }} />
+      <section style={{ padding: '150px 5% 100px', minHeight: '90vh', position: 'relative', overflow: 'hidden', display: 'flex', alignItems: 'center' }}>
+        
+        {/* light grid background */}
+        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(var(--border) 1px,transparent 1px),linear-gradient(90deg,var(--border) 1px,transparent 1px)', backgroundSize: '60px 60px', pointerEvents: 'none', opacity: 0.5 }} />
 
-        {/* subtle grid */}
-        <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px)', backgroundSize: '60px 60px', pointerEvents: 'none' }} />
+        <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', position: 'relative', zIndex: 2 }}>
+          <div className="hero-grid" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 60, alignItems: 'center', textAlign: 'center' }}>
 
-        <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', position: 'relative' }}>
-          <div className="hero-grid" style={{ display: 'grid', gridTemplateColumns: '1fr', gap: 60, alignItems: 'center' }}>
-
-            {/* Left */}
-            <div className="hero-left">
-              <div className="hero-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 16px', borderRadius: 999, border: '1px solid rgba(0, 212, 170, 0.45)', background: 'rgba(0, 212, 170, 0.14)', marginBottom: 24, backdropFilter: 'blur(6px)' }}>
-                <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#00d4aa', animation: 'pulse 2s infinite', display: 'inline-block' }} />
-                <span style={{ fontSize: 12, fontFamily: "'JetBrains Mono',monospace", color: '#00d4aa', fontWeight: 600, letterSpacing: 0.5 }}>Award Winning IT Company</span>
+            <div className="hero-left" style={{ margin: '0 auto' }}>
+              <div className="hero-badge" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '6px 16px', borderRadius: 999, border: '1px solid rgba(37, 99, 235, 0.2)', background: 'rgba(37, 99, 235, 0.05)', marginBottom: 24 }}>
+                <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--teal)', animation: 'pulse 2s infinite', display: 'inline-block' }} />
+                <span style={{ fontSize: 12, fontFamily: "var(--font-m)", color: 'var(--teal)', fontWeight: 600, letterSpacing: 0.5 }}>Award Winning IT Company</span>
               </div>
 
-              <h1 className="hero-h1" style={{ fontFamily: "'Poppins',sans-serif", fontSize: 'clamp(34px,5.5vw,66px)', fontWeight: 900, color: '#fff', letterSpacing: -2, lineHeight: 1.06, margin: '0 0 22px' }}>
+              <h1 className="hero-h1" style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(38px,6vw,72px)', fontWeight: 900, color: 'var(--text)', letterSpacing: -2, lineHeight: 1.1, margin: '0 auto 22px', maxWidth: 800 }}>
                 WE BUILD.<br />
                 WE SECURE.<br />
-                <span style={{ color: '#00d4aa' }}>YOU SCALE.</span>
+                <span style={{ color: 'var(--teal)' }}>YOU SCALE.</span>
               </h1>
 
-              <p className="hero-sub" style={{ fontSize: 16, color: 'rgba(255,255,255,0.45)', lineHeight: 1.75, marginBottom: 36, maxWidth: 420 }}>
-                Elite web development &amp; cybersecurity solutions that are fast, secure, and built to dominate.
+              <p className="hero-sub" style={{ fontSize: 18, color: 'var(--muted)', lineHeight: 1.75, marginBottom: 36, maxWidth: 600, margin: '0 auto 36px' }}>
+                Elite web development & cloud infrastructure solutions that are fast, secure, and built to dominate the corporate landscape.
               </p>
 
-              <div className="hero-ctas" style={{ display: 'flex', gap: 12, flexWrap: 'wrap', marginBottom: 36 }}>
-                <Link to="/contact" className="btn-primary"
-                  style={{ padding: '15px 32px', background: '#00d4aa', color: '#0f172a', fontFamily: "'Poppins',sans-serif", fontWeight: 800, fontSize: 15, borderRadius: 12, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, boxShadow: '0 12px 28px rgba(0, 212, 170, 0.35)' }}>
+              <div className="hero-ctas" style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 48 }}>
+                <Link to="/contact" className="btn-primary" style={{ padding: '15px 32px', fontSize: 16 }}>
                   LAUNCH A PROJECT →
                 </Link>
-                <Link to="/services"
-                  style={{ padding: '15px 28px', background: 'rgba(0, 212, 170, 0.1)', color: '#00d4aa', border: '1px solid rgba(0, 212, 170, 0.3)', fontFamily: "'Poppins',sans-serif", fontWeight: 700, fontSize: 15, borderRadius: 12, textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 8, transition: 'all 0.2s' }}
-                  onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0, 212, 170, 0.15)'; }}
-                  onMouseLeave={e => { e.currentTarget.style.background = 'rgba(0, 212, 170, 0.1)'; }}>
+                <Link to="/services" className="btn-outline" style={{ padding: '15px 28px', fontSize: 16 }}>
                   VIEW SERVICES
                 </Link>
               </div>
-              <div className="stats-grid" style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)' }}>
-          {STATS.map(s => <StatCard key={s.label} stat={s} />)}
-        </div>
+              
+              <div className="stats-grid" style={{ maxWidth: 1100, margin: '0 auto', display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', background: 'var(--bg2)', borderRadius: 'var(--radius)', border: '1px solid var(--border)', boxShadow: '0 10px 30px -10px rgba(0,0,0,0.05)', overflow: 'hidden' }}>
+                {STATS.map((s, idx) => (
+                  <div key={s.label} style={{ borderRight: idx !== STATS.length - 1 ? '1px solid var(--border)' : 'none' }}>
+                    <StatCard stat={s} />
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
-
-        <ScrollIndicator />
-      </section>
-
-      {/* ── STATS BAR ─────────────────────────────────────────────────────── */}
-      <section style={{ borderTop: '1px solid rgba(255,255,255,0.06)', borderBottom: '1px solid rgba(255,255,255,0.06)', background: 'rgba(255,255,255,0.01)' }}>
-       
       </section>
 
       {/* ── TOOLS GRID ───────────────────────────────────────────────────── */}
-      <section style={{ padding: '100px 5%', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section style={{ padding: '100px 5%', background: 'var(--bg2)', borderTop: '1px solid var(--border)' }}>
         <div style={{ textAlign: 'center', marginBottom: 52 }}>
-          <span style={{ display: 'inline-block', padding: '3px 12px', borderRadius: 999, border: '1px solid #A855F740', background: '#A855F710', color: '#A855F7', fontSize: 11, fontFamily: "'Space Mono',monospace", letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600, marginBottom: 16 }}>Our Services</span>
-          <h2 style={{ fontFamily: "'Sora',sans-serif", fontSize: 'clamp(26px,4vw,46px)', fontWeight: 900, color: '#fff', letterSpacing: -1.2, marginBottom: 14 }}>Build. Secure. Scale.</h2>
-          <p style={{ color: 'rgba(255,255,255,0.35)', maxWidth: 460, margin: '0 auto', fontSize: 15, lineHeight: 1.7 }}>Web development, cybersecurity and automation — everything your business needs, all under one roof.</p>
+          <span className="badge" style={{ marginBottom: 16 }}>Our Services</span>
+          <h2 style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(26px,4vw,46px)', fontWeight: 900, color: 'var(--text)', letterSpacing: -1.2, marginBottom: 14 }}>Build. Secure. Scale.</h2>
+          <p style={{ color: 'var(--muted)', maxWidth: 460, margin: '0 auto', fontSize: 16, lineHeight: 1.7 }}>Web development, cloud infrastructure and automation — everything your business needs, all under one roof.</p>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(300px,1fr))', gap: 18, maxWidth: 1100, margin: '0 auto' }}>
+        
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(320px,1fr))', gap: 24, maxWidth: 1200, margin: '0 auto' }}>
           {TOOLS_GRID.map((tool, i) => (
-            <div key={i}
-              style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 20, padding: '24px 24px 20px', cursor: 'pointer', transition: 'all 0.25s', position: 'relative', overflow: 'hidden' }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = `${tool.color}40`; e.currentTarget.style.transform = 'translateY(-5px)'; e.currentTarget.style.boxShadow = `0 16px 48px ${tool.color}14`; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.transform = 'none'; e.currentTarget.style.boxShadow = 'none'; }}>
-              {/* color stripe */}
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 3, background: `linear-gradient(90deg,${tool.color},${tool.color}50,transparent)` }} />
-              {/* header row */}
-              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 14 }}>
-                <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <div style={{ width: 44, height: 44, borderRadius: 12, background: `${tool.color}15`, border: `1px solid ${tool.color}25`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 22 }}>{tool.icon}</div>
+            <div key={i} className="card" style={{ padding: '32px 24px', display: 'flex', flexDirection: 'column', height: '100%' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', justifyContent: 'space-between', marginBottom: 20 }}>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                  <div style={{ width: 48, height: 48, borderRadius: 12, background: `${tool.color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 24 }}>{tool.icon}</div>
                   <div>
-                    <div style={{ fontFamily: "'Sora',sans-serif", fontWeight: 800, fontSize: 15, color: '#fff', letterSpacing: -0.2 }}>{tool.name}</div>
-                    <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.35)', fontFamily: "'Space Mono',monospace", marginTop: 1 }}>{tool.tag}</div>
+                    <div style={{ fontFamily: "var(--font-h)", fontWeight: 800, fontSize: 16, color: 'var(--text)', letterSpacing: -0.2 }}>{tool.name}</div>
+                    <div style={{ fontSize: 12, color: 'var(--muted)', fontFamily: "var(--font-m)", marginTop: 2 }}>{tool.tag}</div>
                   </div>
                 </div>
-                <span style={{
-                  padding: '3px 10px', borderRadius: 999, fontSize: 10, fontWeight: 700, fontFamily: "'Space Mono',monospace", letterSpacing: 0.5,
-                  background: tool.tier === 'Free' ? 'rgba(139,92,246,0.12)' : 'rgba(251,191,36,0.12)',
-                  border: tool.tier === 'Free' ? '1px solid rgba(139,92,246,0.3)' : '1px solid rgba(251,191,36,0.3)',
-                  color: tool.tier === 'Free' ? '#8B5CF6' : '#FCD34D',
-                }}>
-                  {tool.tier === 'Free' ? '⊙ FREE' : '★ PRO'}
-                </span>
               </div>
-              <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.42)', lineHeight: 1.65, marginBottom: 16 }}>{tool.desc}</p>
-              {/* feature pills */}
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 6, marginBottom: 18 }}>
+              <p style={{ fontSize: 14, color: 'var(--muted)', lineHeight: 1.65, marginBottom: 24, flex: 1 }}>{tool.desc}</p>
+              
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8, marginBottom: 24 }}>
                 {tool.features.map((f, fi) => (
-                  <span key={fi} style={{ fontSize: 11, padding: '3px 9px', borderRadius: 6, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.07)', color: 'rgba(255,255,255,0.5)', fontFamily: "'Space Mono',monospace" }}>{f}</span>
+                  <span key={fi} style={{ fontSize: 12, padding: '4px 10px', borderRadius: 6, background: 'var(--bg)', border: '1px solid var(--border)', color: 'var(--muted)' }}>{f}</span>
                 ))}
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-                <span style={{ fontFamily: "'Sora',sans-serif", fontSize: 15, fontWeight: 900, color: tool.color }}>
+              
+              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 20, borderTop: '1px solid var(--border)' }}>
+                <span style={{ fontFamily: "var(--font-h)", fontSize: 18, fontWeight: 800, color: 'var(--text)' }}>
                   {tool.tier} {tool.price.toLocaleString()}
                 </span>
-                <Link to="/contact" style={{ padding: '7px 16px', borderRadius: 9, background: `${tool.color}18`, border: `1px solid ${tool.color}35`, color: tool.color, fontSize: 12, fontWeight: 700, cursor: 'pointer', fontFamily: "'Space Mono',monospace", transition: 'all 0.15s', textDecoration: 'none', display: 'block' }}
-                  onMouseEnter={e => { e.currentTarget.style.background = `${tool.color}30`; }}
-                  onMouseLeave={e => { e.currentTarget.style.background = `${tool.color}18`; }}>
+                <Link to="/contact" style={{ color: tool.color, fontSize: 14, fontWeight: 700, textDecoration: 'none' }}>
                   Contact Us →
                 </Link>
               </div>
             </div>
           ))}
         </div>
-        <div style={{ textAlign: 'center', marginTop: 32 }}>
-          <Link to="/services" style={{ fontSize: 14, color: '#A855F7', fontWeight: 700, textDecoration: 'none', fontFamily: "'Space Mono',monospace" }}>View all products →</Link>
+        
+        <div style={{ textAlign: 'center', marginTop: 40 }}>
+          <Link to="/services" className="btn-outline">View all products →</Link>
         </div>
       </section>
 
       {/* ── SERVICES (3-card focused) ─────────────────────────────────────── */}
-      <section style={{ padding: '100px 5%', background: 'rgba(255,255,255,0.01)', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
+      <section style={{ padding: '100px 5%', background: 'var(--bg)', borderTop: '1px solid var(--border)' }}>
         <div style={{ textAlign: 'center', marginBottom: 52 }}>
-          <span style={{ display: 'inline-block', padding: '3px 12px', borderRadius: 999, border: '1px solid rgba(255,255,255,0.1)', background: 'rgba(255,255,255,0.04)', color: 'rgba(255,255,255,0.4)', fontSize: 11, fontFamily: "'Space Mono',monospace", letterSpacing: 1, textTransform: 'uppercase', marginBottom: 16 }}>Core Services</span>
-          <h2 style={{ fontFamily: "'Sora',sans-serif", fontSize: 'clamp(26px,4vw,46px)', fontWeight: 900, color: '#fff', letterSpacing: -1.2, marginBottom: 14 }}>3 services. Unlimited impact.</h2>
-          <p style={{ color: 'rgba(255,255,255,0.35)', maxWidth: 440, margin: '0 auto', fontSize: 15, lineHeight: 1.7 }}>Web development, cybersecurity and automation — each one custom-built, production-ready and ROI-positive.</p>
+          <span className="badge" style={{ marginBottom: 16 }}>Core Expertise</span>
+          <h2 style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(26px,4vw,46px)', fontWeight: 900, color: 'var(--text)', letterSpacing: -1.2, marginBottom: 14 }}>3 services. Unlimited impact.</h2>
+          <p style={{ color: 'var(--muted)', maxWidth: 440, margin: '0 auto', fontSize: 16, lineHeight: 1.7 }}>Web development, cloud infrastructure and automation — each one custom-built, production-ready and ROI-positive.</p>
         </div>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(310px,1fr))', gap: 22, maxWidth: 1080, margin: '0 auto' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(320px,1fr))', gap: 24, maxWidth: 1100, margin: '0 auto' }}>
           {CORE_SERVICES.map((s, i) => (
-            <div key={i}
-              style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 22, padding: '30px 28px 26px', transition: 'all 0.25s', position: 'relative', overflow: 'hidden' }}
-              onMouseEnter={e => { e.currentTarget.style.borderColor = `${s.color}45`; e.currentTarget.style.boxShadow = `0 20px 60px ${s.color}12`; }}
-              onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.08)'; e.currentTarget.style.boxShadow = 'none'; }}>
-              {/* bg glow */}
-              <div style={{ position: 'absolute', top: -40, right: -40, width: 160, height: 160, borderRadius: '50%', background: `radial-gradient(circle,${s.color}10,transparent 70%)`, pointerEvents: 'none' }} />
-              <div style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 2, background: `linear-gradient(90deg,${s.color},transparent)` }} />
-              {/* icon + label */}
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 18 }}>
-                <div style={{ width: 50, height: 50, borderRadius: 14, background: `${s.color}15`, border: `1px solid ${s.color}30`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 26 }}>{s.icon}</div>
+            <div key={i} className="card" style={{ padding: '36px 32px' }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 16, marginBottom: 24 }}>
+                <div style={{ width: 56, height: 56, borderRadius: 16, background: `${s.color}15`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 28 }}>{s.icon}</div>
                 <div>
-                  <div style={{ fontFamily: "'Sora',sans-serif", fontWeight: 900, fontSize: 17, color: '#fff', letterSpacing: -0.3 }}>{s.title}</div>
-                  <div style={{ fontSize: 11, color: s.color, fontFamily: "'Space Mono',monospace", fontWeight: 600, marginTop: 2 }}>{s.label}</div>
+                  <div style={{ fontFamily: "var(--font-h)", fontWeight: 800, fontSize: 20, color: 'var(--text)' }}>{s.title}</div>
+                  <div style={{ fontSize: 12, color: s.color, fontFamily: "var(--font-m)", fontWeight: 600, marginTop: 4 }}>{s.label}</div>
                 </div>
               </div>
-              <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.45)', lineHeight: 1.7, marginBottom: 20 }}>{s.desc}</p>
-              {/* feature list */}
-              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 24px', display: 'flex', flexDirection: 'column', gap: 8 }}>
+              <p style={{ fontSize: 15, color: 'var(--muted)', lineHeight: 1.7, marginBottom: 24 }}>{s.desc}</p>
+              <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 32px', display: 'flex', flexDirection: 'column', gap: 12 }}>
                 {s.features.map((f, fi) => (
-                  <li key={fi} style={{ display: 'flex', alignItems: 'center', gap: 8, fontSize: 13, color: 'rgba(255,255,255,0.6)' }}>
-                    <span style={{ width: 16, height: 16, borderRadius: '50%', background: `${s.color}20`, border: `1px solid ${s.color}40`, display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 9, color: s.color, flexShrink: 0 }}>✓</span>
+                  <li key={fi} style={{ display: 'flex', alignItems: 'flex-start', gap: 10, fontSize: 14, color: 'var(--text)' }}>
+                    <span style={{ color: s.color, fontWeight: 'bold' }}>✓</span>
                     {f}
                   </li>
                 ))}
               </ul>
-              {/* pricing + CTA */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', paddingTop: 20, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-                <div>
-                  <div style={{ fontFamily: "'Space Mono',monospace", fontSize: 10, color: 'rgba(255,255,255,0.3)', letterSpacing: 0.5, textTransform: 'uppercase', marginBottom: 2 }}>Starting at</div>
-                  <div style={{ fontFamily: "'Sora',sans-serif", fontWeight: 900, fontSize: 20, color: s.color }}>{s.price}</div>
-                </div>
-                <Link to="/contact" style={{ padding: '11px 22px', borderRadius: 11, background: s.color, color: ['#8B5CF6','#F59E0B'].includes(s.color) ? '#000' : '#fff', fontSize: 13, fontWeight: 800, fontFamily: "'Sora',sans-serif", textDecoration: 'none', transition: 'opacity 0.15s', display: 'inline-block' }}
-                  onMouseEnter={e => e.currentTarget.style.opacity = '0.85'}
-                  onMouseLeave={e => e.currentTarget.style.opacity = '1'}>
+              <div style={{ paddingTop: 24, borderTop: '1px solid var(--border)' }}>
+                <Link to="/contact" className="btn-primary" style={{ width: '100%', background: s.color }}>
                   Get Started →
                 </Link>
               </div>
@@ -1623,44 +246,28 @@ export default function HomePage() {
         </div>
       </section>
 
- 
-
-      {/* ── DASHBOARD PREVIEW ─────────────────────────────────────────────── */}
-      {/* <DashboardPreview /> */}
-
       {/* ── TESTIMONIALS ──────────────────────────────────────────────────── */}
-      <TestimonialsSection />
+      {/* <TestimonialsSection /> */}
 
       {/* ── PROCESS SECTION ────────────────────────────────────────────────── */}
-      <ProcessSection />
+      {/* <ProcessSection /> */}
 
-      {/* ── REFERRAL TIER COMPARISON ──────────────────────────────────────── */}
-      <ReferralTierComparison />
       {/* ── MAIN CTA ─────────────────────────────────────────────────────── */}
-      <section style={{ padding: '100px 5%', textAlign: 'center', position: 'relative', overflow: 'hidden' }}>
-        <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', width: 600, height: 600, borderRadius: '50%', background: 'radial-gradient(circle,rgba(0,212,170,0.08),transparent 65%)', pointerEvents: 'none' }} />
-        <div style={{ position: 'relative', maxWidth: 640, margin: '0 auto' }}>
-          <span style={{ display: 'inline-block', padding: '3px 12px', borderRadius: 999, border: '1px solid rgba(0, 212, 170, 0.4)', background: 'rgba(0, 212, 170, 0.1)', color: '#00d4aa', fontSize: 10, fontFamily: "'JetBrains Mono',monospace", letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600 }}>Get Started Today</span>
-          <h2 style={{ fontFamily: "'Poppins',sans-serif", fontSize: 'clamp(28px,5vw,56px)', fontWeight: 900, color: '#fff', margin: '18px auto 16px', letterSpacing: -1.5, lineHeight: 1.08 }}>
-            Ready to build, secure<br /><span style={{ color: '#00d4aa' }}>&amp; scale your business?</span>
+      <section style={{ padding: '100px 5%', textAlign: 'center', background: 'var(--bg2)', borderTop: '1px solid var(--border)' }}>
+        <div style={{ maxWidth: 640, margin: '0 auto' }}>
+          <span className="badge" style={{ marginBottom: 16 }}>Get Started Today</span>
+          <h2 style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(32px,5vw,56px)', fontWeight: 900, color: 'var(--text)', margin: '0 auto 16px', letterSpacing: -1.5, lineHeight: 1.1 }}>
+            Ready to build, secure<br /><span style={{ color: 'var(--teal)' }}>&amp; scale your business?</span>
           </h2>
-          <p style={{ color: 'rgba(255,255,255,0.4)', fontSize: 15, marginBottom: 20, lineHeight: 1.7 }}>Tell us what you need — we'll respond within 24 hours with a clear proposal and honest pricing. No hidden fees. No BS.</p>
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 18px', borderRadius: 12, border: '1px solid rgba(0, 212, 170, 0.3)', background: 'rgba(0, 212, 170, 0.07)', marginBottom: 28 }}>
-            <span style={{ fontSize: 14 }}>📍</span>
-            <span style={{ fontFamily: "'Poppins',sans-serif", fontSize: 13, color: '#00d4aa', fontWeight: 700 }}>Based in Dhaka, Bangladesh · Serving local & remote clients</span>
-          </div>
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-            <Link to="/contact" className="btn-primary" style={{ padding: '15px 36px', background: '#00d4aa', color: '#0f172a', fontSize: 15, fontWeight: 800, border: 'none', borderRadius: 12, textDecoration: 'none', fontFamily: "'Poppins',sans-serif" }}>
-              🔍 Get Free Security Audit →
+          <p style={{ color: 'var(--muted)', fontSize: 16, marginBottom: 32, lineHeight: 1.7 }}>Tell us what you need — we'll respond within 24 hours with a clear proposal and honest pricing. No hidden fees. No BS.</p>
+          
+          <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap', marginBottom: 32 }}>
+            <Link to="/contact" className="btn-primary" style={{ padding: '16px 36px', fontSize: 16 }}>
+              🔍 Get Free Infrastructure Audit →
             </Link>
-            <Link to="/contact" style={{ padding: '15px 28px', fontSize: 15, borderRadius: 12, textDecoration: 'none', background: 'rgba(0, 212, 170, 0.1)', border: '1px solid rgba(0, 212, 170, 0.3)', color: '#00d4aa', fontFamily: "'Poppins',sans-serif", fontWeight: 700 }}>
-              📞 Book a Free Consultation
+            <Link to="/contact" className="btn-outline" style={{ padding: '16px 36px', fontSize: 16 }}>
+              📞 Book Consultation
             </Link>
-          </div>
-          <div style={{ marginTop: 28, display: 'flex', gap: 20, justifyContent: 'center', flexWrap: 'wrap' }}>
-            {['✓ Free consultation', '✓ Fixed-price quotes', '✓ NDA on request', '✓ BDT & USD accepted'].map((t, i) => (
-              <span key={i} style={{ fontSize: 12, color: 'rgba(255,255,255,0.25)', fontFamily: "'JetBrains Mono',monospace" }}>{t}</span>
-            ))}
           </div>
         </div>
       </section>

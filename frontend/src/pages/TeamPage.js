@@ -9,7 +9,7 @@ const TEAM = [
     role:'Founder & CEO',
     bio:'Visionary behind Axentralab. Leads strategy, client relationships and overall direction.',
     photo:'/images/team/nazat.jpg',
-    color:'#00d4aa',
+    color:'var(--teal)',
     skills:['Leadership','Strategy','Business'],
     social:{ linkedin:'#' },
     badge:'Founder',
@@ -20,7 +20,7 @@ const TEAM = [
     role:'Full-Stack Developer',
     bio:'Builds scalable apps with clean architecture.',
     photo:'/images/team/shoumo.jpg',
-    color:'#00d4aa',
+    color:'var(--teal)',
     skills:['React','Node.js'],
     social:{ github:'#', linkedin:'#' },
   },
@@ -30,7 +30,7 @@ const TEAM = [
     role:'Full-Stack Developer',
     bio:'Expert in SaaS & system design.',
     photo:'/images/team/sourabh.jpg',
-    color:'#00d4aa',
+    color:'var(--teal)',
     skills:['React','PostgreSQL'],
     social:{ github:'#', linkedin:'#' },
   },
@@ -40,7 +40,7 @@ const TEAM = [
     role:'Full-Stack Developer',
     bio:'Focused on eCommerce systems.',
     photo:'/images/team/atik.jpg',
-    color:'#00d4aa',
+    color:'var(--teal)',
     skills:['React','MongoDB'],
     social:{ github:'#', linkedin:'#' },
   },
@@ -50,7 +50,7 @@ const TEAM = [
     role:'UI/UX Designer',
     bio:'Designs high-converting interfaces.',
     photo:'/images/team/jonayed.jpg',
-    color:'#00d4aa',
+    color:'var(--teal)',
     skills:['Figma','UX'],
     social:{ linkedin:'#' },
   },
@@ -60,7 +60,7 @@ const TEAM = [
     role:'Frontend Developer',
     bio:'Handles UI implementation and fixes.',
     photo:'/images/team/shoshanto.jpg',
-    color:'#00d4aa',
+    color:'var(--teal)',
     skills:['React','CSS'],
     social:{ github:'#' },
   },
@@ -70,7 +70,7 @@ const TEAM = [
     role:'Sales Executive',
     bio:'Handles client acquisition.',
     photo:'/images/team/alinabi.jpg',
-    color:'#00d4aa',
+    color:'var(--teal)',
     skills:['Sales','Negotiation'],
     social:{ linkedin:'#' },
   },
@@ -80,47 +80,47 @@ const TEAM = [
     role:'Sales Executive',
     bio:'Manages outreach and deals.',
     photo:'/images/team/snehashis.jpg',
-    color:'#00d4aa',
+    color:'var(--teal)',
     skills:['Sales','Marketing'],
     social:{ linkedin:'#' },
   },
 
   // 🔥 ADDING NEW 17 MEMBERS
 
-  { name:'Rakib Hasan', role:'Backend Developer', bio:'API & server expert.', photo:'/images/team/user1.jpg', color:'#00d4aa', skills:['Node','API'], social:{ github:'#' } },
-  { name:'Tanvir Ahmed', role:'Frontend Developer', bio:'UI builder.', photo:'/images/team/user2.jpg', color:'#00d4aa', skills:['React'], social:{ github:'#' } },
-  { name:'Mehedi Hasan', role:'WordPress Developer', bio:'WP specialist.', photo:'/images/team/user3.jpg', color:'#00d4aa', skills:['WordPress'], social:{ } },
-  { name:'Sakib Rahman', role:'QA Engineer', bio:'Testing & bug fixing.', photo:'/images/team/user4.jpg', color:'#00d4aa', skills:['Testing'], social:{ } },
-  { name:'Arif Hossain', role:'DevOps Engineer', bio:'Deploy & CI/CD.', photo:'/images/team/user5.jpg', color:'#00d4aa', skills:['Docker'], social:{ } },
-  { name:'Nusrat Jahan', role:'UI Designer', bio:'Modern UI creator.', photo:'/images/team/user6.jpg', color:'#00d4aa', skills:['Figma'], social:{ } },
-  { name:'Imran Khan', role:'SEO Specialist', bio:'Ranks websites.', photo:'/images/team/user7.jpg', color:'#00d4aa', skills:['SEO'], social:{ } },
-  { name:'Rifat Mahmud', role:'Content Writer', bio:'Writes conversion content.', photo:'/images/team/user8.jpg', color:'#00d4aa', skills:['Writing'], social:{ } },
-  { name:'Jahidul Islam', role:'Support Engineer', bio:'Client support expert.', photo:'/images/team/user9.jpg', color:'#00d4aa', skills:['Support'], social:{ } },
-  { name:'Hasan Mahmud', role:'Security Analyst', bio:'Handles vulnerabilities.', photo:'/images/team/user10.jpg', color:'#00d4aa', skills:['Security'], social:{ } },
-  { name:'Sabbir Hossain', role:'Mobile App Dev', bio:'Builds mobile apps.', photo:'/images/team/user11.jpg', color:'#00d4aa', skills:['React Native'], social:{ } },
-  { name:'Farhan Ahmed', role:'Project Manager', bio:'Manages delivery.', photo:'/images/team/user12.jpg', color:'#00d4aa', skills:['Management'], social:{ } },
-  { name:'Tariq Islam', role:'Data Analyst', bio:'Analyzes data.', photo:'/images/team/user13.jpg', color:'#00d4aa', skills:['Data'], social:{ } },
-  { name:'Mariam Akter', role:'HR Manager', bio:'Handles recruitment.', photo:'/images/team/user14.jpg', color:'#00d4aa', skills:['HR'], social:{ } },
-  { name:'Omar Faruk', role:'Marketing Manager', bio:'Growth strategist.', photo:'/images/team/user15.jpg', color:'#00d4aa', skills:['Marketing'], social:{ } },
-  { name:'Shakil Ahmed', role:'Automation Engineer', bio:'Builds automation.', photo:'/images/team/user16.jpg', color:'#00d4aa', skills:['Automation'], social:{ } },
-  { name:'Nayeem Islam', role:'Intern Developer', bio:'Learning & contributing.', photo:'/images/team/user17.jpg', color:'#00d4aa', skills:['Learning'], social:{ } },
+  { name:'Rakib Hasan', role:'Backend Developer', bio:'API & server expert.', photo:'/images/team/user1.jpg', color:'var(--teal)', skills:['Node','API'], social:{ github:'#' } },
+  { name:'Tanvir Ahmed', role:'Frontend Developer', bio:'UI builder.', photo:'/images/team/user2.jpg', color:'var(--teal)', skills:['React'], social:{ github:'#' } },
+  { name:'Mehedi Hasan', role:'WordPress Developer', bio:'WP specialist.', photo:'/images/team/user3.jpg', color:'var(--teal)', skills:['WordPress'], social:{ } },
+  { name:'Sakib Rahman', role:'QA Engineer', bio:'Testing & bug fixing.', photo:'/images/team/user4.jpg', color:'var(--teal)', skills:['Testing'], social:{ } },
+  { name:'Arif Hossain', role:'DevOps Engineer', bio:'Deploy & CI/CD.', photo:'/images/team/user5.jpg', color:'var(--teal)', skills:['Docker'], social:{ } },
+  { name:'Nusrat Jahan', role:'UI Designer', bio:'Modern UI creator.', photo:'/images/team/user6.jpg', color:'var(--teal)', skills:['Figma'], social:{ } },
+  { name:'Imran Khan', role:'SEO Specialist', bio:'Ranks websites.', photo:'/images/team/user7.jpg', color:'var(--teal)', skills:['SEO'], social:{ } },
+  { name:'Rifat Mahmud', role:'Content Writer', bio:'Writes conversion content.', photo:'/images/team/user8.jpg', color:'var(--teal)', skills:['Writing'], social:{ } },
+  { name:'Jahidul Islam', role:'Support Engineer', bio:'Client support expert.', photo:'/images/team/user9.jpg', color:'var(--teal)', skills:['Support'], social:{ } },
+  { name:'Hasan Mahmud', role:'DevOps Analyst', bio:'Handles infrastructure.', photo:'/images/team/user10.jpg', color:'var(--teal)', skills:['Security'], social:{ } },
+  { name:'Sabbir Hossain', role:'Mobile App Dev', bio:'Builds mobile apps.', photo:'/images/team/user11.jpg', color:'var(--teal)', skills:['React Native'], social:{ } },
+  { name:'Farhan Ahmed', role:'Project Manager', bio:'Manages delivery.', photo:'/images/team/user12.jpg', color:'var(--teal)', skills:['Management'], social:{ } },
+  { name:'Tariq Islam', role:'Data Analyst', bio:'Analyzes data.', photo:'/images/team/user13.jpg', color:'var(--teal)', skills:['Data'], social:{ } },
+  { name:'Mariam Akter', role:'HR Manager', bio:'Handles recruitment.', photo:'/images/team/user14.jpg', color:'var(--teal)', skills:['HR'], social:{ } },
+  { name:'Omar Faruk', role:'Marketing Manager', bio:'Growth strategist.', photo:'/images/team/user15.jpg', color:'var(--teal)', skills:['Marketing'], social:{ } },
+  { name:'Shakil Ahmed', role:'Automation Engineer', bio:'Builds automation.', photo:'/images/team/user16.jpg', color:'var(--teal)', skills:['Automation'], social:{ } },
+  { name:'Nayeem Islam', role:'Intern Developer', bio:'Learning & contributing.', photo:'/images/team/user17.jpg', color:'var(--teal)', skills:['Learning'], social:{ } },
 ];
 
 
 const STATS = [
-  { value: '25',   label: 'Core Team Members',   color: '#00d4aa' },
-  { value: '15+',  label: 'Projects Completed',   color: '#00d4aa' },
-  { value: '5+',   label: 'Ongoing Projects',     color: '#00d4aa' },
-  { value: '7+',  label: 'Happy Clients',        color: '#00d4aa' },
+  { value: '25',   label: 'Core Team Members',   color: 'var(--teal)' },
+  { value: '15+',  label: 'Projects Completed',   color: 'var(--teal)' },
+  { value: '5+',   label: 'Ongoing Projects',     color: 'var(--teal)' },
+  { value: '7+',  label: 'Happy Clients',        color: 'var(--teal)' },
 ];
 
 const EXPERTISE = [
-  { area: 'Web Development',      tags: ['React', 'Node.js', 'MERN', 'Business Sites', 'Corporate Portals'],    color: '#00d4aa' },
-  { area: 'E-commerce',           tags: ['Custom Shops', 'Product Management', 'Payment Integration', 'POS'],   color: '#00d4aa' },
-  { area: 'Custom Web Systems',   tags: ['POS Systems', 'Courier Platforms', 'SaaS Apps', 'Dashboards'],        color: '#00d4aa' },
-  { area: 'UI/UX Design',         tags: ['Figma', 'User Research', 'Prototyping', 'Design Systems'],            color: '#00d4aa' },
-  { area: 'Cybersecurity',        tags: ['Basic Security Audit', 'HTTPS Setup', 'Vulnerability Check', 'OWASP'],color: '#00d4aa' },
-  { area: 'Digital Marketing',    tags: ['Sales Funnel', 'SEO', 'Social Media', 'Lead Generation'],             color: '#00d4aa' },
+  { area: 'Web Development',      tags: ['React', 'Node.js', 'MERN', 'Business Sites', 'Corporate Portals'],    color: 'var(--teal)' },
+  { area: 'E-commerce',           tags: ['Custom Shops', 'Product Management', 'Payment Integration', 'POS'],   color: 'var(--teal)' },
+  { area: 'Custom Web Systems',   tags: ['POS Systems', 'Courier Platforms', 'SaaS Apps', 'Dashboards'],        color: 'var(--teal)' },
+  { area: 'UI/UX Design',         tags: ['Figma', 'User Research', 'Prototyping', 'Design Systems'],            color: 'var(--teal)' },
+  { area: 'Cloud Infrastructure',        tags: ['Basic Infrastructure Audit', 'HTTPS Setup', 'Code Quality Check', 'Web Vitals'],color: 'var(--teal)' },
+  { area: 'Digital Marketing',    tags: ['Sales Funnel', 'SEO', 'Social Media', 'Lead Generation'],             color: 'var(--teal)' },
 ];
 
 function GithubIcon() {
@@ -180,7 +180,7 @@ function MemberCard({ member, index }) {
           />
         ) : (
           <div style={{ width: '100%', height: '100%', display: 'flex', alignItems: 'center', justifyContent: 'center', background: `linear-gradient(135deg,${member.color}20,${member.color}08)` }}>
-            <div style={{ width: 80, height: 80, borderRadius: '50%', background: `${member.color}25`, border: `2px solid ${member.color}40`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "'Poppins',sans-serif", fontWeight: 900, fontSize: 28, color: member.color }}>
+            <div style={{ width: 80, height: 80, borderRadius: '50%', background: `${member.color}25`, border: `2px solid ${member.color}40`, display: 'flex', alignItems: 'center', justifyContent: 'center', fontFamily: "var(--font-h)", fontWeight: 900, fontSize: 28, color: member.color }}>
               {member.name.split(' ').map(n => n[0]).join('').slice(0, 2)}
             </div>
           </div>
@@ -188,7 +188,7 @@ function MemberCard({ member, index }) {
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, transparent 50%, rgba(6,8,15,0.7) 100%)' }} />
         {member.badge && (
           <div style={{ position: 'absolute', top: 14, left: 14 }}>
-            <span style={{ display: 'inline-block', padding: '3px 10px', borderRadius: 6, background: member.color, color: ['#00d4aa'].includes(member.color) ? '#000' : '#fff', fontSize: 9, fontFamily: "'JetBrains Mono',monospace", fontWeight: 900, letterSpacing: 1 }}>
+            <span style={{ display: 'inline-block', padding: '3px 10px', borderRadius: 6, background: member.color, color: ['var(--teal)'].includes(member.color) ? '#000' : 'var(--text)', fontSize: 9, fontFamily: "'JetBrains Mono',monospace", fontWeight: 900, letterSpacing: 1 }}>
               {member.badge.toUpperCase()}
             </span>
           </div>
@@ -196,7 +196,7 @@ function MemberCard({ member, index }) {
       </div>
 
       <div style={{ padding: '20px 22px 22px' }}>
-        <h3 style={{ fontFamily: "'Poppins',sans-serif", fontSize: 17, fontWeight: 900, color: '#fff', margin: '0 0 4px', letterSpacing: -0.3 }}>
+        <h3 style={{ fontFamily: "var(--font-h)", fontSize: 17, fontWeight: 900, color: 'var(--text)', margin: '0 0 4px', letterSpacing: -0.3 }}>
           {member.name}
         </h3>
         <p style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, color: member.color, margin: '0 0 12px', fontWeight: 700, letterSpacing: 0.5 }}>
@@ -215,25 +215,25 @@ function MemberCard({ member, index }) {
         <div style={{ display: 'flex', gap: 8, paddingTop: 16, borderTop: '1px solid rgba(255,255,255,0.06)' }}>
           {member.social.github && (
             <a href={member.social.github} target="_blank" rel="noopener noreferrer"
-              style={{ width: 32, height: 32, borderRadius: 8, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.45)', textDecoration: 'none', transition: 'all 0.2s' }}
-              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = '#fff'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; e.currentTarget.style.color = 'rgba(255,255,255,0.45)'; }}>
+              style={{ width: 32, height: 32, borderRadius: 8, background: 'var(--bg2)', border: '1px solid rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.45)', textDecoration: 'none', transition: 'all 0.2s' }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'var(--border)'; e.currentTarget.style.color = 'var(--text)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'var(--bg2)'; e.currentTarget.style.color = 'rgba(255,255,255,0.45)'; }}>
               <GithubIcon />
             </a>
           )}
           {member.social.linkedin && (
             <a href={member.social.linkedin} target="_blank" rel="noopener noreferrer"
-              style={{ width: 32, height: 32, borderRadius: 8, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.45)', textDecoration: 'none', transition: 'all 0.2s' }}
-              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0,212,170,0.15)'; e.currentTarget.style.color = '#00d4aa'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; e.currentTarget.style.color = 'rgba(255,255,255,0.45)'; }}>
+              style={{ width: 32, height: 32, borderRadius: 8, background: 'var(--bg2)', border: '1px solid rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.45)', textDecoration: 'none', transition: 'all 0.2s' }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(0,212,170,0.15)'; e.currentTarget.style.color = 'var(--teal)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'var(--bg2)'; e.currentTarget.style.color = 'rgba(255,255,255,0.45)'; }}>
               <LinkedinIcon />
             </a>
           )}
           {member.social.twitter && (
             <a href={member.social.twitter} target="_blank" rel="noopener noreferrer"
-              style={{ width: 32, height: 32, borderRadius: 8, background: 'rgba(255,255,255,0.05)', border: '1px solid rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.45)', textDecoration: 'none', transition: 'all 0.2s' }}
-              onMouseEnter={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.1)'; e.currentTarget.style.color = '#fff'; }}
-              onMouseLeave={e => { e.currentTarget.style.background = 'rgba(255,255,255,0.05)'; e.currentTarget.style.color = 'rgba(255,255,255,0.45)'; }}>
+              style={{ width: 32, height: 32, borderRadius: 8, background: 'var(--bg2)', border: '1px solid rgba(255,255,255,0.08)', display: 'flex', alignItems: 'center', justifyContent: 'center', color: 'rgba(255,255,255,0.45)', textDecoration: 'none', transition: 'all 0.2s' }}
+              onMouseEnter={e => { e.currentTarget.style.background = 'var(--border)'; e.currentTarget.style.color = 'var(--text)'; }}
+              onMouseLeave={e => { e.currentTarget.style.background = 'var(--bg2)'; e.currentTarget.style.color = 'rgba(255,255,255,0.45)'; }}>
               <TwitterIcon />
             </a>
           )}
@@ -289,19 +289,19 @@ export default function TeamPage() {
         <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(100deg, rgba(5,10,20,0.9) 0%, rgba(5,10,20,0.72) 48%, rgba(5,10,20,0.9) 100%)' }} />
         <div style={{ position: 'relative', zIndex: 2, textAlign: 'center', animation: 'fadeUp 0.6s ease both' }}>
           <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '5px 16px', borderRadius: 999, border: '1px solid rgba(0,212,170,0.3)', background: 'rgba(0,212,170,0.07)', marginBottom: 24 }}>
-            <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#00d4aa', display: 'inline-block', animation: 'pulse 2s infinite' }} />
-            <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, color: '#00d4aa', letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600 }}>The People Behind the Work</span>
+            <span style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--teal)', display: 'inline-block', animation: 'pulse 2s infinite' }} />
+            <span style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 11, color: 'var(--teal)', letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600 }}>The People Behind the Work</span>
           </div>
-          <h1 style={{ fontFamily: "'Poppins',sans-serif", fontSize: 'clamp(32px,5.5vw,68px)', fontWeight: 900, color: '#fff', margin: '0 0 20px', letterSpacing: -2.5, lineHeight: 1.04 }}>
+          <h1 style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(32px,5.5vw,68px)', fontWeight: 900, color: 'var(--text)', margin: '0 0 20px', letterSpacing: -2.5, lineHeight: 1.04 }}>
             Meet the{' '}
-            <span style={{ color: 'transparent', WebkitTextStroke: '1.5px rgba(255,255,255,0.3)' }}>Team</span>
-            <span style={{ color: '#00d4aa' }}>.</span>
+            <span style={{ color: 'transparent', WebkitTextStroke: '1.5px var(--border)' }}>Team</span>
+            <span style={{ color: 'var(--teal)' }}>.</span>
           </h1>
-          <p style={{ fontFamily: "'Poppins',sans-serif", fontSize: 'clamp(14px,1.8vw,18px)', color: 'rgba(255,255,255,0.42)', maxWidth: 520, margin: '0 auto 32px', lineHeight: 1.75 }}>
+          <p style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(14px,1.8vw,18px)', color: 'rgba(255,255,255,0.42)', maxWidth: 520, margin: '0 auto 32px', lineHeight: 1.75 }}>
             A tight-knit crew of engineers, security specialists and designers — united by one goal: shipping software that just works.
           </p>
           <div style={{ display: 'flex', gap: 20, justifyContent: 'center', flexWrap: 'wrap' }}>
-            {['🌏 Remote-first','⚡ Async by default','🔒 Security-obsessed','🚢 Ship fast, fix faster'].map((v, i) => (
+            {['🌏 Remote-first','⚡ Async by default','🔒 Performance-obsessed','🚢 Ship fast, fix faster'].map((v, i) => (
               <span key={i} style={{ fontSize: 12, color: 'rgba(255,255,255,0.28)', fontFamily: "'JetBrains Mono',monospace" }}>{v}</span>
             ))}
           </div>
@@ -313,7 +313,7 @@ export default function TeamPage() {
         <div className="stats-grid" style={{ background: 'rgba(255,255,255,0.01)' }}>
           {STATS.map((s, i) => (
             <div key={i} style={{ textAlign: 'center', padding: '28px 20px', borderRight: i < STATS.length - 1 ? '1px solid rgba(255,255,255,0.06)' : 'none' }}>
-              <div style={{ fontFamily: "'Poppins',sans-serif", fontSize: 34, fontWeight: 900, color: s.color, letterSpacing: -1, lineHeight: 1 }}>{s.value}</div>
+              <div style={{ fontFamily: "var(--font-h)", fontSize: 34, fontWeight: 900, color: s.color, letterSpacing: -1, lineHeight: 1 }}>{s.value}</div>
               <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.32)', marginTop: 6, fontFamily: "'JetBrains Mono',monospace", letterSpacing: 0.5, textTransform: 'uppercase' }}>{s.label}</div>
             </div>
           ))}
@@ -323,8 +323,8 @@ export default function TeamPage() {
       {/* TEAM MEMBER CARDS */}
       <section style={{ marginBottom: 96 }}>
         <div style={{ textAlign: 'center', marginBottom: 52 }}>
-          <span style={{ display: 'inline-block', padding: '3px 12px', borderRadius: 999, border: '1px solid #00d4aa40', background: '#00d4aa12', color: '#00d4aa', fontSize: 10, fontFamily: "'JetBrains Mono',monospace", letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600 }}>Our People</span>
-          <h2 style={{ fontFamily: "'Poppins',sans-serif", fontSize: 'clamp(24px,3.5vw,42px)', fontWeight: 900, color: '#fff', marginTop: 14, letterSpacing: -1 }}>The Core Team</h2>
+          <span style={{ display: 'inline-block', padding: '3px 12px', borderRadius: 999, border: '1px solid #00d4aa40', background: '#00d4aa12', color: 'var(--teal)', fontSize: 10, fontFamily: "'JetBrains Mono',monospace", letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600 }}>Our People</span>
+          <h2 style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(24px,3.5vw,42px)', fontWeight: 900, color: 'var(--text)', marginTop: 14, letterSpacing: -1 }}>The Core Team</h2>
           <p style={{ color: 'rgba(255,255,255,0.38)', fontSize: 14, maxWidth: 400, margin: '12px auto 0' }}>
             Small enough to move fast. Experienced enough to get it right.
           </p>
@@ -337,10 +337,10 @@ export default function TeamPage() {
       </section>
 
       {/* SHARED EXPERTISE */}
-      <section style={{ marginBottom: 96, padding: '72px 0', borderTop: '1px solid rgba(255,255,255,0.05)', borderBottom: '1px solid rgba(255,255,255,0.05)', background: 'rgba(255,255,255,0.01)' }}>
+      <section style={{ marginBottom: 96, padding: '72px 0', borderTop: '1px solid var(--bg2)', borderBottom: '1px solid var(--bg2)', background: 'rgba(255,255,255,0.01)' }}>
         <div style={{ textAlign: 'center', marginBottom: 52 }}>
-          <span style={{ display: 'inline-block', padding: '3px 12px', borderRadius: 999, border: '1px solid #00d4aa40', background: '#00d4aa12', color: '#00d4aa', fontSize: 10, fontFamily: "'JetBrains Mono',monospace", letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600 }}>Skills</span>
-          <h2 style={{ fontFamily: "'Poppins',sans-serif", fontSize: 'clamp(24px,3.5vw,42px)', fontWeight: 900, color: '#fff', marginTop: 14, letterSpacing: -1 }}>Our Collective Expertise</h2>
+          <span style={{ display: 'inline-block', padding: '3px 12px', borderRadius: 999, border: '1px solid #00d4aa40', background: '#00d4aa12', color: 'var(--teal)', fontSize: 10, fontFamily: "'JetBrains Mono',monospace", letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600 }}>Skills</span>
+          <h2 style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(24px,3.5vw,42px)', fontWeight: 900, color: 'var(--text)', marginTop: 14, letterSpacing: -1 }}>Our Collective Expertise</h2>
           <p style={{ color: 'rgba(255,255,255,0.38)', fontSize: 14, maxWidth: 420, margin: '12px auto 0' }}>
             Across 6 specialisations — every project is covered end to end.
           </p>
@@ -354,7 +354,7 @@ export default function TeamPage() {
             >
               <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 16 }}>
                 <div style={{ width: 10, height: 10, borderRadius: '50%', background: e.color, flexShrink: 0 }} />
-                <h3 style={{ fontFamily: "'Poppins',sans-serif", fontSize: 15, fontWeight: 800, color: '#fff', margin: 0 }}>{e.area}</h3>
+                <h3 style={{ fontFamily: "var(--font-h)", fontSize: 15, fontWeight: 800, color: 'var(--text)', margin: 0 }}>{e.area}</h3>
               </div>
               <div style={{ display: 'flex', flexWrap: 'wrap', gap: 7 }}>
                 {e.tags.map((tag, j) => (
@@ -375,18 +375,18 @@ export default function TeamPage() {
           <div style={{ position: 'absolute', bottom: '-20%', left: '10%',  width: 260, height: 260, borderRadius: '50%', background: 'radial-gradient(circle,rgba(0,212,170,0.07),transparent 65%)', pointerEvents: 'none' }} />
           <div style={{ position: 'relative', display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 40, alignItems: 'center' }}>
             <div>
-              <span style={{ display: 'inline-block', padding: '3px 12px', borderRadius: 999, border: '1px solid #00d4aa40', background: '#00d4aa10', color: '#00d4aa', fontSize: 10, fontFamily: "'JetBrains Mono',monospace", letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600, marginBottom: 18 }}>
+              <span style={{ display: 'inline-block', padding: '3px 12px', borderRadius: 999, border: '1px solid #00d4aa40', background: '#00d4aa10', color: 'var(--teal)', fontSize: 10, fontFamily: "'JetBrains Mono',monospace", letterSpacing: 1, textTransform: 'uppercase', fontWeight: 600, marginBottom: 18 }}>
                 We're Hiring
               </span>
-              <h2 style={{ fontFamily: "'Poppins',sans-serif", fontSize: 'clamp(24px,3.5vw,40px)', fontWeight: 900, color: '#fff', margin: '0 0 16px', letterSpacing: -1, lineHeight: 1.15 }}>
+              <h2 style={{ fontFamily: "var(--font-h)", fontSize: 'clamp(24px,3.5vw,40px)', fontWeight: 900, color: 'var(--text)', margin: '0 0 16px', letterSpacing: -1, lineHeight: 1.15 }}>
                 Want to build<br />
-                <span style={{ color: '#00d4aa' }}>great things with us?</span>
+                <span style={{ color: 'var(--teal)' }}>great things with us?</span>
               </h2>
               <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.45)', lineHeight: 1.8, margin: '0 0 28px', maxWidth: 400 }}>
                 We're always looking for sharp engineers, security researchers, and designers who care deeply about their craft. Remote-friendly. Async-first.
               </p>
               <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' }}>
-                <Link to="/contact" className="btn-primary" style={{ padding: '13px 28px', background: '#00d4aa', color: '#000', borderRadius: 12, fontSize: 14, fontWeight: 700, textDecoration: 'none', display: 'inline-block' }}>
+                <Link to="/contact" className="btn-primary" style={{ padding: '13px 28px', background: 'var(--teal)', color: '#000', borderRadius: 12, fontSize: 14, fontWeight: 700, textDecoration: 'none', display: 'inline-block' }}>
                   Send Your CV →
                 </Link>
                 <Link to="/contact" className="btn-outline" style={{ padding: '13px 24px', fontSize: 14, borderRadius: 12, textDecoration: 'none', display: 'inline-block' }}>
@@ -395,20 +395,20 @@ export default function TeamPage() {
               </div>
             </div>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)', fontFamily: "'JetBrains Mono',monospace", letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 4 }}>Open Roles</div>
+              <div style={{ fontSize: 11, color: 'var(--border)', fontFamily: "'JetBrains Mono',monospace", letterSpacing: 1.5, textTransform: 'uppercase', marginBottom: 4 }}>Open Roles</div>
               {[
-                { role: 'React / Node.js Developer',   type: 'Remote · Full-time',  color: '#00d4aa' },
-                { role: 'UI/UX Designer',              type: 'Remote · Part-time',  color: '#00d4aa' },
-                { role: 'Sales Executive',             type: 'Remote · Full-time',  color: '#00d4aa' },
-                { role: 'Digital Marketing Specialist',type: 'Remote · Part-time',  color: '#00d4aa' },
+                { role: 'React / Node.js Developer',   type: 'Remote · Full-time',  color: 'var(--teal)' },
+                { role: 'UI/UX Designer',              type: 'Remote · Part-time',  color: 'var(--teal)' },
+                { role: 'Sales Executive',             type: 'Remote · Full-time',  color: 'var(--teal)' },
+                { role: 'Digital Marketing Specialist',type: 'Remote · Part-time',  color: 'var(--teal)' },
               ].map((job, i) => (
                 <div key={i}
-                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 16px', background: 'rgba(255,255,255,0.03)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 12, gap: 12, transition: 'all 0.2s', cursor: 'pointer' }}
+                  style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '13px 16px', background: 'var(--bg2)', border: '1px solid rgba(255,255,255,0.07)', borderRadius: 12, gap: 12, transition: 'all 0.2s', cursor: 'pointer' }}
                   onMouseEnter={e => { e.currentTarget.style.borderColor = `${job.color}35`; e.currentTarget.style.background = `${job.color}08`; }}
-                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'; e.currentTarget.style.background = 'rgba(255,255,255,0.03)'; }}
+                  onMouseLeave={e => { e.currentTarget.style.borderColor = 'rgba(255,255,255,0.07)'; e.currentTarget.style.background = 'var(--bg2)'; }}
                 >
                   <div>
-                    <div style={{ fontFamily: "'Poppins',sans-serif", fontSize: 14, fontWeight: 700, color: '#fff', marginBottom: 3 }}>{job.role}</div>
+                    <div style={{ fontFamily: "var(--font-h)", fontSize: 14, fontWeight: 700, color: 'var(--text)', marginBottom: 3 }}>{job.role}</div>
                     <div style={{ fontFamily: "'JetBrains Mono',monospace", fontSize: 10, color: 'rgba(255,255,255,0.32)' }}>{job.type}</div>
                   </div>
                   <span style={{ color: job.color, fontSize: 16, flexShrink: 0 }}>→</span>

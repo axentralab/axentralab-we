@@ -104,7 +104,7 @@ export default function ClientPortalPage() {
             style={{
               fontSize: 'clamp(2.5rem, 8vw, 4rem)',
               fontWeight: 800,
-              color: '#fff',
+              color: 'var(--text)',
               marginBottom: 20,
             }}
           >
@@ -113,7 +113,7 @@ export default function ClientPortalPage() {
           <p
             style={{
               fontSize: 'clamp(1rem, 2vw, 1.3rem)',
-              color: 'rgba(255,255,255,0.7)',
+              color: 'var(--text)',
               marginBottom: 40,
               lineHeight: 1.6,
             }}
@@ -126,7 +126,7 @@ export default function ClientPortalPage() {
             style={{
               display: 'inline-block',
               padding: '12px 32px',
-              background: '#00d4aa',
+              background: 'var(--teal)',
               color: '#000',
               textDecoration: 'none',
               borderRadius: 8,
@@ -150,7 +150,7 @@ export default function ClientPortalPage() {
             style={{
               padding: '12px 32px',
               background: 'rgba(0, 212, 170, 0.15)',
-              color: '#00d4aa',
+              color: 'var(--teal)',
               border: '1px solid rgba(0, 212, 170, 0.3)',
               borderRadius: 8,
               fontWeight: 700,
@@ -174,7 +174,7 @@ export default function ClientPortalPage() {
       <section
         style={{
           padding: '80px 5%',
-          background: '#0f172a',
+          background: 'var(--bg)',
           borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
         }}
       >
@@ -184,7 +184,7 @@ export default function ClientPortalPage() {
               textAlign: 'center',
               fontSize: 'clamp(2rem, 5vw, 2.5rem)',
               fontWeight: 800,
-              color: '#fff',
+              color: 'var(--text)',
               marginBottom: 50,
             }}
           >
@@ -217,10 +217,10 @@ export default function ClientPortalPage() {
                 }}
               >
                 <div style={{ fontSize: '2.5rem', marginBottom: 16 }}>{feature.icon}</div>
-                <h3 style={{ color: '#fff', marginBottom: 10, fontSize: 18, fontWeight: 700 }}>
+                <h3 style={{ color: 'var(--text)', marginBottom: 10, fontSize: 18, fontWeight: 700 }}>
                   {feature.title}
                 </h3>
-                <p style={{ color: 'rgba(255,255,255,0.6)', fontSize: 14, lineHeight: 1.6 }}>
+                <p style={{ color: 'var(--muted)', fontSize: 14, lineHeight: 1.6 }}>
                   {feature.desc}
                 </p>
               </div>
@@ -233,7 +233,7 @@ export default function ClientPortalPage() {
       <section
         style={{
           padding: '80px 5%',
-          background: '#0f172a',
+          background: 'var(--bg)',
           borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
         }}
       >
@@ -243,7 +243,7 @@ export default function ClientPortalPage() {
               textAlign: 'center',
               fontSize: 'clamp(2rem, 5vw, 2.5rem)',
               fontWeight: 800,
-              color: '#fff',
+              color: 'var(--text)',
               marginBottom: 50,
             }}
           >
@@ -266,8 +266,8 @@ export default function ClientPortalPage() {
                 onClick={() => setActiveTab(i)}
                 style={{
                   padding: '10px 20px',
-                  background: activeTab === i ? '#00d4aa' : 'rgba(0, 212, 170, 0.2)',
-                  color: activeTab === i ? '#000' : '#00d4aa',
+                  background: activeTab === i ? 'var(--teal)' : 'rgba(0, 212, 170, 0.2)',
+                  color: activeTab === i ? '#000' : 'var(--teal)',
                   border: 'none',
                   borderRadius: 8,
                   fontWeight: 600,
@@ -292,7 +292,7 @@ export default function ClientPortalPage() {
           >
             {activeTab === 0 && (
               <div>
-                <h3 style={{ color: '#fff', marginBottom: 20 }}>Your Services Overview</h3>
+                <h3 style={{ color: 'var(--text)', marginBottom: 20 }}>Your Services Overview</h3>
                 <div
                   style={{
                     display: 'grid',
@@ -308,10 +308,10 @@ export default function ClientPortalPage() {
                         background: 'rgba(0, 212, 170, 0.05)',
                         border: '1px solid rgba(0, 212, 170, 0.15)',
                         borderRadius: 8,
-                        color: 'rgba(255,255,255,0.7)',
+                        color: 'var(--text)',
                       }}
                     >
-                      <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)' }}>Active</p>
+                      <p style={{ fontSize: 12, color: 'var(--muted)' }}>Active</p>
                       <p style={{ fontWeight: 700, marginTop: 8 }}>{item}</p>
                       <p style={{ fontSize: 12, marginTop: 8 }}>Renews: 2026-12-31</p>
                     </div>
@@ -321,8 +321,8 @@ export default function ClientPortalPage() {
             )}
             {activeTab === 1 && (
               <div>
-                <h3 style={{ color: '#fff', marginBottom: 20 }}>Recent Invoices</h3>
-                <div style={{ color: 'rgba(255,255,255,0.7)' }}>
+                <h3 style={{ color: 'var(--text)', marginBottom: 20 }}>Recent Invoices</h3>
+                <div style={{ color: 'var(--text)' }}>
                   {[
                     { id: 'INV-001', date: '2026-03-15', amount: '$99.00', status: 'Paid' },
                     { id: 'INV-002', date: '2026-02-15', amount: '$49.00', status: 'Paid' },
@@ -339,10 +339,10 @@ export default function ClientPortalPage() {
                     >
                       <div>
                         <p style={{ fontWeight: 600 }}>{inv.id}</p>
-                        <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)' }}>{inv.date}</p>
+                        <p style={{ fontSize: 12, color: 'var(--muted)' }}>{inv.date}</p>
                       </div>
                       <p style={{ fontWeight: 600 }}>{inv.amount}</p>
-                      <p style={{ color: '#00d4aa' }}>{inv.status}</p>
+                      <p style={{ color: 'var(--teal)' }}>{inv.status}</p>
                     </div>
                   ))}
                 </div>
@@ -350,8 +350,8 @@ export default function ClientPortalPage() {
             )}
             {activeTab === 2 && (
               <div>
-                <h3 style={{ color: '#fff', marginBottom: 20 }}>Your Support Tickets</h3>
-                <div style={{ color: 'rgba(255,255,255,0.7)' }}>
+                <h3 style={{ color: 'var(--text)', marginBottom: 20 }}>Your Support Tickets</h3>
+                <div style={{ color: 'var(--text)' }}>
                   {[
                     { id: 'TKT-045', subject: 'SSL Certificate Setup', status: 'Resolved' },
                     {
@@ -372,11 +372,11 @@ export default function ClientPortalPage() {
                     >
                       <div>
                         <p style={{ fontWeight: 600 }}>{tkt.id}</p>
-                        <p style={{ fontSize: 12, color: 'rgba(255,255,255,0.5)' }}>
+                        <p style={{ fontSize: 12, color: 'var(--muted)' }}>
                           {tkt.subject}
                         </p>
                       </div>
-                      <p style={{ color: '#00d4aa' }}>{tkt.status}</p>
+                      <p style={{ color: 'var(--teal)' }}>{tkt.status}</p>
                     </div>
                   ))}
                 </div>
@@ -384,8 +384,8 @@ export default function ClientPortalPage() {
             )}
             {activeTab === 3 && (
               <div>
-                <h3 style={{ color: '#fff', marginBottom: 20 }}>Your Projects</h3>
-                <div style={{ color: 'rgba(255,255,255,0.7)' }}>
+                <h3 style={{ color: 'var(--text)', marginBottom: 20 }}>Your Projects</h3>
+                <div style={{ color: 'var(--text)' }}>
                   {[
                     { name: 'Website Redesign', status: 'In Development', progress: 65 },
                     { name: 'Ecommerce Site', status: 'In Design', progress: 30 },
@@ -394,7 +394,7 @@ export default function ClientPortalPage() {
                     <div key={i} style={{ marginBottom: 24 }}>
                       <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 8 }}>
                         <p style={{ fontWeight: 600 }}>{proj.name}</p>
-                        <p style={{ fontSize: 12, color: '#00d4aa' }}>{proj.status}</p>
+                        <p style={{ fontSize: 12, color: 'var(--teal)' }}>{proj.status}</p>
                       </div>
                       <div
                         style={{
@@ -406,7 +406,7 @@ export default function ClientPortalPage() {
                       >
                         <div
                           style={{
-                            background: '#00d4aa',
+                            background: 'var(--teal)',
                             height: '100%',
                             width: `${proj.progress}%`,
                             transition: 'width 0.3s',
@@ -426,7 +426,7 @@ export default function ClientPortalPage() {
       <section
         style={{
           padding: '80px 5%',
-          background: '#0f172a',
+          background: 'var(--bg)',
           borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
         }}
       >
@@ -436,7 +436,7 @@ export default function ClientPortalPage() {
               textAlign: 'center',
               fontSize: 'clamp(2rem, 5vw, 2.5rem)',
               fontWeight: 800,
-              color: '#fff',
+              color: 'var(--text)',
               marginBottom: 50,
             }}
           >
@@ -453,8 +453,8 @@ export default function ClientPortalPage() {
                   borderBottom: '1px solid rgba(0, 212, 170, 0.1)',
                 }}
               >
-                <span style={{ color: '#00d4aa', fontSize: '1.5rem', minWidth: 30 }}>✓</span>
-                <p style={{ color: 'rgba(255,255,255,0.7)', lineHeight: 1.6 }}>{benefit}</p>
+                <span style={{ color: 'var(--teal)', fontSize: '1.5rem', minWidth: 30 }}>✓</span>
+                <p style={{ color: 'var(--text)', lineHeight: 1.6 }}>{benefit}</p>
               </div>
             ))}
           </div>
@@ -470,12 +470,12 @@ export default function ClientPortalPage() {
           border: '2px solid rgba(0, 212, 170, 0.3)',
         }}
       >
-        <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.3rem)', color: '#fff', marginBottom: 20 }}>
+        <h2 style={{ fontSize: 'clamp(1.8rem, 5vw, 2.3rem)', color: 'var(--text)', marginBottom: 20 }}>
           Ready to Access Your Portal?
         </h2>
         <p
           style={{
-            color: 'rgba(255,255,255,0.7)',
+            color: 'var(--text)',
             fontSize: 16,
             marginBottom: 30,
             maxWidth: 600,
@@ -489,7 +489,7 @@ export default function ClientPortalPage() {
           style={{
             display: 'inline-block',
             padding: '14px 36px',
-            background: '#00d4aa',
+            background: 'var(--teal)',
             color: '#000',
             textDecoration: 'none',
             borderRadius: 8,

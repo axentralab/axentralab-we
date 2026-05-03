@@ -19,7 +19,7 @@ export default function BlogSection() {
           {[
             { title: 'Building Scalable Web Applications', excerpt: 'Learn best practices for large-scale applications.', category: 'Web Dev', color: '#8B5CF6' },
             { title: 'AI Automation: Save 20 Hours Weekly', excerpt: 'Practical AI workflows that automate repetitive tasks.', category: 'AI', color: '#A855F7' },
-            { title: 'Cybersecurity Checklist for Startups', excerpt: 'A comprehensive guide to protecting your web app.', category: 'Security', color: '#EF4444' },
+            { title: 'Cloud Infrastructure Checklist for Startups', excerpt: 'A comprehensive guide to protecting your web app.', category: 'Security', color: '#EF4444' },
           ].map((post, i) => (
             <div key={i} style={{ background: 'rgba(255,255,255,0.025)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 16, overflow: 'hidden' }}>
               <div style={{ padding: '24px' }}>
