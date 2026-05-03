@@ -347,7 +347,8 @@ function ProjectModal({ project, onClose }) {
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        padding: "20px",
+        padding: "clamp(16px, 4vw, 24px)",
+        overflowY: "auto",
       }}
     >
       <div
@@ -370,7 +371,7 @@ function ProjectModal({ project, onClose }) {
             borderRadius: "24px 24px 0 0",
           }}
         />
-        <div style={{ padding: "28px 32px 0" }}>
+        <div style={{ padding: "clamp(20px, 4vw, 32px) clamp(20px, 5vw, 36px)" }}>
           <div
             style={{
               display: "flex",
@@ -499,11 +500,9 @@ function ProjectModal({ project, onClose }) {
           }}
         />
         <div
+          className="modal-grid-2col"
           style={{
-            padding: "24px 32px 32px",
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr",
-            gap: 24,
+            padding: "clamp(20px, 4vw, 32px) clamp(20px, 5vw, 36px) clamp(28px, 5vw, 40px)",
           }}
         >
           <div>
@@ -587,9 +586,9 @@ function ProjectModal({ project, onClose }) {
         </div>
         <div
           style={{
-            padding: "0 32px 28px",
+            padding: "0 clamp(20px, 5vw, 36px) clamp(20px, 4vw, 32px)",
             display: "flex",
-            gap: 10,
+            gap: "clamp(8px, 2vw, 12px)",
             flexWrap: "wrap",
           }}
         >
@@ -1315,45 +1314,71 @@ export default function PortfolioPage() {
   const hasMore = visible < filtered.length;
 
   return (
-    <div style={{ padding: "108px 5% 0", minHeight: "100vh" }}>
+    <div style={{ padding: "clamp(80px, 12vw, 128px) clamp(16px, 5vw, 40px) 0", minHeight: "100vh" }}>
       {modal && <ProjectModal project={modal} onClose={closeModal} />}
 
       <style>{`
         @keyframes fadeUp  { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:none} }
         @keyframes pulse   { 0%,100%{opacity:.5;transform:scale(1)} 50%{opacity:1;transform:scale(1.08)} }
         @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+        
+        .modal-grid-2col { display: grid; grid-template-columns: 1fr 1fr; gap: clamp(16px, 3vw, 24px); }
+        @media (max-width: 640px) {
+          .modal-grid-2col { grid-template-columns: 1fr !important; }
+        }
 
         .portfolio-grid {
           display: grid;
           grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-          gap: 22px;
+          gap: clamp(16px, 3vw, 24px);
           max-width: 1100px;
           margin: 0 auto;
         }
         .stats-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
           max-width: 900px;
           margin: 0 auto;
         }
         .testimonials-grid {
           display: grid;
-          grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-          gap: 20px;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: clamp(16px, 3vw, 24px);
           max-width: 1100px;
           margin: 0 auto;
         }
-        .cat-bar    { display:flex; gap:8px; justify-content:center; flex-wrap:wrap; }
-        .filter-row { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; align-items:center; margin-bottom:32px; }
-
-        @media (max-width:700px) {
-          .stats-grid { grid-template-columns:repeat(2,1fr) !important; }
-          .stats-grid > div { border-right:none !important; border-bottom:1px solid rgba(255,255,255,0.06); }
-          .stats-grid > div:nth-child(odd) { border-right:1px solid rgba(255,255,255,0.06) !important; }
+        .cat-bar { 
+          display: flex; 
+          gap: clamp(6px, 2vw, 12px); 
+          justify-content: center; 
+          flex-wrap: wrap; 
         }
-        @media (max-width:480px) {
-          .portfolio-grid    { grid-template-columns:1fr !important; }
-          .testimonials-grid { grid-template-columns:1fr !important; }
+        .filter-row { 
+          display: flex; 
+          gap: clamp(8px, 2vw, 16px); 
+          flex-wrap: wrap; 
+          justify-content: center; 
+          align-items: center; 
+          margin-bottom: clamp(20px, 4vw, 32px);
+        }
+
+        @media (max-width: 1024px) {
+          .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important; }
+        }
+        @media (max-width: 768px) {
+          .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important; }
+          .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
+          .stats-grid > div { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.06); }
+          .stats-grid > div:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.06) !important; }
+          .filter-row { flex-direction: column; }
+          .filter-row > div { width: 100%; }
+        }
+        @media (max-width: 640px) {
+          .portfolio-grid { grid-template-columns: 1fr !important; }
+          .testimonials-grid { grid-template-columns: 1fr !important; }
+          .cat-bar { gap: clamp(6px, 2vw, 8px); }
+          .filter-row { flex-direction: column; gap: clamp(8px, 2vw, 12px); }
+          .filter-row > div { width: 100% !important; }
         }
       `}</style>
 
@@ -1363,15 +1388,15 @@ export default function PortfolioPage() {
           position: "relative",
           overflow: "hidden",
           borderRadius: 20,
-          marginBottom: 64,
-          padding: "58px 20px",
+          marginBottom: "clamp(48px, 8vw, 80px)",
+          padding: "clamp(40px, 8vw, 68px) clamp(16px, 5vw, 40px)",
           textAlign: "center",
           animation: "fadeUp 0.6s ease both",
         }}
       >
         <div style={{ position: "absolute", inset: 0, backgroundImage: `url(${HERO_BG_IMAGE})`, backgroundSize: "cover", backgroundPosition: "center", backgroundRepeat: "no-repeat" }} />
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(100deg, rgba(6,8,15,0.9) 0%, rgba(6,8,15,0.72) 48%, rgba(6,8,15,0.9) 100%)" }} />
-        <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(var(--bg2) 1px,transparent 1px),linear-gradient(90deg,var(--bg2) 1px,transparent 1px)", backgroundSize: "60px 60px" }} />
+        <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(var(--bg2) 1px,transparent 1px),linear-gradient(90deg,var(--bg2) 1px,transparent 1px)", backgroundSize: "clamp(40px, 8vw, 60px) clamp(40px, 8vw, 60px)" }} />
         <div style={{ position: "relative" }}>
           <div
             style={{
@@ -1437,7 +1462,7 @@ export default function PortfolioPage() {
             fontSize: "clamp(14px,1.8vw,17px)",
             color: "rgba(255,255,255,0.42)",
             maxWidth: 500,
-            margin: "0 auto 32px",
+            margin: "0 auto clamp(20px, 4vw, 32px)",
             lineHeight: 1.8,
           }}
         >
@@ -1447,7 +1472,7 @@ export default function PortfolioPage() {
         <div
           style={{
             display: "flex",
-            gap: 20,
+            gap: "clamp(12px, 3vw, 20px)",
             justifyContent: "center",
             flexWrap: "wrap",
           }}
@@ -1478,7 +1503,7 @@ export default function PortfolioPage() {
         style={{
           borderTop: "1px solid rgba(255,255,255,0.06)",
           borderBottom: "1px solid rgba(255,255,255,0.06)",
-          marginBottom: 72,
+          marginBottom: "clamp(48px, 8vw, 80px)",
         }}
       >
         <div
@@ -1490,7 +1515,7 @@ export default function PortfolioPage() {
               key={i}
               style={{
                 textAlign: "center",
-                padding: "28px 20px",
+                padding: "clamp(18px, 3vw, 32px) clamp(12px, 2vw, 24px)",
                 borderRight:
                   i < STATS.length - 1
                     ? "1px solid rgba(255,255,255,0.06)"
@@ -1500,7 +1525,7 @@ export default function PortfolioPage() {
               <div
                 style={{
                   fontFamily: "var(--font-h)",
-                  fontSize: 32,
+                  fontSize: "clamp(24px, 4vw, 36px)",
                   fontWeight: 900,
                   color: s.color,
                   letterSpacing: -1,
@@ -1511,7 +1536,7 @@ export default function PortfolioPage() {
               </div>
               <div
                 style={{
-                  fontSize: 11,
+                  fontSize: "clamp(10px, 1.2vw, 12px)",
                   color: "rgba(255,255,255,0.32)",
                   marginTop: 6,
                   fontFamily: "var(--font-m)",
@@ -1527,7 +1552,9 @@ export default function PortfolioPage() {
       </section>
 
       {/* ── Featured Showcase ── */}
-      <FeaturedShowcase onOpenModal={openModal} />
+      <div style={{ marginBottom: "clamp(48px, 8vw, 80px)" }}>
+        <FeaturedShowcase onOpenModal={openModal} />
+      </div>
 
       {/* ── Category Filter ── */}
       <div className="cat-bar" style={{ marginBottom: 20 }}>
@@ -1586,7 +1613,7 @@ export default function PortfolioPage() {
             position: "relative",
             flex: 1,
             maxWidth: 380,
-            minWidth: 200,
+            minWidth: "100%",
           }}
         >
           <span
@@ -1640,7 +1667,7 @@ export default function PortfolioPage() {
             </button>
           )}
         </div>
-        <div style={{ position: "relative" }}>
+        <div style={{ position: "relative", width: "100%" }}>
           <select
             value={activeStack}
             onChange={(e) => handleStack(e.target.value)}
@@ -1655,6 +1682,7 @@ export default function PortfolioPage() {
               fontFamily: "var(--font-h)",
               cursor: "pointer",
               appearance: "none",
+              width: "100%",
               minWidth: 160,
             }}
           >
@@ -1688,13 +1716,14 @@ export default function PortfolioPage() {
         {(search || activeStack || activeCategory !== "All") && (
           <div
             style={{
-              fontSize: 12,
+              fontSize: "clamp(11px, 1.2vw, 13px)",
               color: "var(--border)",
               fontFamily: "var(--font-m)",
               padding: "8px 14px",
               background: "var(--bg2)",
               border: "1px solid rgba(255,255,255,0.07)",
               borderRadius: 10,
+              width: "100%",
             }}
           >
             {filtered.length} result{filtered.length !== 1 ? "s" : ""}
@@ -1756,7 +1785,7 @@ export default function PortfolioPage() {
 
       {/* ── Project Grid ── */}
       {filtered.length > 0 && (
-        <section style={{ marginBottom: 48 }}>
+        <section style={{ marginBottom: "clamp(36px, 6vw, 60px)" }}>
           <div className="portfolio-grid">
             {shown.map((project, i) => (
               <ProjectCard
@@ -1890,7 +1919,7 @@ export default function PortfolioPage() {
             <div
               key={i}
               style={{
-                padding: "22px 18px",
+                padding: "clamp(18px, 3vw, 28px) clamp(14px, 3vw, 20px)",
                 background: "var(--bg2)",
                 border: "1px solid rgba(255,255,255,0.06)",
                 borderRadius: 14,
@@ -1908,30 +1937,30 @@ export default function PortfolioPage() {
               <div
                 style={{
                   fontFamily: "var(--font-m)",
-                  fontSize: 10,
+                  fontSize: "clamp(9px, 1vw, 11px)",
                   color: "rgba(255,255,255,0.18)",
                   letterSpacing: 2,
-                  marginBottom: 12,
+                  marginBottom: "clamp(10px, 2vw, 14px)",
                 }}
               >
                 {s.step}
               </div>
-              <div style={{ fontSize: 24, marginBottom: 10 }}>{s.icon}</div>
+              <div style={{ fontSize: "clamp(20px, 3.5vw, 28px)", marginBottom: "clamp(8px, 1.5vw, 12px)" }}>{s.icon}</div>
               <div
                 style={{
                   fontFamily: "var(--font-h)",
-                  fontSize: 14,
+                  fontSize: "clamp(13px, 1.5vw, 16px)",
                   fontWeight: 800,
                   color: "var(--text)",
-                  marginBottom: 7,
+                  marginBottom: "clamp(6px, 1.2vw, 10px)",
                 }}
               >
                 {s.title}
               </div>
               <div
                 style={{
-                  fontSize: 13,
-                  color: "rgba(255,255,255,0.38)",
+                  fontSize: "clamp(12px, 1.2vw, 14px)",
+                  color: "rgba(255,255,255,0.48)",
                   lineHeight: 1.65,
                 }}
               >
@@ -1943,17 +1972,17 @@ export default function PortfolioPage() {
       </section>
 
       {/* ── Testimonials ── */}
-      <section style={{ marginBottom: 88 }}>
-        <div style={{ textAlign: "center", marginBottom: 44 }}>
+      <section style={{ marginBottom: "clamp(60px, 10vw, 100px)" }}>
+        <div style={{ textAlign: "center", marginBottom: "clamp(32px, 5vw, 48px)" }}>
           <span
             style={{
               display: "inline-block",
               padding: "3px 12px",
               borderRadius: 999,
-              border: "1px solid #ffffff15",
-              background: "#ffffff08",
-              color: "var(--muted)",
-              fontSize: 10,
+              border: "1px solid rgba(139,92,246,0.35)",
+              background: "rgba(139,92,246,0.08)",
+              color: "#8B5CF6",
+              fontSize: "clamp(9px, 1vw, 11px)",
               fontFamily: "var(--font-m)",
               letterSpacing: 1,
               textTransform: "uppercase",
@@ -1964,11 +1993,12 @@ export default function PortfolioPage() {
           <h2
             style={{
               fontFamily: "var(--font-h)",
-              fontSize: "clamp(22px,3.5vw,36px)",
+              fontSize: "clamp(22px, 3.5vw, 40px)",
               fontWeight: 900,
               color: "var(--text)",
               marginTop: 12,
               letterSpacing: -0.8,
+              lineHeight: 1.1,
             }}
           >
             What Clients Say
@@ -1979,39 +2009,44 @@ export default function PortfolioPage() {
             <div
               key={i}
               style={{
-                background: "rgba(255,255,255,0.025)",
-                border: "1px solid rgba(255,255,255,0.07)",
-                borderRadius: 18,
-                padding: 28,
-                transition: "all 0.2s",
+                background: `linear-gradient(135deg, ${t.color}08, rgba(255,255,255,0.01))`,
+                border: `1px solid ${t.color}20`,
+                borderRadius: 20,
+                padding: "clamp(20px, 4vw, 32px)",
+                transition: "all 0.3s",
+                display: "flex",
+                flexDirection: "column",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = `${t.color}30`;
-                e.currentTarget.style.transform = "translateY(-3px)";
+                e.currentTarget.style.borderColor = `${t.color}40`;
+                e.currentTarget.style.transform = "translateY(-6px)";
+                e.currentTarget.style.boxShadow = `0 16px 40px ${t.color}15`;
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255,255,255,0.07)";
+                e.currentTarget.style.borderColor = `${t.color}20`;
                 e.currentTarget.style.transform = "none";
+                e.currentTarget.style.boxShadow = "none";
               }}
             >
               <div
                 style={{
-                  fontSize: 28,
+                  fontSize: "clamp(24px, 4vw, 32px)",
                   color: t.color,
                   fontFamily: "Georgia,serif",
                   lineHeight: 1,
-                  marginBottom: 14,
-                  opacity: 0.7,
+                  marginBottom: "clamp(12px, 2vw, 16px)",
+                  opacity: 0.6,
                 }}
               >
                 "
               </div>
               <p
                 style={{
-                  fontSize: 14,
-                  color: "rgba(255,255,255,0.65)",
+                  fontSize: "clamp(13px, 1.3vw, 15px)",
+                  color: "rgba(255,255,255,0.68)",
                   lineHeight: 1.75,
-                  marginBottom: 22,
+                  marginBottom: "clamp(18px, 3vw, 28px)",
+                  flex: 1,
                 }}
               >
                 {t.quote}
@@ -2019,18 +2054,19 @@ export default function PortfolioPage() {
               <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
                 <div
                   style={{
-                    width: 38,
-                    height: 38,
+                    width: "clamp(36px, 6vw, 44px)",
+                    height: "clamp(36px, 6vw, 44px)",
                     borderRadius: "50%",
-                    background: `${t.color}20`,
-                    border: `1px solid ${t.color}40`,
+                    background: `${t.color}18`,
+                    border: `1.5px solid ${t.color}35`,
                     display: "flex",
                     alignItems: "center",
                     justifyContent: "center",
                     fontFamily: "var(--font-h)",
                     fontWeight: 800,
-                    fontSize: 12,
+                    fontSize: "clamp(11px, 1.5vw, 13px)",
                     color: t.color,
+                    flexShrink: 0,
                   }}
                 >
                   {t.avatar}
@@ -2039,7 +2075,7 @@ export default function PortfolioPage() {
                   <div
                     style={{
                       fontFamily: "var(--font-h)",
-                      fontSize: 13,
+                      fontSize: "clamp(12px, 1.3vw, 14px)",
                       fontWeight: 700,
                       color: "var(--text)",
                     }}
@@ -2048,9 +2084,9 @@ export default function PortfolioPage() {
                   </div>
                   <div
                     style={{
-                      fontSize: 11,
-                      color: "rgba(255,255,255,0.35)",
-                      marginTop: 1,
+                      fontSize: "clamp(10px, 1vw, 12px)",
+                      color: "rgba(255,255,255,0.42)",
+                      marginTop: 2,
                     }}
                   >
                     {t.role}
@@ -2065,17 +2101,17 @@ export default function PortfolioPage() {
       {/* ── Tech Marquee ── */}
       <section
         style={{
-          padding: "36px 0",
+          padding: "clamp(24px, 4vw, 48px) 0",
           borderTop: "1px solid var(--bg2)",
           borderBottom: "1px solid var(--bg2)",
           overflow: "hidden",
-          marginBottom: 88,
+          marginBottom: "clamp(60px, 10vw, 100px)",
         }}
       >
         <div
           style={{
             display: "flex",
-            gap: 48,
+            gap: "clamp(32px, 6vw, 56px)",
             animation: "marquee 22s linear infinite",
             width: "max-content",
           }}
@@ -2125,7 +2161,7 @@ export default function PortfolioPage() {
       </section>
 
       {/* ── CTA ── */}
-      <section style={{ maxWidth: 1100, margin: "0 auto", paddingBottom: 100 }}>
+      <section style={{ maxWidth: 1100, margin: "0 auto", paddingBottom: "clamp(60px, 10vw, 100px)" }}>
         <div
           style={{
             position: "relative",
