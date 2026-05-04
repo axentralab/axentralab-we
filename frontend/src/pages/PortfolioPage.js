@@ -410,7 +410,7 @@ function ProjectModal({ project, onClose }) {
                 style={{
                   fontFamily: "var(--font-m)",
                   fontSize: 11,
-                  color: "var(--border)",
+                  color: "var(--muted)",
                 }}
               >
                 {project.year}
@@ -456,7 +456,7 @@ function ProjectModal({ project, onClose }) {
                 width: 32,
                 height: 32,
                 borderRadius: 8,
-                background: "rgba(255,255,255,0.06)",
+                background: "var(--bg2)",
                 border: "1px solid var(--border)",
                 color: "var(--muted)",
                 fontSize: 16,
@@ -484,7 +484,7 @@ function ProjectModal({ project, onClose }) {
           <p
             style={{
               fontSize: 15,
-              color: "rgba(255,255,255,0.55)",
+              color: "var(--muted)",
               lineHeight: 1.8,
               margin: "0 0 24px",
             }}
@@ -510,7 +510,7 @@ function ProjectModal({ project, onClose }) {
               style={{
                 fontSize: 11,
                 fontWeight: 600,
-                color: "rgba(255,255,255,0.35)",
+                color: "var(--muted)",
                 fontFamily: "var(--font-m)",
                 letterSpacing: 1,
                 textTransform: "uppercase",
@@ -554,7 +554,7 @@ function ProjectModal({ project, onClose }) {
               style={{
                 fontSize: 11,
                 fontWeight: 600,
-                color: "rgba(255,255,255,0.35)",
+                color: "var(--muted)",
                 fontFamily: "var(--font-m)",
                 letterSpacing: 1,
                 textTransform: "uppercase",
@@ -573,7 +573,7 @@ function ProjectModal({ project, onClose }) {
                     background: "var(--bg2)",
                     border: "1px solid var(--border)",
                     fontSize: 12,
-                    color: "rgba(255,255,255,0.65)",
+                    color: "var(--muted)",
                     fontFamily: "var(--font-m)",
                     fontWeight: 600,
                   }}
@@ -709,7 +709,7 @@ function FeaturedShowcase({ onOpenModal }) {
         <span
           style={{
             fontSize: 12,
-            color: "var(--border)",
+            color: "var(--muted)",
             fontFamily: "var(--font-m)",
           }}
         >
@@ -731,7 +731,7 @@ function FeaturedShowcase({ onOpenModal }) {
               onClick={() => onOpenModal(project)}
               style={{
                 position: "relative",
-                background: `linear-gradient(135deg,${color}0e,rgba(255,255,255,0.015))`,
+                background: `linear-gradient(135deg,${color}0e,rgba(15,23,42,0.03))`,
                 border: `1px solid ${color}25`,
                 borderRadius: 20,
                 padding: 28,
@@ -791,7 +791,7 @@ function FeaturedShowcase({ onOpenModal }) {
                   style={{
                     fontFamily: "var(--font-m)",
                     fontSize: 10,
-                    color: "rgba(255,255,255,0.25)",
+                    color: "var(--muted)",
                   }}
                 >
                   {project.year}
@@ -812,7 +812,7 @@ function FeaturedShowcase({ onOpenModal }) {
               <p
                 style={{
                   fontSize: 13,
-                  color: "rgba(255,255,255,0.45)",
+                  color: "var(--muted)",
                   lineHeight: 1.7,
                   margin: "0 0 18px",
                 }}
@@ -859,9 +859,9 @@ function FeaturedShowcase({ onOpenModal }) {
                         padding: "2px 7px",
                         borderRadius: 4,
                         background: "var(--bg2)",
-                        border: "1px solid rgba(255,255,255,0.08)",
+                        border: "1px solid var(--border)",
                         fontSize: 10,
-                        color: "rgba(255,255,255,0.35)",
+                        color: "var(--muted)",
                         fontFamily: "var(--font-m)",
                       }}
                     >
@@ -873,7 +873,7 @@ function FeaturedShowcase({ onOpenModal }) {
                       style={{
                         padding: "2px 7px",
                         fontSize: 10,
-                        color: "rgba(255,255,255,0.25)",
+                        color: "var(--muted)",
                         fontFamily: "var(--font-m)",
                       }}
                     >
@@ -908,8 +908,8 @@ function ProjectCard({ project, index, onOpenModal }) {
     <div
       onClick={() => onOpenModal(project)}
       style={{
-        background: "rgba(255,255,255,0.025)",
-        border: "1px solid rgba(255,255,255,0.08)",
+        background: "rgba(15,23,42,0.03)",
+        border: "1px solid var(--border)",
         borderRadius: 20,
         overflow: "hidden",
         transition: "all 0.3s",
@@ -924,7 +924,7 @@ function ProjectCard({ project, index, onOpenModal }) {
         e.currentTarget.style.boxShadow = `0 20px 48px ${project.color}14`;
       }}
       onMouseLeave={(e) => {
-        e.currentTarget.style.borderColor = "rgba(255,255,255,0.08)";
+        e.currentTarget.style.borderColor = "var(--border)";
         e.currentTarget.style.transform = "none";
         e.currentTarget.style.boxShadow = "none";
       }}
@@ -1161,9 +1161,9 @@ function ProjectCard({ project, index, onOpenModal }) {
                 padding: "2px 7px",
                 borderRadius: 5,
                 background: "var(--bg2)",
-                border: "1px solid rgba(255,255,255,0.07)",
+                border: "1px solid var(--border)",
                 fontSize: 10,
-                color: "rgba(255,255,255,0.35)",
+                color: "var(--muted)",
                 fontFamily: "var(--font-m)",
               }}
             >
@@ -1174,7 +1174,7 @@ function ProjectCard({ project, index, onOpenModal }) {
             <span
               style={{
                 fontSize: 10,
-                color: "var(--border)",
+                color: "var(--muted)",
                 fontFamily: "var(--font-m)",
                 padding: "2px 4px",
               }}
@@ -1238,9 +1238,9 @@ function ProjectCard({ project, index, onOpenModal }) {
             style={{
               padding: "9px 12px",
               background: "var(--bg2)",
-              border: "1px solid rgba(255,255,255,0.09)",
+              border: "1px solid var(--border)",
               borderRadius: 10,
-              color: "rgba(255,255,255,0.45)",
+              color: "var(--muted)",
               fontSize: 12,
               fontWeight: 700,
               fontFamily: "var(--font-h)",
@@ -1252,8 +1252,8 @@ function ProjectCard({ project, index, onOpenModal }) {
               e.currentTarget.style.borderColor = "var(--border)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.color = "rgba(255,255,255,0.45)";
-              e.currentTarget.style.borderColor = "rgba(255,255,255,0.09)";
+              e.currentTarget.style.color = "var(--muted)";
+              e.currentTarget.style.borderColor = "var(--border)";
             }}
           >
             Similar?
@@ -1314,7 +1314,14 @@ export default function PortfolioPage() {
   const hasMore = visible < filtered.length;
 
   return (
-    <div style={{ padding: "clamp(80px, 12vw, 128px) clamp(16px, 5vw, 40px) 0", minHeight: "100vh" }}>
+    <div className="page"
+      style={{
+        padding: "clamp(80px, 12vw, 128px) clamp(16px, 5vw, 40px) 0",
+        minHeight: "100vh",
+        background: "var(--bg)",
+        color: "var(--text)",
+      }}
+    >
       {modal && <ProjectModal project={modal} onClose={closeModal} />}
 
       <style>{`
@@ -1368,8 +1375,8 @@ export default function PortfolioPage() {
         @media (max-width: 768px) {
           .portfolio-grid { grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important; }
           .stats-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .stats-grid > div { border-right: none !important; border-bottom: 1px solid rgba(255,255,255,0.06); }
-          .stats-grid > div:nth-child(odd) { border-right: 1px solid rgba(255,255,255,0.06) !important; }
+          .stats-grid > div { border-right: none !important; border-bottom: 1px solid var(--border); }
+          .stats-grid > div:nth-child(odd) { border-right: 1px solid var(--border) !important; }
           .filter-row { flex-direction: column; }
           .filter-row > div { width: 100%; }
         }
@@ -1460,7 +1467,7 @@ export default function PortfolioPage() {
           style={{
             fontFamily: "var(--font-h)",
             fontSize: "clamp(14px,1.8vw,17px)",
-            color: "rgba(255,255,255,0.42)",
+            color: "var(--muted)",
             maxWidth: 500,
             margin: "0 auto clamp(20px, 4vw, 32px)",
             lineHeight: 1.8,
@@ -1487,7 +1494,7 @@ export default function PortfolioPage() {
               key={i}
               style={{
                 fontSize: 12,
-                color: "rgba(255,255,255,0.28)",
+                color: "var(--muted)",
                 fontFamily: "var(--font-m)",
               }}
             >
@@ -1501,14 +1508,14 @@ export default function PortfolioPage() {
       {/* ── Stats Bar ── */}
       <section
         style={{
-          borderTop: "1px solid rgba(255,255,255,0.06)",
-          borderBottom: "1px solid rgba(255,255,255,0.06)",
+          borderTop: "1px solid var(--border)",
+          borderBottom: "1px solid var(--border)",
           marginBottom: "clamp(48px, 8vw, 80px)",
         }}
       >
         <div
           className="stats-grid"
-          style={{ background: "rgba(255,255,255,0.01)" }}
+          style={{ background: "rgba(15,23,42,0.02)" }}
         >
           {STATS.map((s, i) => (
             <div
@@ -1518,7 +1525,7 @@ export default function PortfolioPage() {
                 padding: "clamp(18px, 3vw, 32px) clamp(12px, 2vw, 24px)",
                 borderRight:
                   i < STATS.length - 1
-                    ? "1px solid rgba(255,255,255,0.06)"
+                    ? "1px solid var(--border)"
                     : "none",
               }}
             >
@@ -1537,7 +1544,7 @@ export default function PortfolioPage() {
               <div
                 style={{
                   fontSize: "clamp(10px, 1.2vw, 12px)",
-                  color: "rgba(255,255,255,0.32)",
+                  color: "var(--muted)",
                   marginTop: 6,
                   fontFamily: "var(--font-m)",
                   letterSpacing: 0.5,
@@ -1568,13 +1575,13 @@ export default function PortfolioPage() {
               border:
                 activeCategory === cat
                   ? "1px solid rgba(139,92,246,0.4)"
-                  : "1px solid rgba(255,255,255,0.08)",
+                  : "1px solid var(--border)",
               background:
                 activeCategory === cat
                   ? "rgba(139,92,246,0.1)"
                   : "var(--bg2)",
               color:
-                activeCategory === cat ? "#8B5CF6" : "rgba(255,255,255,0.45)",
+                activeCategory === cat ? "#8B5CF6" : "var(--muted)",
               fontFamily: "var(--font-h)",
               fontWeight: 700,
               fontSize: 13,
@@ -1591,7 +1598,7 @@ export default function PortfolioPage() {
                 background:
                   activeCategory === cat
                     ? "rgba(139,92,246,0.15)"
-                    : "rgba(255,255,255,0.06)",
+                    : "rgba(15,23,42,0.06)",
                 fontSize: 10,
                 color:
                   activeCategory === cat ? "#8B5CF6" : "var(--border)",
@@ -1657,7 +1664,7 @@ export default function PortfolioPage() {
                 transform: "translateY(-50%)",
                 background: "none",
                 border: "none",
-                color: "var(--border)",
+                color: "var(--muted)",
                 fontSize: 14,
                 cursor: "pointer",
                 padding: 0,
@@ -1706,7 +1713,7 @@ export default function PortfolioPage() {
               top: "50%",
               transform: "translateY(-50%)",
               pointerEvents: "none",
-              color: "var(--border)",
+              color: "var(--muted)",
               fontSize: 10,
             }}
           >
@@ -1717,11 +1724,11 @@ export default function PortfolioPage() {
           <div
             style={{
               fontSize: "clamp(11px, 1.2vw, 13px)",
-              color: "var(--border)",
+              color: "var(--muted)",
               fontFamily: "var(--font-m)",
               padding: "8px 14px",
               background: "var(--bg2)",
-              border: "1px solid rgba(255,255,255,0.07)",
+              border: "1px solid var(--border)",
               borderRadius: 10,
               width: "100%",
             }}
@@ -1735,7 +1742,7 @@ export default function PortfolioPage() {
               }}
               style={{
                 marginLeft: 10,
-                color: "var(--border)",
+                color: "var(--muted)",
                 background: "none",
                 border: "none",
                 cursor: "pointer",
@@ -1770,7 +1777,7 @@ export default function PortfolioPage() {
             }}
             style={{
               padding: "10px 22px",
-              background: "rgba(255,255,255,0.06)",
+              background: "rgba(15,23,42,0.06)",
               border: "1px solid var(--border)",
               borderRadius: 10,
               color: "var(--text)",
@@ -1831,7 +1838,7 @@ export default function PortfolioPage() {
                 textAlign: "center",
                 marginTop: 32,
                 fontSize: 12,
-                color: "var(--border)",
+                color: "var(--muted)",
                 fontFamily: "var(--font-m)",
               }}
             >
@@ -1847,7 +1854,7 @@ export default function PortfolioPage() {
           maxWidth: 1100,
           margin: "0 auto 88px",
           background: "var(--bg2)",
-          border: "1px solid rgba(255,255,255,0.07)",
+          border: "1px solid var(--border)",
           borderRadius: 22,
           padding: "clamp(32px,5vw,52px) clamp(24px,4vw,48px)",
         }}
@@ -1921,16 +1928,16 @@ export default function PortfolioPage() {
               style={{
                 padding: "clamp(18px, 3vw, 28px) clamp(14px, 3vw, 20px)",
                 background: "var(--bg2)",
-                border: "1px solid rgba(255,255,255,0.06)",
+                border: "1px solid var(--border)",
                 borderRadius: 14,
                 transition: "all 0.2s",
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255,255,255,0.14)";
+                e.currentTarget.style.borderColor = "rgba(0,0,0,0.10)";
                 e.currentTarget.style.transform = "translateY(-3px)";
               }}
               onMouseLeave={(e) => {
-                e.currentTarget.style.borderColor = "rgba(255,255,255,0.06)";
+                e.currentTarget.style.borderColor = "var(--border)";
                 e.currentTarget.style.transform = "none";
               }}
             >
@@ -1938,7 +1945,7 @@ export default function PortfolioPage() {
                 style={{
                   fontFamily: "var(--font-m)",
                   fontSize: "clamp(9px, 1vw, 11px)",
-                  color: "rgba(255,255,255,0.18)",
+                  color: "var(--muted)",
                   letterSpacing: 2,
                   marginBottom: "clamp(10px, 2vw, 14px)",
                 }}
@@ -1960,7 +1967,7 @@ export default function PortfolioPage() {
               <div
                 style={{
                   fontSize: "clamp(12px, 1.2vw, 14px)",
-                  color: "rgba(255,255,255,0.48)",
+                  color: "var(--muted)",
                   lineHeight: 1.65,
                 }}
               >
@@ -2009,7 +2016,7 @@ export default function PortfolioPage() {
             <div
               key={i}
               style={{
-                background: `linear-gradient(135deg, ${t.color}08, rgba(255,255,255,0.01))`,
+                background: `linear-gradient(135deg, ${t.color}08, rgba(15,23,42,0.02))`,
                 border: `1px solid ${t.color}20`,
                 borderRadius: 20,
                 padding: "clamp(20px, 4vw, 32px)",
@@ -2043,7 +2050,7 @@ export default function PortfolioPage() {
               <p
                 style={{
                   fontSize: "clamp(13px, 1.3vw, 15px)",
-                  color: "rgba(255,255,255,0.68)",
+                  color: "var(--text)",
                   lineHeight: 1.75,
                   marginBottom: "clamp(18px, 3vw, 28px)",
                   flex: 1,
@@ -2085,7 +2092,7 @@ export default function PortfolioPage() {
                   <div
                     style={{
                       fontSize: "clamp(10px, 1vw, 12px)",
-                      color: "rgba(255,255,255,0.42)",
+                      color: "var(--muted)",
                       marginTop: 2,
                     }}
                   >
@@ -2148,7 +2155,7 @@ export default function PortfolioPage() {
                 fontFamily: "var(--font-h)",
                 fontSize: 13,
                 fontWeight: 700,
-                color: "rgba(255,255,255,0.13)",
+                color: "var(--muted)",
                 letterSpacing: 1,
                 textTransform: "uppercase",
                 whiteSpace: "nowrap",
@@ -2267,7 +2274,7 @@ export default function PortfolioPage() {
                   borderRadius: 12,
                   textDecoration: "none",
                   background: "var(--bg2)",
-                  border: "1px solid rgba(255,255,255,0.12)",
+                  border: "1px solid var(--border)",
                   color: "var(--text)",
                   fontFamily: "var(--font-h)",
                   fontWeight: 700,
@@ -2294,7 +2301,7 @@ export default function PortfolioPage() {
                   key={i}
                   style={{
                     fontSize: 12,
-                    color: "rgba(255,255,255,0.25)",
+                    color: "var(--muted)",
                     fontFamily: "var(--font-m)",
                   }}
                 >
