@@ -289,6 +289,125 @@ const STATS = [
   { value: "8+", label: "Team Members", color: "#F59E0B" },
 ];
 
+const SERVICE_CATEGORIES = [
+  {
+    title: "Web Development Services",
+    items: [
+      {
+        name: "Basic Website (Portfolio / Business)",
+        bullets: ["5–7 pages", "Responsive design", "Basic SEO"],
+        price: "10,000 – 20,000 BDT",
+      },
+      {
+        name: "Advanced Business Website",
+        bullets: ["10–15 pages", "Admin panel", "Speed optimization", "SEO optimized"],
+        price: "25,000 – 60,000 BDT",
+      },
+      {
+        name: "E-commerce Website (MERN / CMS)",
+        bullets: ["Product system", "Payment integration", "Dashboard"],
+        price: "40,000 – 1,20,000 BDT",
+      },
+      {
+        name: "Custom Web App (SaaS / Dashboard)",
+        bullets: ["Full custom features", "API integration", "Scalable backend"],
+        price: "80,000 – 3,00,000+ BDT",
+      },
+    ],
+  },
+  {
+    title: "Cybersecurity Services",
+    items: [
+      {
+        name: "Basic Security Audit",
+        bullets: ["Website vulnerability scan", "Basic report"],
+        price: "8,000 – 20,000 BDT",
+      },
+      {
+        name: "Advanced Penetration Testing",
+        bullets: ["Manual + automated testing", "OWASP Top 10 check", "Report + fix guideline"],
+        price: "25,000 – 1,00,000 BDT",
+      },
+      {
+        name: "Bug Hunting / Vulnerability Fix",
+        bullets: ["Specific issue fix", "Live testing"],
+        price: "5,000 – 30,000 BDT",
+      },
+      {
+        name: "Website Hardening",
+        bullets: ["Firewall setup", "Anti-DDoS", "Secure config"],
+        price: "10,000 – 40,000 BDT",
+      },
+    ],
+  },
+  {
+    title: "Digital Marketing & Design",
+    items: [
+      {
+        name: "SEO (Monthly)",
+        bullets: ["On-page + Off-page", "Keyword research"],
+        price: "10,000 – 50,000 BDT / month",
+      },
+      {
+        name: "Social Media Management",
+        bullets: ["Content + posting", "Growth strategy"],
+        price: "8,000 – 30,000 BDT / month",
+      },
+      {
+        name: "Paid Ads (Facebook/Google)",
+        bullets: ["Campaign setup", "Optimization"],
+        price: "5,000 – 20,000 BDT",
+      },
+      {
+        name: "UI/UX & Branding",
+        bullets: ["UI/UX Design (Figma)", "Logo + Brand Identity"],
+        price: "3,000 – 25,000 BDT",
+      },
+    ],
+  },
+  {
+    title: "Automation & Maintenance",
+    items: [
+      {
+        name: "Chatbot Development",
+        bullets: ["Smart conversation flows", "Platform integration"],
+        price: "10,000 – 50,000 BDT",
+      },
+      {
+        name: "AI Tools Integration",
+        bullets: ["Workflow automation", "Custom AI helpers"],
+        price: "20,000 – 80,000 BDT",
+      },
+      {
+        name: "Monthly Maintenance",
+        bullets: ["Backup", "Bug fix", "Update"],
+        price: "3,000 – 15,000 BDT / month",
+      },
+    ],
+  },
+];
+
+const SERVICE_PACKAGES = [
+  {
+    name: "Starter Package",
+    desc: "Website + Basic SEO",
+    price: "15,000 BDT",
+    accent: "#8B5CF6",
+  },
+  {
+    name: "Business Growth Package",
+    desc: "Website + SEO + Security",
+    price: "40,000 BDT",
+    accent: "#3B82F6",
+  },
+  {
+    name: "Premium Package",
+    desc: "Web + Security + Marketing + Maintenance",
+    price: "80,000+ BDT",
+    accent: "#A855F7",
+  },
+];
+
 const TESTIMONIALS = [
   {
     name: "A Happy Client",
