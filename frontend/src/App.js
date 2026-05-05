@@ -14,18 +14,25 @@ import HomePage        from './pages/HomePage';
 import AboutPage       from './pages/AboutPage';
 import ShopPage        from './pages/ShopPage';
 import ProductsPage    from './pages/ProductsPage';
-import PricingPage     from './pages/PricingPage';
 import PortfolioPage   from './pages/PortfolioPage';
 import TeamPage        from './pages/TeamPage';
 import ContactPage     from './pages/ContactPage';
 import MeetingWithCEOPage from './pages/MeetingWithCEOPage';
 import ReferralPage    from './pages/ReferralPage';
 import HostingPage     from './pages/HostingPage';
-import MaintenancePage from './pages/MaintenancePage';
 import SupportPage     from './pages/SupportPage';
 import ClientPortalPage from './pages/ClientPortalPage';
 import CaseStudiesPage from './pages/CaseStudiesPage';
 import NotFoundPage     from './pages/NotFoundPage';
+
+// Service Pages
+import DigitalProductEngineeringPage from './pages/services/DigitalProductEngineeringPage';
+import LegacySoftwareModernizationPage from './pages/services/LegacySoftwareModernizationPage';
+import MVPDevelopmentPage from './pages/services/MVPDevelopmentPage';
+import SaaSDevelopmentPage from './pages/services/SaaSDevelopmentPage';
+import IoTDevelopmentPage from './pages/services/IoTDevelopmentPage';
+import CloudComputingPage from './pages/services/CloudComputingPage';
+import SupportMaintenancePage from './pages/services/SupportMaintenancePage';
 
 // New Auth & Dashboard Imports
 import LoginPage from './pages/auth/LoginPage';
@@ -76,8 +83,6 @@ export default function App() {
                   <Route path="/about"     element={<PublicLayout><AboutPage /></PublicLayout>} />
                   <Route path="/services"  element={<PublicLayout><ShopPage /></PublicLayout>} />
                   <Route path="/hosting"   element={<PublicLayout><HostingPage /></PublicLayout>} />
-                  <Route path="/maintenance" element={<PublicLayout><MaintenancePage /></PublicLayout>} />
-                  <Route path="/pricing"   element={<PublicLayout><PricingPage /></PublicLayout>} />
                   <Route path="/support"   element={<PublicLayout><SupportPage /></PublicLayout>} />
                   <Route path="/client-portal" element={<PublicLayout><ClientPortalPage /></PublicLayout>} />
                   <Route path="/case-studies" element={<PublicLayout><CaseStudiesPage /></PublicLayout>} />
@@ -87,6 +92,15 @@ export default function App() {
                   <Route path="/contact"   element={<PublicLayout><ContactPage /></PublicLayout>} />
                   <Route path="/ceo-meeting" element={<PublicLayout><MeetingWithCEOPage /></PublicLayout>} />
                   <Route path="/referral"  element={<AppLayout><ReferralPage /></AppLayout>} />
+
+                  {/* Individual Service Pages */}
+                  <Route path="/services/digital-product-engineering" element={<PublicLayout><DigitalProductEngineeringPage /></PublicLayout>} />
+                  <Route path="/services/legacy-software-modernization" element={<PublicLayout><LegacySoftwareModernizationPage /></PublicLayout>} />
+                  <Route path="/services/mvp-development" element={<PublicLayout><MVPDevelopmentPage /></PublicLayout>} />
+                  <Route path="/services/saas-development" element={<PublicLayout><SaaSDevelopmentPage /></PublicLayout>} />
+                  <Route path="/services/iot-development" element={<PublicLayout><IoTDevelopmentPage /></PublicLayout>} />
+                  <Route path="/services/cloud-computing" element={<PublicLayout><CloudComputingPage /></PublicLayout>} />
+                  <Route path="/services/support-and-maintenance" element={<PublicLayout><SupportMaintenancePage /></PublicLayout>} />
                   
                   {/* Auth Routes */}
                   <Route path="/login" element={<LoginPage />} />

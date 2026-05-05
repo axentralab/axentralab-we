@@ -29,13 +29,18 @@ export default function Navbar() {
 
   const navLinks = [
     { to: '/', label: 'Home' },
-    { 
-      label: 'Services', 
+    {
+      label: 'Services',
       dropdown: [
         { to: '/services', label: 'All Services' },
-        { to: '/hosting', label: 'Managed Hosting' },
-        { to: '/maintenance', label: 'Care Plans' },
-        { to: '/pricing', label: 'Pricing' }
+        { to: '/services/digital-product-engineering', label: 'Digital Product Engineering' },
+        { to: '/services/legacy-software-modernization', label: 'Legacy Software Modernization' },
+        { to: '/services/mvp-development', label: 'MVP Development' },
+        { to: '/services/saas-development', label: 'SaaS Development' },
+        { to: '/services/iot-development', label: 'IoT Development' },
+        { to: '/services/cloud-computing', label: 'Cloud Computing' },
+        { to: '/services/support-and-maintenance', label: 'Support and Maintenance' },
+        { to: '/hosting', label: 'Managed Hosting' }
       ]
     },
     { to: '/portfolio',     label: 'Portfolio' },

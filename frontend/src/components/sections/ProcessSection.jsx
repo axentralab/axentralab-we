@@ -1,33 +1,64 @@
 export default function ProcessSection() {
-  return (
-    <section style={{ padding: '100px 5%', position: 'relative', overflow: 'hidden', borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-      <div style={{ maxWidth: 1200, margin: '0 auto', position: 'relative' }}>
-        <div style={{ textAlign: 'center', marginBottom: 64 }}>
-          <h2 style={{ fontFamily: "'Sora',sans-serif", fontSize: 'clamp(26px,4vw,46px)', fontWeight: 900, color: '#fff', letterSpacing: -1.2, marginBottom: 14 }}>
-            How we build
-          </h2>
-          <p style={{ color: 'rgba(255,255,255,0.35)', maxWidth: 500, margin: '0 auto', fontSize: 15, lineHeight: 1.7 }}>
-            A clear, transparent process from day 1 to launch and beyond.
-          </p>
-        </div>
+  const steps = [
+    { step: 1, title: 'Discovery & Planning',  icon: '🔍', desc: 'We deep-dive into your business goals, audience, and technical requirements to create a solid roadmap.' },
+    { step: 2, title: 'Design & Prototyping',  icon: '🎨', desc: 'Wireframes and interactive prototypes — you see exactly what you\'re getting before a single line of code is written.' },
+    { step: 3, title: 'Development',           icon: '⚙️', desc: 'Clean, scalable code built with modern stacks. Weekly updates so you\'re never left in the dark.' },
+    { step: 4, title: 'Testing & QA',          icon: '✅', desc: 'Rigorous cross-browser, cross-device testing and performance audits before anything goes live.' },
+    { step: 5, title: 'Deployment & Launch',   icon: '🚀', desc: 'Zero-downtime deployment with CDN setup, DNS config, and a full go-live checklist.' },
+    { step: 6, title: 'Support & Growth',      icon: '📈', desc: 'Ongoing monitoring, maintenance, and feature additions — we grow with your business.' },
+  ];
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 16 }}>
-          {[
-            { step: 1, title: 'Discovery & Planning', icon: '🔍', color: '#8B5CF6' },
-            { step: 2, title: 'Design & Prototyping', icon: '🎨', color: '#3B82F6' },
-            { step: 3, title: 'Development', icon: '⚙️', color: '#A855F7' },
-            { step: 4, title: 'Testing & QA', icon: '✅', color: '#F59E0B' },
-            { step: 5, title: 'Deployment & Launch', icon: '🚀', color: '#06B6D4' },
-            { step: 6, title: 'Support & Growth', icon: '📈', color: '#EC4899' },
-          ].map((s, i) => (
-            <div key={i} style={{ background: 'rgba(255,255,255,0.025)', border: `1px solid ${s.color}25`, borderRadius: 20, padding: '28px' }}>
-              <div style={{ fontSize: 32, marginBottom: 12 }}>{s.icon}</div>
-              <div style={{ fontFamily: "'Sora',sans-serif", fontSize: 16, fontWeight: 800, color: '#fff', marginBottom: 8 }}>{s.title}</div>
-              <div style={{ fontSize: 12, color: s.color, fontFamily: "'Space Mono',monospace", fontWeight: 600 }}>Step {s.step}</div>
-            </div>
-          ))}
+  return (
+    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 16 }}>
+      {steps.map((s, i) => (
+        <div
+          key={i}
+          style={{
+            background: 'var(--bg2)',
+            border: '1px solid var(--border)',
+            borderRadius: 'var(--radius)',
+            padding: '28px 24px',
+            transition: 'border-color 0.2s, box-shadow 0.2s',
+          }}
+          onMouseEnter={e => {
+            e.currentTarget.style.borderColor = 'var(--teal)';
+            e.currentTarget.style.boxShadow = '0 8px 24px -8px rgba(0,0,0,0.1)';
+          }}
+          onMouseLeave={e => {
+            e.currentTarget.style.borderColor = 'var(--border)';
+            e.currentTarget.style.boxShadow = 'none';
+          }}
+        >
+          <div style={{ fontSize: 30, marginBottom: 16 }}>{s.icon}</div>
+          <div style={{
+            fontFamily: 'var(--font-h)',
+            fontSize: 16,
+            fontWeight: 800,
+            color: 'var(--text)',
+            marginBottom: 8,
+            letterSpacing: -0.2,
+          }}>
+            {s.title}
+          </div>
+          <p style={{
+            fontSize: 13,
+            color: 'var(--muted)',
+            lineHeight: 1.65,
+            marginBottom: 16,
+          }}>
+            {s.desc}
+          </p>
+          <div style={{
+            fontSize: 12,
+            color: 'var(--teal)',
+            fontFamily: 'var(--font-m)',
+            fontWeight: 700,
+            letterSpacing: 0.5,
+          }}>
+            Step {s.step}
+          </div>
         </div>
-      </div>
-    </section>
+      ))}
+    </div>
   );
 }
