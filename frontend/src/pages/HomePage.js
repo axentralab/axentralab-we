@@ -246,11 +246,6 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ── TESTIMONIALS ──────────────────────────────────────────────────── */}
-      {/* <TestimonialsSection /> */}
-
-      {/* ── PROCESS SECTION ────────────────────────────────────────────────── */}
-      {/* <ProcessSection /> */}
 
       {/* ── MAIN CTA ─────────────────────────────────────────────────────── */}
       <section style={{ padding: '100px 5%', textAlign: 'center', background: 'var(--bg2)', borderTop: '1px solid var(--border)' }}>
